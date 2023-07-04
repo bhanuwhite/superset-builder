@@ -22,7 +22,6 @@ from flask_appbuilder.api import expose, protect, rison, safe
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP, RouteMethod
-from superset.daos.tag import TagDAO
 from superset.extensions import event_logger
 from superset.tags.commands.create import CreateCustomTagCommand
 from superset.tags.commands.delete import DeleteTaggedObjectCommand, DeleteTagsCommand
@@ -34,6 +33,7 @@ from superset.tags.commands.exceptions import (
     TagInvalidError,
     TagNotFoundError,
 )
+from superset.tags.dao import TagDAO
 from superset.tags.models import ObjectTypes, Tag
 from superset.tags.schemas import (
     delete_tags_schema,

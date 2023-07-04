@@ -153,8 +153,3 @@ class ChartBulkDeleteFailedReportsExistError(ChartBulkDeleteFailedError):
 
 class ChartImportError(ImportFailedError):
     message = _("Import chart failed for an unknown reason")
-
-
-class WarmUpCacheChartNotFoundError(CommandException):
-    status = 404
-    message = _("Chart not found")

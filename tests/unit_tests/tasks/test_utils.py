@@ -18,7 +18,7 @@
 from contextlib import nullcontext
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
 from flask_appbuilder.security.sqla.models import User
@@ -31,8 +31,8 @@ SELENIUM_USERNAME = "admin"
 
 
 def _get_users(
-    params: Optional[Union[int, list[int]]]
-) -> Optional[Union[User, list[User]]]:
+    params: Optional[Union[int, List[int]]]
+) -> Optional[Union[User, List[User]]]:
     if params is None:
         return None
     if isinstance(params, int):
@@ -42,7 +42,7 @@ def _get_users(
 
 @dataclass
 class ModelConfig:
-    owners: list[int]
+    owners: List[int]
     creator: Optional[int] = None
     modifier: Optional[int] = None
 
@@ -268,18 +268,18 @@ class ModelType(int, Enum):
 )
 def test_get_executor(
     model_type: ModelType,
-    executor_types: list[ExecutorType],
+    executor_types: List[ExecutorType],
     model_config: ModelConfig,
     current_user: Optional[int],
-    expected_result: tuple[int, ExecutorNotFoundError],
+    expected_result: Tuple[int, ExecutorNotFoundError],
 ) -> None:
     from superset.models.dashboard import Dashboard
     from superset.models.slice import Slice
     from superset.reports.models import ReportSchedule
     from superset.tasks.utils import get_executor
 
-    model: type[Union[Dashboard, ReportSchedule, Slice]]
-    model_kwargs: dict[str, Any] = {}
+    model: Type[Union[Dashboard, ReportSchedule, Slice]]
+    model_kwargs: Dict[str, Any] = {}
     if model_type == ModelType.REPORT_SCHEDULE:
         model = ReportSchedule
         model_kwargs = {

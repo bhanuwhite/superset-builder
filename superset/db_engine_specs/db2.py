@@ -14,7 +14,6 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-from superset.constants import TimeGrain
 from superset.db_engine_specs.base import BaseEngineSpec, LimitMethod
 
 
@@ -28,25 +27,25 @@ class Db2EngineSpec(BaseEngineSpec):
 
     _time_grain_expressions = {
         None: "{col}",
-        TimeGrain.SECOND: "CAST({col} as TIMESTAMP) - MICROSECOND({col}) MICROSECONDS",
-        TimeGrain.MINUTE: "CAST({col} as TIMESTAMP)"
+        "PT1S": "CAST({col} as TIMESTAMP) - MICROSECOND({col}) MICROSECONDS",
+        "PT1M": "CAST({col} as TIMESTAMP)"
         " - SECOND({col}) SECONDS"
         " - MICROSECOND({col}) MICROSECONDS",
-        TimeGrain.HOUR: "CAST({col} as TIMESTAMP)"
+        "PT1H": "CAST({col} as TIMESTAMP)"
         " - MINUTE({col}) MINUTES"
         " - SECOND({col}) SECONDS"
         " - MICROSECOND({col}) MICROSECONDS ",
-        TimeGrain.DAY: "CAST({col} as TIMESTAMP)"
+        "P1D": "CAST({col} as TIMESTAMP)"
         " - HOUR({col}) HOURS"
         " - MINUTE({col}) MINUTES"
         " - SECOND({col}) SECONDS"
         " - MICROSECOND({col}) MICROSECONDS",
-        TimeGrain.WEEK: "{col} - (DAYOFWEEK({col})) DAYS",
-        TimeGrain.MONTH: "{col} - (DAY({col})-1) DAYS",
-        TimeGrain.QUARTER: "{col} - (DAY({col})-1) DAYS"
+        "P1W": "{col} - (DAYOFWEEK({col})) DAYS",
+        "P1M": "{col} - (DAY({col})-1) DAYS",
+        "P3M": "{col} - (DAY({col})-1) DAYS"
         " - (MONTH({col})-1) MONTHS"
         " + ((QUARTER({col})-1) * 3) MONTHS",
-        TimeGrain.YEAR: "{col} - (DAY({col})-1) DAYS - (MONTH({col})-1) MONTHS",
+        "P1Y": "{col} - (DAY({col})-1) DAYS - (MONTH({col})-1) MONTHS",
     }
 
     @classmethod

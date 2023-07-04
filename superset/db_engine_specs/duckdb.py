@@ -18,14 +18,12 @@ from __future__ import annotations
 
 import re
 from datetime import datetime
-from re import Pattern
-from typing import Any, TYPE_CHECKING
+from typing import Any, Dict, Optional, Pattern, Set, Tuple, TYPE_CHECKING
 
 from flask_babel import gettext as __
 from sqlalchemy import types
 from sqlalchemy.engine.reflection import Inspector
 
-from superset.constants import TimeGrain
 from superset.db_engine_specs.base import BaseEngineSpec
 from superset.errors import SupersetErrorType
 
@@ -43,17 +41,17 @@ class DuckDBEngineSpec(BaseEngineSpec):
 
     _time_grain_expressions = {
         None: "{col}",
-        TimeGrain.SECOND: "DATE_TRUNC('second', {col})",
-        TimeGrain.MINUTE: "DATE_TRUNC('minute', {col})",
-        TimeGrain.HOUR: "DATE_TRUNC('hour', {col})",
-        TimeGrain.DAY: "DATE_TRUNC('day', {col})",
-        TimeGrain.WEEK: "DATE_TRUNC('week', {col})",
-        TimeGrain.MONTH: "DATE_TRUNC('month', {col})",
-        TimeGrain.QUARTER: "DATE_TRUNC('quarter', {col})",
-        TimeGrain.YEAR: "DATE_TRUNC('year', {col})",
+        "PT1S": "DATE_TRUNC('second', {col})",
+        "PT1M": "DATE_TRUNC('minute', {col})",
+        "PT1H": "DATE_TRUNC('hour', {col})",
+        "P1D": "DATE_TRUNC('day', {col})",
+        "P1W": "DATE_TRUNC('week', {col})",
+        "P1M": "DATE_TRUNC('month', {col})",
+        "P3M": "DATE_TRUNC('quarter', {col})",
+        "P1Y": "DATE_TRUNC('year', {col})",
     }
 
-    custom_errors: dict[Pattern[str], tuple[str, SupersetErrorType, dict[str, Any]]] = {
+    custom_errors: Dict[Pattern[str], Tuple[str, SupersetErrorType, Dict[str, Any]]] = {
         COLUMN_DOES_NOT_EXIST_REGEX: (
             __('We can\'t seem to resolve the column "%(column_name)s"'),
             SupersetErrorType.COLUMN_DOES_NOT_EXIST_ERROR,
@@ -67,8 +65,8 @@ class DuckDBEngineSpec(BaseEngineSpec):
 
     @classmethod
     def convert_dttm(
-        cls, target_type: str, dttm: datetime, db_extra: dict[str, Any] | None = None
-    ) -> str | None:
+        cls, target_type: str, dttm: datetime, db_extra: Optional[Dict[str, Any]] = None
+    ) -> Optional[str]:
         sqla_type = cls.get_sqla_column_type(target_type)
 
         if isinstance(sqla_type, (types.String, types.DateTime)):
@@ -77,6 +75,6 @@ class DuckDBEngineSpec(BaseEngineSpec):
 
     @classmethod
     def get_table_names(
-        cls, database: Database, inspector: Inspector, schema: str | None
-    ) -> set[str]:
+        cls, database: Database, inspector: Inspector, schema: Optional[str]
+    ) -> Set[str]:
         return set(inspector.get_table_names(schema))

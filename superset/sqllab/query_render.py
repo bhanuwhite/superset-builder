@@ -17,7 +17,7 @@
 # pylint: disable=invalid-name, no-self-use, too-few-public-methods, too-many-arguments
 from __future__ import annotations
 
-from typing import Any, Callable, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, TYPE_CHECKING
 
 from flask_babel import gettext as __, ngettext
 from jinja2 import TemplateError
@@ -124,16 +124,16 @@ class SqlQueryRenderImpl(SqlQueryRender):
 
 
 class SqlQueryRenderException(SqlLabException):
-    _extra: dict[str, Any] | None
+    _extra: Optional[Dict[str, Any]]
 
     def __init__(
         self,
         sql_json_execution_context: SqlJsonExecutionContext,
         error_type: SupersetErrorType,
-        reason_message: str | None = None,
-        exception: Exception | None = None,
-        suggestion_help_msg: str | None = None,
-        extra: dict[str, Any] | None = None,
+        reason_message: Optional[str] = None,
+        exception: Optional[Exception] = None,
+        suggestion_help_msg: Optional[str] = None,
+        extra: Optional[Dict[str, Any]] = None,
     ) -> None:
         super().__init__(
             sql_json_execution_context,
@@ -145,10 +145,10 @@ class SqlQueryRenderException(SqlLabException):
         self._extra = extra
 
     @property
-    def extra(self) -> dict[str, Any] | None:
+    def extra(self) -> Optional[Dict[str, Any]]:
         return self._extra
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         rv = super().to_dict()
         if self._extra:
             rv["extra"] = self._extra

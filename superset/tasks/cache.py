@@ -14,9 +14,8 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-import json
 import logging
-from typing import Any, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 from urllib import request
 from urllib.error import URLError
 
@@ -37,20 +36,22 @@ logger = get_task_logger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def get_payload(chart: Slice, dashboard: Optional[Dashboard] = None) -> dict[str, int]:
-    """Return payload for warming up a given chart/table cache."""
-    payload = {"chart_id": chart.id}
-    if dashboard:
-        payload["dashboard_id"] = dashboard.id
-    return payload
+def get_url(chart: Slice, dashboard: Optional[Dashboard] = None) -> str:
+    """Return external URL for warming up a given chart/table cache."""
+    with app.test_request_context():
+        baseurl = "{WEBDRIVER_BASEURL}".format(**app.config)
+        url = f"{baseurl}superset/warm_up_cache/?slice_id={chart.id}"
+        if dashboard:
+            url += f"&dashboard_id={dashboard.id}"
+        return url
 
 
 class Strategy:  # pylint: disable=too-few-public-methods
     """
     A cache warm up strategy.
 
-    Each strategy defines a `get_payloads` method that returns a list of payloads to
-    send to the `/api/v1/chart/warm_up_cache` endpoint.
+    Each strategy defines a `get_urls` method that returns a list of URLs to
+    be fetched from the `/superset/warm_up_cache/` endpoint.
 
     Strategies can be configured in `superset/config.py`:
 
@@ -71,8 +72,8 @@ class Strategy:  # pylint: disable=too-few-public-methods
     def __init__(self) -> None:
         pass
 
-    def get_payloads(self) -> list[dict[str, int]]:
-        raise NotImplementedError("Subclasses must implement get_payloads!")
+    def get_urls(self) -> List[str]:
+        raise NotImplementedError("Subclasses must implement get_urls!")
 
 
 class DummyStrategy(Strategy):  # pylint: disable=too-few-public-methods
@@ -93,11 +94,11 @@ class DummyStrategy(Strategy):  # pylint: disable=too-few-public-methods
 
     name = "dummy"
 
-    def get_payloads(self) -> list[dict[str, int]]:
+    def get_urls(self) -> List[str]:
         session = db.create_scoped_session()
         charts = session.query(Slice).all()
 
-        return [get_payload(chart) for chart in charts]
+        return [get_url(chart) for chart in charts]
 
 
 class TopNDashboardsStrategy(Strategy):  # pylint: disable=too-few-public-methods
@@ -125,8 +126,8 @@ class TopNDashboardsStrategy(Strategy):  # pylint: disable=too-few-public-method
         self.top_n = top_n
         self.since = parse_human_datetime(since) if since else None
 
-    def get_payloads(self) -> list[dict[str, int]]:
-        payloads = []
+    def get_urls(self) -> List[str]:
+        urls = []
         session = db.create_scoped_session()
 
         records = (
@@ -141,9 +142,9 @@ class TopNDashboardsStrategy(Strategy):  # pylint: disable=too-few-public-method
         dashboards = session.query(Dashboard).filter(Dashboard.id.in_(dash_ids)).all()
         for dashboard in dashboards:
             for chart in dashboard.slices:
-                payloads.append(get_payload(chart, dashboard))
+                urls.append(get_url(chart, dashboard))
 
-        return payloads
+        return urls
 
 
 class DashboardTagsStrategy(Strategy):  # pylint: disable=too-few-public-methods
@@ -164,12 +165,12 @@ class DashboardTagsStrategy(Strategy):  # pylint: disable=too-few-public-methods
 
     name = "dashboard_tags"
 
-    def __init__(self, tags: Optional[list[str]] = None) -> None:
+    def __init__(self, tags: Optional[List[str]] = None) -> None:
         super().__init__()
         self.tags = tags or []
 
-    def get_payloads(self) -> list[dict[str, int]]:
-        payloads = []
+    def get_urls(self) -> List[str]:
+        urls = []
         session = db.create_scoped_session()
 
         tags = session.query(Tag).filter(Tag.name.in_(self.tags)).all()
@@ -190,7 +191,7 @@ class DashboardTagsStrategy(Strategy):  # pylint: disable=too-few-public-methods
         tagged_dashboards = session.query(Dashboard).filter(Dashboard.id.in_(dash_ids))
         for dashboard in tagged_dashboards:
             for chart in dashboard.slices:
-                payloads.append(get_payload(chart))
+                urls.append(get_url(chart))
 
         # add charts that are tagged
         tagged_objects = (
@@ -206,53 +207,42 @@ class DashboardTagsStrategy(Strategy):  # pylint: disable=too-few-public-methods
         chart_ids = [tagged_object.object_id for tagged_object in tagged_objects]
         tagged_charts = session.query(Slice).filter(Slice.id.in_(chart_ids))
         for chart in tagged_charts:
-            payloads.append(get_payload(chart))
+            urls.append(get_url(chart))
 
-        return payloads
+        return urls
 
 
 strategies = [DummyStrategy, TopNDashboardsStrategy, DashboardTagsStrategy]
 
 
 @celery_app.task(name="fetch_url")
-def fetch_url(data: str, headers: dict[str, str]) -> dict[str, str]:
+def fetch_url(url: str, headers: Dict[str, str]) -> Dict[str, str]:
     """
     Celery job to fetch url
     """
     result = {}
     try:
-        baseurl = "{WEBDRIVER_BASEURL}".format(**app.config)
-        url = f"{baseurl}api/v1/chart/warm_up_cache"
-        logger.info("Fetching %s with payload %s", url, data)
-        req = request.Request(
-            url, data=bytes(data, "utf-8"), headers=headers, method="PUT"
-        )
+        logger.info("Fetching %s", url)
+        req = request.Request(url, headers=headers)
         response = request.urlopen(  # pylint: disable=consider-using-with
             req, timeout=600
         )
-        logger.info(
-            "Fetched %s with payload %s, status code: %s", url, data, response.code
-        )
+        logger.info("Fetched %s, status code: %s", url, response.code)
         if response.code == 200:
-            result = {"success": data, "response": response.read().decode("utf-8")}
+            result = {"success": url, "response": response.read().decode("utf-8")}
         else:
-            result = {"error": data, "status_code": response.code}
-            logger.error(
-                "Error fetching %s with payload %s, status code: %s",
-                url,
-                data,
-                response.code,
-            )
+            result = {"error": url, "status_code": response.code}
+            logger.error("Error fetching %s, status code: %s", url, response.code)
     except URLError as err:
         logger.exception("Error warming up cache!")
-        result = {"error": data, "exception": str(err)}
+        result = {"error": url, "exception": str(err)}
     return result
 
 
 @celery_app.task(name="cache-warmup")
 def cache_warmup(
     strategy_name: str, *args: Any, **kwargs: Any
-) -> Union[dict[str, list[str]], str]:
+) -> Union[Dict[str, List[str]], str]:
     """
     Warm up cache.
 
@@ -280,20 +270,16 @@ def cache_warmup(
 
     user = security_manager.get_user_by_username(app.config["THUMBNAIL_SELENIUM_USER"])
     cookies = MachineAuthProvider.get_auth_cookies(user)
-    headers = {
-        "Cookie": f"session={cookies.get('session', '')}",
-        "Content-Type": "application/json",
-    }
+    headers = {"Cookie": f"session={cookies.get('session', '')}"}
 
-    results: dict[str, list[str]] = {"scheduled": [], "errors": []}
-    for payload in strategy.get_payloads():
+    results: Dict[str, List[str]] = {"scheduled": [], "errors": []}
+    for url in strategy.get_urls():
         try:
-            payload = json.dumps(payload)
-            logger.info("Scheduling %s", payload)
-            fetch_url.delay(payload, headers)
-            results["scheduled"].append(payload)
+            logger.info("Scheduling %s", url)
+            fetch_url.delay(url, headers)
+            results["scheduled"].append(url)
         except SchedulingError:
-            logger.exception("Error scheduling fetch_url for payload: %s", payload)
-            results["errors"].append(payload)
+            logger.exception("Error scheduling fetch_url: %s", url)
+            results["errors"].append(url)
 
     return results

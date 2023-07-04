@@ -124,7 +124,11 @@
                         "type": "object"
                       },
                       "level": {
-                        "enum": ["info", "warning", "error"],
+                        "enum": [
+                          "info",
+                          "warning",
+                          "error"
+                        ],
                         "type": "string"
                       },
                       "message": {
@@ -206,7 +210,12 @@
         "properties": {
           "annotationType": {
             "description": "Type of annotation layer",
-            "enum": ["FORMULA", "INTERVAL", "EVENT", "TIME_SERIES"],
+            "enum": [
+              "FORMULA",
+              "INTERVAL",
+              "EVENT",
+              "TIME_SERIES"
+            ],
             "type": "string"
           },
           "color": {
@@ -237,7 +246,12 @@
           },
           "opacity": {
             "description": "Opacity of layer",
-            "enum": ["", "opacityLow", "opacityMedium", "opacityHigh"],
+            "enum": [
+              "",
+              "opacityLow",
+              "opacityMedium",
+              "opacityHigh"
+            ],
             "nullable": true,
             "type": "string"
           },
@@ -264,12 +278,22 @@
           },
           "sourceType": {
             "description": "Type of source for annotation data",
-            "enum": ["", "line", "NATIVE", "table"],
+            "enum": [
+              "",
+              "line",
+              "NATIVE",
+              "table"
+            ],
             "type": "string"
           },
           "style": {
             "description": "Line style. Only applies to time-series annotations",
-            "enum": ["dashed", "dotted", "solid", "longDashed"],
+            "enum": [
+              "dashed",
+              "dotted",
+              "solid",
+              "longDashed"
+            ],
             "type": "string"
           },
           "timeColumn": {
@@ -292,7 +316,12 @@
             "type": "number"
           }
         },
-        "required": ["name", "show", "showMarkers", "value"],
+        "required": [
+          "name",
+          "show",
+          "showMarkers",
+          "value"
+        ],
         "type": "object"
       },
       "AnnotationLayerRestApi.get": {
@@ -361,7 +390,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "AnnotationLayerRestApi.get_list.User1": {
@@ -375,7 +407,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "AnnotationLayerRestApi.post": {
@@ -392,7 +427,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object"
       },
       "AnnotationLayerRestApi.put": {
@@ -443,7 +480,9 @@
             "type": "string"
           }
         },
-        "required": ["layer"],
+        "required": [
+          "layer"
+        ],
         "type": "object"
       },
       "AnnotationRestApi.get.AnnotationLayer": {
@@ -508,7 +547,9 @@
             "type": "integer"
           }
         },
-        "required": ["first_name"],
+        "required": [
+          "first_name"
+        ],
         "type": "object"
       },
       "AnnotationRestApi.get_list.User1": {
@@ -522,7 +563,9 @@
             "type": "integer"
           }
         },
-        "required": ["first_name"],
+        "required": [
+          "first_name"
+        ],
         "type": "object"
       },
       "AnnotationRestApi.post": {
@@ -554,7 +597,11 @@
             "type": "string"
           }
         },
-        "required": ["end_dttm", "short_descr", "start_dttm"],
+        "required": [
+          "end_dttm",
+          "short_descr",
+          "start_dttm"
+        ],
         "type": "object"
       },
       "AnnotationRestApi.put": {
@@ -675,7 +722,14 @@
         "properties": {
           "aggregate": {
             "description": "Aggregation operator. Only required for simple expression types.",
-            "enum": ["AVG", "COUNT", "COUNT_DISTINCT", "MAX", "MIN", "SUM"],
+            "enum": [
+              "AVG",
+              "COUNT",
+              "COUNT_DISTINCT",
+              "MAX",
+              "MIN",
+              "SUM"
+            ],
             "type": "string"
           },
           "column": {
@@ -683,7 +737,10 @@
           },
           "expressionType": {
             "description": "Simple or SQL metric",
-            "enum": ["SIMPLE", "SQL"],
+            "enum": [
+              "SIMPLE",
+              "SQL"
+            ],
             "example": "SQL",
             "type": "string"
           },
@@ -717,7 +774,9 @@
             "type": "string"
           }
         },
-        "required": ["expressionType"],
+        "required": [
+          "expressionType"
+        ],
         "type": "object"
       },
       "ChartDataAggregateOptionsSchema": {
@@ -782,16 +841,25 @@
           },
           "percentiles": {
             "description": "Upper and lower percentiles for percentile whisker type.",
-            "example": [1, 99]
+            "example": [
+              1,
+              99
+            ]
           },
           "whisker_type": {
             "description": "Whisker type. Any numpy function will work.",
-            "enum": ["tukey", "min/max", "percentile"],
+            "enum": [
+              "tukey",
+              "min/max",
+              "percentile"
+            ],
             "example": "tukey",
             "type": "string"
           }
         },
-        "required": ["whisker_type"],
+        "required": [
+          "whisker_type"
+        ],
         "type": "object"
       },
       "ChartDataColumn": {
@@ -813,12 +881,17 @@
         "properties": {
           "orientation": {
             "description": "Should cell values be calculated across the row or column.",
-            "enum": ["row", "column"],
+            "enum": [
+              "row",
+              "column"
+            ],
             "example": "row",
             "type": "string"
           }
         },
-        "required": ["orientation"],
+        "required": [
+          "orientation"
+        ],
         "type": "object"
       },
       "ChartDataDatasource": {
@@ -841,7 +914,9 @@
             "type": "string"
           }
         },
-        "required": ["id"],
+        "required": [
+          "id"
+        ],
         "type": "object"
       },
       "ChartDataExtras": {
@@ -850,14 +925,27 @@
             "description": "HAVING clause to be added to aggregate queries using AND operator.",
             "type": "string"
           },
+          "having_druid": {
+            "description": "HAVING filters to be added to legacy Druid datasource queries. This field is deprecated",
+            "items": {
+              "$ref": "#/components/schemas/ChartDataFilter"
+            },
+            "type": "array"
+          },
           "relative_end": {
             "description": "End time for relative time deltas. Default: `config[\"DEFAULT_RELATIVE_START_TIME\"]`",
-            "enum": ["today", "now"],
+            "enum": [
+              "today",
+              "now"
+            ],
             "type": "string"
           },
           "relative_start": {
             "description": "Start time for relative time deltas. Default: `config[\"DEFAULT_RELATIVE_START_TIME\"]`",
-            "enum": ["today", "now"],
+            "enum": [
+              "today",
+              "now"
+            ],
             "type": "string"
           },
           "time_grain_sqla": {
@@ -934,11 +1022,18 @@
           },
           "val": {
             "description": "The value or values to compare against. Can be a string, integer, decimal, None or list, depending on the operator.",
-            "example": ["China", "France", "Japan"],
+            "example": [
+              "China",
+              "France",
+              "Japan"
+            ],
             "nullable": true
           }
         },
-        "required": ["col", "op"],
+        "required": [
+          "col",
+          "op"
+        ],
         "type": "object"
       },
       "ChartDataGeodeticParseOptionsSchema": {
@@ -960,7 +1055,11 @@
             "type": "string"
           }
         },
-        "required": ["geodetic", "latitude", "longitude"],
+        "required": [
+          "geodetic",
+          "latitude",
+          "longitude"
+        ],
         "type": "object"
       },
       "ChartDataGeohashDecodeOptionsSchema": {
@@ -978,7 +1077,11 @@
             "type": "string"
           }
         },
-        "required": ["geohash", "latitude", "longitude"],
+        "required": [
+          "geohash",
+          "latitude",
+          "longitude"
+        ],
         "type": "object"
       },
       "ChartDataGeohashEncodeOptionsSchema": {
@@ -996,7 +1099,11 @@
             "type": "string"
           }
         },
-        "required": ["geohash", "latitude", "longitude"],
+        "required": [
+          "geohash",
+          "latitude",
+          "longitude"
+        ],
         "type": "object"
       },
       "ChartDataPivotOptionsSchema": {
@@ -1088,12 +1195,17 @@
                   }
                 }
               },
-              "groupby": ["country", "gender"]
+              "groupby": [
+                "country",
+                "gender"
+              ]
             },
             "type": "object"
           }
         },
-        "required": ["operation"],
+        "required": [
+          "operation"
+        ],
         "type": "object"
       },
       "ChartDataProphetOptionsSchema": {
@@ -1151,7 +1263,11 @@
             "example": false
           }
         },
-        "required": ["confidence_interval", "periods", "time_grain"],
+        "required": [
+          "confidence_interval",
+          "periods",
+          "time_grain"
+        ],
         "type": "object"
       },
       "ChartDataQueryContextSchema": {
@@ -1221,6 +1337,11 @@
             ],
             "nullable": true
           },
+          "druid_time_origin": {
+            "description": "Starting point for time grain counting on legacy Druid datasources. Used to change e.g. Monday/Sunday first-day-of-week. This field is deprecated and should be passed to `extras` as `druid_time_origin`.",
+            "nullable": true,
+            "type": "string"
+          },
           "extras": {
             "allOf": [
               {
@@ -1238,7 +1359,7 @@
             "type": "array"
           },
           "granularity": {
-            "description": "Name of temporal column used for time filtering.",
+            "description": "Name of temporal column used for time filtering. For legacy Druid datasources this defines the time grain.",
             "nullable": true,
             "type": "string"
           },
@@ -1257,6 +1378,14 @@
             "description": "HAVING clause to be added to aggregate queries using AND operator. This field is deprecated and should be passed to `extras`.",
             "nullable": true,
             "type": "string"
+          },
+          "having_filters": {
+            "description": "HAVING filters to be added to legacy Druid datasource queries. This field is deprecated and should be passed to `extras` as `having_druid`.",
+            "items": {
+              "$ref": "#/components/schemas/ChartDataFilter"
+            },
+            "nullable": true,
+            "type": "array"
           },
           "is_rowcount": {
             "description": "Should the rowcount of the actual query be returned",
@@ -1282,8 +1411,14 @@
           "orderby": {
             "description": "Expects a list of lists where the first element is the column name which to sort by, and the second element is a boolean.",
             "example": [
-              ["my_col_1", false],
-              ["my_col_2", true]
+              [
+                "my_col_1",
+                false
+              ],
+              [
+                "my_col_2",
+                true
+              ]
             ],
             "items": {},
             "nullable": true,
@@ -1614,7 +1749,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.get_list": {
@@ -1766,7 +1905,9 @@
             "type": "string"
           }
         },
-        "required": ["table_name"],
+        "required": [
+          "table_name"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.get_list.User": {
@@ -1780,7 +1921,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.get_list.User1": {
@@ -1798,7 +1942,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.get_list.User2": {
@@ -1816,7 +1963,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.get_list.User3": {
@@ -1838,7 +1988,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.post": {
@@ -1933,13 +2087,22 @@
           },
           "viz_type": {
             "description": "The type of chart visualization used.",
-            "example": ["bar", "area", "table"],
+            "example": [
+              "bar",
+              "line_multi",
+              "area",
+              "table"
+            ],
             "maxLength": 250,
             "minLength": 0,
             "type": "string"
           }
         },
-        "required": ["datasource_id", "datasource_type", "slice_name"],
+        "required": [
+          "datasource_id",
+          "datasource_type",
+          "slice_name"
+        ],
         "type": "object"
       },
       "ChartDataRestApi.put": {
@@ -2032,7 +2195,12 @@
           },
           "viz_type": {
             "description": "The type of chart visualization used.",
-            "example": ["bar", "area", "table"],
+            "example": [
+              "bar",
+              "line_multi",
+              "area",
+              "table"
+            ],
             "maxLength": 250,
             "minLength": 0,
             "nullable": true,
@@ -2115,14 +2283,21 @@
             "type": "integer"
           }
         },
-        "required": ["rolling_type", "window"],
+        "required": [
+          "rolling_type",
+          "window"
+        ],
         "type": "object"
       },
       "ChartDataSelectOptionsSchema": {
         "properties": {
           "columns": {
             "description": "Columns which to select from the input data, in the desired order. If columns are renamed, the original column name should be referenced here.",
-            "example": ["country", "gender", "age"],
+            "example": [
+              "country",
+              "gender",
+              "age"
+            ],
             "items": {
               "type": "string"
             },
@@ -2130,7 +2305,9 @@
           },
           "exclude": {
             "description": "Columns to exclude from selection.",
-            "example": ["my_temp_column"],
+            "example": [
+              "my_temp_column"
+            ],
             "items": {
               "type": "string"
             },
@@ -2175,7 +2352,9 @@
             "type": "object"
           }
         },
-        "required": ["columns"],
+        "required": [
+          "columns"
+        ],
         "type": "object"
       },
       "ChartEntityResponseSchema": {
@@ -2378,7 +2557,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "ChartRestApi.get_list": {
@@ -2530,7 +2713,9 @@
             "type": "string"
           }
         },
-        "required": ["table_name"],
+        "required": [
+          "table_name"
+        ],
         "type": "object"
       },
       "ChartRestApi.get_list.User": {
@@ -2544,7 +2729,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartRestApi.get_list.User1": {
@@ -2562,7 +2750,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartRestApi.get_list.User2": {
@@ -2580,7 +2771,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ChartRestApi.get_list.User3": {
@@ -2602,7 +2796,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "ChartRestApi.post": {
@@ -2697,13 +2895,22 @@
           },
           "viz_type": {
             "description": "The type of chart visualization used.",
-            "example": ["bar", "area", "table"],
+            "example": [
+              "bar",
+              "line_multi",
+              "area",
+              "table"
+            ],
             "maxLength": 250,
             "minLength": 0,
             "type": "string"
           }
         },
-        "required": ["datasource_id", "datasource_type", "slice_name"],
+        "required": [
+          "datasource_id",
+          "datasource_type",
+          "slice_name"
+        ],
         "type": "object"
       },
       "ChartRestApi.put": {
@@ -2796,7 +3003,12 @@
           },
           "viz_type": {
             "description": "The type of chart visualization used.",
-            "example": ["bar", "area", "table"],
+            "example": [
+              "bar",
+              "line_multi",
+              "area",
+              "table"
+            ],
             "maxLength": 250,
             "minLength": 0,
             "nullable": true,
@@ -2841,7 +3053,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "CssTemplateRestApi.get_list": {
@@ -2891,7 +3106,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "CssTemplateRestApi.get_list.User1": {
@@ -2909,7 +3127,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "CssTemplateRestApi.post": {
@@ -3296,7 +3517,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object"
       },
       "DashboardRestApi.get_list.User": {
@@ -3318,7 +3541,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "DashboardRestApi.get_list.User1": {
@@ -3336,7 +3563,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "DashboardRestApi.get_list.User2": {
@@ -3362,7 +3592,12 @@
             "type": "string"
           }
         },
-        "required": ["email", "first_name", "last_name", "username"],
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "DashboardRestApi.post": {
@@ -3728,7 +3963,10 @@
             "type": "string"
           }
         },
-        "required": ["database_name", "sqlalchemy_uri"],
+        "required": [
+          "database_name",
+          "sqlalchemy_uri"
+        ],
         "type": "object"
       },
       "DatabaseRestApi.get_list": {
@@ -3812,7 +4050,9 @@
             "type": "string"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "DatabaseRestApi.get_list.User": {
@@ -3826,7 +4066,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "DatabaseRestApi.post": {
@@ -3937,7 +4180,9 @@
             "type": "string"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "DatabaseRestApi.put": {
@@ -4230,7 +4475,10 @@
             "type": "string"
           }
         },
-        "required": ["configuration_method", "engine"],
+        "required": [
+          "configuration_method",
+          "engine"
+        ],
         "type": "object"
       },
       "Dataset": {
@@ -4462,7 +4710,9 @@
             "type": "string"
           }
         },
-        "required": ["column_name"],
+        "required": [
+          "column_name"
+        ],
         "type": "object"
       },
       "DatasetColumnsRestApi.get": {
@@ -4513,7 +4763,10 @@
             "type": "string"
           }
         },
-        "required": ["base_model_id", "table_name"],
+        "required": [
+          "base_model_id",
+          "table_name"
+        ],
         "type": "object"
       },
       "DatasetMetricRestApi.get": {
@@ -4600,7 +4853,10 @@
             "type": "string"
           }
         },
-        "required": ["expression", "metric_name"],
+        "required": [
+          "expression",
+          "metric_name"
+        ],
         "type": "object"
       },
       "DatasetRelatedChart": {
@@ -4793,7 +5049,12 @@
             "readOnly": true
           }
         },
-        "required": ["columns", "database", "metrics", "table_name"],
+        "required": [
+          "columns",
+          "database",
+          "metrics",
+          "table_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.Database": {
@@ -4810,7 +5071,9 @@
             "type": "integer"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.SqlMetric": {
@@ -4864,7 +5127,10 @@
             "type": "string"
           }
         },
-        "required": ["expression", "metric_name"],
+        "required": [
+          "expression",
+          "metric_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.TableColumn": {
@@ -4943,7 +5209,9 @@
             "type": "string"
           }
         },
-        "required": ["column_name"],
+        "required": [
+          "column_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.User": {
@@ -4957,7 +5225,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.User1": {
@@ -4971,7 +5242,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get.User2": {
@@ -4993,7 +5267,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get_list": {
@@ -5058,7 +5336,10 @@
             "type": "string"
           }
         },
-        "required": ["database", "table_name"],
+        "required": [
+          "database",
+          "table_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get_list.Database": {
@@ -5072,7 +5353,9 @@
             "type": "integer"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get_list.User": {
@@ -5086,7 +5369,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "username"],
+        "required": [
+          "first_name",
+          "username"
+        ],
         "type": "object"
       },
       "DatasetRestApi.get_list.User1": {
@@ -5108,7 +5394,11 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name", "username"],
+        "required": [
+          "first_name",
+          "last_name",
+          "username"
+        ],
         "type": "object"
       },
       "DatasetRestApi.post": {
@@ -5147,7 +5437,10 @@
             "type": "string"
           }
         },
-        "required": ["database", "table_name"],
+        "required": [
+          "database",
+          "table_name"
+        ],
         "type": "object"
       },
       "DatasetRestApi.put": {
@@ -5273,7 +5566,9 @@
             "type": "string"
           }
         },
-        "required": ["datasource_type"],
+        "required": [
+          "datasource_type"
+        ],
         "type": "object"
       },
       "DistincResponseSchema": {
@@ -5310,7 +5605,9 @@
             "type": "array"
           }
         },
-        "required": ["allowed_domains"],
+        "required": [
+          "allowed_domains"
+        ],
         "type": "object"
       },
       "EmbeddedDashboardResponseSchema": {
@@ -5432,7 +5729,10 @@
             "type": "string"
           }
         },
-        "required": ["database_id", "sql"],
+        "required": [
+          "database_id",
+          "sql"
+        ],
         "type": "object"
       },
       "ExploreContextSchema": {
@@ -5470,7 +5770,9 @@
             "type": "array"
           }
         },
-        "required": ["formData"],
+        "required": [
+          "formData"
+        ],
         "type": "object"
       },
       "FilterSetRestApi.get": {
@@ -5504,7 +5806,11 @@
             "readOnly": true
           }
         },
-        "required": ["name", "owner_id", "owner_type"],
+        "required": [
+          "name",
+          "owner_id",
+          "owner_type"
+        ],
         "type": "object"
       },
       "FilterSetRestApi.get_list": {
@@ -5558,7 +5864,11 @@
             "readOnly": true
           }
         },
-        "required": ["name", "owner_id", "owner_type"],
+        "required": [
+          "name",
+          "owner_id",
+          "owner_type"
+        ],
         "type": "object"
       },
       "FilterSetRestApi.post": {
@@ -5582,11 +5892,18 @@
             "type": "integer"
           },
           "owner_type": {
-            "enum": ["User", "Dashboard"],
+            "enum": [
+              "User",
+              "Dashboard"
+            ],
             "type": "string"
           }
         },
-        "required": ["json_metadata", "name", "owner_type"],
+        "required": [
+          "json_metadata",
+          "name",
+          "owner_type"
+        ],
         "type": "object"
       },
       "FilterSetRestApi.put": {
@@ -5605,7 +5922,9 @@
             "type": "string"
           },
           "owner_type": {
-            "enum": ["Dashboard"],
+            "enum": [
+              "Dashboard"
+            ],
             "type": "string"
           }
         },
@@ -5640,7 +5959,11 @@
             "type": "string"
           }
         },
-        "required": ["datasource_id", "datasource_type", "form_data"],
+        "required": [
+          "datasource_id",
+          "datasource_type",
+          "form_data"
+        ],
         "type": "object"
       },
       "FormDataPutSchema": {
@@ -5672,7 +5995,11 @@
             "type": "string"
           }
         },
-        "required": ["datasource_id", "datasource_type", "form_data"],
+        "required": [
+          "datasource_id",
+          "datasource_type",
+          "form_data"
+        ],
         "type": "object"
       },
       "GetFavStarIdsSchema": {
@@ -5705,7 +6032,10 @@
             "$ref": "#/components/schemas/User1"
           }
         },
-        "required": ["resources", "rls"],
+        "required": [
+          "resources",
+          "rls"
+        ],
         "type": "object"
       },
       "LogRestApi.get": {
@@ -5762,7 +6092,9 @@
             "type": "string"
           }
         },
-        "required": ["username"],
+        "required": [
+          "username"
+        ],
         "type": "object"
       },
       "LogRestApi.get_list": {
@@ -5819,7 +6151,9 @@
             "type": "string"
           }
         },
-        "required": ["username"],
+        "required": [
+          "username"
+        ],
         "type": "object"
       },
       "LogRestApi.post": {
@@ -6004,7 +6338,10 @@
             "readOnly": true
           }
         },
-        "required": ["client_id", "database"],
+        "required": [
+          "client_id",
+          "database"
+        ],
         "type": "object"
       },
       "QueryRestApi.get.Database": {
@@ -6341,7 +6678,10 @@
             "type": "string"
           }
         },
-        "required": ["scheduled_dttm", "state"],
+        "required": [
+          "scheduled_dttm",
+          "state"
+        ],
         "type": "object"
       },
       "ReportExecutionLogRestApi.get_list": {
@@ -6387,7 +6727,10 @@
             "type": "string"
           }
         },
-        "required": ["scheduled_dttm", "state"],
+        "required": [
+          "scheduled_dttm",
+          "state"
+        ],
         "type": "object"
       },
       "ReportExecutionLogRestApi.post": {
@@ -6415,11 +6758,16 @@
           },
           "type": {
             "description": "The recipient type, check spec for valid options",
-            "enum": ["Email", "Slack"],
+            "enum": [
+              "Email",
+              "Slack"
+            ],
             "type": "string"
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object"
       },
       "ReportRecipientConfigJSON": {
@@ -6544,7 +6892,12 @@
             "type": "integer"
           }
         },
-        "required": ["crontab", "name", "recipients", "type"],
+        "required": [
+          "crontab",
+          "name",
+          "recipients",
+          "type"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get.Dashboard": {
@@ -6572,7 +6925,9 @@
             "type": "integer"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get.ReportRecipients": {
@@ -6590,7 +6945,9 @@
             "type": "string"
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get.Slice": {
@@ -6627,7 +6984,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get_list": {
@@ -6717,7 +7077,12 @@
             "type": "string"
           }
         },
-        "required": ["crontab", "name", "recipients", "type"],
+        "required": [
+          "crontab",
+          "name",
+          "recipients",
+          "type"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get_list.ReportRecipients": {
@@ -6731,7 +7096,9 @@
             "type": "string"
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get_list.User": {
@@ -6745,7 +7112,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get_list.User1": {
@@ -6759,7 +7129,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.get_list.User2": {
@@ -6777,7 +7150,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.post": {
@@ -6862,7 +7238,11 @@
             "type": "array"
           },
           "report_format": {
-            "enum": ["PNG", "CSV", "TEXT"],
+            "enum": [
+              "PNG",
+              "CSV",
+              "TEXT"
+            ],
             "type": "string"
           },
           "selected_tabs": {
@@ -7480,7 +7860,10 @@
           },
           "type": {
             "description": "The report schedule type",
-            "enum": ["Alert", "Report"],
+            "enum": [
+              "Alert",
+              "Report"
+            ],
             "type": "string"
           },
           "validator_config_json": {
@@ -7488,7 +7871,10 @@
           },
           "validator_type": {
             "description": "Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types:\n- Not Null - When the return value is Not NULL, Empty, or 0\n- Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and !=",
-            "enum": ["not null", "operator"],
+            "enum": [
+              "not null",
+              "operator"
+            ],
             "type": "string"
           },
           "working_timeout": {
@@ -7499,7 +7885,11 @@
             "type": "integer"
           }
         },
-        "required": ["crontab", "name", "type"],
+        "required": [
+          "crontab",
+          "name",
+          "type"
+        ],
         "type": "object"
       },
       "ReportScheduleRestApi.put": {
@@ -7583,7 +7973,11 @@
             "type": "array"
           },
           "report_format": {
-            "enum": ["PNG", "CSV", "TEXT"],
+            "enum": [
+              "PNG",
+              "CSV",
+              "TEXT"
+            ],
             "type": "string"
           },
           "sql": {
@@ -8194,7 +8588,10 @@
           },
           "type": {
             "description": "The report schedule type",
-            "enum": ["Alert", "Report"],
+            "enum": [
+              "Alert",
+              "Report"
+            ],
             "type": "string"
           },
           "validator_config_json": {
@@ -8202,7 +8599,10 @@
           },
           "validator_type": {
             "description": "Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types:\n- Not Null - When the return value is Not NULL, Empty, or 0\n- Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and !=",
-            "enum": ["not null", "operator"],
+            "enum": [
+              "not null",
+              "operator"
+            ],
             "nullable": true,
             "type": "string"
           },
@@ -8224,7 +8624,10 @@
           },
           "type": {}
         },
-        "required": ["id", "type"],
+        "required": [
+          "id",
+          "type"
+        ],
         "type": "object"
       },
       "RlsRule": {
@@ -8237,7 +8640,9 @@
             "type": "integer"
           }
         },
-        "required": ["clause"],
+        "required": [
+          "clause"
+        ],
         "type": "object"
       },
       "Roles": {
@@ -8306,7 +8711,9 @@
             "type": "integer"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "SavedQueryRestApi.get.User": {
@@ -8324,7 +8731,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "SavedQueryRestApi.get_list": {
@@ -8398,7 +8808,9 @@
             "type": "integer"
           }
         },
-        "required": ["database_name"],
+        "required": [
+          "database_name"
+        ],
         "type": "object"
       },
       "SavedQueryRestApi.get_list.User": {
@@ -8416,7 +8828,10 @@
             "type": "string"
           }
         },
-        "required": ["first_name", "last_name"],
+        "required": [
+          "first_name",
+          "last_name"
+        ],
         "type": "object"
       },
       "SavedQueryRestApi.post": {
@@ -8754,7 +9169,9 @@
             "type": "string"
           }
         },
-        "required": ["value"],
+        "required": [
+          "value"
+        ],
         "type": "object"
       },
       "TemporaryCachePutSchema": {
@@ -8764,7 +9181,9 @@
             "type": "string"
           }
         },
-        "required": ["value"],
+        "required": [
+          "value"
+        ],
         "type": "object"
       },
       "User": {
@@ -8841,7 +9260,9 @@
             "type": "object"
           }
         },
-        "required": ["sql"],
+        "required": [
+          "sql"
+        ],
         "type": "object"
       },
       "ValidateSQLResponse": {
@@ -8868,7 +9289,14 @@
         "properties": {
           "op": {
             "description": "The operation to compare with a threshold to apply to the SQL output\n",
-            "enum": ["<", "<=", ">", ">=", "==", "!="],
+            "enum": [
+              "<",
+              "<=",
+              ">",
+              ">=",
+              "==",
+              "!="
+            ],
             "type": "string"
           },
           "threshold": {
@@ -8892,7 +9320,10 @@
             "type": "array"
           }
         },
-        "required": ["type", "values"],
+        "required": [
+          "type",
+          "values"
+        ],
         "type": "object"
       },
       "database_schemas_query_schema": {
@@ -8912,7 +9343,9 @@
             "type": "string"
           }
         },
-        "required": ["schema_name"],
+        "required": [
+          "schema_name"
+        ],
         "type": "object"
       },
       "get_delete_ids_schema": {
@@ -9039,7 +9472,11 @@
                   ]
                 }
               },
-              "required": ["col", "opr", "value"],
+              "required": [
+                "col",
+                "opr",
+                "value"
+              ],
               "type": "object"
             },
             "type": "array"
@@ -9062,7 +9499,10 @@
             "type": "string"
           },
           "order_direction": {
-            "enum": ["asc", "desc"],
+            "enum": [
+              "asc",
+              "desc"
+            ],
             "type": "string"
           },
           "page": {
@@ -9120,7 +9560,9 @@
             "type": "number"
           }
         },
-        "required": ["last_updated_ms"],
+        "required": [
+          "last_updated_ms"
+        ],
         "type": "object"
       },
       "screenshot_query_schema": {
@@ -9149,7 +9591,9 @@
             "type": "string"
           }
         },
-        "required": ["key"],
+        "required": [
+          "key"
+        ],
         "type": "object"
       },
       "thumbnail_query_schema": {
@@ -9226,7 +9670,9 @@
           }
         ],
         "summary": "Returns a AdvancedDataTypeResponse object populated with the passed in args.",
-        "tags": ["Advanced Data Type"]
+        "tags": [
+          "Advanced Data Type"
+        ]
       }
     },
     "/api/v1/advanced_data_type/types": {
@@ -9266,7 +9712,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Advanced Data Type"]
+        "tags": [
+          "Advanced Data Type"
+        ]
       }
     },
     "/api/v1/annotation_layer/": {
@@ -9319,7 +9767,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "get": {
         "description": "Get a list of Annotation layers, use Rison or JSON query parameters for filtering, sorting, pagination and for selecting specific columns and metadata.",
@@ -9424,7 +9874,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "post": {
         "description": "Create an Annotation layer",
@@ -9476,7 +9928,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/annotation_layer/_info": {
@@ -9560,7 +10014,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/annotation_layer/related/{column_name}": {
@@ -9615,7 +10071,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/annotation_layer/{pk}": {
@@ -9663,7 +10121,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "get": {
         "description": "Get an Annotation layer",
@@ -9761,7 +10221,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "put": {
         "description": "Update an Annotation layer",
@@ -9824,7 +10286,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/annotation_layer/{pk}/annotation/": {
@@ -9886,7 +10350,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "get": {
         "description": "Get a list of Annotation layers, use Rison or JSON query parameters for filtering, sorting, pagination and for selecting specific columns and metadata.",
@@ -9961,7 +10427,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "post": {
         "description": "Create an Annotation layer",
@@ -10024,7 +10492,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/annotation_layer/{pk}/annotation/{annotation_id}": {
@@ -10081,7 +10551,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "get": {
         "description": "Get an Annotation layer",
@@ -10157,7 +10629,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       },
       "put": {
         "description": "Update an Annotation layer",
@@ -10229,7 +10703,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Annotation Layers"]
+        "tags": [
+          "Annotation Layers"
+        ]
       }
     },
     "/api/v1/assets/export/": {
@@ -10262,7 +10738,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Import/export"]
+        "tags": [
+          "Import/export"
+        ]
       }
     },
     "/api/v1/assets/import/": {
@@ -10334,7 +10812,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Import/export"]
+        "tags": [
+          "Import/export"
+        ]
       }
     },
     "/api/v1/async_event/": {
@@ -10407,7 +10887,9 @@
             "jwt": []
           }
         ],
-        "tags": ["AsyncEventsRestApi"]
+        "tags": [
+          "AsyncEventsRestApi"
+        ]
       }
     },
     "/api/v1/available_domains/": {
@@ -10441,7 +10923,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Available Domains"]
+        "tags": [
+          "Available Domains"
+        ]
       }
     },
     "/api/v1/cachekey/invalidate": {
@@ -10474,7 +10958,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CacheRestApi"]
+        "tags": [
+          "CacheRestApi"
+        ]
       }
     },
     "/api/v1/chart/": {
@@ -10530,7 +11016,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       },
       "get": {
         "description": "Get a list of charts, use Rison or JSON query parameters for filtering, sorting, pagination and  for selecting specific columns and metadata.",
@@ -10635,7 +11123,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       },
       "post": {
         "description": "Create a new Chart.",
@@ -10687,7 +11177,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/_info": {
@@ -10771,7 +11263,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/data": {
@@ -10824,7 +11318,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/data/{cache_key}": {
@@ -10872,7 +11368,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/export/": {
@@ -10921,7 +11419,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/favorite_status/": {
@@ -10969,7 +11469,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/import/": {
@@ -11045,7 +11547,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/related/{column_name}": {
@@ -11101,7 +11605,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/{pk}": {
@@ -11154,7 +11660,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       },
       "get": {
         "description": "Get a chart detail information.",
@@ -11252,7 +11760,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       },
       "put": {
         "description": "Changes a Chart.",
@@ -11320,7 +11830,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/{pk}/cache_screenshot/": {
@@ -11376,7 +11888,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/{pk}/data/": {
@@ -11453,7 +11967,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/{pk}/screenshot/{digest}/": {
@@ -11507,7 +12023,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/chart/{pk}/thumbnail/{digest}/": {
@@ -11564,7 +12082,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Charts"]
+        "tags": [
+          "Charts"
+        ]
       }
     },
     "/api/v1/css_template/": {
@@ -11617,7 +12137,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       },
       "get": {
         "description": "Get a list of CSS templates, use Rison or JSON query parameters for filtering, sorting, pagination and for selecting specific columns and metadata.",
@@ -11722,7 +12244,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       },
       "post": {
         "description": "Create a CSS template",
@@ -11774,7 +12298,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       }
     },
     "/api/v1/css_template/_info": {
@@ -11858,7 +12384,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       }
     },
     "/api/v1/css_template/related/{column_name}": {
@@ -11913,7 +12441,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       }
     },
     "/api/v1/css_template/{pk}": {
@@ -11960,7 +12490,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       },
       "get": {
         "description": "Get a CSS template",
@@ -12058,7 +12590,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       },
       "put": {
         "description": "Update a CSS template",
@@ -12120,7 +12654,9 @@
             "jwt": []
           }
         ],
-        "tags": ["CSS Templates"]
+        "tags": [
+          "CSS Templates"
+        ]
       }
     },
     "/api/v1/dashboard/": {
@@ -12176,7 +12712,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "get": {
         "description": "Get a list of dashboards, use Rison or JSON query parameters for filtering, sorting, pagination and  for selecting specific columns and metadata.",
@@ -12281,7 +12819,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "post": {
         "description": "Create a new Dashboard.",
@@ -12333,7 +12873,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/_info": {
@@ -12417,7 +12959,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/export/": {
@@ -12468,7 +13012,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/favorite_status/": {
@@ -12516,7 +13062,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/import/": {
@@ -12592,7 +13140,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/permalink/{key}": {
@@ -12646,7 +13196,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Permanent Link"]
+        "tags": [
+          "Dashboard Permanent Link"
+        ]
       }
     },
     "/api/v1/dashboard/related/{column_name}": {
@@ -12702,7 +13254,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{dashboard_id}/filtersets": {
@@ -12776,7 +13330,9 @@
             "jwt": []
           }
         ],
-        "tags": ["FilterSetRestApi"]
+        "tags": [
+          "FilterSetRestApi"
+        ]
       },
       "post": {
         "description": "Create a new Dashboard's Filter Set.",
@@ -12842,7 +13398,9 @@
             "jwt": []
           }
         ],
-        "tags": ["FilterSetRestApi"]
+        "tags": [
+          "FilterSetRestApi"
+        ]
       }
     },
     "/api/v1/dashboard/{dashboard_id}/filtersets/{pk}": {
@@ -12903,7 +13461,9 @@
             "jwt": []
           }
         ],
-        "tags": ["FilterSetRestApi"]
+        "tags": [
+          "FilterSetRestApi"
+        ]
       },
       "put": {
         "description": "Changes a Dashboard's Filter set.",
@@ -12979,7 +13539,9 @@
             "jwt": []
           }
         ],
-        "tags": ["FilterSetRestApi"]
+        "tags": [
+          "FilterSetRestApi"
+        ]
       }
     },
     "/api/v1/dashboard/{id_or_slug}": {
@@ -13030,7 +13592,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{id_or_slug}/charts": {
@@ -13083,7 +13647,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{id_or_slug}/datasets": {
@@ -13137,7 +13703,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{id_or_slug}/embedded": {
@@ -13182,7 +13750,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "get": {
         "description": "Returns the dashboard's embedded configuration",
@@ -13225,7 +13795,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "post": {
         "description": "Sets a dashboard's embedded configuration.",
@@ -13279,7 +13851,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "put": {
         "description": "Sets a dashboard's embedded configuration.",
@@ -13333,7 +13907,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{pk}": {
@@ -13386,7 +13962,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       },
       "put": {
         "description": "Changes a Dashboard.",
@@ -13457,7 +14035,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/dashboard/{pk}/filter_state": {
@@ -13525,7 +14105,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Filter State"]
+        "tags": [
+          "Dashboard Filter State"
+        ]
       }
     },
     "/api/v1/dashboard/{pk}/filter_state/{key}": {
@@ -13588,7 +14170,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Filter State"]
+        "tags": [
+          "Dashboard Filter State"
+        ]
       },
       "get": {
         "description": "Retrives a value.",
@@ -13648,7 +14232,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Filter State"]
+        "tags": [
+          "Dashboard Filter State"
+        ]
       },
       "put": {
         "description": "Updates an existing value.",
@@ -13725,7 +14311,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Filter State"]
+        "tags": [
+          "Dashboard Filter State"
+        ]
       }
     },
     "/api/v1/dashboard/{pk}/permalink": {
@@ -13790,7 +14378,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboard Permanent Link"]
+        "tags": [
+          "Dashboard Permanent Link"
+        ]
       }
     },
     "/api/v1/dashboard/{pk}/thumbnail/{digest}/": {
@@ -13874,7 +14464,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Dashboards"]
+        "tags": [
+          "Dashboards"
+        ]
       }
     },
     "/api/v1/database/": {
@@ -13981,7 +14573,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       },
       "post": {
         "description": "Create a new Database.",
@@ -14033,7 +14627,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/_info": {
@@ -14117,7 +14713,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/available/": {
@@ -14196,7 +14794,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/export/": {
@@ -14242,7 +14842,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/import/": {
@@ -14318,7 +14920,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/test_connection/": {
@@ -14366,7 +14970,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/validate_parameters/": {
@@ -14414,7 +15020,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}": {
@@ -14467,7 +15075,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       },
       "get": {
         "description": "Get a database",
@@ -14511,7 +15121,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       },
       "put": {
         "description": "Changes a Database.",
@@ -14579,7 +15191,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/function_names/": {
@@ -14621,7 +15235,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/related_objects/": {
@@ -14663,7 +15279,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/schemas/": {
@@ -14720,7 +15338,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/schemas_access_for_file_upload/": {
@@ -14762,7 +15382,9 @@
           }
         ],
         "summary": "The list of the database schemas where to upload information",
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/select_star/{table_name}/": {
@@ -14829,7 +15451,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/select_star/{table_name}/{schema_name}/": {
@@ -14896,7 +15520,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/ssh_tunnel/": {
@@ -14949,7 +15575,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/table/{table_name}/{schema_name}/": {
@@ -15016,7 +15644,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/table_extra/{table_name}/{schema_name}/": {
@@ -15084,7 +15714,9 @@
           }
         ],
         "summary": "Get table extra metadata",
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/tables/": {
@@ -15156,7 +15788,9 @@
           }
         ],
         "summary": "Get a list of tables for given database",
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/database/{pk}/validate_sql/": {
@@ -15222,7 +15856,9 @@
           }
         ],
         "summary": "Validates that arbitrary sql is acceptable for the given database",
-        "tags": ["Database"]
+        "tags": [
+          "Database"
+        ]
       }
     },
     "/api/v1/dataset/": {
@@ -15281,7 +15917,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       },
       "get": {
         "description": "Get a list of models",
@@ -15386,7 +16024,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       },
       "post": {
         "description": "Create a new Dataset",
@@ -15438,7 +16078,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/_info": {
@@ -15522,7 +16164,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/distinct/{column_name}": {
@@ -15577,7 +16221,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/duplicate": {
@@ -15637,7 +16283,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/export/": {
@@ -15685,7 +16333,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/import/": {
@@ -15769,7 +16419,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/related/{column_name}": {
@@ -15824,7 +16476,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/{pk}": {
@@ -15877,7 +16531,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       },
       "get": {
         "description": "Get an item model",
@@ -15975,7 +16631,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       },
       "put": {
         "description": "Changes a Dataset",
@@ -16050,7 +16708,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/{pk}/column/{column_id}": {
@@ -16113,7 +16773,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/{pk}/metric/{metric_id}": {
@@ -16176,7 +16838,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/{pk}/refresh": {
@@ -16229,7 +16893,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/dataset/{pk}/related_objects": {
@@ -16271,7 +16937,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Datasets"]
+        "tags": [
+          "Datasets"
+        ]
       }
     },
     "/api/v1/datasource/{datasource_type}/{datasource_id}/column/{column_name}/values/": {
@@ -16362,7 +17030,9 @@
           }
         ],
         "summary": "Get possible values for a datasource column",
-        "tags": ["Datasources"]
+        "tags": [
+          "Datasources"
+        ]
       }
     },
     "/api/v1/embedded_dashboard/{uuid}": {
@@ -16410,7 +17080,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Embedded Dashboard"]
+        "tags": [
+          "Embedded Dashboard"
+        ]
       }
     },
     "/api/v1/explore/": {
@@ -16486,7 +17158,9 @@
           }
         ],
         "summary": "Assembles Explore related information (form_data, slice, dataset)\\n in a single endpoint.",
-        "tags": ["Explore"]
+        "tags": [
+          "Explore"
+        ]
       }
     },
     "/api/v1/explore/form_data": {
@@ -16546,7 +17220,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Form Data"]
+        "tags": [
+          "Explore Form Data"
+        ]
       }
     },
     "/api/v1/explore/form_data/{key}": {
@@ -16601,7 +17277,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Form Data"]
+        "tags": [
+          "Explore Form Data"
+        ]
       },
       "get": {
         "description": "Retrives a form_data.",
@@ -16653,7 +17331,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Form Data"]
+        "tags": [
+          "Explore Form Data"
+        ]
       },
       "put": {
         "description": "Updates an existing form_data.",
@@ -16722,7 +17402,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Form Data"]
+        "tags": [
+          "Explore Form Data"
+        ]
       }
     },
     "/api/v1/explore/permalink": {
@@ -16777,7 +17459,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Permanent Link"]
+        "tags": [
+          "Explore Permanent Link"
+        ]
       }
     },
     "/api/v1/explore/permalink/{key}": {
@@ -16831,7 +17515,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Explore Permanent Link"]
+        "tags": [
+          "Explore Permanent Link"
+        ]
       }
     },
     "/api/v1/log/": {
@@ -16938,7 +17624,9 @@
             "jwt": []
           }
         ],
-        "tags": ["LogRestApi"]
+        "tags": [
+          "LogRestApi"
+        ]
       },
       "post": {
         "requestBody": {
@@ -16989,7 +17677,9 @@
             "jwt": []
           }
         ],
-        "tags": ["LogRestApi"]
+        "tags": [
+          "LogRestApi"
+        ]
       }
     },
     "/api/v1/log/recent_activity/{user_id}/": {
@@ -17046,7 +17736,9 @@
           }
         ],
         "summary": "Get recent activity data for a user",
-        "tags": ["LogRestApi"]
+        "tags": [
+          "LogRestApi"
+        ]
       }
     },
     "/api/v1/log/{pk}": {
@@ -17146,7 +17838,9 @@
             "jwt": []
           }
         ],
-        "tags": ["LogRestApi"]
+        "tags": [
+          "LogRestApi"
+        ]
       }
     },
     "/api/v1/me/": {
@@ -17172,7 +17866,9 @@
             "$ref": "#/components/responses/401"
           }
         },
-        "tags": ["Current User"]
+        "tags": [
+          "Current User"
+        ]
       }
     },
     "/api/v1/me/roles/": {
@@ -17198,7 +17894,9 @@
             "$ref": "#/components/responses/401"
           }
         },
-        "tags": ["Current User"]
+        "tags": [
+          "Current User"
+        ]
       }
     },
     "/api/v1/menu/": {
@@ -17257,7 +17955,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Menu"]
+        "tags": [
+          "Menu"
+        ]
       }
     },
     "/api/v1/query/": {
@@ -17364,7 +18064,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/query/distinct/{column_name}": {
@@ -17419,7 +18121,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/query/related/{column_name}": {
@@ -17474,7 +18178,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/query/stop": {
@@ -17525,7 +18231,9 @@
           }
         ],
         "summary": "Manually stop a query with client_id",
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/query/updated_since": {
@@ -17582,7 +18290,9 @@
           }
         ],
         "summary": "Get a list of queries that changed after last_updated_ms",
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/query/{pk}": {
@@ -17682,7 +18392,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/report/": {
@@ -17738,7 +18450,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       },
       "get": {
         "description": "Get a list of report schedules, use Rison or JSON query parameters for filtering, sorting, pagination and for selecting specific columns and metadata.",
@@ -17843,7 +18557,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       },
       "post": {
         "description": "Create a report schedule",
@@ -17898,7 +18614,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/report/_info": {
@@ -17982,7 +18700,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/report/related/{column_name}": {
@@ -18037,7 +18757,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/report/{pk}": {
@@ -18088,7 +18810,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       },
       "get": {
         "description": "Get a report schedule",
@@ -18186,7 +18910,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       },
       "put": {
         "description": "Update a report schedule",
@@ -18255,7 +18981,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/report/{pk}/log/": {
@@ -18332,7 +19060,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/report/{pk}/log/{log_id}": {
@@ -18410,7 +19140,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Report Schedules"]
+        "tags": [
+          "Report Schedules"
+        ]
       }
     },
     "/api/v1/saved_query/": {
@@ -18463,7 +19195,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       },
       "get": {
         "description": "Get a list of saved queries, use Rison or JSON query parameters for filtering, sorting, pagination and for selecting specific columns and metadata.",
@@ -18568,7 +19302,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       },
       "post": {
         "description": "Create a saved query",
@@ -18620,7 +19356,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/_info": {
@@ -18704,7 +19442,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/distinct/{column_name}": {
@@ -18759,7 +19499,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/export/": {
@@ -18808,7 +19550,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/import/": {
@@ -18884,7 +19628,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/related/{column_name}": {
@@ -18939,7 +19685,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/saved_query/{pk}": {
@@ -18986,7 +19734,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       },
       "get": {
         "description": "Get a saved query",
@@ -19084,7 +19834,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       },
       "put": {
         "description": "Update a saved query",
@@ -19146,7 +19898,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Queries"]
+        "tags": [
+          "Queries"
+        ]
       }
     },
     "/api/v1/security/csrf_token/": {
@@ -19180,7 +19934,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Security"]
+        "tags": [
+          "Security"
+        ]
       }
     },
     "/api/v1/security/guest_token/": {
@@ -19228,7 +19984,9 @@
             "jwt": []
           }
         ],
-        "tags": ["Security"]
+        "tags": [
+          "Security"
+        ]
       }
     },
     "/api/v1/security/login": {
@@ -19246,7 +20004,10 @@
                   },
                   "provider": {
                     "description": "Choose an authentication provider",
-                    "enum": ["db", "ldap"],
+                    "enum": [
+                      "db",
+                      "ldap"
+                    ],
                     "example": "db",
                     "type": "string"
                   },
@@ -19296,7 +20057,9 @@
             "$ref": "#/components/responses/500"
           }
         },
-        "tags": ["Security"]
+        "tags": [
+          "Security"
+        ]
       }
     },
     "/api/v1/security/refresh": {
@@ -19331,7 +20094,9 @@
             "jwt_refresh": []
           }
         ],
-        "tags": ["Security"]
+        "tags": [
+          "Security"
+        ]
       }
     },
     "/api/v1/sqllab/execute/": {
@@ -19390,7 +20155,9 @@
             "jwt": []
           }
         ],
-        "tags": ["SQL Lab"]
+        "tags": [
+          "SQL Lab"
+        ]
       }
     },
     "/api/v1/sqllab/export/{client_id}/": {
@@ -19439,7 +20206,9 @@
           }
         ],
         "summary": "Exports the SQL query results to a CSV",
-        "tags": ["SQL Lab"]
+        "tags": [
+          "SQL Lab"
+        ]
       }
     },
     "/api/v1/sqllab/results/": {
@@ -19493,7 +20262,9 @@
           }
         ],
         "summary": "Gets the result of a SQL query execution",
-        "tags": ["SQL Lab"]
+        "tags": [
+          "SQL Lab"
+        ]
       }
     },
     "/api/{version}/_openapi": {
@@ -19532,7 +20303,9 @@
             "jwt": []
           }
         ],
-        "tags": ["OpenApi"]
+        "tags": [
+          "OpenApi"
+        ]
       }
     }
   },

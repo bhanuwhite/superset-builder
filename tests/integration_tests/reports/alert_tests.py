@@ -16,7 +16,7 @@
 # under the License.
 # pylint: disable=invalid-name, unused-argument, import-outside-toplevel
 from contextlib import nullcontext
-from typing import Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import pandas as pd
 import pytest
@@ -56,10 +56,10 @@ from tests.integration_tests.test_app import app
     ],
 )
 def test_execute_query_as_report_executor(
-    owner_names: list[str],
+    owner_names: List[str],
     creator_name: Optional[str],
-    config: list[ExecutorType],
-    expected_result: Union[tuple[ExecutorType, str], Exception],
+    config: List[ExecutorType],
+    expected_result: Union[Tuple[ExecutorType, str], Exception],
     mocker: MockFixture,
     app_context: None,
     get_user,

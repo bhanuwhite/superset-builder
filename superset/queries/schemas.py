@@ -14,6 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from typing import List
 
 from marshmallow import fields, Schema
 
@@ -72,7 +73,7 @@ class QuerySchema(Schema):
         include_relationships = True
 
     # pylint: disable=no-self-use
-    def get_sql_tables(self, obj: Query) -> list[Table]:
+    def get_sql_tables(self, obj: Query) -> List[Table]:
         return obj.sql_tables
 
 

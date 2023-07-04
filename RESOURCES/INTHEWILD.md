@@ -116,19 +116,15 @@ Join our growing community!
 - [Windsor.ai](https://www.windsor.ai/) [@octaviancorlade]
 - [Zeta](https://www.zeta.tech/) [@shaikidris]
 
-### Media & Entertainment
+### Entertainment
 - [6play](https://www.6play.fr) [@CoryChaplin]
 - [bilibili](https://www.bilibili.com) [@Moinheart]
-- [BurdaForward](https://www.burda-forward.de/en/)
 - [Douban](https://www.douban.com/) [@luchuan]
 - [Kuaishou](https://www.kuaishou.com/) [@zhaoyu89730105]
 - [Netflix](https://www.netflix.com/)
-- [Prensa Iberica](https://www.prensaiberica.es/) [@zamar-roura]
 - [TME QQMUSIC/WESING](https://www.tencentmusic.com/)[@shenyuanli,@marklaw]
 - [Xite](https://xite.com/) [@shashankkoppar]
 - [Zaihang](http://www.zaih.com/)
-
-
 
 ### Education
 - [Brilliant.org](https://brilliant.org/)
@@ -159,6 +155,9 @@ Join our growing community!
 ### HR / Staffing
 - [Swile](https://www.swile.co/) [@PaoloTerzi]
 - [Symmetrics](https://www.symmetrics.fyi)
+
+### News
+- [Prensa Iberica](https://www.prensaiberica.es/) [@zamar-roura]
 
 ### Government
 - [City of Ann Arbor, MI](https://www.a2gov.org/) [@sfirke]

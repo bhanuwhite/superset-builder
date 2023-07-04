@@ -15,6 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 from enum import Enum
+from typing import Set
 
 
 class ChartDataResultFormat(str, Enum):
@@ -27,7 +28,7 @@ class ChartDataResultFormat(str, Enum):
     XLSX = "xlsx"
 
     @classmethod
-    def table_like(cls) -> set["ChartDataResultFormat"]:
+    def table_like(cls) -> Set["ChartDataResultFormat"]:
         return {cls.CSV} | {cls.XLSX}
 
 

@@ -15,6 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
+from typing import Iterator
 
 import pytest
 from sqlalchemy.orm.session import Session

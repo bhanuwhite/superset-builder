@@ -20,7 +20,7 @@ import json
 import logging
 from operator import eq, ge, gt, le, lt, ne
 from timeit import default_timer
-from typing import Any
+from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
@@ -54,7 +54,7 @@ OPERATOR_FUNCTIONS = {">=": ge, ">": gt, "<=": le, "<": lt, "==": eq, "!=": ne}
 class AlertCommand(BaseCommand):
     def __init__(self, report_schedule: ReportSchedule):
         self._report_schedule = report_schedule
-        self._result: float | None = None
+        self._result: Optional[float] = None
 
     def run(self) -> bool:
         """

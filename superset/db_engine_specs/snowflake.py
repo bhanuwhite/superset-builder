@@ -18,8 +18,7 @@ import json
 import logging
 import re
 from datetime import datetime
-from re import Pattern
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Pattern, Tuple, TYPE_CHECKING
 from urllib import parse
 
 from apispec import APISpec
@@ -34,7 +33,7 @@ from sqlalchemy.engine.reflection import Inspector
 from sqlalchemy.engine.url import URL
 from typing_extensions import TypedDict
 
-from superset.constants import TimeGrain, USER_AGENT
+from superset.constants import USER_AGENT
 from superset.databases.utils import make_url_safe
 from superset.db_engine_specs.base import BaseEngineSpec, BasicPropertiesType
 from superset.db_engine_specs.postgres import PostgresBaseEngineSpec
@@ -90,25 +89,25 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
 
     _time_grain_expressions = {
         None: "{col}",
-        TimeGrain.SECOND: "DATE_TRUNC('SECOND', {col})",
-        TimeGrain.MINUTE: "DATE_TRUNC('MINUTE', {col})",
-        TimeGrain.FIVE_MINUTES: "DATEADD(MINUTE, \
-            FLOOR(DATE_PART(MINUTE, {col}) / 5) * 5, DATE_TRUNC('HOUR', {col}))",
-        TimeGrain.TEN_MINUTES: "DATEADD(MINUTE,  \
-            FLOOR(DATE_PART(MINUTE, {col}) / 10) * 10, DATE_TRUNC('HOUR', {col}))",
-        TimeGrain.FIFTEEN_MINUTES: "DATEADD(MINUTE, \
-            FLOOR(DATE_PART(MINUTE, {col}) / 15) * 15, DATE_TRUNC('HOUR', {col}))",
-        TimeGrain.THIRTY_MINUTES: "DATEADD(MINUTE, \
-            FLOOR(DATE_PART(MINUTE, {col}) / 30) * 30, DATE_TRUNC('HOUR', {col}))",
-        TimeGrain.HOUR: "DATE_TRUNC('HOUR', {col})",
-        TimeGrain.DAY: "DATE_TRUNC('DAY', {col})",
-        TimeGrain.WEEK: "DATE_TRUNC('WEEK', {col})",
-        TimeGrain.MONTH: "DATE_TRUNC('MONTH', {col})",
-        TimeGrain.QUARTER: "DATE_TRUNC('QUARTER', {col})",
-        TimeGrain.YEAR: "DATE_TRUNC('YEAR', {col})",
+        "PT1S": "DATE_TRUNC('SECOND', {col})",
+        "PT1M": "DATE_TRUNC('MINUTE', {col})",
+        "PT5M": "DATEADD(MINUTE, FLOOR(DATE_PART(MINUTE, {col}) / 5) * 5, \
+                DATE_TRUNC('HOUR', {col}))",
+        "PT10M": "DATEADD(MINUTE, FLOOR(DATE_PART(MINUTE, {col}) / 10) * 10, \
+                 DATE_TRUNC('HOUR', {col}))",
+        "PT15M": "DATEADD(MINUTE, FLOOR(DATE_PART(MINUTE, {col}) / 15) * 15, \
+                 DATE_TRUNC('HOUR', {col}))",
+        "PT30M": "DATEADD(MINUTE, FLOOR(DATE_PART(MINUTE, {col}) / 30) * 30, \
+                  DATE_TRUNC('HOUR', {col}))",
+        "PT1H": "DATE_TRUNC('HOUR', {col})",
+        "P1D": "DATE_TRUNC('DAY', {col})",
+        "P1W": "DATE_TRUNC('WEEK', {col})",
+        "P1M": "DATE_TRUNC('MONTH', {col})",
+        "P3M": "DATE_TRUNC('QUARTER', {col})",
+        "P1Y": "DATE_TRUNC('YEAR', {col})",
     }
 
-    custom_errors: dict[Pattern[str], tuple[str, SupersetErrorType, dict[str, Any]]] = {
+    custom_errors: Dict[Pattern[str], Tuple[str, SupersetErrorType, Dict[str, Any]]] = {
         OBJECT_DOES_NOT_EXIST_REGEX: (
             __("%(object)s does not exist in this database."),
             SupersetErrorType.OBJECT_DOES_NOT_EXIST_ERROR,
@@ -125,13 +124,13 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
     }
 
     @staticmethod
-    def get_extra_params(database: "Database") -> dict[str, Any]:
+    def get_extra_params(database: "Database") -> Dict[str, Any]:
         """
         Add a user agent to be used in the requests.
         """
-        extra: dict[str, Any] = BaseEngineSpec.get_extra_params(database)
-        engine_params: dict[str, Any] = extra.setdefault("engine_params", {})
-        connect_args: dict[str, Any] = engine_params.setdefault("connect_args", {})
+        extra: Dict[str, Any] = BaseEngineSpec.get_extra_params(database)
+        engine_params: Dict[str, Any] = extra.setdefault("engine_params", {})
+        connect_args: Dict[str, Any] = engine_params.setdefault("connect_args", {})
 
         connect_args.setdefault("application", USER_AGENT)
 
@@ -141,10 +140,10 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
     def adjust_engine_params(
         cls,
         uri: URL,
-        connect_args: dict[str, Any],
+        connect_args: Dict[str, Any],
         catalog: Optional[str] = None,
         schema: Optional[str] = None,
-    ) -> tuple[URL, dict[str, Any]]:
+    ) -> Tuple[URL, Dict[str, Any]]:
         database = uri.database
         if "/" in database:
             database = database.split("/")[0]
@@ -158,7 +157,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
     def get_schema_from_engine_params(
         cls,
         sqlalchemy_uri: URL,
-        connect_args: dict[str, Any],
+        connect_args: Dict[str, Any],
     ) -> Optional[str]:
         """
         Return the configured schema.
@@ -175,7 +174,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
         cls,
         database: "Database",
         inspector: Inspector,
-    ) -> list[str]:
+    ) -> List[str]:
         """
         Return all catalogs.
 
@@ -198,7 +197,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
 
     @classmethod
     def convert_dttm(
-        cls, target_type: str, dttm: datetime, db_extra: Optional[dict[str, Any]] = None
+        cls, target_type: str, dttm: datetime, db_extra: Optional[Dict[str, Any]] = None
     ) -> Optional[str]:
         sqla_type = cls.get_sqla_column_type(target_type)
 
@@ -262,7 +261,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
         cls,
         parameters: SnowflakeParametersType,
         encrypted_extra: Optional[  # pylint: disable=unused-argument
-            dict[str, Any]
+            Dict[str, Any]
         ] = None,
     ) -> str:
         return str(
@@ -284,7 +283,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
         cls,
         uri: str,
         encrypted_extra: Optional[  # pylint: disable=unused-argument
-            dict[str, str]
+            Dict[str, str]
         ] = None,
     ) -> Any:
         url = make_url_safe(uri)
@@ -301,8 +300,8 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
     @classmethod
     def validate_parameters(
         cls, properties: BasicPropertiesType
-    ) -> list[SupersetError]:
-        errors: list[SupersetError] = []
+    ) -> List[SupersetError]:
+        errors: List[SupersetError] = []
         required = {
             "warehouse",
             "username",
@@ -347,7 +346,7 @@ class SnowflakeEngineSpec(PostgresBaseEngineSpec):
     @staticmethod
     def update_params_from_encrypted_extra(
         database: "Database",
-        params: dict[str, Any],
+        params: Dict[str, Any],
     ) -> None:
         if not database.encrypted_extra:
             return

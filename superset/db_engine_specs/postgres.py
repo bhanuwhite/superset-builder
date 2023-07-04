@@ -18,8 +18,7 @@ import json
 import logging
 import re
 from datetime import datetime
-from re import Pattern
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Pattern, Set, Tuple, TYPE_CHECKING
 
 from flask_babel import gettext as __
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION, ENUM, JSON
@@ -28,7 +27,6 @@ from sqlalchemy.engine.reflection import Inspector
 from sqlalchemy.engine.url import URL
 from sqlalchemy.types import Date, DateTime, String
 
-from superset.constants import TimeGrain
 from superset.db_engine_specs.base import BaseEngineSpec, BasicParametersMixin
 from superset.errors import SupersetErrorType
 from superset.exceptions import SupersetException
@@ -75,7 +73,7 @@ COLUMN_DOES_NOT_EXIST_REGEX = re.compile(
 SYNTAX_ERROR_REGEX = re.compile('syntax error at or near "(?P<syntax_error>.*?)"')
 
 
-def parse_options(connect_args: dict[str, Any]) -> dict[str, str]:
+def parse_options(connect_args: Dict[str, Any]) -> Dict[str, str]:
     """
     Parse ``options`` from  ``connect_args`` into a dictionary.
     """
@@ -101,17 +99,17 @@ class PostgresBaseEngineSpec(BaseEngineSpec):
 
     _time_grain_expressions = {
         None: "{col}",
-        TimeGrain.SECOND: "DATE_TRUNC('second', {col})",
-        TimeGrain.MINUTE: "DATE_TRUNC('minute', {col})",
-        TimeGrain.HOUR: "DATE_TRUNC('hour', {col})",
-        TimeGrain.DAY: "DATE_TRUNC('day', {col})",
-        TimeGrain.WEEK: "DATE_TRUNC('week', {col})",
-        TimeGrain.MONTH: "DATE_TRUNC('month', {col})",
-        TimeGrain.QUARTER: "DATE_TRUNC('quarter', {col})",
-        TimeGrain.YEAR: "DATE_TRUNC('year', {col})",
+        "PT1S": "DATE_TRUNC('second', {col})",
+        "PT1M": "DATE_TRUNC('minute', {col})",
+        "PT1H": "DATE_TRUNC('hour', {col})",
+        "P1D": "DATE_TRUNC('day', {col})",
+        "P1W": "DATE_TRUNC('week', {col})",
+        "P1M": "DATE_TRUNC('month', {col})",
+        "P3M": "DATE_TRUNC('quarter', {col})",
+        "P1Y": "DATE_TRUNC('year', {col})",
     }
 
-    custom_errors: dict[Pattern[str], tuple[str, SupersetErrorType, dict[str, Any]]] = {
+    custom_errors: Dict[Pattern[str], Tuple[str, SupersetErrorType, Dict[str, Any]]] = {
         CONNECTION_INVALID_USERNAME_REGEX: (
             __('The username "%(username)s" does not exist.'),
             SupersetErrorType.CONNECTION_INVALID_USERNAME_ERROR,
@@ -171,7 +169,7 @@ class PostgresBaseEngineSpec(BaseEngineSpec):
     @classmethod
     def fetch_data(
         cls, cursor: Any, limit: Optional[int] = None
-    ) -> list[tuple[Any, ...]]:
+    ) -> List[Tuple[Any, ...]]:
         if not cursor.description:
             return []
         return super().fetch_data(cursor, limit)
@@ -223,7 +221,7 @@ class PostgresEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
     def get_schema_from_engine_params(
         cls,
         sqlalchemy_uri: URL,
-        connect_args: dict[str, Any],
+        connect_args: Dict[str, Any],
     ) -> Optional[str]:
         """
         Return the configured schema.
@@ -255,10 +253,10 @@ class PostgresEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
     def adjust_engine_params(
         cls,
         uri: URL,
-        connect_args: dict[str, Any],
+        connect_args: Dict[str, Any],
         catalog: Optional[str] = None,
         schema: Optional[str] = None,
-    ) -> tuple[URL, dict[str, Any]]:
+    ) -> Tuple[URL, Dict[str, Any]]:
         if not schema:
             return uri, connect_args
 
@@ -271,11 +269,11 @@ class PostgresEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
         return uri, connect_args
 
     @classmethod
-    def get_allow_cost_estimate(cls, extra: dict[str, Any]) -> bool:
+    def get_allow_cost_estimate(cls, extra: Dict[str, Any]) -> bool:
         return True
 
     @classmethod
-    def estimate_statement_cost(cls, statement: str, cursor: Any) -> dict[str, Any]:
+    def estimate_statement_cost(cls, statement: str, cursor: Any) -> Dict[str, Any]:
         sql = f"EXPLAIN {statement}"
         cursor.execute(sql)
 
@@ -291,8 +289,8 @@ class PostgresEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
 
     @classmethod
     def query_cost_formatter(
-        cls, raw_cost: list[dict[str, Any]]
-    ) -> list[dict[str, str]]:
+        cls, raw_cost: List[Dict[str, Any]]
+    ) -> List[Dict[str, str]]:
         return [{k: str(v) for k, v in row.items()} for row in raw_cost]
 
     @classmethod
@@ -300,7 +298,7 @@ class PostgresEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
         cls,
         database: "Database",
         inspector: Inspector,
-    ) -> list[str]:
+    ) -> List[str]:
         """
         Return all catalogs.
 
@@ -319,7 +317,7 @@ WHERE datistemplate = false;
     @classmethod
     def get_table_names(
         cls, database: "Database", inspector: PGInspector, schema: Optional[str]
-    ) -> set[str]:
+    ) -> Set[str]:
         """Need to consider foreign tables for PostgreSQL"""
         return set(inspector.get_table_names(schema)) | set(
             inspector.get_foreign_table_names(schema)
@@ -327,7 +325,7 @@ WHERE datistemplate = false;
 
     @classmethod
     def convert_dttm(
-        cls, target_type: str, dttm: datetime, db_extra: Optional[dict[str, Any]] = None
+        cls, target_type: str, dttm: datetime, db_extra: Optional[Dict[str, Any]] = None
     ) -> Optional[str]:
         sqla_type = cls.get_sqla_column_type(target_type)
 
@@ -339,7 +337,7 @@ WHERE datistemplate = false;
         return None
 
     @staticmethod
-    def get_extra_params(database: "Database") -> dict[str, Any]:
+    def get_extra_params(database: "Database") -> Dict[str, Any]:
         """
         For Postgres, the path to a SSL certificate is placed in `connect_args`.
 

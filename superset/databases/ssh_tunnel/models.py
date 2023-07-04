@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-from typing import Any
+from typing import Any, Dict
 
 import sqlalchemy as sa
 from flask import current_app
@@ -82,7 +82,7 @@ class SSHTunnel(Model, AuditMixinNullable, ExtraJSONMixin, ImportExportMixin):
     ]
 
     @property
-    def data(self) -> dict[str, Any]:
+    def data(self) -> Dict[str, Any]:
         output = {
             "id": self.id,
             "server_address": self.server_address,

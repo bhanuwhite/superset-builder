@@ -16,7 +16,7 @@
 # under the License.
 import json
 import textwrap
-from typing import Union
+from typing import Dict, List, Tuple, Union
 
 import pandas as pd
 from sqlalchemy import DateTime, inspect, String
@@ -42,7 +42,7 @@ from .helpers import (
 
 def gen_filter(
     subject: str, comparator: str, operator: str = "=="
-) -> dict[str, Union[bool, str]]:
+) -> Dict[str, Union[bool, str]]:
     return {
         "clause": "WHERE",
         "comparator": comparator,
@@ -152,7 +152,7 @@ def _add_table_metrics(datasource: SqlaTable) -> None:
     datasource.metrics = metrics
 
 
-def create_slices(tbl: SqlaTable) -> tuple[list[Slice], list[Slice]]:
+def create_slices(tbl: SqlaTable) -> Tuple[List[Slice], List[Slice]]:
     metrics = [
         {
             "expressionType": "SIMPLE",
@@ -388,21 +388,20 @@ def create_slices(tbl: SqlaTable) -> tuple[list[Slice], list[Slice]]:
         Slice(
             **slice_kwargs,
             slice_name="Average and Sum Trends",
-            viz_type="mixed_timeseries",
+            viz_type="dual_line",
             params=get_slice_json(
                 defaults,
-                viz_type="mixed_timeseries",
-                metrics={
+                viz_type="dual_line",
+                metric={
                     "expressionType": "SIMPLE",
                     "column": {"column_name": "num", "type": "BIGINT(20)"},
                     "aggregate": "AVG",
                     "label": "AVG(num)",
                     "optionName": "metric_vgops097wej_g8uff99zhk7",
                 },
-                metrics_b="sum__num",
+                metric_2="sum__num",
                 granularity_sqla="ds",
-                yAxisIndex=0,
-                yAxisIndexB=1,
+                metrics=metrics,
             ),
         ),
         Slice(
@@ -510,12 +509,12 @@ def create_slices(tbl: SqlaTable) -> tuple[list[Slice], list[Slice]]:
         Slice(
             **slice_kwargs,
             slice_name="Pivot Table",
-            viz_type="pivot_table_v2",
+            viz_type="pivot_table",
             params=get_slice_json(
                 defaults,
-                viz_type="pivot_table_v2",
-                groupbyRows=["name"],
-                groupbyColumns=["state"],
+                viz_type="pivot_table",
+                groupby=["name"],
+                columns=["state"],
                 metrics=metrics,
             ),
         ),
@@ -530,7 +529,7 @@ def create_slices(tbl: SqlaTable) -> tuple[list[Slice], list[Slice]]:
     return slices, misc_slices
 
 
-def create_dashboard(slices: list[Slice]) -> Dashboard:
+def create_dashboard(slices: List[Slice]) -> Dashboard:
     print("Creating a dashboard")
     dash = db.session.query(Dashboard).filter_by(slug="births").first()
     if not dash:

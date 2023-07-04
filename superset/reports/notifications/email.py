@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -19,7 +20,7 @@ import logging
 import textwrap
 from dataclasses import dataclass
 from email.utils import make_msgid, parseaddr
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 import nh3
 from flask_babel import gettext as __
@@ -68,8 +69,8 @@ ALLOWED_ATTRIBUTES = {
 class EmailContent:
     body: str
     header_data: Optional[HeaderDataType] = None
-    data: Optional[dict[str, Any]] = None
-    images: Optional[dict[str, bytes]] = None
+    data: Optional[Dict[str, Any]] = None
+    images: Optional[Dict[str, bytes]] = None
 
 
 class EmailNotification(BaseNotification):  # pylint: disable=too-few-public-methods

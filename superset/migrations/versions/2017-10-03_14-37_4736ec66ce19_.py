@@ -69,7 +69,7 @@ def upgrade():
             batch_op.add_column(sa.Column("datasource_id", sa.Integer))
 
             batch_op.create_foreign_key(
-                f"fk_{foreign}_datasource_id_datasources",
+                "fk_{}_datasource_id_datasources".format(foreign),
                 "datasources",
                 ["datasource_id"],
                 ["id"],
@@ -102,7 +102,7 @@ def upgrade():
 
             for name in names:
                 batch_op.drop_constraint(
-                    name or f"fk_{foreign}_datasource_name_datasources",
+                    name or "fk_{}_datasource_name_datasources".format(foreign),
                     type_="foreignkey",
                 )
 
@@ -148,7 +148,7 @@ def downgrade():
             batch_op.add_column(sa.Column("datasource_name", sa.String(255)))
 
             batch_op.create_foreign_key(
-                f"fk_{foreign}_datasource_name_datasources",
+                "fk_{}_datasource_name_datasources".format(foreign),
                 "datasources",
                 ["datasource_name"],
                 ["datasource_name"],
@@ -174,7 +174,7 @@ def downgrade():
         with op.batch_alter_table(foreign, naming_convention=conv) as batch_op:
             # Drop the datasource_id column and associated constraint.
             batch_op.drop_constraint(
-                f"fk_{foreign}_datasource_id_datasources", type_="foreignkey"
+                "fk_{}_datasource_id_datasources".format(foreign), type_="foreignkey"
             )
 
             batch_op.drop_column("datasource_id")
@@ -201,7 +201,7 @@ def downgrade():
 
         # Re-create the foreign key associated with the cluster_name column.
         batch_op.create_foreign_key(
-            f"fk_{foreign}_datasource_id_datasources",
+            "fk_{}_datasource_id_datasources".format(foreign),
             "clusters",
             ["cluster_name"],
             ["cluster_name"],

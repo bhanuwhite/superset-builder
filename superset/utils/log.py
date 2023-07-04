@@ -22,14 +22,25 @@ import json
 import logging
 import textwrap
 from abc import ABC, abstractmethod
-from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from typing import Any, Callable, cast, Literal, TYPE_CHECKING
+from typing import (
+    Any,
+    Callable,
+    cast,
+    Dict,
+    Iterator,
+    Optional,
+    Tuple,
+    Type,
+    TYPE_CHECKING,
+    Union,
+)
 
 from flask import current_app, g, request
 from flask_appbuilder.const import API_URI_RIS_KEY
 from sqlalchemy.exc import SQLAlchemyError
+from typing_extensions import Literal
 
 from superset.extensions import stats_logger_manager
 from superset.utils.core import get_user_id, LoggerLevel
@@ -40,12 +51,12 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-def collect_request_payload() -> dict[str, Any]:
+def collect_request_payload() -> Dict[str, Any]:
     """Collect log payload identifiable from request context"""
     if not request:
         return {}
 
-    payload: dict[str, Any] = {
+    payload: Dict[str, Any] = {
         "path": request.path,
         **request.form.to_dict(),
         # url search params can overwrite POST body
@@ -70,7 +81,7 @@ def collect_request_payload() -> dict[str, Any]:
 
 def get_logger_from_status(
     status: int,
-) -> tuple[Callable[..., None], str]:
+) -> Tuple[Callable[..., None], str]:
     """
     Return logger method by status of exception.
     Maps logger level to status code level
@@ -90,10 +101,10 @@ class AbstractEventLogger(ABC):
     def __call__(
         self,
         action: str,
-        object_ref: str | None = None,
+        object_ref: Optional[str] = None,
         log_to_statsd: bool = True,
-        duration: timedelta | None = None,
-        **payload_override: dict[str, Any],
+        duration: Optional[timedelta] = None,
+        **payload_override: Dict[str, Any],
     ) -> object:
         # pylint: disable=W0201
         self.action = action
@@ -119,12 +130,12 @@ class AbstractEventLogger(ABC):
     @abstractmethod
     def log(  # pylint: disable=too-many-arguments
         self,
-        user_id: int | None,
+        user_id: Optional[int],
         action: str,
-        dashboard_id: int | None,
-        duration_ms: int | None,
-        slice_id: int | None,
-        referrer: str | None,
+        dashboard_id: Optional[int],
+        duration_ms: Optional[int],
+        slice_id: Optional[int],
+        referrer: Optional[str],
         *args: Any,
         **kwargs: Any,
     ) -> None:
@@ -133,10 +144,10 @@ class AbstractEventLogger(ABC):
     def log_with_context(  # pylint: disable=too-many-locals
         self,
         action: str,
-        duration: timedelta | None = None,
-        object_ref: str | None = None,
+        duration: Optional[timedelta] = None,
+        object_ref: Optional[str] = None,
         log_to_statsd: bool = True,
-        **payload_override: dict[str, Any] | None,
+        **payload_override: Optional[Dict[str, Any]],
     ) -> None:
         # pylint: disable=import-outside-toplevel
         from superset.views.core import get_form_data
@@ -165,7 +176,7 @@ class AbstractEventLogger(ABC):
         if payload_override:
             payload.update(payload_override)
 
-        dashboard_id: int | None = None
+        dashboard_id: Optional[int] = None
         try:
             dashboard_id = int(payload.get("dashboard_id"))  # type: ignore
         except (TypeError, ValueError):
@@ -207,7 +218,7 @@ class AbstractEventLogger(ABC):
     def log_context(
         self,
         action: str,
-        object_ref: str | None = None,
+        object_ref: Optional[str] = None,
         log_to_statsd: bool = True,
     ) -> Iterator[Callable[..., None]]:
         """
@@ -231,9 +242,9 @@ class AbstractEventLogger(ABC):
     def _wrapper(
         self,
         f: Callable[..., Any],
-        action: str | Callable[..., str] | None = None,
-        object_ref: str | Callable[..., str] | Literal[False] | None = None,
-        allow_extra_payload: bool | None = False,
+        action: Optional[Union[str, Callable[..., str]]] = None,
+        object_ref: Optional[Union[str, Callable[..., str], Literal[False]]] = None,
+        allow_extra_payload: Optional[bool] = False,
         **wrapper_kwargs: Any,
     ) -> Callable[..., Any]:
         @functools.wraps(f)
@@ -303,7 +314,7 @@ def get_event_logger_from_cfg_value(cfg_value: Any) -> AbstractEventLogger:
             )
         )
 
-        event_logger_type = cast(type[Any], cfg_value)
+        event_logger_type = cast(Type[Any], cfg_value)
         result = event_logger_type()
 
     # Verify that we have a valid logger impl
@@ -322,12 +333,12 @@ class DBEventLogger(AbstractEventLogger):
 
     def log(  # pylint: disable=too-many-arguments,too-many-locals
         self,
-        user_id: int | None,
+        user_id: Optional[int],
         action: str,
-        dashboard_id: int | None,
-        duration_ms: int | None,
-        slice_id: int | None,
-        referrer: str | None,
+        dashboard_id: Optional[int],
+        duration_ms: Optional[int],
+        slice_id: Optional[int],
+        referrer: Optional[str],
         *args: Any,
         **kwargs: Any,
     ) -> None:
@@ -337,7 +348,7 @@ class DBEventLogger(AbstractEventLogger):
         records = kwargs.get("records", [])
         logs = []
         for record in records:
-            json_string: str | None
+            json_string: Optional[str]
             try:
                 json_string = json.dumps(record)
             except Exception:  # pylint: disable=broad-except

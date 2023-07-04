@@ -14,8 +14,9 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+import json
 from datetime import datetime, timedelta
-from typing import Any
+from typing import Any, Iterator
 
 import pytest
 from pytest_mock import MockFixture
@@ -51,7 +52,7 @@ def test_query_dao_save_metadata(session: Session) -> None:
     session.add(db)
     session.add(query_obj)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     query = session.query(Query).one()
     QueryDAO.save_metadata(query=query, payload={"columns": []})
@@ -105,7 +106,7 @@ def test_query_dao_get_queries_changed_after(session: Session) -> None:
     session.add(old_query_obj)
     session.add(updated_query_obj)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     timestamp = datetime.timestamp(now - timedelta(days=2)) * 1000
     result = QueryDAO.get_queries_changed_after(timestamp)
@@ -146,7 +147,7 @@ def test_query_dao_stop_query_not_found(
 
     mocker.patch("superset.sql_lab.cancel_query", return_value=False)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     with pytest.raises(QueryNotFoundException):
         QueryDAO.stop_query("foo2")
@@ -186,7 +187,7 @@ def test_query_dao_stop_query_not_running(
     session.add(db)
     session.add(query_obj)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     QueryDAO.stop_query(query_obj.client_id)
     query = session.query(Query).one()
@@ -226,7 +227,7 @@ def test_query_dao_stop_query_failed(
 
     mocker.patch("superset.sql_lab.cancel_query", return_value=False)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     with pytest.raises(SupersetCancelQueryException):
         QueryDAO.stop_query(query_obj.client_id)
@@ -266,7 +267,7 @@ def test_query_dao_stop_query(mocker: MockFixture, app: Any, session: Session) -
 
     mocker.patch("superset.sql_lab.cancel_query", return_value=True)
 
-    from superset.daos.query import QueryDAO
+    from superset.queries.dao import QueryDAO
 
     QueryDAO.stop_query(query_obj.client_id)
     query = session.query(Query).one()

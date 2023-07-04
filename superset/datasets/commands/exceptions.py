@@ -212,8 +212,3 @@ class DatasetDuplicateFailedError(CreateFailedError):
 
 class DatasetForbiddenDataURI(ImportFailedError):
     message = _("Data URI is not allowed.")
-
-
-class WarmUpCacheTableNotFoundError(CommandException):
-    status = 404
-    message = _("The provided table was not found in the provided database")

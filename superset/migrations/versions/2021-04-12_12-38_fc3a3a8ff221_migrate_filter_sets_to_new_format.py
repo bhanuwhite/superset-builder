@@ -27,8 +27,7 @@ revision = "fc3a3a8ff221"
 down_revision = "085f06488938"
 
 import json
-from collections.abc import Iterable
-from typing import Any
+from typing import Any, Dict, Iterable
 
 from alembic import op
 from sqlalchemy import Column, Integer, Text
@@ -78,7 +77,7 @@ EXTRA_FORM_DATA_OVERRIDE_KEYS = (
 )
 
 
-def upgrade_select_filters(native_filters: Iterable[dict[str, Any]]) -> None:
+def upgrade_select_filters(native_filters: Iterable[Dict[str, Any]]) -> None:
     """
     Add `defaultToFirstItem` to `controlValues` of `select_filter` components
     """
@@ -90,7 +89,7 @@ def upgrade_select_filters(native_filters: Iterable[dict[str, Any]]) -> None:
             control_values["defaultToFirstItem"] = value
 
 
-def upgrade_filter_set(filter_set: dict[str, Any]) -> int:
+def upgrade_filter_set(filter_set: Dict[str, Any]) -> int:
     changed_filters = 0
     upgrade_select_filters(filter_set.get("nativeFilters", {}).values())
     data_mask = filter_set.get("dataMask", {})
@@ -125,7 +124,7 @@ def upgrade_filter_set(filter_set: dict[str, Any]) -> int:
     return changed_filters
 
 
-def downgrade_filter_set(filter_set: dict[str, Any]) -> int:
+def downgrade_filter_set(filter_set: Dict[str, Any]) -> int:
     changed_filters = 0
     old_data_mask = filter_set.pop("dataMask", {})
     native_filters = {}
