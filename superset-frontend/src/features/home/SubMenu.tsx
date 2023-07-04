@@ -82,6 +82,7 @@ const StyledHeader = styled.div`
     }
     .ant-menu {
       padding: ${({ theme }) => theme.gridUnit * 4}px 0px;
+      background:transparent;
     }
   }
 

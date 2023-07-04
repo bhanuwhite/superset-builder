@@ -35,11 +35,14 @@ const Container = styled.div`
 `;
 
 const SearchIcon = styled(Icons.Search)`
-  color: ${({ theme }) => theme.colors.grayscale.light1};
+  color: ${({ theme }) => theme.colors.primary.dark1};
 `;
 
 const StyledInput = styled(AntdInput)`
   border-radius: ${({ theme }) => theme.gridUnit}px;
+  background-color: ${({ theme }) => theme.colors.grayscale.dark2};
+  height:40px;
+  border-color:rgba(255,255,255,0.37);
 `;
 
 function SearchFilter(

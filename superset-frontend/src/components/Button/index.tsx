@@ -80,9 +80,9 @@ export default function Button(props: ButtonProps) {
     padding = 10;
   }
 
-  let backgroundColor = primary.light4;
-  let backgroundColorHover = mix(0.1, primary.base, primary.light4);
-  let backgroundColorActive = mix(0.25, primary.base, primary.light4);
+  let backgroundColor = primary.light1;
+  let backgroundColorHover = primary.light1;
+  let backgroundColorActive = primary.light1;
   let backgroundColorDisabled = grayscale.light2;
   let color = primary.dark1;
   let colorHover = color;
@@ -99,13 +99,15 @@ export default function Button(props: ButtonProps) {
     color = grayscale.light5;
     colorHover = color;
   } else if (buttonStyle === 'tertiary' || buttonStyle === 'dashed') {
-    backgroundColor = grayscale.light5;
-    backgroundColorHover = grayscale.light5;
-    backgroundColorActive = grayscale.light5;
-    backgroundColorDisabled = grayscale.light5;
+    backgroundColor = grayscale.dark2;
+    backgroundColorHover = grayscale.dark1;
+    backgroundColorActive = grayscale.dark1;
+    backgroundColorDisabled = grayscale.light2;
+    color = primary.light1;
+    colorHover = color;
     borderWidth = 1;
     borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';
-    borderColor = primary.dark1;
+    borderColor = primary.light1;
     borderColorHover = primary.light1;
     borderColorDisabled = grayscale.light2;
   } else if (buttonStyle === 'danger') {
@@ -130,7 +132,8 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
-    colorHover = primary.base;
+    color = primary.light1;
+    colorHover = primary.light1;
   }
 
   const element = children as ReactElement;

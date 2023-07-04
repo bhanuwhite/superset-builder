@@ -53,6 +53,10 @@ const StyledHeader = styled.header`
       .caret {
         display: none;
       }
+      .anticon svg{
+        color: ${theme.colors.primary.dark1} !important;
+      } 
+   
       .navbar-brand {
         display: flex;
         flex-direction: column;
@@ -114,7 +118,20 @@ const StyledHeader = styled.header`
       .ant-menu > .ant-menu-item > a {
         padding: ${theme.gridUnit * 4}px;
       }
-    
+        .ant-menu-submenu-horizontal{
+          color: ${theme.colors.primary.dark1};
+          &:hover {
+            color: ${theme.colors.primary.dark1};
+            background-color: ${theme.colors.grayscale.dark1};
+            border-bottom: none;
+            margin: 0;
+            &:after {
+              opacity: 1;
+              width: 100%;
+              background-color: ${theme.colors.primary.light1};
+            }
+          }
+        }
       @media (max-width: 767px) {
         .ant-menu-item {
           padding: 0 ${theme.gridUnit * 6}px 0
@@ -155,12 +172,39 @@ const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
     border-radius: 0px;
   }
+  .ant-menu-vertical{
+    background-color: ${theme.colors.grayscale.dark2} !important;
+    .ant-menu-item {  
+      &:hover {
+      background-color: ${theme.colors.grayscale.dark1};
+      a{
+        color: ${theme.colors.primary.dark1};
+      }
+       }
+      a{
+        color: ${theme.colors.primary.dark1};
+      }
+    }
+  }
+  .ant-menu-submenu-vertical{
+    color: ${theme.colors.primary.dark1} !important;
+    i{
+      color: ${theme.colors.primary.dark1} !important;
+    }
+  }
+  .ant-menu-item-group-title{
+    color: ${theme.colors.primary.dark1} ;
+  }
+  .ant-menu-item-only-child{
+    color: ${theme.colors.primary.dark1} !important;
+  }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;
     i {
       padding-right: ${theme.gridUnit * 2}px;
       margin-left: ${theme.gridUnit * 1.75}px;
     }
+    
   }
 `;
 const { SubMenu } = DropdownMenu;

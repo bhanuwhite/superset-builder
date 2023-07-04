@@ -197,8 +197,8 @@ const defaultThemeNew = {
       dark2: '#2d2d2d',
       light1: '#5f5f5f',
       light2: '#303030',
-      light3: '#0F0F0F',
-      light4: '#1F1F1F',
+      light3: '#424242',
+      light4: 'rgba(255,255,255,.08)',
       light5: '#000000',
     },
     error: {

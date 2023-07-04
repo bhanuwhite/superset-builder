@@ -31,13 +31,20 @@ const ActionsWrapper = styled.div`
 
 const StyledCard = styled(AntdCard)`
   ${({ theme }) => `
-    border: 1px solid ${theme.colors.grayscale.light2};
-    border-radius: ${theme.gridUnit}px;
+    border: 0px;
+    border-radius:10px;
+    background-color: ${theme.colors.grayscale.light2};
     overflow: hidden;
 
     .ant-card-body {
-      padding: ${theme.gridUnit * 4}px
-        ${theme.gridUnit * 2}px;
+      padding:16px 24px;
+      color:${theme.colors.primary.dark2};
+      .ant-card-meta-title{
+        color:${theme.colors.primary.dark2};
+      }
+      .ant-card-meta-description{
+        color:${theme.colors.primary.dark2};
+      }
     }
     .ant-card-meta-detail > div:not(:last-child) {
       margin-bottom: 0;
@@ -80,6 +87,7 @@ const TitleContainer = styled.div`
     span[role='img'] {
       display: flex;
       align-items: center;
+      color:${({ theme }) => theme.colors.primary.dark1};;
     }
   }
 

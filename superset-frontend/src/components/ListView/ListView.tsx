@@ -48,15 +48,11 @@ const ListViewStyles = styled.div`
   text-align: center;
 
   .superset-list-view {
-    background-color:${({ theme }) => theme.colors.grayscale.dark2};
     text-align: left;
-    border-radius: 10px;
-    padding:16px;
-    margin: ${({ theme }) => theme.gridUnit * 4}px ${({ theme }) => theme.gridUnit * 4}px;
-
+    margin: 0px 16px;
     .header {
       display: flex;
-      padding-bottom: ${({ theme }) => theme.gridUnit * 4}px;
+      padding:16px 0px;
 
       & .controls {
         display: flex;

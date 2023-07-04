@@ -38,8 +38,7 @@ export const Table = styled.table`
   ${({ theme }) => `
 
     border-collapse: separate;
-    border-radius: 15px;
-
+    background: ${theme.colors.grayscale.dark2};
     thead > tr > th {
       border: 0;
     }
@@ -50,8 +49,9 @@ export const Table = styled.table`
       }
     }
     th {
-      background: ${theme.colors.grayscale.light1};
+      background: ${theme.colors.grayscale.light2};
       position: sticky;
+      border-bottom:1px solid rgba(255,255,255,.37) !important; 
       top: 0;
       color: ${theme.colors.primary.dark1};
 
@@ -93,6 +93,8 @@ export const Table = styled.table`
 
     td {
       color: ${theme.colors.primary.dark1};
+      border-bottom:1px solid rgba(255,255,255,.37);
+      border-top:0px;
       &.xs {
         width: 25px;
       }
@@ -110,6 +112,12 @@ export const Table = styled.table`
       }
       &.xxl {
         width: 200px;
+      }
+      a{
+        color: ${theme.colors.primary.dark1};
+      }
+      svg{
+        color: ${theme.colors.primary.dark1};
       }
     }
 
@@ -135,6 +143,7 @@ export const Table = styled.table`
     .actions {
       white-space: nowrap;
       min-width: 100px;
+      color: ${theme.colors.primary.dark1};
 
       svg,
       i {
@@ -142,7 +151,7 @@ export const Table = styled.table`
 
         &:hover {
           path {
-            fill: ${theme.colors.primary.base};
+            fill: ${theme.colors.primary.light1};
           }
         }
       }

@@ -46,11 +46,17 @@ export const StyledSelect = styled(AntdSelect, {
     flex: ${headerPosition === 'left' ? 1 : 0};
     && .ant-select-selector {
       border-radius: ${theme.gridUnit}px;
+      background-color:${theme.colors.grayscale.dark2};
+      height:40px;
+      align-items:center;
+      border-color:rgba(255,255,255,0.37);
+      color: ${theme.colors.primary.dark1};
     }
     // Open the dropdown when clicking on the suffix
     // This is fixed in version 4.16
     .ant-select-arrow .anticon:not(.ant-select-suffix) {
       pointer-events: none;
+      color: ${theme.colors.primary.dark1};
     }
     .select-all {
       border-bottom: 1px solid ${theme.colors.grayscale.light3};

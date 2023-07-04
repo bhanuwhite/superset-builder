@@ -104,22 +104,7 @@ const WelcomeContainer = styled.div`
   .ant-card-meta-description {
     margin-top: ${({ theme }) => theme.gridUnit}px;
   }
-  .ant-card.ant-card-bordered {
-    border: 0px;
-    background-color: ${({ theme }) => theme.colors.grayscale.light2};
-    border-radius:10px;
-    .ant-card-body{
-      padding:16px 24px;
-      color:${({ theme }) => theme.colors.primary.dark2};
-      .ant-card-meta-title{
-        color:${({ theme }) => theme.colors.primary.dark2};
-      }
-      .ant-card-meta-description{
-        color:${({ theme }) => theme.colors.primary.dark2};
-      }
-    }
 
-  }
   .ant-collapse-item .ant-collapse-content {
     margin-bottom: ${({ theme }) => theme.gridUnit * -6}px;
   }
@@ -129,6 +114,9 @@ const WelcomeContainer = styled.div`
   }
   div.ant-collapse-item:last-child .ant-collapse-header {
     padding-bottom: ${({ theme }) => theme.gridUnit * 9}px;
+  }
+  .ant-empty{
+    color:${({ theme }) => theme.colors.primary.dark1};
   }
   .loading-cards {
     margin-top: ${({ theme }) => theme.gridUnit * 8}px;
