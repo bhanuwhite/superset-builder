@@ -15,6 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import random
+from typing import Dict, List, Set
 
 import pandas as pd
 import pytest
@@ -28,7 +29,7 @@ from superset.utils.database import get_example_database
 from tests.integration_tests.dashboard_utils import create_slice, create_table_metadata
 from tests.integration_tests.test_app import app
 
-misc_dash_slices: set[str] = set()
+misc_dash_slices: Set[str] = set()
 
 
 ENERGY_USAGE_TBL_NAME = "energy_usage"
@@ -69,7 +70,7 @@ def _get_dataframe():
     return pd.DataFrame.from_dict(data)
 
 
-def _create_energy_table() -> list[Slice]:
+def _create_energy_table() -> List[Slice]:
     table = create_table_metadata(
         table_name=ENERGY_USAGE_TBL_NAME,
         database=get_example_database(),
@@ -99,7 +100,7 @@ def _create_energy_table() -> list[Slice]:
 
 
 def _create_and_commit_energy_slice(
-    table: SqlaTable, title: str, viz_type: str, param: dict[str, str]
+    table: SqlaTable, title: str, viz_type: str, param: Dict[str, str]
 ):
     slice = create_slice(title, viz_type, table, param)
     existing_slice = (
@@ -188,6 +189,6 @@ def _get_energy_slices():
                 "xscale_interval": "1",
                 "yscale_interval": "1",
             },
-            "query_context": '{"datasource":{"id":12,"type":"table"},"force":false,"queries":[{"time_range":" : ","filters":[],"extras":{"time_grain_sqla":null,"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[],"annotation_layers":[],"row_limit":5000,"timeseries_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"result_format":"json","result_type":"full"}',
+            "query_context": '{"datasource":{"id":12,"type":"table"},"force":false,"queries":[{"time_range":" : ","filters":[],"extras":{"time_grain_sqla":null,"having":"","having_druid":[],"where":""},"applied_time_extras":{},"columns":[],"metrics":[],"annotation_layers":[],"row_limit":5000,"timeseries_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"result_format":"json","result_type":"full"}',
         },
     ]

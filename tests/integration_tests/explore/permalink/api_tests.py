@@ -15,8 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import json
-from collections.abc import Iterator
-from typing import Any
+from typing import Any, Dict, Iterator
 from uuid import uuid3
 
 import pytest
@@ -44,7 +43,7 @@ def chart(app_context, load_world_bank_dashboard_with_slices) -> Slice:
 
 
 @pytest.fixture
-def form_data(chart) -> dict[str, Any]:
+def form_data(chart) -> Dict[str, Any]:
     datasource = f"{chart.datasource.id}__{chart.datasource.type}"
     return {
         "chart_id": chart.id,
@@ -69,7 +68,7 @@ def permalink_salt() -> Iterator[str]:
 
 
 def test_post(
-    form_data: dict[str, Any], permalink_salt: str, test_client, login_as_admin
+    form_data: Dict[str, Any], permalink_salt: str, test_client, login_as_admin
 ):
     resp = test_client.post(f"api/v1/explore/permalink", json={"formData": form_data})
     assert resp.status_code == 201
@@ -126,7 +125,7 @@ def test_post_invalid_schema(test_client, login_as_admin) -> None:
 
 
 def test_get(
-    form_data: dict[str, Any], permalink_salt: str, test_client, login_as_admin
+    form_data: Dict[str, Any], permalink_salt: str, test_client, login_as_admin
 ) -> None:
     resp = test_client.post(f"api/v1/explore/permalink", json={"formData": form_data})
     data = json.loads(resp.data.decode("utf-8"))

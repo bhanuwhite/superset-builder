@@ -82,7 +82,7 @@ def upgrade():
             url.url = newurl
             session.merge(url)
             session.commit()
-        print(f"Updating url ({i}/{urls_len})")
+        print("Updating url ({}/{})".format(i, urls_len))
     session.close()
 
 

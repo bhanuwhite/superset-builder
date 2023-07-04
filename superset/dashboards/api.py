@@ -38,7 +38,6 @@ from superset.charts.schemas import ChartEntityResponseSchema
 from superset.commands.importers.exceptions import NoValidFilesFoundError
 from superset.commands.importers.v1.utils import get_contents_from_bundle
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP, RouteMethod
-from superset.daos.dashboard import DashboardDAO, EmbeddedDashboardDAO
 from superset.dashboards.commands.bulk_delete import BulkDeleteDashboardCommand
 from superset.dashboards.commands.create import CreateDashboardCommand
 from superset.dashboards.commands.delete import DeleteDashboardCommand
@@ -55,6 +54,7 @@ from superset.dashboards.commands.exceptions import (
 from superset.dashboards.commands.export import ExportDashboardsCommand
 from superset.dashboards.commands.importers.dispatcher import ImportDashboardsCommand
 from superset.dashboards.commands.update import UpdateDashboardCommand
+from superset.dashboards.dao import DashboardDAO
 from superset.dashboards.filters import (
     DashboardAccessFilter,
     DashboardCertifiedFilter,
@@ -80,6 +80,7 @@ from superset.dashboards.schemas import (
     openapi_spec_methods_override,
     thumbnail_query_schema,
 )
+from superset.embedded.dao import EmbeddedDAO
 from superset.extensions import event_logger
 from superset.models.dashboard import Dashboard
 from superset.models.embedded_dashboard import EmbeddedDashboard
@@ -173,6 +174,7 @@ class DashboardRestApi(BaseSupersetModelRestApi):
         "changed_by.last_name",
         "changed_by.id",
         "changed_by_name",
+        "changed_by_url",
         "changed_on_utc",
         "changed_on_delta_humanized",
         "created_on_delta_humanized",
@@ -1319,7 +1321,7 @@ class DashboardRestApi(BaseSupersetModelRestApi):
         """
         try:
             body = self.embedded_config_schema.load(request.json)
-            embedded = EmbeddedDashboardDAO.upsert(dashboard, body["allowed_domains"])
+            embedded = EmbeddedDAO.upsert(dashboard, body["allowed_domains"])
             result = self.embedded_response_schema.dump(embedded)
             return self.response(200, result=result)
         except ValidationError as error:

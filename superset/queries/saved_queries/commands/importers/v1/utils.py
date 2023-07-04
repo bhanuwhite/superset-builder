@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-from typing import Any
+from typing import Any, Dict
 
 from sqlalchemy.orm import Session
 
@@ -23,7 +23,7 @@ from superset.models.sql_lab import SavedQuery
 
 
 def import_saved_query(
-    session: Session, config: dict[str, Any], overwrite: bool = False
+    session: Session, config: Dict[str, Any], overwrite: bool = False
 ) -> SavedQuery:
     existing = session.query(SavedQuery).filter_by(uuid=config["uuid"]).first()
     if existing:

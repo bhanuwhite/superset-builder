@@ -16,7 +16,7 @@
 # under the License.
 import json
 import logging
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 import yaml
 from flask_appbuilder import Model
@@ -213,7 +213,7 @@ def import_simple_obj(
 
 
 def import_from_dict(
-    session: Session, data: dict[str, Any], sync: Optional[list[str]] = None
+    session: Session, data: Dict[str, Any], sync: Optional[List[str]] = None
 ) -> None:
     """Imports databases from dictionary"""
     if not sync:
@@ -238,12 +238,12 @@ class ImportDatasetsCommand(BaseCommand):
     # pylint: disable=unused-argument
     def __init__(
         self,
-        contents: dict[str, str],
+        contents: Dict[str, str],
         *args: Any,
         **kwargs: Any,
     ):
         self.contents = contents
-        self._configs: dict[str, Any] = {}
+        self._configs: Dict[str, Any] = {}
 
         self.sync = []
         if kwargs.get("sync_columns"):

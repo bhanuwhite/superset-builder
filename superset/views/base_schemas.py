@@ -14,8 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-from collections.abc import Iterable, Mapping, Sequence
-from typing import Any, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, Union
 
 from flask import current_app, g
 from flask_appbuilder import Model
@@ -55,7 +54,7 @@ class BaseSupersetSchema(Schema):
         self,
         data: Union[Mapping[str, Any], Iterable[Mapping[str, Any]]],
         many: Optional[bool] = None,
-        partial: Union[bool, Sequence[str], set[str], None] = None,
+        partial: Union[bool, Sequence[str], Set[str], None] = None,
         instance: Optional[Model] = None,
         **kwargs: Any,
     ) -> Any:
@@ -68,7 +67,7 @@ class BaseSupersetSchema(Schema):
 
     @post_load
     def make_object(
-        self, data: dict[Any, Any], discard: Optional[list[str]] = None
+        self, data: Dict[Any, Any], discard: Optional[List[str]] = None
     ) -> Model:
         """
         Creates a Model object from POST or PUT requests. PUT will use self.instance
@@ -96,7 +95,7 @@ class BaseOwnedSchema(BaseSupersetSchema):
 
     @post_load
     def make_object(
-        self, data: dict[str, Any], discard: Optional[list[str]] = None
+        self, data: Dict[str, Any], discard: Optional[List[str]] = None
     ) -> Model:
         discard = discard or []
         discard.append(self.owners_field_name)
@@ -108,13 +107,13 @@ class BaseOwnedSchema(BaseSupersetSchema):
         return instance
 
     @pre_load
-    def pre_load(self, data: dict[Any, Any]) -> None:
+    def pre_load(self, data: Dict[Any, Any]) -> None:
         # if PUT request don't set owners to empty list
         if not self.instance:
             data[self.owners_field_name] = data.get(self.owners_field_name, [])
 
     @staticmethod
-    def set_owners(instance: Model, owners: list[int]) -> None:
+    def set_owners(instance: Model, owners: List[int]) -> None:
         owner_objs = []
         user_id = get_user_id()
         if user_id and user_id not in owners:

@@ -15,34 +15,35 @@
 # specific language governing permissions and limitations
 # under the License.
 slice_name: Commute Time
-viz_type: treemap_v2
+viz_type: treemap
 params:
   adhoc_filters:
-    - clause: WHERE
-      comparator: Currently A Developer
-      expressionType: SIMPLE
-      filterOptionName: filter_fvi0jg9aii_2lekqrhy7qk
-      isExtra: false
-      isNew: false
-      operator: ==
-      sqlExpression: null
-      subject: developer_type
-    - clause: WHERE
-      comparator: "NULL"
-      expressionType: SIMPLE
-      filterOptionName: filter_r5execgs1q8_hbav07lele
-      isExtra: false
-      isNew: false
-      operator: "!="
-      sqlExpression: null
-      subject: communite_time
+  - clause: WHERE
+    comparator: Currently A Developer
+    expressionType: SIMPLE
+    filterOptionName: filter_fvi0jg9aii_2lekqrhy7qk
+    isExtra: false
+    isNew: false
+    operator: ==
+    sqlExpression: null
+    subject: developer_type
+  - clause: WHERE
+    comparator: 'NULL'
+    expressionType: SIMPLE
+    filterOptionName: filter_r5execgs1q8_hbav07lele
+    isExtra: false
+    isNew: false
+    operator: '!='
+    sqlExpression: null
+    subject: communite_time
   color_scheme: supersetColors
   datasource: 42__table
   granularity_sqla: time_start
   groupby:
-    - communite_time
+  - communite_time
   label_colors: {}
-  metric: count
+  metrics:
+  - count
   number_format: SMART_NUMBER
   queryFields:
     groupby: groupby
@@ -51,7 +52,7 @@ params:
   time_range: No filter
   treemap_ratio: 1.618033988749895
   url_params: {}
-  viz_type: treemap_v2
+  viz_type: treemap
 cache_timeout: null
 uuid: 097c05c9-2dd2-481d-813d-d6c0c12b4a3d
 version: 1.0.0

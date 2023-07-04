@@ -17,6 +17,7 @@
 import json
 from copy import deepcopy
 from textwrap import dedent
+from typing import Set, Tuple
 
 import click
 from click_option_group import optgroup, RequiredMutuallyExclusiveOptionGroup
@@ -101,7 +102,7 @@ def native_filters() -> None:
 )
 def upgrade(
     all_: bool,  # pylint: disable=unused-argument
-    dashboard_ids: tuple[int, ...],
+    dashboard_ids: Tuple[int, ...],
 ) -> None:
     """
     Upgrade legacy filter-box charts to native dashboard filters.
@@ -250,7 +251,7 @@ def upgrade(
 )
 def downgrade(
     all_: bool,  # pylint: disable=unused-argument
-    dashboard_ids: tuple[int, ...],
+    dashboard_ids: Tuple[int, ...],
 ) -> None:
     """
     Downgrade native dashboard filters to legacy filter-box charts (where applicable).
@@ -346,7 +347,7 @@ def downgrade(
 )
 def cleanup(
     all_: bool,  # pylint: disable=unused-argument
-    dashboard_ids: tuple[int, ...],
+    dashboard_ids: Tuple[int, ...],
 ) -> None:
     """
     Cleanup obsolete legacy filter-box charts and interim metadata.
@@ -354,7 +355,7 @@ def cleanup(
     Note this operation is irreversible.
     """
 
-    slice_ids: set[int] = set()
+    slice_ids: Set[int] = set()
 
     # Cleanup the dashboard which contains legacy fields used for downgrading.
     for dashboard in (

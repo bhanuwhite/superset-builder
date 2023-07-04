@@ -14,6 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from typing import List
 
 from flask_babel import lazy_gettext as _
 
@@ -262,13 +263,13 @@ class ReportScheduleStateNotFoundError(CommandException):
 
 
 class ReportScheduleSystemErrorsException(CommandException, SupersetErrorsException):
-    errors: list[SupersetError] = []
+    errors: List[SupersetError] = []
     message = _("Report schedule system error")
 
 
 class ReportScheduleClientErrorsException(CommandException, SupersetErrorsException):
     status = 400
-    errors: list[SupersetError] = []
+    errors: List[SupersetError] = []
     message = _("Report schedule client error")
 
 

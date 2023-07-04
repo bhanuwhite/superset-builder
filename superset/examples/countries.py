@@ -16,9 +16,9 @@
 # under the License.
 """This module contains data related to countries and is used for geo mapping"""
 # pylint: disable=too-many-lines
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
-countries: list[dict[str, Any]] = [
+countries: List[Dict[str, Any]] = [
     {
         "name": "Angola",
         "area": 1246700,
@@ -2491,7 +2491,7 @@ countries: list[dict[str, Any]] = [
     },
 ]
 
-all_lookups: dict[str, dict[str, dict[str, Any]]] = {}
+all_lookups: Dict[str, Dict[str, Dict[str, Any]]] = {}
 lookups = ["cioc", "cca2", "cca3", "name"]
 for lookup in lookups:
     all_lookups[lookup] = {}
@@ -2499,7 +2499,7 @@ for lookup in lookups:
         all_lookups[lookup][country[lookup].lower()] = country
 
 
-def get(field: str, symbol: str) -> Optional[dict[str, Any]]:
+def get(field: str, symbol: str) -> Optional[Dict[str, Any]]:
     """
     Get country data based on a standard code and a symbol
     """

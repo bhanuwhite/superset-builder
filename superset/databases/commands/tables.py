@@ -15,17 +15,15 @@
 # specific language governing permissions and limitations
 # under the License.
 import logging
-from typing import Any, cast
-
-from sqlalchemy.orm import lazyload, load_only
+from typing import Any, cast, Dict
 
 from superset.commands.base import BaseCommand
 from superset.connectors.sqla.models import SqlaTable
-from superset.daos.database import DatabaseDAO
 from superset.databases.commands.exceptions import (
     DatabaseNotFoundError,
     DatabaseTablesUnexpectedError,
 )
+from superset.databases.dao import DatabaseDAO
 from superset.exceptions import SupersetException
 from superset.extensions import db, security_manager
 from superset.models.core import Database
@@ -42,7 +40,7 @@ class TablesDatabaseCommand(BaseCommand):
         self._schema_name = schema_name
         self._force = force
 
-    def run(self) -> dict[str, Any]:
+    def run(self) -> Dict[str, Any]:
         self.validate()
         try:
             tables = security_manager.get_datasources_accessible_by_user(
@@ -76,17 +74,9 @@ class TablesDatabaseCommand(BaseCommand):
             extra_dict_by_name = {
                 table.name: table.extra_dict
                 for table in (
-                    db.session.query(SqlaTable)
-                    .filter(
+                    db.session.query(SqlaTable).filter(
                         SqlaTable.database_id == self._model.id,
                         SqlaTable.schema == self._schema_name,
-                    )
-                    .options(
-                        load_only(
-                            SqlaTable.schema, SqlaTable.table_name, SqlaTable.extra
-                        ),
-                        lazyload(SqlaTable.columns),
-                        lazyload(SqlaTable.metrics),
                     )
                 ).all()
             }

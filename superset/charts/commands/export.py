@@ -18,12 +18,12 @@
 
 import json
 import logging
-from collections.abc import Iterator
+from typing import Iterator, Tuple
 
 import yaml
 
 from superset.charts.commands.exceptions import ChartNotFoundError
-from superset.daos.chart import ChartDAO
+from superset.charts.dao import ChartDAO
 from superset.datasets.commands.export import ExportDatasetsCommand
 from superset.commands.export.models import ExportModelsCommand
 from superset.models.slice import Slice
@@ -42,7 +42,7 @@ class ExportChartsCommand(ExportModelsCommand):
     not_found = ChartNotFoundError
 
     @staticmethod
-    def _export(model: Slice, export_related: bool = True) -> Iterator[tuple[str, str]]:
+    def _export(model: Slice, export_related: bool = True) -> Iterator[Tuple[str, str]]:
         file_name = get_filename(model.slice_name, model.id)
         file_path = f"charts/{file_name}.yaml"
 

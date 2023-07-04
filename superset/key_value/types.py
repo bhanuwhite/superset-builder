@@ -21,7 +21,7 @@ import pickle
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, TypedDict
+from typing import Any, Optional, TypedDict
 from uuid import UUID
 
 from marshmallow import Schema, ValidationError
@@ -34,14 +34,14 @@ from superset.key_value.exceptions import (
 
 @dataclass
 class Key:
-    id: int | None
-    uuid: UUID | None
+    id: Optional[int]
+    uuid: Optional[UUID]
 
 
 class KeyValueFilter(TypedDict, total=False):
     resource: str
-    id: int | None
-    uuid: UUID | None
+    id: Optional[int]
+    uuid: Optional[UUID]
 
 
 class KeyValueResource(str, Enum):

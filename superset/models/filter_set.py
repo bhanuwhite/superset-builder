@@ -18,8 +18,9 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import Any
+from typing import Any, Dict
 
+from flask import current_app
 from flask_appbuilder import Model
 from sqlalchemy import Column, ForeignKey, Integer, MetaData, String, Text
 from sqlalchemy.orm import relationship
@@ -65,7 +66,16 @@ class FilterSet(Model, AuditMixinNullable):
             return ""
         return str(self.changed_by)
 
-    def to_dict(self) -> dict[str, Any]:
+    @property
+    def changed_by_url(self) -> str:
+        if (
+            not self.changed_by
+            or not current_app.config["ENABLE_BROAD_ACTIVITY_ACCESS"]
+        ):
+            return ""
+        return f"/superset/profile/{self.changed_by.username}"
+
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "name": self.name,
@@ -95,7 +105,7 @@ class FilterSet(Model, AuditMixinNullable):
         return qry.all()
 
     @property
-    def params(self) -> dict[str, Any]:
+    def params(self) -> Dict[str, Any]:
         if self.json_metadata:
             return json.loads(self.json_metadata)
         return {}

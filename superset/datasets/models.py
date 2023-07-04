@@ -24,6 +24,7 @@ dataset, new models for columns, metrics, and tables were also introduced.
 These models are not fully implemented, and shouldn't be used yet.
 """
 
+from typing import List
 
 import sqlalchemy as sa
 from flask_appbuilder import Model
@@ -86,7 +87,7 @@ class Dataset(Model, AuditMixinNullable, ExtraJSONMixin, ImportExportMixin):
     # The relationship between datasets and columns is 1:n, but we use a
     # many-to-many association table to avoid adding two mutually exclusive
     # columns(dataset_id and table_id) to Column
-    columns: list[Column] = relationship(
+    columns: List[Column] = relationship(
         "Column",
         secondary=dataset_column_association_table,
         cascade="all, delete-orphan",
@@ -96,7 +97,7 @@ class Dataset(Model, AuditMixinNullable, ExtraJSONMixin, ImportExportMixin):
     owners = relationship(
         security_manager.user_model, secondary=dataset_user_association_table
     )
-    tables: list[Table] = relationship(
+    tables: List[Table] = relationship(
         "Table", secondary=dataset_table_association_table, backref="datasets"
     )
 

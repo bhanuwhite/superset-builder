@@ -15,7 +15,9 @@
 # specific language governing permissions and limitations
 # under the License.
 # isort:skip_file
+from datetime import datetime
 from unittest import mock
+from typing import List
 
 import pytest
 import pandas as pd
@@ -375,7 +377,7 @@ def test_where_latest_partition_no_columns_no_values(mock_method):
 
 
 def test__latest_partition_from_df():
-    def is_correct_result(data: list, result: list) -> bool:
+    def is_correct_result(data: List, result: List) -> bool:
         df = pd.DataFrame({"partition": data})
         return HiveEngineSpec._latest_partition_from_df(df) == result
 

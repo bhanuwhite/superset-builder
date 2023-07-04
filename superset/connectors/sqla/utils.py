@@ -17,9 +17,19 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Iterable, Iterator
 from functools import lru_cache
-from typing import Callable, TYPE_CHECKING, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    Iterator,
+    List,
+    Optional,
+    Type,
+    TYPE_CHECKING,
+    TypeVar,
+)
 from uuid import UUID
 
 from flask_babel import lazy_gettext as _
@@ -48,8 +58,8 @@ if TYPE_CHECKING:
 def get_physical_table_metadata(
     database: Database,
     table_name: str,
-    schema_name: str | None = None,
-) -> list[ResultSetColumnType]:
+    schema_name: Optional[str] = None,
+) -> List[Dict[str, Any]]:
     """Use SQLAlchemy inspector to get table metadata"""
     db_engine_spec = database.db_engine_spec
     db_dialect = database.get_dialect()
@@ -67,7 +77,6 @@ def get_physical_table_metadata(
     for col in cols:
         try:
             if isinstance(col["type"], TypeEngine):
-                name = db_engine_spec.denormalize_name(db_dialect, col["column_name"])
                 db_type = db_engine_spec.column_datatype_to_string(
                     col["type"], db_dialect
                 )
@@ -76,8 +85,6 @@ def get_physical_table_metadata(
                 )
                 col.update(
                     {
-                        "name": name,
-                        "column_name": name,
                         "type": db_type,
                         "type_generic": type_spec.generic_type if type_spec else None,
                         "is_dttm": type_spec.is_dttm if type_spec else None,
@@ -96,7 +103,7 @@ def get_physical_table_metadata(
     return cols
 
 
-def get_virtual_table_metadata(dataset: SqlaTable) -> list[ResultSetColumnType]:
+def get_virtual_table_metadata(dataset: SqlaTable) -> List[ResultSetColumnType]:
     """Use SQLparser to get virtual dataset metadata"""
     if not dataset.sql:
         raise SupersetGenericDBErrorException(
@@ -143,7 +150,7 @@ def get_virtual_table_metadata(dataset: SqlaTable) -> list[ResultSetColumnType]:
 def get_columns_description(
     database: Database,
     query: str,
-) -> list[ResultSetColumnType]:
+) -> List[ResultSetColumnType]:
     db_engine_spec = database.db_engine_spec
     try:
         with database.get_raw_connection() as conn:
@@ -164,7 +171,7 @@ def get_dialect_name(drivername: str) -> str:
 
 
 @lru_cache(maxsize=LRU_CACHE_MAX_SIZE)
-def get_identifier_quoter(drivername: str) -> dict[str, Callable[[str], str]]:
+def get_identifier_quoter(drivername: str) -> Dict[str, Callable[[str], str]]:
     return SqlaURL.create(drivername).get_dialect()().identifier_preparer.quote
 
 
@@ -174,9 +181,9 @@ logger = logging.getLogger(__name__)
 
 def find_cached_objects_in_session(
     session: Session,
-    cls: type[DeclarativeModel],
-    ids: Iterable[int] | None = None,
-    uuids: Iterable[UUID] | None = None,
+    cls: Type[DeclarativeModel],
+    ids: Optional[Iterable[int]] = None,
+    uuids: Optional[Iterable[UUID]] = None,
 ) -> Iterator[DeclarativeModel]:
     """Find known ORM instances in cached SQLA session states.
 

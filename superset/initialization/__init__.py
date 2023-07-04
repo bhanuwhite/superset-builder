@@ -19,7 +19,7 @@ from __future__ import annotations
 import logging
 import os
 import sys
-from typing import Any, Callable, TYPE_CHECKING
+from typing import Any, Callable, Dict, TYPE_CHECKING
 
 import wtforms_json
 from deprecation import deprecated
@@ -68,7 +68,7 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
 
         self.superset_app = app
         self.config = app.config
-        self.manifest: dict[Any, Any] = {}
+        self.manifest: Dict[Any, Any] = {}
 
     @deprecated(details="use self.superset_app instead of self.flask_app")  # type: ignore
     @property
@@ -116,7 +116,6 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
         # the global Flask app
         #
         # pylint: disable=import-outside-toplevel,too-many-locals,too-many-statements
-        from superset import security_manager
         from superset.advanced_data_type.api import AdvancedDataTypeRestApi
         from superset.annotation_layers.annotations.api import AnnotationRestApi
         from superset.annotation_layers.api import AnnotationLayerRestApi
@@ -155,8 +154,9 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
         from superset.security.api import SecurityRestApi
         from superset.sqllab.api import SqlLabRestApi
         from superset.tags.api import TagRestApi
+        from superset.views.access_requests import AccessRequestsModelView
         from superset.views.alerts import AlertView, ReportView
-        from superset.views.all_entities import TaggedObjectView
+        from superset.views.all_entities import TaggedObjectsModelView, TaggedObjectView
         from superset.views.annotations import AnnotationLayerView
         from superset.views.api import Api
         from superset.views.chart.views import SliceAsync, SliceModelView
@@ -334,12 +334,10 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
             category="Manage",
             category_label=__("Manage"),
             category_icon="fa-wrench",
-            cond=lambda: (
-                security_manager.can_access("can_import_dashboards", "Superset")
-                and not feature_flag_manager.is_feature_enabled("VERSIONED_EXPORT")
+            cond=lambda: not feature_flag_manager.is_feature_enabled(
+                "VERSIONED_EXPORT"
             ),
         )
-
         appbuilder.add_link(
             "SQL Editor",
             label=__("SQL Lab"),
@@ -367,12 +365,19 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
             category_label=__("SQL Lab"),
         )
         appbuilder.add_view(
+            TaggedObjectsModelView,
+            "All Entities",
+            label=__("All Entities"),
+            icon="",
+            category_icon="",
+            menu_cond=lambda: feature_flag_manager.is_feature_enabled("TAGGING_SYSTEM"),
+        )
+        appbuilder.add_view(
             TagModelView,
             "Tags",
             label=__("Tags"),
             icon="",
             category_icon="",
-            category="Manage",
             menu_cond=lambda: feature_flag_manager.is_feature_enabled("TAGGING_SYSTEM"),
         )
         appbuilder.add_api(LogRestApi)
@@ -412,6 +417,16 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
             category_icon="",
             category="Manage",
             category_label=__("Manage"),
+        )
+
+        appbuilder.add_view(
+            AccessRequestsModelView,
+            "Access requests",
+            label=__("Access requests"),
+            category="Security",
+            category_label=__("Security"),
+            icon="fa-table",
+            menu_cond=lambda: bool(self.config["ENABLE_ACCESS_REQUEST"]),
         )
 
         appbuilder.add_view(
@@ -582,7 +597,7 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
                     self.app = app
 
                 def __call__(
-                    self, environ: dict[str, Any], start_response: Callable[..., Any]
+                    self, environ: Dict[str, Any], start_response: Callable[..., Any]
                 ) -> Any:
                     # Setting wsgi.input_terminated tells werkzeug.wsgi to ignore
                     # content-length and read the stream till the end.

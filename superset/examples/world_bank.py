@@ -17,6 +17,7 @@
 """Loads datasets, dashboards and slices in a new superset instance"""
 import json
 import os
+from typing import List
 
 import pandas as pd
 from sqlalchemy import DateTime, inspect, String
@@ -138,7 +139,7 @@ def load_world_bank_health_n_pop(  # pylint: disable=too-many-locals, too-many-s
     db.session.commit()
 
 
-def create_slices(tbl: BaseDatasource) -> list[Slice]:
+def create_slices(tbl: BaseDatasource) -> List[Slice]:
     metric = "sum__SP_POP_TOTL"
     metrics = ["sum__SP_POP_TOTL"]
     secondary_metric = {
@@ -342,15 +343,15 @@ def create_slices(tbl: BaseDatasource) -> list[Slice]:
         ),
         Slice(
             slice_name="Treemap",
-            viz_type="treemap_v2",
+            viz_type="treemap",
             datasource_type=DatasourceType.TABLE,
             datasource_id=tbl.id,
             params=get_slice_json(
                 defaults,
                 since="1960-01-01",
                 until="now",
-                viz_type="treemap_v2",
-                metric="sum__SP_POP_TOTL",
+                viz_type="treemap",
+                metrics=["sum__SP_POP_TOTL"],
                 groupby=["region", "country_code"],
             ),
         ),

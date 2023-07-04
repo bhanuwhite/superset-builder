@@ -15,8 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-from collections.abc import Generator
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Dict, Generator, List, Optional, Type
 
 import backoff
 
@@ -25,9 +24,9 @@ def retry_call(
     func: Callable[..., Any],
     *args: Any,
     strategy: Callable[..., Generator[int, None, None]] = backoff.constant,
-    exception: type[Exception] = Exception,
-    fargs: Optional[list[Any]] = None,
-    fkwargs: Optional[dict[str, Any]] = None,
+    exception: Type[Exception] = Exception,
+    fargs: Optional[List[Any]] = None,
+    fkwargs: Optional[Dict[str, Any]] = None,
     **kwargs: Any
 ) -> Any:
     """

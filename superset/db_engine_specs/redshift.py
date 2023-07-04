@@ -16,8 +16,7 @@
 # under the License.
 import logging
 import re
-from re import Pattern
-from typing import Any, Optional
+from typing import Any, Dict, Optional, Pattern, Tuple
 
 import pandas as pd
 from flask_babel import gettext as __
@@ -67,7 +66,7 @@ class RedshiftEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
 
     encryption_parameters = {"sslmode": "verify-ca"}
 
-    custom_errors: dict[Pattern[str], tuple[str, SupersetErrorType, dict[str, Any]]] = {
+    custom_errors: Dict[Pattern[str], Tuple[str, SupersetErrorType, Dict[str, Any]]] = {
         CONNECTION_ACCESS_DENIED_REGEX: (
             __('Either the username "%(username)s" or the password is incorrect.'),
             SupersetErrorType.CONNECTION_ACCESS_DENIED_ERROR,
@@ -107,7 +106,7 @@ class RedshiftEngineSpec(PostgresBaseEngineSpec, BasicParametersMixin):
         database: Database,
         table: Table,
         df: pd.DataFrame,
-        to_sql_kwargs: dict[str, Any],
+        to_sql_kwargs: Dict[str, Any],
     ) -> None:
         """
         Upload data from a Pandas DataFrame to a database.

@@ -15,6 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import logging
+from typing import Type
 
 from flask import Response
 from flask_appbuilder.api import expose, protect, safe
@@ -34,16 +35,16 @@ class DashboardFilterStateRestApi(TemporaryCacheRestApi):
     resource_name = "dashboard"
     openapi_spec_tag = "Dashboard Filter State"
 
-    def get_create_command(self) -> type[CreateFilterStateCommand]:
+    def get_create_command(self) -> Type[CreateFilterStateCommand]:
         return CreateFilterStateCommand
 
-    def get_update_command(self) -> type[UpdateFilterStateCommand]:
+    def get_update_command(self) -> Type[UpdateFilterStateCommand]:
         return UpdateFilterStateCommand
 
-    def get_get_command(self) -> type[GetFilterStateCommand]:
+    def get_get_command(self) -> Type[GetFilterStateCommand]:
         return GetFilterStateCommand
 
-    def get_delete_command(self) -> type[DeleteFilterStateCommand]:
+    def get_delete_command(self) -> Type[DeleteFilterStateCommand]:
         return DeleteFilterStateCommand
 
     @expose("/<int:pk>/filter_state", methods=("POST",))

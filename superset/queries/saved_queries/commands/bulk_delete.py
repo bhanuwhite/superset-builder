@@ -15,24 +15,24 @@
 # specific language governing permissions and limitations
 # under the License.
 import logging
-from typing import Optional
+from typing import List, Optional
 
 from superset.commands.base import BaseCommand
-from superset.daos.exceptions import DAODeleteFailedError
-from superset.daos.query import SavedQueryDAO
+from superset.dao.exceptions import DAODeleteFailedError
 from superset.models.dashboard import Dashboard
 from superset.queries.saved_queries.commands.exceptions import (
     SavedQueryBulkDeleteFailedError,
     SavedQueryNotFoundError,
 )
+from superset.queries.saved_queries.dao import SavedQueryDAO
 
 logger = logging.getLogger(__name__)
 
 
 class BulkDeleteSavedQueryCommand(BaseCommand):
-    def __init__(self, model_ids: list[int]):
+    def __init__(self, model_ids: List[int]):
         self._model_ids = model_ids
-        self._models: Optional[list[Dashboard]] = None
+        self._models: Optional[List[Dashboard]] = None
 
     def run(self) -> None:
         self.validate()

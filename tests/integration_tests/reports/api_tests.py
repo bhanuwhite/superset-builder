@@ -1249,11 +1249,7 @@ class TestReportSchedulesApi(SupersetTestCase):
         rv = self.post_assert_metric(uri, report_schedule_data, "post")
         response = json.loads(rv.data.decode("utf-8"))
         assert response == {
-            "message": {
-                "creation_method": [
-                    "Must be one of: charts, dashboards, alerts_reports."
-                ]
-            }
+            "message": {"creation_method": ["Invalid enum value BAD_CREATION_METHOD"]}
         }
         assert rv.status_code == 400
 

@@ -23,7 +23,7 @@ from graphlib import TopologicalSorter
 from inspect import getsource
 from pathlib import Path
 from types import ModuleType
-from typing import Any
+from typing import Any, Dict, List, Set, Type
 
 import click
 from flask import current_app
@@ -48,10 +48,12 @@ def import_migration_script(filepath: Path) -> ModuleType:
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)  # type: ignore
         return module
-    raise Exception(f"No module spec found in location: `{str(filepath)}`")
+    raise Exception(
+        "No module spec found in location: `{path}`".format(path=str(filepath))
+    )
 
 
-def extract_modified_tables(module: ModuleType) -> set[str]:
+def extract_modified_tables(module: ModuleType) -> Set[str]:
     """
     Extract the tables being modified by a migration script.
 
@@ -60,7 +62,7 @@ def extract_modified_tables(module: ModuleType) -> set[str]:
     actually traversing the AST.
     """
 
-    tables: set[str] = set()
+    tables: Set[str] = set()
     for function in {"upgrade", "downgrade"}:
         source = getsource(getattr(module, function))
         tables.update(re.findall(r'alter_table\(\s*"(\w+?)"\s*\)', source, re.DOTALL))
@@ -70,11 +72,11 @@ def extract_modified_tables(module: ModuleType) -> set[str]:
     return tables
 
 
-def find_models(module: ModuleType) -> list[type[Model]]:
+def find_models(module: ModuleType) -> List[Type[Model]]:
     """
     Find all models in a migration script.
     """
-    models: list[type[Model]] = []
+    models: List[Type[Model]] = []
     tables = extract_modified_tables(module)
 
     # add models defined explicitly in the migration script
@@ -121,7 +123,7 @@ def find_models(module: ModuleType) -> list[type[Model]]:
     sorter: TopologicalSorter[Any] = TopologicalSorter()
     for model in models:
         inspector = inspect(model)
-        dependent_tables: list[str] = []
+        dependent_tables: List[str] = []
         for column in inspector.columns.values():
             for foreign_key in column.foreign_keys:
                 if foreign_key.column.table.name != model.__tablename__:
@@ -172,7 +174,7 @@ def main(
 
     print("\nIdentifying models used in the migration:")
     models = find_models(module)
-    model_rows: dict[type[Model], int] = {}
+    model_rows: Dict[Type[Model], int] = {}
     for model in models:
         rows = session.query(model).count()
         print(f"- {model.__name__} ({rows} rows in table {model.__tablename__})")
@@ -180,7 +182,7 @@ def main(
     session.close()
 
     print("Benchmarking migration")
-    results: dict[str, float] = {}
+    results: Dict[str, float] = {}
     start = time.time()
     upgrade(revision=revision)
     duration = time.time() - start
@@ -188,14 +190,14 @@ def main(
     print(f"Migration on current DB took: {duration:.2f} seconds")
 
     min_entities = 10
-    new_models: dict[type[Model], list[Model]] = defaultdict(list)
+    new_models: Dict[Type[Model], List[Model]] = defaultdict(list)
     while min_entities <= limit:
         downgrade(revision=down_revision)
         print(f"Running with at least {min_entities} entities of each model")
         for model in models:
             missing = min_entities - model_rows[model]
             if missing > 0:
-                entities: list[Model] = []
+                entities: List[Model] = []
                 print(f"- Adding {missing} entities to the {model.__name__} model")
                 bar = ChargingBar("Processing", max=missing)
                 try:

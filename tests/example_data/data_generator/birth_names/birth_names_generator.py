@@ -16,10 +16,9 @@
 #  under the License.
 from __future__ import annotations
 
-from collections.abc import Iterable
 from datetime import datetime
 from random import choice, randint
-from typing import Any, TYPE_CHECKING
+from typing import Any, Dict, Iterable, TYPE_CHECKING
 
 from tests.consts.birth_names import (
     BOY,
@@ -59,7 +58,7 @@ class BirthNamesGenerator(ExampleDataGenerator):
         self._until_not_include_year = start_year + years_amount
         self._rows_per_year = rows_per_year
 
-    def generate(self) -> Iterable[dict[Any, Any]]:
+    def generate(self) -> Iterable[Dict[Any, Any]]:
         for year in range(self._start_year, self._until_not_include_year):
             ds = self._make_year(year)
             for _ in range(self._rows_per_year):
@@ -68,7 +67,7 @@ class BirthNamesGenerator(ExampleDataGenerator):
     def _make_year(self, year: int):
         return datetime(year, 1, 1, 0, 0, 0)
 
-    def generate_row(self, dt: datetime) -> dict[Any, Any]:
+    def generate_row(self, dt: datetime) -> Dict[Any, Any]:
         gender = choice([BOY, GIRL])
         num = randint(1, 100000)
         return {
