@@ -176,7 +176,7 @@ const defaultThemeNew = {
       dark2: 'rgba(255,255,255,0.6)',
       light1: '#1d98ff',
       light2: '#5A2516',
-      light3: '#2D124B',
+      light3: 'rgba(255,255,255,0.37)',
       light4: '#162905',
       light5: '#0C0705',
     },
@@ -271,7 +271,10 @@ const defaultThemeNew = {
     max: 3000,
   },
   transitionTiming: 0.3,
+  gridUnit_0: 0,
   gridUnit: 4,
+  gridUnit_1: 3,
+  gridUnit_2: 5,
   brandIconMaxWidth: 37,
 };
 export type SupersetTheme = typeof defaultThemeNew;

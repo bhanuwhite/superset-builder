@@ -969,7 +969,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
   const renderAvailableSelector = () => (
     <div className="available">
-      <h4 className="available-label">
+      <h4 className="available-label databasetableheader">
         {t('Or choose from a list of other databases we support:')}
       </h4>
       <div className="control-label">{t('Supported databases')}</div>
@@ -1102,7 +1102,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       if (!hasConnectedDb || editNewDb) {
         return (
           <>
-            <StyledFooterButton key="back" onClick={handleBackButtonOnConnect}>
+            <StyledFooterButton key="back" onClick={handleBackButtonOnConnect} buttonStyle="tertiary">
               {t('Back')}
             </StyledFooterButton>
             <StyledFooterButton
@@ -1119,7 +1119,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
       return (
         <>
-          <StyledFooterButton key="back" onClick={handleBackButtonOnFinish}>
+          <StyledFooterButton key="back" onClick={handleBackButtonOnFinish} buttonStyle="tertiary">
             {t('Back')}
           </StyledFooterButton>
           <StyledFooterButton
@@ -1139,7 +1139,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
     if (importingModal) {
       return (
         <>
-          <StyledFooterButton key="back" onClick={handleBackButtonOnConnect}>
+          <StyledFooterButton key="back" onClick={handleBackButtonOnConnect} buttonStyle="tertiary">
             {t('Back')}
           </StyledFooterButton>
           <StyledFooterButton
@@ -1160,7 +1160,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
   const renderEditModalFooter = (db: Partial<DatabaseObject> | null) => (
     <>
-      <StyledFooterButton key="close" onClick={onClose}>
+      <StyledFooterButton key="close" onClick={onClose}  buttonStyle="tertiary">
         {t('Close')}
       </StyledFooterButton>
       <StyledFooterButton
@@ -1713,7 +1713,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         width="500px"
         centered
         show={show}
-        title={<h4>{t('Connect a database')}</h4>}
+        title={<h4 className='databasetableheader'>{t('Connect a database')}</h4>}
         footer={renderModalFooter()}
       >
         <ModalHeader
@@ -1753,7 +1753,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       centered
       show={show}
       title={
-        <h4>{isEditMode ? t('Edit database') : t('Connect a database')}</h4>
+        <h4 className='databasetableheader'>{isEditMode ? t('Edit database') : t('Connect a database')}</h4>
       }
       footer={modalFooter}
     >
@@ -1915,7 +1915,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       width="500px"
       centered
       show={show}
-      title={<h4>{t('Connect a database')}</h4>}
+      title={<h4 className='databasetableheader'>{t('Connect a database')}</h4>}
       footer={renderModalFooter()}
     >
       {!isLoading && hasConnectedDb ? (

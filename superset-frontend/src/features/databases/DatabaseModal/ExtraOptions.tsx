@@ -80,7 +80,7 @@ const ExtraOptions = ({
       <Collapse.Panel
         header={
           <div>
-            <h4>{t('SQL Lab')}</h4>
+            <h4 >{t('SQL Lab')}</h4>
             <p className="helper">
               {t('Adjust how this database will interact with SQL Lab.')}
             </p>

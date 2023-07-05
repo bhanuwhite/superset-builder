@@ -57,7 +57,7 @@ const annotationsError = t('One ore more annotation layers failed loading.');
 const CrossFilterIcon = styled(Icons.ApartmentOutlined)`
   ${({ theme }) => `
     cursor: default;
-    color: ${theme.colors.primary.base};
+    color: ${theme.colors.primary.dark1};
     line-height: 1.8;
   `}
 `;
@@ -83,6 +83,9 @@ const ChartHeaderStyles = styled.div`
 
       & > span.ant-tooltip-open {
         display: inline;
+      }
+      .editable-title>a{
+        color:${theme.colors.primary.dark1};
       }
     }
 

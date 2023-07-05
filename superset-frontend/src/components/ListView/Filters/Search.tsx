@@ -41,8 +41,7 @@ const SearchIcon = styled(Icons.Search)`
 const StyledInput = styled(AntdInput)`
   border-radius: ${({ theme }) => theme.gridUnit}px;
   background-color: ${({ theme }) => theme.colors.grayscale.dark2};
-  height:40px;
-  border-color:rgba(255,255,255,0.37);
+  border-color:${({ theme }) => theme.colors.primary.light3};
 `;
 
 function SearchFilter(

@@ -33,7 +33,8 @@ export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
   height: ${theme.gridUnit * 8}px;
   padding: 0;
-  border: 1px solid ${theme.colors.primary.dark2};
+  border: 1px solid ${theme.colors.primary.light1};
+  color: ${theme.colors.primary.light1};
 
   &.ant-btn > span.anticon {
     line-height: 0;
@@ -51,7 +52,7 @@ const headerStyles = (theme: SupersetTheme) => css`
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: ${theme.colors.grayscale.light5};
+  background-color: ${theme.colors.grayscale.base};
   height: ${theme.gridUnit * 16}px;
   padding: 0 ${theme.gridUnit * 4}px;
 

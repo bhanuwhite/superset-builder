@@ -116,7 +116,7 @@ const defaultProps = {
 };
 
 const headerContainerStyle = theme => css`
-  border-bottom: 1px solid ${theme.colors.grayscale.light2};
+  border-bottom: 1px solid ${theme.colors.grayscale.base};
 `;
 
 const editButtonStyle = theme => css`
@@ -622,7 +622,7 @@ class Header extends React.PureComponent {
                   {NavExtension && <NavExtension />}
                   {userCanEdit && (
                     <Button
-                      buttonStyle="secondary"
+                      buttonStyle="primary"
                       onClick={this.toggleEditMode}
                       data-test="edit-dashboard-button"
                       className="action-button"

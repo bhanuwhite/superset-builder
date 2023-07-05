@@ -146,12 +146,19 @@ export const StyledLineEditableTabs = styled(EditableTabs)`
     padding: ${({ theme }) => `${theme.gridUnit * 3}px ${theme.gridUnit}px`};
     background: transparent;
     border: none;
+    color:${({ theme }) => theme.colors.primary.dark1};
+    .short-link-trigger{
+      color:${({ theme }) => theme.colors.primary.dark1};
+    }
   }
 
   &.ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar {
     visibility: visible;
+    background-color:${({ theme }) => theme.colors.primary.light1};
   }
-
+.ant-tabs-tab-active{
+  color:${({ theme }) => theme.colors.primary.light1} !important;
+}
   .ant-tabs-tab-btn {
     font-size: ${({ theme }) => theme.typography.sizes.m}px;
   }

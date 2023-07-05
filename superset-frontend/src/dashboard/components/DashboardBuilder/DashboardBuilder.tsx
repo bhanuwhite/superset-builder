@@ -382,7 +382,8 @@ const StyledDashboardContent = styled.div<{
     .dashboard-component-chart-holder {
       width: 100%;
       height: 100%;
-      background-color: ${theme.colors.grayscale.light5};
+      background-color: ${theme.colors.grayscale.dark2};
+      color: ${theme.colors.primary.dark1};
       position: relative;
       padding: ${theme.gridUnit * 4}px;
       overflow-y: visible;

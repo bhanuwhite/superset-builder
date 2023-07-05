@@ -676,7 +676,7 @@ const PropertiesModal = ({
       >
         <Row>
           <Col xs={24} md={24}>
-            <h3>{t('Basic information')}</h3>
+            <h3 style={{}}>{t('Basic information')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>

@@ -57,9 +57,9 @@ const StyledFilterCount = styled.div`
     height: 100%;
     .anticon {
       vertical-align: middle;
-      color: ${theme.colors.grayscale.base};
+      color: ${theme.colors.primary.dark1};
       &:hover {
-        color: ${theme.colors.grayscale.light1}
+        color: ${theme.colors.primary.dark1}
       }
     }
 

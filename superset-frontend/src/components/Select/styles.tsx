@@ -47,9 +47,7 @@ export const StyledSelect = styled(AntdSelect, {
     && .ant-select-selector {
       border-radius: ${theme.gridUnit}px;
       background-color:${theme.colors.grayscale.dark2};
-      height:40px;
-      align-items:center;
-      border-color:rgba(255,255,255,0.37);
+      border-color:${theme.colors.primary.light3};
       color: ${theme.colors.primary.dark1};
     }
     // Open the dropdown when clicking on the suffix
