@@ -171,13 +171,13 @@ const defaultThemeNew = {
       help: '#8C8C8C',
     },
     primary: {
-      base: '#ffffff',
+      base: '#fbfbfb',
       dark1: 'rgba(255,255,255,0.87)',
       dark2: 'rgba(255,255,255,0.6)',
       light1: '#1d98ff',
       light2: '#5A2516',
       light3: 'rgba(255,255,255,0.37)',
-      light4: '#162905',
+      light4: 'rgba(255,255,255,0.12)',
       light5: '#0C0705',
     },
     secondary: {
@@ -198,7 +198,7 @@ const defaultThemeNew = {
       light1: '#5f5f5f',
       light2: '#303030',
       light3: '#424242',
-      light4: 'rgba(255,255,255,.08)',
+      light4: '#3d3d3d',
       light5: '#000000',
     },
     error: {
@@ -272,6 +272,7 @@ const defaultThemeNew = {
   },
   transitionTiming: 0.3,
   gridUnit_0: 0,
+  gridUnit_3:2,
   gridUnit: 4,
   gridUnit_1: 3,
   gridUnit_2: 5,

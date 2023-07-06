@@ -65,6 +65,8 @@ const MenuItem = styled(AntdMenu.Item)`
   }
 `;
 
+
+
 const StyledNav = styled(AntdMenu)`
   line-height: 51px;
   border: none;
@@ -91,6 +93,9 @@ const StyledNav = styled(AntdMenu)`
 
   & > .ant-menu-item > a {
     padding: ${({ theme }) => theme.gridUnit * 4}px;
+  }
+  .ant-dropdown-menu-light{
+    background-color:red;
   }
 `;
 

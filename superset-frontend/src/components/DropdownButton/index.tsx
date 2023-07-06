@@ -22,6 +22,7 @@ import { styled } from '@superset-ui/core';
 import kebabCase from 'lodash/kebabCase';
 
 const StyledDropdownButton = styled.div`
+background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   .ant-btn-group {
     button.ant-btn {
       background-color: ${({ theme }) => theme.colors.primary.dark1};

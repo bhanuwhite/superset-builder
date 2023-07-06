@@ -44,6 +44,10 @@ const HoverStyleOverrides = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .anticon{
+      color:${({ theme }) => theme.colors.primary.base};
+  
+     }
   }
 
   .hover-menu--left > :nth-child(n):not(:only-child):not(:last-child) {
@@ -60,6 +64,10 @@ const HoverStyleOverrides = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    .anticon{
+     color:${({ theme }) => theme.colors.primary.base};
+   
+    }
   }
 `;
 

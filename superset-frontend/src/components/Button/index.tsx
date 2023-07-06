@@ -70,7 +70,7 @@ export default function Button(props: ButtonProps) {
   const { colors, transitionTiming, borderRadius, typography } = theme;
   const { primary, grayscale, success, warning, error } = colors;
 
-  let height = 32;
+  let height = 36;
   let padding = 18;
   if (buttonSize === 'xsmall') {
     height = 22;
@@ -187,7 +187,7 @@ export default function Button(props: ButtonProps) {
           borderColor,
         },
         '&[disabled], &[disabled]:hover': {
-          color: grayscale.base,
+          color: primary.dark2,
           backgroundColor:
             buttonStyle === 'link' ? 'transparent' : backgroundColorDisabled,
           borderColor:

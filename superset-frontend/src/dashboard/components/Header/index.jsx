@@ -120,7 +120,7 @@ const headerContainerStyle = theme => css`
 `;
 
 const editButtonStyle = theme => css`
-  color: ${theme.colors.primary.dark2};
+  color: ${theme.colors.primary.base};
 `;
 
 const actionButtonsStyle = theme => css`
@@ -145,9 +145,9 @@ const StyledUndoRedoButton = styled(AntdButton)`
 `;
 
 const undoRedoStyle = theme => css`
-  color: ${theme.colors.grayscale.light1};
+  color: ${theme.colors.primary.base};
   &:hover {
-    color: ${theme.colors.grayscale.base};
+    color: ${theme.colors.primary.base};
   }
 `;
 

@@ -34,11 +34,11 @@ const StyledHeader = styled.div`
     font-weight: ${({ theme }) => theme.typography.weights.bold};
     margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     text-align: left;
-    font-size: 18px;
-    padding: ${({ theme }) => theme.gridUnit * 3}px;
+    font-size:  ${({ theme }) => theme.gridUnit * 5}px;;
+    padding: ${({ theme }) => theme.gridUnit * 4}px;
     display: inline-block;
-    line-height: ${({ theme }) => theme.gridUnit * 9}px;
-    color: ${({ theme }) => theme.colors.secondary.base};
+    line-height: ${({ theme }) => theme.gridUnit * 8}px;
+    color: ${({ theme }) => theme.colors.primary.base};
   }
   .nav-right {
     display: flex;
@@ -70,6 +70,7 @@ const StyledHeader = styled.div`
   }
   .menu {
     background-color:${({ theme }) => theme.colors.grayscale.base};
+    height:${({ theme }) => theme.gridUnit * 16}px;
     .ant-menu-horizontal {
       line-height: inherit;
       .ant-menu-item {

@@ -39,6 +39,7 @@ export const Table = styled.table`
 
     border-collapse: separate;
     background: ${theme.colors.grayscale.dark2};
+    border:1px solid  ${theme.colors.grayscale.light3} !important; 
     thead > tr > th {
       border: 0;
     }
@@ -49,9 +50,9 @@ export const Table = styled.table`
       }
     }
     th {
-      background: ${theme.colors.grayscale.light2};
+      background: ${theme.colors.grayscale.light1};
       position: sticky;
-      border-bottom:1px solid rgba(255,255,255,.37) !important; 
+      border-bottom:1px solid  ${theme.colors.grayscale.light3} !important; 
       top: 0;
       color: ${theme.colors.primary.dark1};
 

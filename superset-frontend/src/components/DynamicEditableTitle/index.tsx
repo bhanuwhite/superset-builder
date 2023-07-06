@@ -57,7 +57,7 @@ const titleStyles = (theme: SupersetTheme) => css`
 
   & .dynamic-title {
     cursor: default;
-    color: ${theme.colors.primary.dark1};
+    color: ${theme.colors.primary.base};
   }
   & .dynamic-title-input {
     border: none;

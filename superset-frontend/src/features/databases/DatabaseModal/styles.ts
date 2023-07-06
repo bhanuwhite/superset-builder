@@ -41,7 +41,7 @@ export const marginBottom = (theme: SupersetTheme) => css`
 `;
 
 export const StyledFormHeader = styled.header`
-
+background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   line-height: ${({ theme }) => theme.gridUnit * 6}px;
 
   .helper-top {
@@ -57,7 +57,7 @@ export const StyledFormHeader = styled.header`
 
   .helper-bottom {
     padding-top: 0;
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.primary.dark1};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     margin: 0;
   }
@@ -317,7 +317,7 @@ export const formStyles = (theme: SupersetTheme) => css`
 
 export const validatedFormStyles = (theme: SupersetTheme) => css`
   label {
-    color: ${theme.colors.grayscale.dark1};
+    color: ${theme.colors.primary.dark1};
     font-size: ${theme.typography.sizes.s}px;
     margin-bottom: 0;
   }

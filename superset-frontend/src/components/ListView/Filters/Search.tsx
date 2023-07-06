@@ -40,8 +40,11 @@ const SearchIcon = styled(Icons.Search)`
 
 const StyledInput = styled(AntdInput)`
   border-radius: ${({ theme }) => theme.gridUnit}px;
-  background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   border-color:${({ theme }) => theme.colors.primary.light3};
+  background-color:${({ theme }) =>theme.colors.grayscale.light4};
+  border-color:${({ theme }) =>theme.colors.primary.light4};
+  color: ${({ theme }) =>theme.colors.primary.base};
+  height: ${({ theme }) =>theme.gridUnit * 10}px;
 `;
 
 function SearchFilter(

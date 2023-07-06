@@ -78,7 +78,9 @@ interface LoadingProps {
 const DEFAULT_TAB_ARR = ['2', '3'];
 
 const WelcomeContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayscale.light1};
+  background-color: ${({ theme }) => theme.colors.grayscale.dark2};
+  border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
+  margin:${({ theme }) => theme.gridUnit * 5}px;
   .ant-row.menu {
     margin-top: -15px;
     background-color: ${({ theme }) => theme.colors.grayscale.light4};

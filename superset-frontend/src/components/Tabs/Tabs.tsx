@@ -43,10 +43,12 @@ const StyledTabs = ({
       }
       .ant-tabs-tab {
         flex: 1 1 auto;
+        color:${theme.colors.primary.base};
         &.ant-tabs-tab-active .ant-tabs-tab-btn {
           color: inherit;
         }
         &:hover {
+          color:${theme.colors.primary.light1};
           .anchor-link-container {
             cursor: pointer;
             .fa.fa-link {
@@ -60,6 +62,12 @@ const StyledTabs = ({
             top: 0;
           }
         }
+      }
+      .ant-tabs-tab-active{
+        color:${theme.colors.primary.light1};
+      }
+      .ant-tabs-ink-bar{
+        background-color:${theme.colors.primary.light1} !important;
       }
       ${fullWidth &&
       css`
@@ -146,9 +154,9 @@ export const StyledLineEditableTabs = styled(EditableTabs)`
     padding: ${({ theme }) => `${theme.gridUnit * 3}px ${theme.gridUnit}px`};
     background: transparent;
     border: none;
-    color:${({ theme }) => theme.colors.primary.dark1};
+    color:${({ theme }) => theme.colors.primary.base};
     .short-link-trigger{
-      color:${({ theme }) => theme.colors.primary.dark1};
+      color:${({ theme }) => theme.colors.primary.base};
     }
   }
 

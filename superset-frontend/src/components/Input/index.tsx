@@ -20,16 +20,24 @@ import { styled } from '@superset-ui/core';
 import { Input as AntdInput, InputNumber as AntdInputNumber } from 'antd';
 
 export const Input = styled(AntdInput)`
-  border: 1px solid ${({ theme }) => theme.colors.secondary.light3};
+  border: 1px solid ${({ theme }) => theme.colors.grayscale.light4};
   border-radius: ${({ theme }) => theme.borderRadius}px;
+  background-color:${({ theme }) => theme.colors.grayscale.light4};
+  height: ${({ theme }) => theme.gridUnit * 10}px;
+  ::placeholder{
+    color:${({ theme }) => theme.colors.primary.base};
+  }
 `;
 
 export const InputNumber = styled(AntdInputNumber)`
-  border: 1px solid ${({ theme }) => theme.colors.secondary.light3};
+border: 1px solid ${({ theme }) => theme.colors.grayscale.light4};
   border-radius: ${({ theme }) => theme.borderRadius}px;
+  background-color:${({ theme }) => theme.colors.grayscale.light4};
+  height: ${({ theme }) => theme.gridUnit * 10}px;
 `;
 
 export const TextArea = styled(AntdInput.TextArea)`
-  border: 1px solid ${({ theme }) => theme.colors.secondary.light3};
+border: 1px solid ${({ theme }) => theme.colors.grayscale.light4};
   border-radius: ${({ theme }) => theme.borderRadius}px;
+  background-color:${({ theme }) => theme.colors.grayscale.light4};
 `;

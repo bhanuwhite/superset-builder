@@ -51,6 +51,7 @@ import {
   OBJECT_TYPES,
 } from 'src/features/tags/tags';
 import { loadTags } from 'src/components/Tags/utils';
+import { theme } from 'src/preamble';
 
 const StyledFormItem = styled(FormItem)`
   margin-bottom: 0;
@@ -473,7 +474,7 @@ const PropertiesModal = ({
     return (
       <Row gutter={16}>
         <Col xs={24} md={12}>
-          <h3 style={{ marginTop: '1em' }}>{t('Access')}</h3>
+          <h3 style={{ marginTop: '1em' color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
           <StyledFormItem label={t('Owners')}>
             <AsyncSelect
               allowClear
@@ -516,7 +517,7 @@ const PropertiesModal = ({
       <>
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{ marginTop: '1em' }}>{t('Access')}</h3>
+            <h3 style={{ marginTop: '1em', color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -676,7 +677,7 @@ const PropertiesModal = ({
       >
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{}}>{t('Basic information')}</h3>
+            <h3 style={{color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Basic information')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -703,7 +704,7 @@ const PropertiesModal = ({
           : getRowsWithoutRoles()}
         <Row>
           <Col xs={24} md={24}>
-            <h3>{t('Certification')}</h3>
+            <h3 style={{color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Certification')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>

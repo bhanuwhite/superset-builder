@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
         display: none;
       }
       .anticon svg{
-        color: ${theme.colors.primary.dark1} !important;
+        color: ${theme.colors.primary.base} !important;
       } 
    
       .navbar-brand {
@@ -113,15 +113,15 @@ const StyledHeader = styled.header`
         line-height: inherit;
       }
       .ant-menu-horizontal> .ant-menu-item a{
-       color: ${theme.colors.primary.dark1};
+       color: ${theme.colors.primary.base};
       }
       .ant-menu > .ant-menu-item > a {
         padding: ${theme.gridUnit * 4}px;
       }
         .ant-menu-submenu-horizontal{
-          color: ${theme.colors.primary.dark1};
+          color: ${theme.colors.primary.base};
           &:hover {
-            color: ${theme.colors.primary.dark1};
+            color: ${theme.colors.primary.base};
             background-color: ${theme.colors.grayscale.dark1};
             border-bottom: none;
             margin: 0;
@@ -152,7 +152,7 @@ const StyledHeader = styled.header`
       }
       .ant-menu-item a {
         &:hover {
-          color: ${theme.colors.primary.dark1};
+          color: ${theme.colors.primary.base};
           background-color: ${theme.colors.grayscale.dark1};
           border-bottom: none;
           margin: 0;
@@ -178,25 +178,25 @@ const globalStyles = (theme: SupersetTheme) => css`
       &:hover {
       background-color: ${theme.colors.grayscale.dark1};
       a{
-        color: ${theme.colors.primary.dark1};
+        color: ${theme.colors.primary.base};
       }
        }
       a{
-        color: ${theme.colors.primary.dark1};
+        color: ${theme.colors.primary.base};
       }
     }
   }
   .ant-menu-submenu-vertical{
-    color: ${theme.colors.primary.dark1} !important;
+    color: ${theme.colors.primary.base} !important;
     i{
-      color: ${theme.colors.primary.dark1} !important;
+      color: ${theme.colors.primary.base} !important;
     }
   }
   .ant-menu-item-group-title{
-    color: ${theme.colors.primary.dark1} ;
+    color: ${theme.colors.primary.base} ;
   }
   .ant-menu-item-only-child{
-    color: ${theme.colors.primary.dark1} !important;
+    color: ${theme.colors.primary.base} !important;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;

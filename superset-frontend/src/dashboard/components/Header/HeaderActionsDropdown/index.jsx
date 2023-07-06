@@ -38,6 +38,7 @@ import { getActiveFilters } from 'src/dashboard/util/activeDashboardFilters';
 import { getUrlParam } from 'src/utils/urlUtils';
 import { LOG_ACTIONS_DASHBOARD_DOWNLOAD_AS_IMAGE } from 'src/logger/LogUtils';
 import { isFeatureEnabled } from 'src/featureFlags';
+import { theme } from 'src/preamble';
 
 const propTypes = {
   addSuccessToast: PropTypes.func.isRequired,
@@ -244,7 +245,7 @@ class HeaderActionsDropdown extends React.PureComponent {
       dashboardInfo.common?.conf?.DASHBOARD_AUTO_REFRESH_INTERVALS;
 
     return (
-      <Menu selectable={false} data-test="header-actions-menu" {...rest}>
+      <Menu selectable={false} data-test="header-actions-menu" {...rest} >
         {!editMode && (
           <Menu.Item
             key={MENU_KEYS.REFRESH_DASHBOARD}

@@ -73,7 +73,7 @@ const Bar = styled.div<{ width: number }>`
     flex-direction: column;
     flex-grow: 1;
     width: ${width}px;
-    background: ${theme.colors.grayscale.light5};
+    background: ${theme.colors.grayscale.dark2};
     border-right: 1px solid ${theme.colors.grayscale.light2};
     border-bottom: 1px solid ${theme.colors.grayscale.light2};
     min-height: 100%;
@@ -114,7 +114,7 @@ const StyledCollapseIcon = styled(Icons.Collapse)`
 `;
 
 const StyledFilterIcon = styled(Icons.Filter)`
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  color: ${({ theme }) => theme.colors.primary.base};
 `;
 
 const StyledTabs = styled(AntdTabs)`

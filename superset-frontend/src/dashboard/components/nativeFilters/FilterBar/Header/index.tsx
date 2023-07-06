@@ -42,7 +42,9 @@ const TitleArea = styled.div`
       flex-grow: 1;
       font-weight: ${theme.typography.weights.bold};
     }
-
+    .filter-text{
+      color:${theme.colors.primary.base};
+    }
     & > div:first-of-type {
       line-height: 0;
     }
@@ -76,7 +78,7 @@ type HeaderProps = {
 const AddFiltersButtonContainer = styled.div`
   ${({ theme }) => css`
     margin-top: ${theme.gridUnit * 2}px;
-
+  
     & button > [role='img']:first-of-type {
       margin-right: ${theme.gridUnit}px;
       line-height: 0;
@@ -106,7 +108,7 @@ const Header: FC<HeaderProps> = ({ toggleFiltersBar }) => {
   return (
     <Wrapper>
       <TitleArea>
-        <span>{t('Filters')}</span>
+        <span className='filter-text'>{t('Filters')}</span>
         <FilterBarSettings />
         <HeaderButton
           {...getFilterBarTestId('collapse-button')}
@@ -114,7 +116,7 @@ const Header: FC<HeaderProps> = ({ toggleFiltersBar }) => {
           buttonSize="xsmall"
           onClick={() => toggleFiltersBar(false)}
         >
-          <Icons.Expand iconColor={theme.colors.grayscale.base} />
+          <Icons.Expand iconColor={theme.colors.primary.base} />
         </HeaderButton>
       </TitleArea>
       {canEdit && (

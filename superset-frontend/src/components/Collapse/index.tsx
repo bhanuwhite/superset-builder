@@ -41,7 +41,7 @@ const Collapse = Object.assign(
             ? theme.typography.weights.bold
             : theme.typography.weights.normal};
         font-size: ${({ bigger, theme }) =>
-          bigger ? `${theme.gridUnit * 4}px` : 'inherit'};
+          bigger ? `${theme.gridUnit_3 * 7}px` : 'inherit'};
 
         .ant-collapse-arrow svg {
           transition: ${({ animateArrows }) =>
@@ -80,7 +80,8 @@ const Collapse = Object.assign(
             display: block;
           }
          .ant-row.menu {
-          background-color:${({ theme }) => theme.colors.grayscale.dark2};
+          background-color:${({ theme }) => theme.colors.grayscale.light1};
+          position:relative;
           .ant-menu-item a{
             color:${({ theme }) => theme.colors.primary.dark1};
           }

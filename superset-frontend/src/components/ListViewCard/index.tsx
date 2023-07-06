@@ -33,17 +33,17 @@ const StyledCard = styled(AntdCard)`
   ${({ theme }) => `
     border: 0px;
     border-radius:10px;
-    background-color: ${theme.colors.grayscale.light2};
+    background-color: ${theme.colors.grayscale.dark1};
     overflow: hidden;
 
     .ant-card-body {
       padding:16px 24px;
-      color:${theme.colors.primary.dark2};
+      color:${theme.colors.primary.base};
       .ant-card-meta-title{
-        color:${theme.colors.primary.dark2};
+        color:${theme.colors.primary.base};
       }
       .ant-card-meta-description{
-        color:${theme.colors.primary.dark2};
+        color:${theme.colors.primary.base};
       }
     }
     .ant-card-meta-detail > div:not(:last-child) {
@@ -54,7 +54,7 @@ const StyledCard = styled(AntdCard)`
       height: 100%;
     }
     &:hover {
-      box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light1};
+      box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light2};
       transition: box-shadow ${theme.transitionTiming}s ease-in-out;
 
       .cover-footer {

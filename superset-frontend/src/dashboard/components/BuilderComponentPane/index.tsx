@@ -50,7 +50,7 @@ const BuilderComponentPane = ({ topOffset = 0 }) => (
         height: 100%;
         width: ${BUILDER_PANE_WIDTH}px;
         box-shadow: -4px 0 4px 0 ${rgba(theme.colors.grayscale.dark2, 0.1)};
-        background-color: ${theme.colors.grayscale.light5};
+        background-color: ${theme.colors.grayscale.dark2};
       `}
     >
       <Tabs
@@ -63,6 +63,7 @@ const BuilderComponentPane = ({ topOffset = 0 }) => (
 
           & .ant-tabs-content-holder {
             height: 100%;
+           color: ${theme.colors.primary.base};
             & .ant-tabs-content {
               height: 100%;
             }

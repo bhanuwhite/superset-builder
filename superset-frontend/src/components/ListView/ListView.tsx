@@ -46,7 +46,9 @@ import { EmptyStateBig, EmptyStateProps } from '../EmptyState';
 
 const ListViewStyles = styled.div`
   text-align: center;
-
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
+    margin:${({ theme }) => theme.gridUnit * 5}px;
+    border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
   .superset-list-view {
     text-align: left;
     margin: 0px 16px;

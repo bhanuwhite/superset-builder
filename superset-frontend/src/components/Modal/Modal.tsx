@@ -106,20 +106,19 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
   .ant-modal-content {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 11px 15px -7px #0003, 0 24px 38px 3px #00000024, 0 9px 46px 8px #0000001f;
-    border-radius:10px;
+    border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
     max-height: ${({ theme }) => `calc(100vh - ${theme.gridUnit * 8}px)`};
     margin-bottom: ${({ theme }) => theme.gridUnit * 4}px;
     margin-top: ${({ theme }) => theme.gridUnit * 4}px;
-    background-color: ${({ theme }) => theme.colors.grayscale.light3};
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
     padding:${({ theme }) => theme.gridUnit * 4}px ${({ theme }) => theme.gridUnit * 8}px;
   }
 
   .ant-modal-header {
     flex: 0 0 auto;
-    background-color: ${({ theme }) => theme.colors.grayscale.light3};
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
       ${({ theme }) => theme.borderRadius}px 0 0;
-    padding:0px 0px 16px 0px !important;
+    padding:0px 0px ${({ theme }) => theme.gridUnit * 4}px 0px !important;
     color:${({ theme }) => theme.colors.primary.dark1};
     border-radius:4px 4px 0px 0px;
     border-color:rgba(255, 255, 255, 0.12);
@@ -150,6 +149,7 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
 
 
   .ant-modal-body {
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
     flex: 0 1 auto;
     padding: 20px 0px 0px 0px !important;
     overflow: auto;
