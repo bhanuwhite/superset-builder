@@ -28,7 +28,7 @@ export type FormLabelProps = {
 
 const Label = styled.label`
   text-transform: uppercase;
-  font-size: ${({ theme }) => theme.typography.sizes.s}px;
+  font-size: ${({ theme }) => theme.typography.sizes.s}px !important;
   color: ${({ theme }) => theme.colors.primary.dark1};
   margin-bottom: ${({ theme }) => theme.gridUnit}px;
 `;

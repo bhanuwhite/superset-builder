@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 
-import { FeatureFlag, SupersetClient, t } from '@superset-ui/core';
+import { FeatureFlag, SupersetClient, t,styled, css } from '@superset-ui/core';
 
 import { Menu } from 'src/components/Menu';
 import { URL_PARAMS } from 'src/constants';
@@ -243,9 +243,30 @@ class HeaderActionsDropdown extends React.PureComponent {
 
     const refreshIntervalOptions =
       dashboardInfo.common?.conf?.DASHBOARD_AUTO_REFRESH_INTERVALS;
-
+      const menuStyles = theme => css`
+      border: 1px solid ${theme.colors.grayscale.dark2};
+      background-color: ${theme.colors.grayscale.dark2};
+      .ant-dropdown-menu-item{
+        color: ${theme.colors.primary.base};
+        &:hover{
+          background-color: ${theme.colors.grayscale.dark1};
+          color: ${theme.colors.primary.base};
+        }
+        &:active{
+          background-color: ${theme.colors.grayscale.dark1};
+          color: ${theme.colors.primary.base};
+        }
+      }
+      .ant-dropdown-menu-submenu-title{
+        color: ${theme.colors.primary.base};
+        &:hover{
+          background-color: ${theme.colors.grayscale.dark1};
+          color: ${theme.colors.primary.base};
+        }
+      }
+    `;
     return (
-      <Menu selectable={false} data-test="header-actions-menu" {...rest} >
+      <Menu selectable={false} data-test="header-actions-menu" {...rest}  css={menuStyles}>
         {!editMode && (
           <Menu.Item
             key={MENU_KEYS.REFRESH_DASHBOARD}

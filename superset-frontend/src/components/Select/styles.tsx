@@ -51,6 +51,11 @@ export const StyledSelect = styled(AntdSelect, {
       color: ${theme.colors.primary.base};
       height: ${theme.gridUnit * 10}px;
       align-items:center;
+      .ant-select-selection-item{
+        height: 40px;
+    align-items: center;
+    display: flex;
+      }
     }
     // Open the dropdown when clicking on the suffix
     // This is fixed in version 4.16

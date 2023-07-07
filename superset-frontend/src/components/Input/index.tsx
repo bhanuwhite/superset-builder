@@ -24,6 +24,7 @@ export const Input = styled(AntdInput)`
   border-radius: ${({ theme }) => theme.borderRadius}px;
   background-color:${({ theme }) => theme.colors.grayscale.light4};
   height: ${({ theme }) => theme.gridUnit * 10}px;
+  color:${({ theme }) => theme.colors.primary.base};
   ::placeholder{
     color:${({ theme }) => theme.colors.primary.base};
   }
@@ -34,10 +35,18 @@ border: 1px solid ${({ theme }) => theme.colors.grayscale.light4};
   border-radius: ${({ theme }) => theme.borderRadius}px;
   background-color:${({ theme }) => theme.colors.grayscale.light4};
   height: ${({ theme }) => theme.gridUnit * 10}px;
+  color:${({ theme }) => theme.colors.primary.base};
+  ::placeholder{
+    color:${({ theme }) => theme.colors.primary.base};
+  }
 `;
 
 export const TextArea = styled(AntdInput.TextArea)`
 border: 1px solid ${({ theme }) => theme.colors.grayscale.light4};
   border-radius: ${({ theme }) => theme.borderRadius}px;
   background-color:${({ theme }) => theme.colors.grayscale.light4};
+  color:${({ theme }) => theme.colors.primary.base};
+  ::placeholder{
+    color:${({ theme }) => theme.colors.primary.base};
+  }
 `;

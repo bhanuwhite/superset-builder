@@ -474,7 +474,7 @@ const PropertiesModal = ({
     return (
       <Row gutter={16}>
         <Col xs={24} md={12}>
-          <h3 style={{ marginTop: '1em' color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
+          <h3 style={{ marginTop:theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
           <StyledFormItem label={t('Owners')}>
             <AsyncSelect
               allowClear
@@ -488,14 +488,14 @@ const PropertiesModal = ({
               value={handleOwnersSelectValue()}
             />
           </StyledFormItem>
-          <p className="help-block">
+          <p className="help-block" css={{color:theme.colors.primary.dark2}}>
             {t(
               'Owners is a list of users who can alter the dashboard. Searchable by name or username.',
             )}
           </p>
         </Col>
         <Col xs={24} md={12}>
-          <h3 style={{ marginTop: '1em' }}>{t('Colors')}</h3>
+          <h3 style={{ marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Colors')}</h3>
           <ColorSchemeControlWrapper
             hasCustomLabelColors={hasCustomLabelColors}
             onChange={onColorSchemeChange}
@@ -517,7 +517,7 @@ const PropertiesModal = ({
       <>
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{ marginTop: '1em', color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
+            <h3 style={{ marginTop:theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Access')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -536,7 +536,7 @@ const PropertiesModal = ({
                 value={handleOwnersSelectValue()}
               />
             </StyledFormItem>
-            <p className="help-block">
+            <p className="help-block" css={{color:theme.colors.primary.dark2}}>
               {t(
                 'Owners is a list of users who can alter the dashboard. Searchable by name or username.',
               )}
@@ -556,7 +556,7 @@ const PropertiesModal = ({
                 value={handleRolesSelectValue()}
               />
             </StyledFormItem>
-            <p className="help-block">
+            <p className="help-block" css={{color:theme.colors.primary.dark2}}>
               {t(
                 'Roles is a list which defines access to the dashboard. Granting a role access to a dashboard will bypass dataset level checks. If no roles are defined, regular access permissions apply.',
               )}
@@ -640,6 +640,7 @@ const PropertiesModal = ({
           <Button
             htmlType="button"
             buttonSize="small"
+            buttonStyle="tertiary"
             onClick={onHide}
             data-test="properties-modal-cancel-button"
             cta
@@ -694,7 +695,7 @@ const PropertiesModal = ({
             <StyledFormItem label={t('URL slug')} name="slug">
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block">
+            <p className="help-block" css={{color:theme.colors.primary.dark2}}>
               {t('A readable URL for your dashboard')}
             </p>
           </Col>
@@ -712,7 +713,7 @@ const PropertiesModal = ({
             <StyledFormItem label={t('Certified by')} name="certifiedBy">
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block">
+            <p className="help-block" css={{color:theme.colors.primary.dark2}}>
               {t('Person or group that has certified this dashboard.')}
             </p>
           </Col>
@@ -723,7 +724,7 @@ const PropertiesModal = ({
             >
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block">
+            <p className="help-block" css={{color:theme.colors.primary.dark2}}>
               {t('Any additional detail to show in the certification tooltip.')}
             </p>
           </Col>
@@ -731,7 +732,7 @@ const PropertiesModal = ({
         {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) ? (
           <Row gutter={16}>
             <Col xs={24} md={12}>
-              <h3 css={{ marginTop: '1em' }}>{t('Tags')}</h3>
+              <h3 css={{ marginTop:theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>{t('Tags')}</h3>
             </Col>
           </Row>
         ) : null}
@@ -749,7 +750,7 @@ const PropertiesModal = ({
                   allowClear
                 />
               </StyledFormItem>
-              <p className="help-block">
+              <p className="help-block" css={{color:theme.colors.primary.dark2}}>
                 {t('A list of tags that have been applied to this chart.')}
               </p>
             </Col>
@@ -757,14 +758,14 @@ const PropertiesModal = ({
         ) : null}
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{ marginTop: '1em' }}>
+            <h3 style={{ marginTop:theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l }}>
               <Button
                 buttonStyle="link"
                 onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
               >
                 <i
                   className={`fa fa-angle-${isAdvancedOpen ? 'down' : 'right'}`}
-                  style={{ minWidth: '1em' }}
+                  style={{ minWidth: theme.typography.sizes.s }}
                 />
                 {t('Advanced')}
               </Button>
@@ -783,7 +784,7 @@ const PropertiesModal = ({
                     wrapEnabled
                   />
                 </StyledFormItem>
-                <p className="help-block">
+                <p className="help-block" css={{color:theme.colors.primary.dark2}}>
                   {t(
                     'This JSON object is generated dynamically when clicking the save or overwrite button in the dashboard view. It is exposed here for reference and for power users who may want to alter specific parameters.',
                   )}

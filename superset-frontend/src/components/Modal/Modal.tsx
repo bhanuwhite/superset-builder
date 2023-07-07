@@ -273,7 +273,7 @@ const CustomModal = ({
   }
   const modalFooter = isNil(FooterComponent)
     ? [
-        <Button key="back" onClick={onHide} cta data-test="modal-cancel-button"  >
+        <Button key="back" onClick={onHide} cta data-test="modal-cancel-button" buttonStyle='tertiary' >
           {t('Cancel')}
         </Button>,
         <Button

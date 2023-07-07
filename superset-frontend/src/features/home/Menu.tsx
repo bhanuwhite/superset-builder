@@ -185,6 +185,9 @@ const globalStyles = (theme: SupersetTheme) => css`
         color: ${theme.colors.primary.base};
       }
     }
+    label{
+      color: ${theme.colors.primary.base} !important;
+    }
   }
   .ant-menu-submenu-vertical{
     color: ${theme.colors.primary.base} !important;

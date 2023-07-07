@@ -41,6 +41,7 @@ import {
   OBJECT_TYPES,
 } from 'src/features/tags/tags';
 import TagType from 'src/types/TagType';
+import { theme } from 'src/preamble';
 
 export type PropertiesModalProps = {
   slice: Slice;
@@ -56,10 +57,15 @@ const FormItem = AntdForm.Item;
 
 const StyledFormItem = styled(AntdForm.Item)`
   margin-bottom: 0;
+  label{
+    color:${({ theme }) => theme.colors.primary.base};
+  }
 `;
 
 const StyledHelpBlock = styled.span`
   margin-bottom: 0;
+  color:${({ theme }) => theme.colors.primary.dark2};
+  }
 `;
 
 function PropertiesModal({
@@ -304,6 +310,7 @@ function PropertiesModal({
           <Button
             data-test="properties-modal-cancel-button"
             htmlType="button"
+            buttonStyle="tertiary"
             buttonSize="small"
             onClick={onHide}
             cta
@@ -350,7 +357,7 @@ function PropertiesModal({
       >
         <Row gutter={16}>
           <Col xs={24} md={12}>
-            <h3>{t('Basic information')}</h3>
+            <h3 style={{color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Basic information')}</h3>
             <FormItem label={t('Name')} required>
               <Input
                 aria-label={t('Name')}
@@ -373,7 +380,7 @@ function PropertiesModal({
                 )}
               </StyledHelpBlock>
             </FormItem>
-            <h3>{t('Certification')}</h3>
+            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Certification')}</h3>
             <FormItem>
               <StyledFormItem label={t('Certified by')} name="certified_by">
                 <Input aria-label={t('Certified by')} />
@@ -397,7 +404,7 @@ function PropertiesModal({
             </FormItem>
           </Col>
           <Col xs={24} md={12}>
-            <h3>{t('Configuration')}</h3>
+            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Configuration')}</h3>
             <FormItem>
               <StyledFormItem label={t('Cache timeout')} name="cache_timeout">
                 <Input aria-label="Cache timeout" />
@@ -408,7 +415,7 @@ function PropertiesModal({
                 )}
               </StyledHelpBlock>
             </FormItem>
-            <h3 style={{ marginTop: '1em' }}>{t('Access')}</h3>
+            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Access')}</h3>
             <FormItem label={ownersLabel}>
               <AsyncSelect
                 ariaLabel={ownersLabel}
@@ -427,7 +434,7 @@ function PropertiesModal({
               </StyledHelpBlock>
             </FormItem>
             {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) && (
-              <h3 css={{ marginTop: '1em' }}>{t('Tags')}</h3>
+              <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Tags')}</h3>
             )}
             {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) && (
               <FormItem>

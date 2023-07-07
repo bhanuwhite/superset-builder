@@ -134,9 +134,9 @@ const defaultTheme = {
   },
   typography: {
     families: {
-      sansSerif: `'Inter', Helvetica, Arial`,
       serif: `Georgia, 'Times New Roman', Times, serif`,
       monospace: `'Fira Code', 'Courier New', monospace`,
+      Roboto:`'Roboto', sans-serif;`
     },
     weights: {
       light: 200,

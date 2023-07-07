@@ -29,6 +29,7 @@ interface UserInfoProps {
 const StyledContainer = styled.div`
   .panel {
     padding: ${({ theme }) => theme.gridUnit * 6}px;
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 

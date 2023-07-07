@@ -295,6 +295,7 @@ const Description = styled.p`
   overflow: auto;
   padding-right: ${({ theme }) => theme.gridUnit * 14}px;
   margin: 0;
+  color:${({ theme }) => theme.colors.primary.base};
 `;
 
 const Examples = styled.div`

@@ -26,7 +26,7 @@ const StyledItem = styled(Form.Item)`
       & > label {
         text-transform: uppercase;
         font-size: ${theme.typography.sizes.s}px;
-        color: ${theme.colors.grayscale.base};
+        color: ${theme.colors.primary.base};
 
         &.ant-form-item-required:not(.ant-form-item-required-mark-optional) {
           &::before {

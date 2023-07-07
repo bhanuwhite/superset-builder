@@ -112,7 +112,7 @@ const PaginationStyles = styled.div<{
 
   .row-count-container {
     margin-top: ${({ theme }) => theme.gridUnit * 2}px;
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.primary.base};
   }
 `;
 
