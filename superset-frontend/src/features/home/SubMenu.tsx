@@ -18,15 +18,21 @@
  */
 import React, { ReactNode, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { styled, SupersetTheme, css, t } from '@superset-ui/core';
+import { styled, SupersetTheme, css, t, useTheme } from '@superset-ui/core';
 import cx from 'classnames';
 import { Tooltip } from 'src/components/Tooltip';
 import { debounce } from 'lodash';
-import { Row } from 'src/components';
+import { Grid, Row } from 'src/components';
 import { Menu, MenuMode, MainNav as DropdownMenu } from 'src/components/Menu';
 import Button, { OnClickHandler } from 'src/components/Button';
 import Icons from 'src/components/Icons';
 import { MenuObjectProps } from 'src/types/bootstrapTypes';
+import RightMenuWrapper from './RightMenu';
+import getBootstrapData from 'src/utils/getBootstrapData';
+import { isFrontendRoute } from 'src/views/routes';
+import { Global } from '@emotion/react';
+import { GlobalStyles } from 'src/GlobalStyles';
+// import { isFrontendRoute } from 'src/views/routes';
 
 const StyledHeader = styled.div`
   margin-bottom: 0px;
@@ -173,6 +179,52 @@ const styledDisabled = (theme: SupersetTheme) => css`
   }
 `;
 
+const globalStyles = (theme: SupersetTheme) => css`
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
+    border-radius: 0px;
+  }
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
+    border-radius: 0px;
+  }
+  .ant-menu-vertical{
+    background-color: ${theme.colors.grayscale.dark2} !important;
+    .ant-menu-item {  
+      &:hover {
+      background-color: ${theme.colors.grayscale.dark1};
+      a{
+        color: ${theme.colors.primary.base};
+      }
+       }
+      a{
+        color: ${theme.colors.primary.base};
+      }
+    }
+    label{
+      color: ${theme.colors.primary.base} !important;
+    }
+  }
+  .ant-menu-submenu-vertical{
+    color: ${theme.colors.primary.base} !important;
+    i{
+      color: ${theme.colors.primary.base} !important;
+    }
+  }
+  .ant-menu-item-group-title{
+    color: ${theme.colors.primary.base} ;
+  }
+  .ant-menu-item-only-child{
+    color: ${theme.colors.primary.base} !important;
+  }
+  .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
+    height: 28px;
+    i {
+      padding-right: ${theme.gridUnit * 2}px;
+      margin-left: ${theme.gridUnit * 1.75}px;
+    }
+    
+  }
+`;
+
 type MenuChild = {
   label: string;
   name: string;
@@ -187,13 +239,13 @@ export interface ButtonProps {
   onClick: OnClickHandler;
   'data-test'?: string;
   buttonStyle:
-    | 'primary'
-    | 'secondary'
-    | 'dashed'
-    | 'link'
-    | 'warning'
-    | 'success'
-    | 'tertiary';
+  | 'primary'
+  | 'secondary'
+  | 'dashed'
+  | 'link'
+  | 'warning'
+  | 'success'
+  | 'tertiary';
 }
 
 export interface SubMenuProps {
@@ -207,6 +259,7 @@ export interface SubMenuProps {
   usesRouter?: boolean;
   color?: string;
   dropDownLinks?: Array<MenuObjectProps>;
+  rightMenuPresence?: boolean
 }
 
 const { SubMenu } = DropdownMenu;
@@ -250,10 +303,24 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
     return () => window.removeEventListener('resize', resize);
   }, [props.buttons]);
 
+  const bootstrapData = getBootstrapData()
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
+  const theme = useTheme();
+
   return (
     <StyledHeader>
+      <GlobalStyles />
+      <Global styles={globalStyles(theme)} />
       <Row className="menu" role="navigation">
-        {props.name && <div className="header">{props.name}</div>}
+        {props.name &&
+          <div className="header">
+            {props.name === 'Home' ?
+              <a href={bootstrapData.common.menu_data.brand.path}>
+                {props.name}
+              </a>
+              : props.name}
+          </div>}
         <Menu mode={showMenu} style={{ backgroundColor: 'transparent' }}>
           {props.tabs?.map(tab => {
             if ((props.usesRouter || hasHistory) && !!tab.usesRouter) {
@@ -322,6 +389,14 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
               </SubMenu>
             ))}
           </Menu>
+          {props.rightMenuPresence &&
+            <RightMenuWrapper
+              align={screens.md ? 'flex-end' : 'flex-start'}
+              navbarRight={bootstrapData.common.menu_data.navbar_right}
+              isFrontendRoute={isFrontendRoute}
+              environmentTag={bootstrapData.common.menu_data.environment_tag}
+            />
+          }
           {props.buttons?.map((btn, i) => (
             <Button
               key={i}
@@ -333,6 +408,7 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             </Button>
           ))}
         </div>
+
       </Row>
       {props.children}
     </StyledHeader>

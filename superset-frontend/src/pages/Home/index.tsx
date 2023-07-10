@@ -355,7 +355,7 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
 
   return (
     <>
-      <SubMenu {...menuData} />
+      <SubMenu {...menuData} rightMenuPresence/>
       <WelcomeContainer>
         {WelcomeMessageExtension && <WelcomeMessageExtension />}
         {WelcomeTopExtension && <WelcomeTopExtension />}

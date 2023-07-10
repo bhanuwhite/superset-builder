@@ -52,6 +52,7 @@ import {
   GlobalMenuDataOptions,
   RightMenuProps,
 } from './types';
+import getBootstrapData from 'src/utils/getBootstrapData';
 
 const extensionsRegistry = getExtensionsRegistry();
 
@@ -112,7 +113,7 @@ const { SubMenu } = Menu;
 
 const RightMenu = ({
   align,
-  settings,
+  // settings,
   navbarRight,
   isFrontendRoute,
   environmentTag,
@@ -338,6 +339,53 @@ const RightMenu = ({
   const handleDatabaseAdd = () => setQuery({ databaseAdded: true });
 
   const theme = useTheme();
+  const bootstrapData = getBootstrapData()
+  const data = bootstrapData.common.menu_data
+  const newData = {
+    ...data,
+  };
+  // Menu items that should go into settings dropdown
+  const settingsMenus = {
+    Data: true,
+    Security: true,
+    Manage: true,
+  };
+
+  // Cycle through menu.menu to build out cleanedMenu and settings
+  const cleanedMenu: any[] = [];
+  const settings: any[] = [];
+  newData.menu.forEach((item: any) => {
+    if (!item) {
+      return;
+    }
+
+    const children: (any | string)[] = [];
+    const newItem = {
+      ...item,
+    };
+
+    // Filter childs
+    if (item.childs) {
+      item.childs.forEach((child: any | string) => {
+        if (typeof child === 'string') {
+          children.push(child);
+        } else if ((child as any).label) {
+          children.push(child);
+        }
+      });
+
+      newItem.childs = children;
+    }
+
+    if (!settingsMenus.hasOwnProperty(item.name)) {
+      cleanedMenu.push(newItem);
+    } else {
+      settings.push(newItem);
+    }
+  });
+
+  newData.menu = cleanedMenu;
+  newData.settings = settings;
 
   return (
     <StyledDiv align={align}>
@@ -349,25 +397,26 @@ const RightMenu = ({
           onDatabaseAdd={handleDatabaseAdd}
         />
       )}
-      {environmentTag?.text && (
+      {/* {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}
           color={
             /^#(?:[0-9a-f]{3}){1,2}$/i.test(environmentTag.color)
               ? environmentTag.color
               : environmentTag.color
-                  .split('.')
-                  .reduce((o, i) => o[i], theme.colors)
+                .split('.')
+                .reduce((o, i) => o[i], theme.colors)
           }
         >
           <span css={tagStyles}>{environmentTag.text}</span>
         </Label>
-      )}
+      )} */}
       <Menu
         selectable={false}
         mode="horizontal"
         onClick={handleMenuSelection}
         onOpenChange={onMenuOpen}
+        style={{ background: 'transparent' }}
       >
         {RightMenuExtension && <RightMenuExtension />}
         {!navbarRight.user_is_anonymous && showActionDropdown && (
@@ -439,7 +488,7 @@ const RightMenu = ({
           title={t('Settings')}
           icon={<Icons.TriangleDown iconSize="xl" />}
         >
-          {settings?.map?.((section, index) => [
+          {newData?.settings?.map?.((section, index) => [
             <Menu.ItemGroup key={`${section.label}`} title={section.label}>
               {section?.childs?.map?.(child => {
                 if (typeof child !== 'string') {
@@ -464,7 +513,7 @@ const RightMenu = ({
                 return null;
               })}
             </Menu.ItemGroup>,
-            index < settings.length - 1 && (
+            index < newData.settings.length - 1 && (
               <Menu.Divider key={`divider_${index}`} />
             ),
           ])}
@@ -589,7 +638,7 @@ class RightMenuErrorWrapper extends React.PureComponent<RightMenuProps> {
     return { hasError: true };
   }
 
-  noop = () => {};
+  noop = () => { };
 
   render() {
     if (this.state.hasError) {

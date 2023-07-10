@@ -332,7 +332,7 @@ function AnnotationLayersList({
 
   return (
     <>
-      <SubMenu name={t('Annotation layers')} buttons={subMenuButtons} />
+      <SubMenu name={t('Annotation layers')} buttons={subMenuButtons} rightMenuPresence/>
       <AnnotationLayerModal
         addDangerToast={addDangerToast}
         layer={currentAnnotationLayer}

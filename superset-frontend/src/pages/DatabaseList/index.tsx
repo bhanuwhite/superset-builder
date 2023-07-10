@@ -521,7 +521,7 @@ function DatabaseList({ addDangerToast, addSuccessToast }: DatabaseListProps) {
 
   return (
     <>
-      <SubMenu {...menuData} />
+      <SubMenu {...menuData} rightMenuPresence/>
       <DatabaseModal
         databaseId={currentDatabase?.id}
         show={databaseModalOpen}

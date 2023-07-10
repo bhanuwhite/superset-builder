@@ -18,7 +18,7 @@
  */
 import React, { ReactNode, ReactElement } from 'react';
 import { css, SupersetTheme, t, useTheme } from '@superset-ui/core';
-import { AntdDropdown, AntdDropdownProps } from 'src/components';
+import { AntdDropdown, AntdDropdownProps, Grid } from 'src/components';
 import { TooltipPlacement } from 'src/components/Tooltip';
 import {
   DynamicEditableTitle,
@@ -28,6 +28,11 @@ import CertifiedBadge, { CertifiedBadgeProps } from '../CertifiedBadge';
 import FaveStar, { FaveStarProps } from '../FaveStar';
 import Icons from '../Icons';
 import Button from '../Button';
+import RightMenuWrapper from 'src/features/home/RightMenu';
+import getBootstrapData from 'src/utils/getBootstrapData';
+import { isFrontendRoute } from 'src/views/routes';
+import { GlobalStyles } from 'src/GlobalStyles';
+import { Global } from '@emotion/react';
 
 export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
@@ -104,6 +109,52 @@ const additionalActionsContainerStyles = (theme: SupersetTheme) => css`
   margin-left: ${theme.gridUnit * 2}px;
 `;
 
+const globalStyles = (theme: SupersetTheme) => css`
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
+    border-radius: 0px;
+  }
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
+    border-radius: 0px;
+  }
+  .ant-menu-vertical{
+    background-color: ${theme.colors.grayscale.dark2} !important;
+    .ant-menu-item {  
+      &:hover {
+      background-color: ${theme.colors.grayscale.dark1};
+      a{
+        color: ${theme.colors.primary.base};
+      }
+       }
+      a{
+        color: ${theme.colors.primary.base};
+      }
+    }
+    label{
+      color: ${theme.colors.primary.base} !important;
+    }
+  }
+  .ant-menu-submenu-vertical{
+    color: ${theme.colors.primary.base} !important;
+    i{
+      color: ${theme.colors.primary.base} !important;
+    }
+  }
+  .ant-menu-item-group-title{
+    color: ${theme.colors.primary.base} ;
+  }
+  .ant-menu-item-only-child{
+    color: ${theme.colors.primary.base} !important;
+  }
+  .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
+    height: 28px;
+    i {
+      padding-right: ${theme.gridUnit * 2}px;
+      margin-left: ${theme.gridUnit * 1.75}px;
+    }
+    
+  }
+`;
+
 export type PageHeaderWithActionsProps = {
   editableTitleProps: DynamicEditableTitleProps;
   showTitlePanelItems: boolean;
@@ -133,8 +184,17 @@ export const PageHeaderWithActions = ({
   tooltipProps,
 }: PageHeaderWithActionsProps) => {
   const theme = useTheme();
+  const bootstrapData = getBootstrapData()
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
   return (
     <div css={headerStyles} className="header-with-actions">
+      <GlobalStyles />
+      <Global styles={globalStyles(theme)} />
+      <a href={bootstrapData.common.menu_data.brand.path}>
+        {/* <img src={brand.icon} alt={brand.alt} /> */}
+        <h5>HOME</h5>
+      </a>
       <div className="title-panel">
         <DynamicEditableTitle {...editableTitleProps} />
         {showTitlePanelItems && (
@@ -171,6 +231,12 @@ export const PageHeaderWithActions = ({
           </AntdDropdown>
         </div>
       </div>
+      <RightMenuWrapper
+        align={screens.md ? 'flex-end' : 'flex-start'}
+        navbarRight={bootstrapData.common.menu_data.navbar_right}
+        isFrontendRoute={isFrontendRoute}
+        environmentTag={bootstrapData.common.menu_data.environment_tag}
+      />
     </div>
   );
 };

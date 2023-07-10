@@ -25,13 +25,14 @@ import {
   BRAND_COLOR,
   styled,
   BinaryQueryObjectFilterClause,
+  supersetTheme,
 } from '@superset-ui/core';
 import Echart from '../components/Echart';
 import { BigNumberVizProps } from './types';
 import { EventHandlers } from '../types';
 
 const defaultNumberFormatter = getNumberFormatter();
-
+const theme = supersetTheme;
 const PROPORTION = {
   // text size: proportion of the chart container sans trendline
   KICKER: 0.1,
@@ -59,9 +60,8 @@ class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
 
   getClassName() {
     const { className, showTrendLine, bigNumberFallback } = this.props;
-    const names = `superset-legacy-chart-big-number ${className} ${
-      bigNumberFallback ? 'is-fallback-value' : ''
-    }`;
+    const names = `superset-legacy-chart-big-number ${className} ${bigNumberFallback ? 'is-fallback-value' : ''
+      }`;
     if (showTrendLine) return names;
     return `${names} no-trendline`;
   }
@@ -148,7 +148,7 @@ class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
         }
       });
     } else {
-      numberColor = 'black';
+      numberColor = `${theme.colors.grayscale.dark1}`;
     }
 
     const container = this.createTemporaryContainer();

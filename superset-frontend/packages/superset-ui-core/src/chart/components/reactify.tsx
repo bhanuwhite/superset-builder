@@ -52,6 +52,8 @@ export default function reactify<Props extends object>(
   renderFn: RenderFuncType<Props>,
   callbacks?: LifeCycleCallbacks,
 ): React.ComponentClass<Props & ReactifyProps> {
+  console.log(renderFn, callbacks, 'render');
+
   class ReactifiedComponent extends React.Component<Props & ReactifyProps> {
     container?: HTMLDivElement;
 

@@ -243,7 +243,7 @@ const propTypes = {
   baseColor: rgbObjectType,
 };
 
-const NOOP = () => {};
+const NOOP = () => { };
 const formatter = getNumberFormatter();
 
 function nvd3Vis(element, props) {
@@ -307,7 +307,7 @@ function nvd3Vis(element, props) {
   const container = element;
   container.innerHTML = '';
   const activeAnnotationLayers = annotationLayers.filter(layer => layer.show);
-
+  console.log(element, props, 'cont');
   // Search for the chart id in a parent div from the nvd3 chart
   let chartContainer = container;
   let chartId = null;
@@ -346,7 +346,7 @@ function nvd3Vis(element, props) {
     const staggerLabels = xTicksLayout === 'staggered';
     const xLabelRotation =
       (xTicksLayout === 'auto' && isVizTypes(['column', 'dist_bar'])) ||
-      xTicksLayout === '45°'
+        xTicksLayout === '45°'
         ? 45
         : 0;
     if (xLabelRotation === 45 && isTruthy(showBrush)) {
@@ -1149,7 +1149,7 @@ function nvd3Vis(element, props) {
                       Math.max(
                         Math.abs(
                           xScale(new Date(d[e.intervalEndColumn])) -
-                            xScale(new Date(d[e.timeColumn])),
+                          xScale(new Date(d[e.timeColumn])),
                         ),
                         1,
                       ),
