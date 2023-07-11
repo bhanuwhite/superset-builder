@@ -20,6 +20,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ParentSize } from '@vx/responsive';
+import { supersetTheme } from '@superset-ui/core';
 
 const propTypes = {
   className: PropTypes.string,
@@ -38,6 +39,8 @@ const defaultProps = {
   legendJustifyContent: undefined,
 };
 
+const theme = supersetTheme;
+
 const LEGEND_STYLE_BASE = {
   display: 'flex',
   flexGrow: 0,
@@ -45,6 +48,7 @@ const LEGEND_STYLE_BASE = {
   order: -1,
   paddingTop: '5px',
   fontSize: '0.9em',
+  color: theme.colors.grayscale.label
 };
 
 const CHART_STYLE_BASE = {
@@ -137,7 +141,7 @@ class WithLegend extends React.Component {
             {parent =>
               parent.width > 0 && parent.height > 0
                 ? // Only render when necessary
-                  renderChart(parent)
+                renderChart(parent)
                 : null
             }
           </ParentSize>

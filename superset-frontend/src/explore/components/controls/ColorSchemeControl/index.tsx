@@ -86,7 +86,7 @@ const ColorSchemeControl = ({
   dashboardId,
   label = t('Color scheme'),
   name,
-  onChange = () => {},
+  onChange = () => { },
   value,
   clearable = false,
   defaultScheme,
@@ -159,6 +159,7 @@ const ColorSchemeControl = ({
   // We can't pass on change directly because it receives a second
   // parameter and it would be interpreted as the error parameter
   const handleOnChange = (value: string) => onChange(value);
+  // console.log(options, 'cursche');
 
   return (
     <Select

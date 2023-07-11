@@ -20,10 +20,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Histogram, BarSeries, XAxis, YAxis } from '@data-ui/histogram';
-import { chartTheme } from '@data-ui/theme';
+import { chartTheme as defaultTheme } from '@data-ui/theme';
 import { LegendOrdinal } from '@vx/legend';
 import { scaleOrdinal } from '@vx/scale';
-import { CategoricalColorNamespace, styled, t } from '@superset-ui/core';
+import { CategoricalColorNamespace, styled, supersetTheme, t } from '@superset-ui/core';
 import WithLegend from './WithLegend';
 
 const propTypes = {
@@ -80,6 +80,54 @@ class CustomHistogram extends React.PureComponent {
       domain: keys,
       range: keys.map(x => colorFn(x, sliceId)),
     });
+    const theme = supersetTheme;
+    const customTheme = {
+      ...defaultTheme,
+      xTickStyles: {
+        ...defaultTheme.xTickStyles,
+        stroke: theme.colors.grayscale.label,
+        label: {
+          ...defaultTheme.xTickStyles.label,
+          bottom: {
+            ...defaultTheme.xTickStyles.label.bottom,
+            fill: theme.colors.grayscale.label
+          },
+        }
+      },
+      xAxisStyles: {
+        ...defaultTheme.xAxisStyles,
+        stroke: theme.colors.grayscale.label,
+        label: {
+          ...defaultTheme.xAxisStyles.label,
+          bottom: {
+            ...defaultTheme.xAxisStyles.label.bottom,
+            fill: theme.colors.grayscale.label
+          },
+        }
+      },
+      yTickStyles: {
+        ...defaultTheme.yTickStyles,
+        stroke: theme.colors.grayscale.label,
+        label: {
+          ...defaultTheme.yTickStyles.label,
+          left: {
+            ...defaultTheme.yTickStyles.label.left,
+            fill: theme.colors.grayscale.label
+          },
+        }
+      },
+      yAxisStyles: {
+        ...defaultTheme.yAxisStyles,
+        stroke: theme.colors.grayscale.label,
+        label: {
+          ...defaultTheme.yAxisStyles.label,
+          left: {
+            ...defaultTheme.yAxisStyles.label.left,
+            fill: theme.colors.grayscale.label
+          },
+        }
+      }
+    };
 
     return (
       <WithLegend
@@ -131,7 +179,7 @@ class CustomHistogram extends React.PureComponent {
               </div>
             )}
             valueAccessor={datum => datum}
-            theme={chartTheme}
+            theme={customTheme}
           >
             {data.map(series => (
               <BarSeries

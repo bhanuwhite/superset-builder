@@ -32,7 +32,7 @@ export { default as createEmotionCache } from '@emotion/cache';
 
 declare module '@emotion/react' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Theme extends SupersetTheme {}
+  export interface Theme extends SupersetTheme { }
 }
 
 export function useTheme() {
@@ -89,6 +89,7 @@ const defaultTheme = {
       light3: '#F0F0F0',
       light4: '#F7F7F7',
       light5: '#FFFFFF',
+      label: '#000000'
     },
     error: {
       base: '#E04355',
@@ -136,7 +137,7 @@ const defaultTheme = {
     families: {
       serif: `Georgia, 'Times New Roman', Times, serif`,
       monospace: `'Fira Code', 'Courier New', monospace`,
-      Roboto:`'Roboto', sans-serif;`
+      Roboto: `'Roboto', sans-serif;`
     },
     weights: {
       light: 200,
@@ -200,6 +201,7 @@ const defaultThemeNew = {
       light3: '#424242',
       light4: '#3d3d3d',
       light5: '#000000',
+      label: '#ffffff'
     },
     error: {
       base: '#E04355',
@@ -272,7 +274,7 @@ const defaultThemeNew = {
   },
   transitionTiming: 0.3,
   gridUnit_0: 0,
-  gridUnit_3:2,
+  gridUnit_3: 2,
   gridUnit: 4,
   gridUnit_1: 3,
   gridUnit_2: 5,

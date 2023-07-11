@@ -27,6 +27,7 @@ import {
   getNumberFormatter,
   NumberFormats,
   getSequentialSchemeRegistry,
+  supersetTheme,
 } from '@superset-ui/core';
 
 const propTypes = {
@@ -102,7 +103,7 @@ function Heatmap(element, props) {
   } = props;
 
   const { records, extents } = data;
-
+  const theme = supersetTheme;
   const margin = {
     top: 10,
     right: 10,
@@ -149,7 +150,7 @@ function Heatmap(element, props) {
         ? Math.ceil(Math.max(margin.bottom, pixelsPerCharX * longestX))
         : bottomMargin;
   }
-
+  // console.log(element, props, 'heatmap');
   // Check if x axis "x" position is outside of the container and rotate labels 90deg
   function checkLabelPosition(container) {
     const xAxisNode = container.select('.x.axis').node();
@@ -324,7 +325,8 @@ function Heatmap(element, props) {
     svg
       .append('g')
       .attr('transform', `translate(${width - 40}, ${margin.top})`)
-      .call(colorLegend);
+      .call(colorLegend)
+      .style('fill', theme.colors.grayscale.label);
   }
 
   const tip = d3tip()
@@ -348,7 +350,7 @@ function Heatmap(element, props) {
           obj.v,
         )}<div>`;
         if (showPercentage) {
-          s += `<div><b>%: </b>${fp(normalized ? obj.rank : obj.perc)}<div>`;
+          s += `<div><b>%: asdas</b>${fp(normalized ? obj.rank : obj.perc)}<div>`;
         }
         tip.style('display', null);
       } else {
@@ -390,6 +392,7 @@ function Heatmap(element, props) {
       .attr('y', 10)
       .attr('dy', '0.3em')
       .style('text-anchor', 'end')
+      .style('fill', theme.colors.grayscale.label)
       .attr('transform', 'rotate(-45)');
   }
 
@@ -405,7 +408,8 @@ function Heatmap(element, props) {
       .append('g')
       .attr('class', 'y axis')
       .attr('transform', `translate(${margin.left},${margin.top})`)
-      .call(yAxis);
+      .call(yAxis)
+      .style('fill', theme.colors.grayscale.label)
   }
 
   checkLabelPosition(container);

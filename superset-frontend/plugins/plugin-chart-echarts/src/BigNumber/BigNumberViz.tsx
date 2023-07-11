@@ -148,7 +148,7 @@ class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
         }
       });
     } else {
-      numberColor = `${theme.colors.grayscale.dark1}`;
+      numberColor = `${theme.colors.grayscale.label}`;
     }
 
     const container = this.createTemporaryContainer();

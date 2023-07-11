@@ -307,7 +307,7 @@ function nvd3Vis(element, props) {
   const container = element;
   container.innerHTML = '';
   const activeAnnotationLayers = annotationLayers.filter(layer => layer.show);
-  console.log(element, props, 'cont');
+  // console.log(element, props, 'cont');
   // Search for the chart id in a parent div from the nvd3 chart
   let chartContainer = container;
   let chartId = null;
