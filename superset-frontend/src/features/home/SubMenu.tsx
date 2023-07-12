@@ -46,6 +46,10 @@ const StyledHeader = styled.div`
     line-height: ${({ theme }) => theme.gridUnit * 8}px;
     color: ${({ theme }) => theme.colors.primary.base};
   }
+  .home {
+    display:flex;
+    align-items:center;
+  }
   .nav-right {
     display: flex;
     align-items: center;
@@ -319,7 +323,10 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
               <a href={bootstrapData.common.menu_data.brand.path}>
                 {props.name}
               </a>
-              : props.name}
+              : <div className='home'><a href={bootstrapData.common.menu_data.brand.path}>
+                {/* <img src={brand.icon} alt={brand.alt} /> */}
+                <h5>HOME</h5>
+              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.name}</div>}
           </div>}
         <Menu mode={showMenu} style={{ backgroundColor: 'transparent' }}>
           {props.tabs?.map(tab => {

@@ -56,6 +56,8 @@ import ActivityTable from 'src/features/home/ActivityTable';
 import ChartTable from 'src/features/home/ChartTable';
 import SavedQueries from 'src/features/home/SavedQueries';
 import DashboardTable from 'src/features/home/DashboardTable';
+import Button from 'src/components/Button';
+import { Link } from 'react-router-dom';
 
 const extensionsRegistry = getExtensionsRegistry();
 
@@ -286,17 +288,17 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
         }),
       canAccessSqlLab
         ? getUserOwnedObjects(id, 'saved_query', ownSavedQueryFilters)
-            .then(r => {
-              setQueryData(r);
-              return Promise.resolve();
-            })
-            .catch((err: unknown) => {
-              setQueryData([]);
-              addDangerToast(
-                t('There was an issue fetching your saved queries: %s', err),
-              );
-              return Promise.resolve();
-            })
+          .then(r => {
+            setQueryData(r);
+            return Promise.resolve();
+          })
+          .catch((err: unknown) => {
+            setQueryData([]);
+            addDangerToast(
+              t('There was an issue fetching your saved queries: %s', err),
+            );
+            return Promise.resolve();
+          })
         : Promise.resolve(),
     ]).then(() => {
       setIsFetchingActivityData(false);
@@ -355,7 +357,7 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
 
   return (
     <>
-      <SubMenu {...menuData} rightMenuPresence/>
+      <SubMenu {...menuData} rightMenuPresence />
       <WelcomeContainer>
         {WelcomeMessageExtension && <WelcomeMessageExtension />}
         {WelcomeTopExtension && <WelcomeTopExtension />}
@@ -370,10 +372,10 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
             >
               <Collapse.Panel header={t('Recents')} key="1">
                 {activityData &&
-                (activityData[TableTab.Viewed] ||
-                  activityData[TableTab.Other] ||
-                  activityData[TableTab.Created]) &&
-                activeChild !== 'Loading' ? (
+                  (activityData[TableTab.Viewed] ||
+                    activityData[TableTab.Other] ||
+                    activityData[TableTab.Created]) &&
+                  activeChild !== 'Loading' ? (
                   <ActivityTable
                     user={{ userId: user.userId! }} // user is definitely not a guest user on this page
                     activeChild={activeChild}
@@ -427,6 +429,13 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
                   )}
                 </Collapse.Panel>
               )}
+              <Collapse.Panel header={t('Datasets')} key="5">
+                <Link to='/tablemodelview/list'>
+                  <h4>
+                    <Button>Open Datasets</Button>
+                  </h4>
+                </Link>
+              </Collapse.Panel>
             </Collapse>
           </>
         )}

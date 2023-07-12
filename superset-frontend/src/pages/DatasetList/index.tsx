@@ -714,7 +714,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
 
   return (
     <>
-      <SubMenu {...menuData} />
+      <SubMenu {...menuData} rightMenuPresence/>
       {datasetCurrentlyDeleting && (
         <DeleteModal
           description={

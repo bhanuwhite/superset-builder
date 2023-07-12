@@ -429,7 +429,7 @@ export function getLegendProps(
     selectorLabel: {
       fontFamily: theme.typography.families.sansSerif,
       fontSize: theme.typography.sizes.s,
-      color: theme.colors.grayscale.base,
+      color: theme.colors.grayscale.label,
       borderColor: theme.colors.grayscale.base,
     },
   };

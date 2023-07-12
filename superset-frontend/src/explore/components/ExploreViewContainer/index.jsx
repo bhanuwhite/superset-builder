@@ -141,6 +141,7 @@ const ExplorePanelContainer = styled.div`
       justify-content: space-between;
       .horizontal-text {
         font-size: ${theme.typography.sizes.m}px;
+        color: ${theme.colors.grayscale.label};
       }
     }
     .no-show {

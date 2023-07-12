@@ -117,7 +117,10 @@ const DatasourceContainer = styled.div`
     .field-length {
       margin-bottom: ${theme.gridUnit * 2}px;
       font-size: ${theme.typography.sizes.s}px;
-      color: ${theme.colors.grayscale.light1};
+      color: ${theme.colors.grayscale.label};
+    }
+    .column{
+      color: ${theme.colors.grayscale.label};
     }
     .form-control.input-md {
       width: calc(100% - ${theme.gridUnit * 8}px);
@@ -298,7 +301,7 @@ export default function DataSourcePanel({
             keepDiacritics: true,
             baseSort: (a, b) =>
               Number(b?.item?.is_certified ?? 0) -
-                Number(a?.item?.is_certified ?? 0) ||
+              Number(a?.item?.is_certified ?? 0) ||
               String(a?.rankedValue ?? '').localeCompare(b?.rankedValue ?? ''),
           }),
         });
@@ -330,8 +333,8 @@ export default function DataSourcePanel({
       showAllColumns
         ? sortCertifiedFirst(lists?.columns)
         : sortCertifiedFirst(
-            lists?.columns?.slice?.(0, DEFAULT_MAX_COLUMNS_LENGTH),
-          ),
+          lists?.columns?.slice?.(0, DEFAULT_MAX_COLUMNS_LENGTH),
+        ),
     [lists.columns, showAllColumns],
   );
 

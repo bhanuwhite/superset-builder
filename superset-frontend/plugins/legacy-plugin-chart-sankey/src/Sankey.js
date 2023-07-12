@@ -25,6 +25,7 @@ import {
   getNumberFormatter,
   NumberFormats,
   CategoricalColorNamespace,
+  supersetTheme,
 } from '@superset-ui/core';
 import { getOverlappingElements } from './utils';
 
@@ -161,6 +162,7 @@ function Sankey(element, props) {
     .attr('class', 'link')
     .attr('d', path)
     .style('stroke-width', d => Math.max(1, d.dy))
+    .style('stroke', supersetTheme.colors.grayscale.label)
     .sort((a, b) => b.dy - a.dy)
     .on('mouseover', onmouseover)
     .on('mouseout', onmouseout);
@@ -187,8 +189,10 @@ function Sankey(element, props) {
       if (text) {
         if (overlappingElements.includes(el)) {
           text.classList.add('opacity-0');
+          text.style.fill = supersetTheme.colors.grayscale.label
         } else {
           text.classList.remove('opacity-0');
+          text.style.fill = supersetTheme.colors.grayscale.label
         }
       }
     });

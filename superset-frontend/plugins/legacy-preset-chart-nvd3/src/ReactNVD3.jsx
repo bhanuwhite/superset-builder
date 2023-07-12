@@ -44,6 +44,12 @@ NVD3.propTypes = {
 };
 
 export default styled(NVD3)`
+  .superset-legacy-chart-nvd3{
+    fill: ${({ theme }) => theme.colors.grayscale.label};
+    .nv-series text{
+      fill: ${({ theme }) => theme.colors.grayscale.label};
+    }
+  }
   .superset-legacy-chart-nvd3-dist-bar,
   .superset-legacy-chart-nvd3-bar {
     overflow-x: auto !important;

@@ -22,6 +22,7 @@ import {
   getTimeFormatter,
   getColumnLabel,
   getNumberFormatter,
+  supersetTheme,
 } from '@superset-ui/core';
 import React, { useCallback } from 'react';
 import Echart from '../components/Echart';
@@ -151,13 +152,21 @@ export default function EchartsTreemap({
       }
     },
   };
-
+  const customEchartOptions = {
+    ...echartOptions,
+    legend: {
+      ...echartOptions.textStyle,
+      textStyle: {
+        color: supersetTheme.colors.grayscale.label, // Change to your desired legend color
+      },
+    },
+  };
   return (
     <Echart
       refs={refs}
       height={height}
       width={width}
-      echartOptions={echartOptions}
+      echartOptions={customEchartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}
     />

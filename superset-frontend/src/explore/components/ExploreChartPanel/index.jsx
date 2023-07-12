@@ -92,6 +92,13 @@ const Styles = styled.div`
     height: 100%;
   }
 
+.chart-container{
+  background:${({ theme }) => theme.colors.grayscale.light2};
+}
+.panel-body{
+  background:${({ theme }) => theme.colors.grayscale.light2};
+}
+
   .gutter {
     border-top: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
     border-bottom: 1px solid ${({ theme }) => theme.colors.grayscale.light2};

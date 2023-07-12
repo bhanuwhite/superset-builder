@@ -53,11 +53,14 @@ const titleStyles = (theme: SupersetTheme) => css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: ${theme.colors.grayscale.label};
+    background: ${theme.colors.grayscale.base};
   }
 
   & .dynamic-title {
     cursor: default;
-    color: ${theme.colors.primary.base};
+    // color: ${theme.colors.primary.base};
+    background: ${theme.colors.grayscale.base};
   }
   & .dynamic-title-input {
     border: none;
@@ -65,7 +68,8 @@ const titleStyles = (theme: SupersetTheme) => css`
     outline: none;
 
     &::placeholder {
-      color: ${theme.colors.grayscale.light1};
+      color: ${theme.colors.grayscale.label};
+      background: ${theme.colors.grayscale.base};
     }
   }
 

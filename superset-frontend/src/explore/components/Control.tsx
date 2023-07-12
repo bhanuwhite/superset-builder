@@ -61,6 +61,7 @@ export type ControlComponentProps<ValueType extends JsonValue = JsonValue> =
 
 const StyledControl = styled.div`
   padding-bottom: ${({ theme }) => theme.gridUnit * 4}px;
+  color: ${({ theme }) => theme.colors.grayscale.label};
 `;
 
 export default function Control(props: ControlProps) {
