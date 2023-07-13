@@ -763,15 +763,18 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         });
       }
 
-      // make sure that button spinner animates
-      setLoading(true);
-      const errors = await getValidation(dbToUpdate, true);
-      if ((validationErrors && !isEmpty(validationErrors)) || errors) {
+      // only do validation for non ssh tunnel connections
+      if (!dbToUpdate?.ssh_tunnel) {
+        // make sure that button spinner animates
+        setLoading(true);
+        const errors = await getValidation(dbToUpdate, true);
+        if ((validationErrors && !isEmpty(validationErrors)) || errors) {
+          setLoading(false);
+          return;
+        }
+        // end spinner animation
         setLoading(false);
-        return;
       }
-      setLoading(false);
-      // end spinner animation
 
       const parameters_schema = isEditMode
         ? dbToUpdate.parameters_schema?.properties
@@ -969,7 +972,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
   const renderAvailableSelector = () => (
     <div className="available">
-      <h4 className="available-label databasetableheader">
+      <h4 className="available-label">
         {t('Or choose from a list of other databases we support:')}
       </h4>
       <div className="control-label">{t('Supported databases')}</div>
@@ -1102,7 +1105,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       if (!hasConnectedDb || editNewDb) {
         return (
           <>
-            <StyledFooterButton key="back" onClick={handleBackButtonOnConnect} buttonStyle="tertiary">
+            <StyledFooterButton key="back" onClick={handleBackButtonOnConnect}>
               {t('Back')}
             </StyledFooterButton>
             <StyledFooterButton
@@ -1119,7 +1122,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
       return (
         <>
-          <StyledFooterButton key="back" onClick={handleBackButtonOnFinish} buttonStyle="tertiary">
+          <StyledFooterButton key="back" onClick={handleBackButtonOnFinish}>
             {t('Back')}
           </StyledFooterButton>
           <StyledFooterButton
@@ -1139,7 +1142,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
     if (importingModal) {
       return (
         <>
-          <StyledFooterButton key="back" onClick={handleBackButtonOnConnect} buttonStyle="tertiary">
+          <StyledFooterButton key="back" onClick={handleBackButtonOnConnect}>
             {t('Back')}
           </StyledFooterButton>
           <StyledFooterButton
@@ -1160,7 +1163,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
 
   const renderEditModalFooter = (db: Partial<DatabaseObject> | null) => (
     <>
-      <StyledFooterButton key="close" onClick={onClose}  buttonStyle="tertiary">
+      <StyledFooterButton key="close" onClick={onClose}>
         {t('Close')}
       </StyledFooterButton>
       <StyledFooterButton
@@ -1633,18 +1636,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         validationErrors={validationErrors}
         getPlaceholder={getPlaceholder}
       />
-      <SSHTunnelContainer>
-        <SSHTunnelSwitchComponent
-          isEditMode={isEditMode}
-          dbFetched={dbFetched}
-          disableSSHTunnelingForEngine={disableSSHTunnelingForEngine}
-          useSSHTunneling={useSSHTunneling}
-          setUseSSHTunneling={setUseSSHTunneling}
-          setDB={setDB}
-          isSSHTunneling={isSSHTunneling}
-        />
-      </SSHTunnelContainer>
-      {useSSHTunneling && (
+      {db?.parameters?.ssh && (
         <SSHTunnelContainer>{renderSSHTunnelForm()}</SSHTunnelContainer>
       )}
     </>
@@ -1713,7 +1705,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         width="500px"
         centered
         show={show}
-        title={<h4 className='databasetableheader'>{t('Connect a database')}</h4>}
+        title={<h4>{t('Connect a database')}</h4>}
         footer={renderModalFooter()}
       >
         <ModalHeader
@@ -1753,7 +1745,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       centered
       show={show}
       title={
-        <h4 className='databasetableheader'>{isEditMode ? t('Edit database') : t('Connect a database')}</h4>
+        <h4>{isEditMode ? t('Edit database') : t('Connect a database')}</h4>
       }
       footer={modalFooter}
     >
@@ -1915,7 +1907,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
       width="500px"
       centered
       show={show}
-      title={<h4 className='databasetableheader'>{t('Connect a database')}</h4>}
+      title={<h4>{t('Connect a database')}</h4>}
       footer={renderModalFooter()}
     >
       {!isLoading && hasConnectedDb ? (

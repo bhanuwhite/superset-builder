@@ -48,7 +48,7 @@ export type Refs = {
 export interface EchartsProps {
   height: number;
   width: number;
-  echartOptions: any;
+  echartOptions: EChartsCoreOption;
   eventHandlers?: EventHandlers;
   zrEventHandlers?: EventHandlers;
   selectedValues?: Record<number, string>;

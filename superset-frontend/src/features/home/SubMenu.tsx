@@ -29,26 +29,36 @@ import Icons from 'src/components/Icons';
 import { MenuObjectProps } from 'src/types/bootstrapTypes';
 import RightMenuWrapper from './RightMenu';
 import getBootstrapData from 'src/utils/getBootstrapData';
-import { isFrontendRoute } from 'src/views/routes';
 import { Global } from '@emotion/react';
 import { GlobalStyles } from 'src/GlobalStyles';
-// import { isFrontendRoute } from 'src/views/routes';
+import { isFrontendRoute } from 'src/views/routes';
+import { Switch } from 'antd';
 
 const StyledHeader = styled.div`
-  margin-bottom: 0px;
+
   .header {
     font-weight: ${({ theme }) => theme.typography.weights.bold};
     margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     text-align: left;
-    font-size:  ${({ theme }) => theme.gridUnit * 5}px;;
-    padding: ${({ theme }) => theme.gridUnit * 4}px;
+    padding: ${({ theme }) => theme.gridUnit * 3}px;
     display: inline-block;
-    line-height: ${({ theme }) => theme.gridUnit * 8}px;
-    color: ${({ theme }) => theme.colors.primary.base};
+    line-height: ${({ theme }) => theme.gridUnit * 9}px;
+    color:${({ theme }) => theme.colors.grayscale.dark2};
+    a{
+      color:${({ theme }) => theme.colors.grayscale.dark2};
+      font-size: ${({ theme }) => theme.gridUnit * 5}px;
+      text-decoration:none;
+    }
   }
   .home {
     display:flex;
     align-items:center;
+    h5{
+      font-size: ${({ theme }) => theme.gridUnit * 5}px;
+    }
+    .breadcrumd-arrow{
+      margin:0px ${({ theme }) => theme.gridUnit * 2}px;
+    }
   }
   .nav-right {
     display: flex;
@@ -60,6 +70,7 @@ const StyledHeader = styled.div`
     right: 0;
     ul.ant-menu-root {
       padding: 0px;
+      background-color:transparent;
     }
     li[role='menuitem'] {
       border: 0;
@@ -69,7 +80,6 @@ const StyledHeader = styled.div`
       }
     }
   }
-
   .nav-right-collapse {
     display: flex;
     align-items: center;
@@ -79,8 +89,9 @@ const StyledHeader = styled.div`
     padding-left: 10px;
   }
   .menu {
-    background-color:${({ theme }) => theme.colors.grayscale.base};
-    height:${({ theme }) => theme.gridUnit * 16}px;
+    background-color: ${({ theme }) => theme.colors.customBstStyles.subHeader};
+    height: ${({ theme }) => theme.gridUnit * 16}px;
+    align-items: center;
     .ant-menu-horizontal {
       line-height: inherit;
       .ant-menu-item {
@@ -93,7 +104,6 @@ const StyledHeader = styled.div`
     }
     .ant-menu {
       padding: ${({ theme }) => theme.gridUnit * 4}px 0px;
-      background:transparent;
     }
   }
 
@@ -106,8 +116,8 @@ const StyledHeader = styled.div`
     div {
       a,
       div {
-        font-size: ${({ theme }) => theme.typography.sizes.s}px;
-        color: ${({ theme }) => theme.colors.secondary.dark1};
+        font-size: ${({ theme }) => theme.typography.sizes.m}px;
+        color: ${({ theme }) => theme.colors.grayscale.dark2};
 
         a {
           margin: 0;
@@ -127,7 +137,7 @@ const StyledHeader = styled.div`
       }
 
       &.active a {
-        background: ${({ theme }) => theme.colors.secondary.light4};
+        background: ${({ theme }) => theme.colors.grayscale.light5};
         border-radius: ${({ theme }) => theme.borderRadius}px;
       }
     }
@@ -140,7 +150,7 @@ const StyledHeader = styled.div`
     li > div:hover,
     div > div:hover,
     div > a:hover {
-      background: ${({ theme }) => theme.colors.secondary.light4};
+      background: ${({ theme }) => theme.colors.grayscale.light5};
       border-bottom: none;
       border-radius: ${({ theme }) => theme.borderRadius}px;
       margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
@@ -170,7 +180,11 @@ const StyledHeader = styled.div`
   }
   .dropdown-menu-links > div.ant-menu-submenu-title,
   .ant-menu-submenu-open.ant-menu-submenu-active > div.ant-menu-submenu-title {
-    color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+    font-weight:500;
+  }
+  dropdown-menu-links > div.ant-menu-submenu-title, span[role='img'] svg{
+    color: ${({ theme }) => theme.colors.grayscale.dark2} !important;
   }
 `;
 
@@ -182,7 +196,6 @@ const styledDisabled = (theme: SupersetTheme) => css`
     cursor: default;
   }
 `;
-
 const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
     border-radius: 0px;
@@ -191,33 +204,33 @@ const globalStyles = (theme: SupersetTheme) => css`
     border-radius: 0px;
   }
   .ant-menu-vertical{
-    background-color: ${theme.colors.grayscale.dark2} !important;
+    background-color: ${theme.colors.grayscale.light5} !important;
     .ant-menu-item {  
       &:hover {
-      background-color: ${theme.colors.grayscale.dark1};
+      background-color: ${theme.colors.grayscale.light4};
       a{
-        color: ${theme.colors.primary.base};
+        color: ${theme.colors.grayscale.dark2};
       }
        }
       a{
-        color: ${theme.colors.primary.base};
+        color: ${theme.colors.grayscale.dark2};
       }
     }
     label{
-      color: ${theme.colors.primary.base} !important;
+      color: ${theme.colors.grayscale.dark2} !important;
     }
   }
   .ant-menu-submenu-vertical{
-    color: ${theme.colors.primary.base} !important;
+    color: ${theme.colors.grayscale.dark2} !important;
     i{
-      color: ${theme.colors.primary.base} !important;
+      color: ${theme.colors.grayscale.dark2} !important;
     }
   }
   .ant-menu-item-group-title{
-    color: ${theme.colors.primary.base} ;
+    color: ${theme.colors.grayscale.dark2} ;
   }
   .ant-menu-item-only-child{
-    color: ${theme.colors.primary.base} !important;
+    color: ${theme.colors.grayscale.dark2} !important;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;
@@ -228,7 +241,6 @@ const globalStyles = (theme: SupersetTheme) => css`
     
   }
 `;
-
 type MenuChild = {
   label: string;
   name: string;
@@ -263,7 +275,7 @@ export interface SubMenuProps {
   usesRouter?: boolean;
   color?: string;
   dropDownLinks?: Array<MenuObjectProps>;
-  rightMenuPresence?: boolean
+  rightMenuPresence?: boolean;
 }
 
 const { SubMenu } = DropdownMenu;
@@ -311,11 +323,38 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
   const theme = useTheme();
+  async function setThemeAsync(theme: string): Promise<void> {
+    return new Promise<void>(resolve => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      resolve();
+    });
+  }
 
+  const [appliedTheme, setAppliedTheme] = useState<string>(
+    localStorage.getItem('theme') || 'light',
+  );
+
+  useEffect(() => {
+    (async () => {
+      await setThemeAsync(appliedTheme);
+    })();
+  }, [appliedTheme]);
+
+  const toggleTheme = async (): Promise<void> => {
+    const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
+
+    console.log(newTheme, 'newtheme');
+    if (newTheme !== undefined) {
+      setAppliedTheme(newTheme);
+      await setThemeAsync(newTheme);
+    }
+    window.location.reload();
+  };
   return (
     <StyledHeader>
-      <GlobalStyles />
       <Global styles={globalStyles(theme)} />
+      <GlobalStyles />
       <Row className="menu" role="navigation">
         {props.name &&
           <div className="header">
@@ -325,9 +364,11 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
               </a>
               : <div className='home'><a href={bootstrapData.common.menu_data.brand.path}>
                 {/* <img src={brand.icon} alt={brand.alt} /> */}
-                <h5>HOME</h5>
-              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.name}</div>}
+                <h5>Home</h5>
+              </a>
+                <span className='breadcrumd-text'><span className='breadcrumd-arrow'> &gt; </span>{props.name}</span></div>}
           </div>}
+
         <Menu mode={showMenu} style={{ backgroundColor: 'transparent' }}>
           {props.tabs?.map(tab => {
             if ((props.usesRouter || hasHistory) && !!tab.usesRouter) {
@@ -362,6 +403,7 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             );
           })}
         </Menu>
+
         <div className={navRightStyle}>
           <Menu mode="horizontal" triggerSubMenuAction="click">
             {props.dropDownLinks?.map((link, i) => (
@@ -397,12 +439,29 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             ))}
           </Menu>
           {props.rightMenuPresence &&
-            <RightMenuWrapper
-              align={screens.md ? 'flex-end' : 'flex-start'}
-              navbarRight={bootstrapData.common.menu_data.navbar_right}
-              isFrontendRoute={isFrontendRoute}
-              environmentTag={bootstrapData.common.menu_data.environment_tag}
-            />
+
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                width: '100%',
+                alignItems: 'center',
+                marginInline: '20px',
+              }}
+            >
+              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>Theme&nbsp;&nbsp;</p>
+              <Switch
+                defaultChecked={appliedTheme === 'dark'}
+                onChange={toggleTheme}
+              />
+
+              <RightMenuWrapper
+                align={screens.md ? 'flex-end' : 'flex-start'}
+                navbarRight={bootstrapData.common.menu_data.navbar_right}
+                isFrontendRoute={isFrontendRoute}
+                environmentTag={bootstrapData.common.menu_data.environment_tag}
+              />
+            </div>
           }
           {props.buttons?.map((btn, i) => (
             <Button
@@ -415,7 +474,6 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             </Button>
           ))}
         </div>
-
       </Row>
       {props.children}
     </StyledHeader>

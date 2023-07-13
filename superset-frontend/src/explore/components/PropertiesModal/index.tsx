@@ -58,14 +58,13 @@ const FormItem = AntdForm.Item;
 const StyledFormItem = styled(AntdForm.Item)`
   margin-bottom: 0;
   label{
-    color:${({ theme }) => theme.colors.primary.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 
 const StyledHelpBlock = styled.span`
   margin-bottom: 0;
-  color:${({ theme }) => theme.colors.primary.dark2};
-  }
+  color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
 `;
 
 function PropertiesModal({
@@ -163,8 +162,8 @@ function PropertiesModal({
             includeTypes: false,
           },
           tag.name,
-          () => {},
-          () => {},
+          () => { },
+          () => { },
         );
       }
     });
@@ -178,8 +177,8 @@ function PropertiesModal({
             objectId: slice.slice_id,
           },
           tag,
-          () => {},
-          () => {},
+          () => { },
+          () => { },
         );
       }
     });
@@ -310,7 +309,6 @@ function PropertiesModal({
           <Button
             data-test="properties-modal-cancel-button"
             htmlType="button"
-            buttonStyle="tertiary"
             buttonSize="small"
             onClick={onHide}
             cta
@@ -327,8 +325,8 @@ function PropertiesModal({
             tooltip={
               slice.is_managed_externally
                 ? t(
-                    "This chart is managed externally, and can't be edited in Superset",
-                  )
+                  "This chart is managed externally, and can't be edited in Superset",
+                )
                 : ''
             }
             cta
@@ -357,18 +355,20 @@ function PropertiesModal({
       >
         <Row gutter={16}>
           <Col xs={24} md={12}>
-            <h3 style={{color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Basic information')}</h3>
-            <FormItem label={t('Name')} required>
-              <Input
-                aria-label={t('Name')}
-                name="name"
-                data-test="properties-modal-name-input"
-                type="text"
-                value={name}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setName(event.target.value ?? '')
-                }
-              />
+            <h3 style={{ marginTop: '0px', color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Basic information')}</h3>
+            <FormItem>
+              <StyledFormItem label={t('Name')} required>
+                <Input
+                  aria-label={t('Name')}
+                  name="name"
+                  data-test="properties-modal-name-input"
+                  type="text"
+                  value={name}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setName(event.target.value ?? '')
+                  }
+                />
+              </StyledFormItem>
             </FormItem>
             <FormItem>
               <StyledFormItem label={t('Description')} name="description">
@@ -380,7 +380,7 @@ function PropertiesModal({
                 )}
               </StyledHelpBlock>
             </FormItem>
-            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Certification')}</h3>
+            <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Certification')}</h3>
             <FormItem>
               <StyledFormItem label={t('Certified by')} name="certified_by">
                 <Input aria-label={t('Certified by')} />
@@ -404,7 +404,7 @@ function PropertiesModal({
             </FormItem>
           </Col>
           <Col xs={24} md={12}>
-            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Configuration')}</h3>
+            <h3 style={{ marginTop: '0px', color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Configuration')}</h3>
             <FormItem>
               <StyledFormItem label={t('Cache timeout')} name="cache_timeout">
                 <Input aria-label="Cache timeout" />
@@ -415,26 +415,28 @@ function PropertiesModal({
                 )}
               </StyledHelpBlock>
             </FormItem>
-            <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Access')}</h3>
-            <FormItem label={ownersLabel}>
-              <AsyncSelect
-                ariaLabel={ownersLabel}
-                mode="multiple"
-                name="owners"
-                value={selectedOwners || []}
-                onChange={setSelectedOwners}
-                options={loadOptions}
-                disabled={!selectedOwners}
-                allowClear
-              />
-              <StyledHelpBlock className="help-block">
-                {t(
-                  'A list of users who can alter the chart. Searchable by name or username.',
-                )}
-              </StyledHelpBlock>
+            <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Access')}</h3>
+            <FormItem>
+              <StyledFormItem label={ownersLabel}>
+                <AsyncSelect
+                  ariaLabel={ownersLabel}
+                  mode="multiple"
+                  name="owners"
+                  value={selectedOwners || []}
+                  onChange={setSelectedOwners}
+                  options={loadOptions}
+                  disabled={!selectedOwners}
+                  allowClear
+                />
+                <StyledHelpBlock className="help-block">
+                  {t(
+                    'A list of users who can alter the chart. Searchable by name or username.',
+                  )}
+                </StyledHelpBlock>
+              </StyledFormItem>
             </FormItem>
             {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) && (
-              <h3 style={{marginTop: theme.typography.sizes.s, color:theme.colors.primary.base, fontSize:theme.typography.sizes.l}}>{t('Tags')}</h3>
+              <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Tags')}</h3>
             )}
             {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) && (
               <FormItem>

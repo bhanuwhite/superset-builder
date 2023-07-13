@@ -43,11 +43,11 @@ const NewComponent = styled.div`
     flex-wrap: nowrap;
     align-items: center;
     padding: ${theme.gridUnit * 4}px;
-    background: ${theme.colors.grayscale.dark2};
+    background: ${theme.colors.grayscale.light5};
     cursor: move;
 
     &:not(.static):hover {
-      background: ${theme.colors.grayscale.dark1};
+      background: ${theme.colors.grayscale.light4};
     }
   `}
 `;
@@ -63,7 +63,7 @@ const NewComponentPlaceholder = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${theme.colors.primary.base};
+    color: ${theme.colors.text.label};
     font-size: ${theme.typography.sizes.xxl}px;
 
     &.fa-window-restore {

@@ -264,7 +264,7 @@ function TagList(props: TagListProps) {
   const subMenuButtons: SubMenuProps['buttons'] = [];
   if (canDelete) {
     subMenuButtons.push({
-      name: t('Bulk selectw'),
+      name: t('Bulk select'),
       buttonStyle: 'secondary',
       'data-test': 'bulk-select',
       onClick: toggleBulkSelect,

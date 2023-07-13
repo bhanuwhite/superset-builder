@@ -21,9 +21,9 @@ import {
   CategoricalColorNamespace,
   CategoricalColorScale,
   DataRecord,
-  getNumberFormatter,
   getMetricLabel,
   getColumnLabel,
+  getValueFormatter,
 } from '@superset-ui/core';
 import { EChartsCoreOption, GaugeSeriesOption } from 'echarts';
 import { GaugeDataItemOption } from 'echarts/types/src/chart/gauge/GaugeSeries';
@@ -105,7 +105,11 @@ export default function transformProps(
   } = chartProps;
 
   const gaugeSeriesOptions = defaultGaugeSeriesOption(theme);
-  const { verboseMap = {} } = datasource;
+  const {
+    verboseMap = {},
+    currencyFormats = {},
+    columnFormats = {},
+  } = datasource;
   const {
     groupby,
     metric,
@@ -132,7 +136,12 @@ export default function transformProps(
   const refs: Refs = {};
   const data = (queriesData[0]?.data || []) as DataRecord[];
   const coltypeMapping = getColtypesMapping(queriesData[0]);
-  const numberFormatter = getNumberFormatter(numberFormat);
+  const numberFormatter = getValueFormatter(
+    metric,
+    currencyFormats,
+    columnFormats,
+    numberFormat,
+  );
   const colorFn = CategoricalColorNamespace.getScale(colorScheme as string);
   const axisLineWidth = calculateAxisLineWidth(data, fontSize, overlap);
   const groupbyLabels = groupby.map(getColumnLabel);
@@ -167,14 +176,14 @@ export default function transformProps(
             `${index * titleOffsetFromTitle + OFFSETS.titleFromCenter}%`,
           ],
           fontSize,
+          color: `${theme.colors.grayscale.dark2}`,
         },
         detail: {
           offsetCenter: [
             '0%',
-            `${
-              index * titleOffsetFromTitle +
-              OFFSETS.titleFromCenter +
-              detailOffsetFromTitle
+            `${index * titleOffsetFromTitle +
+            OFFSETS.titleFromCenter +
+            detailOffsetFromTitle
             }%`,
           ],
           fontSize: FONT_SIZE_MULTIPLIERS.detailFontSize * fontSize,
@@ -202,7 +211,7 @@ export default function transformProps(
     },
   );
 
-  const { setDataMask = () => {}, onContextMenu } = hooks;
+  const { setDataMask = () => { }, onContextMenu } = hooks;
 
   const min = minVal ?? calculateMin(transformedData);
   const max = maxVal ?? calculateMax(transformedData);
@@ -221,9 +230,9 @@ export default function transformProps(
     axisLineWidth + splitLineLength + OFFSETS.ticksFromLine;
   const axisLabelDistance =
     FONT_SIZE_MULTIPLIERS.axisLabelDistance *
-      fontSize *
-      FONT_SIZE_MULTIPLIERS.axisLabelLength *
-      axisLabelLength +
+    fontSize *
+    FONT_SIZE_MULTIPLIERS.axisLabelLength *
+    axisLabelLength +
     (showSplitLine ? splitLineLength : 0) +
     (showAxisTick ? axisTickLength : 0) +
     OFFSETS.ticksFromLine -

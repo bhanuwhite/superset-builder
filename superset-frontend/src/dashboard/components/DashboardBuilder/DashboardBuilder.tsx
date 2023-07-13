@@ -95,6 +95,7 @@ const StyledDiv = styled.div`
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     flex: 1;
+    background: ${theme.colors.grayscale.light4};
     /* Special cases */
 
     /* A row within a column has inset hover menu */
@@ -157,6 +158,7 @@ const FiltersPanel = styled.div<{ width: number; hidden: boolean }>`
   grid-column: 1;
   grid-row: 1 / span 2;
   z-index: 11;
+  background: ${({ theme }) => theme.colors.grayscale.light5};
   width: ${({ width }) => width}px;
   ${({ hidden }) => hidden && `display: none;`}
 `;
@@ -356,10 +358,7 @@ const StyledDashboardContent = styled.div<{
       width: 0;
       flex: 1;
       position: relative;
-      margin-top: ${theme.gridUnit * 6}px;
-      margin-right: ${theme.gridUnit * 8}px;
-      margin-bottom: ${theme.gridUnit * 6}px;
-      margin-left: ${marginLeft}px;
+       margin:20px;
 
       ${editMode &&
       `
@@ -371,6 +370,9 @@ const StyledDashboardContent = styled.div<{
       /* this is the ParentSize wrapper */
     & > div:first-child {
         height: inherit !important;
+        padding:${theme.gridUnit * 5}px ${theme.gridUnit * 10}px;
+        background-color: ${theme.colors.grayscale.light5};
+        border-radius:10px;
       }
     }
 
@@ -382,11 +384,12 @@ const StyledDashboardContent = styled.div<{
     .dashboard-component-chart-holder {
       width: 100%;
       height: 100%;
-      background-color: ${theme.colors.grayscale.dark2};
-      color: ${theme.colors.primary.dark1};
+      background-color: ${theme.colors.grayscale.light4};
       position: relative;
-      padding: ${theme.gridUnit * 4}px;
+      padding: ${theme.gridUnit * 4}px ${theme.gridUnit * 6}px;
       overflow-y: visible;
+      border-radius: ${theme.typography.sizes.xs }px;
+      color: ${theme.colors.grayscale.dark2};
 
       // transitionable traits to show filter relevance
       transition: opacity ${theme.transitionTiming}s ease-in-out,
@@ -526,9 +529,11 @@ const DashboardBuilder: FC<DashboardBuilderProps> = () => {
     threshold: [1],
   });
 
-  const filterSetEnabled = isFeatureEnabled(
-    FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET,
-  );
+  // Filter sets depend on native filters
+  const filterSetEnabled =
+    isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET) &&
+    isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS);
+
   const showFilterBar =
     (crossFiltersEnabled || nativeFiltersEnabled) && !editMode;
 

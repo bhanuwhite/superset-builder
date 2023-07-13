@@ -40,8 +40,9 @@ export type DynamicEditableTitleProps = {
 
 const titleStyles = (theme: SupersetTheme) => css`
   display: flex;
-  font-size: ${theme.typography.sizes.xl}px;
+  font-size: ${theme.gridUnit * 5}px;
   font-weight: ${theme.typography.weights.bold};
+  letter-spacing:0.15px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -53,14 +54,13 @@ const titleStyles = (theme: SupersetTheme) => css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${theme.colors.grayscale.label};
-    background: ${theme.colors.grayscale.base};
+    color: ${theme.colors.grayscale.dark2};
+    background: transparent;
   }
 
   & .dynamic-title {
     cursor: default;
-    // color: ${theme.colors.primary.base};
-    background: ${theme.colors.grayscale.base};
+    color: ${theme.colors.grayscale.dark2};
   }
   & .dynamic-title-input {
     border: none;
@@ -68,8 +68,7 @@ const titleStyles = (theme: SupersetTheme) => css`
     outline: none;
 
     &::placeholder {
-      color: ${theme.colors.grayscale.label};
-      background: ${theme.colors.grayscale.base};
+      color: ${theme.colors.grayscale.light1};
     }
   }
 
@@ -198,7 +197,6 @@ export const DynamicEditableTitle = ({
             value={currentTitle}
             css={css`
               cursor: ${isEditing ? 'text' : 'pointer'};
-
               ${inputWidth &&
               inputWidth > 0 &&
               css`

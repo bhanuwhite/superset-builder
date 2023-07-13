@@ -43,16 +43,19 @@ const StyledTabs = ({
       }
       .ant-tabs-tab {
         flex: 1 1 auto;
-        color:${theme.colors.primary.base};
+        color: ${theme.colors.grayscale.dark2} !important;
+        height:${theme.gridUnit * 12}px;
+        text-transform:uppercase;
+        font-weight:500;
         &.ant-tabs-tab-active .ant-tabs-tab-btn {
           color: inherit;
         }
         &:hover {
-          color:${theme.colors.primary.light1};
           .anchor-link-container {
             cursor: pointer;
             .fa.fa-link {
               visibility: visible;
+              color: ${theme.colors.grayscale.dark2} !important;
             }
           }
         }
@@ -64,10 +67,10 @@ const StyledTabs = ({
         }
       }
       .ant-tabs-tab-active{
-        color:${theme.colors.primary.light1};
-      }
-      .ant-tabs-ink-bar{
-        background-color:${theme.colors.primary.light1} !important;
+        color:${theme.colors.primary.dark1} !important;
+        .fa.fa-link {
+          color: ${theme.colors.primary.dark1} !important;
+        }
       }
       ${fullWidth &&
       css`
@@ -81,9 +84,8 @@ const StyledTabs = ({
         flex: 1 1 auto;
         align-items: center;
         justify-content: center;
-        font-size: ${theme.typography.sizes.s}px;
         text-align: center;
-        text-transform: uppercase;
+        text-transform: uppercase !important;
         user-select: none;
         .required {
           margin-left: ${theme.gridUnit / 2}px;
@@ -91,7 +93,7 @@ const StyledTabs = ({
         }
       }
       .ant-tabs-ink-bar {
-        background: ${theme.colors.secondary.base};
+        background: ${theme.colors.primary.dark1};
       }
     `}
   />
@@ -154,19 +156,12 @@ export const StyledLineEditableTabs = styled(EditableTabs)`
     padding: ${({ theme }) => `${theme.gridUnit * 3}px ${theme.gridUnit}px`};
     background: transparent;
     border: none;
-    color:${({ theme }) => theme.colors.primary.base};
-    .short-link-trigger{
-      color:${({ theme }) => theme.colors.primary.base};
-    }
   }
 
   &.ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar {
     visibility: visible;
-    background-color:${({ theme }) => theme.colors.primary.light1};
   }
-.ant-tabs-tab-active{
-  color:${({ theme }) => theme.colors.primary.light1} !important;
-}
+
   .ant-tabs-tab-btn {
     font-size: ${({ theme }) => theme.typography.sizes.m}px;
   }

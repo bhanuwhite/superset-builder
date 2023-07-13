@@ -31,19 +31,16 @@ const ActionsWrapper = styled.div`
 
 const StyledCard = styled(AntdCard)`
   ${({ theme }) => `
-    border: 0px;
-    border-radius:10px;
-    background-color: ${theme.colors.grayscale.dark1};
+    border-radius: ${theme.typography.sizes.xs}px;
+    background-color: ${theme.colors.grayscale.light4};
     overflow: hidden;
+    border:0px !important;
+    color: ${theme.colors.grayscale.dark1};
 
     .ant-card-body {
-      padding:16px 24px;
-      color:${theme.colors.primary.base};
-      .ant-card-meta-title{
-        color:${theme.colors.primary.base};
-      }
-      .ant-card-meta-description{
-        color:${theme.colors.primary.base};
+      padding: ${theme.gridUnit * 4}px;
+      .ant-card-meta-title,.ant-card-meta-description{
+        color: ${theme.colors.grayscale.dark1};
       }
     }
     .ant-card-meta-detail > div:not(:last-child) {
@@ -54,8 +51,6 @@ const StyledCard = styled(AntdCard)`
       height: 100%;
     }
     &:hover {
-      box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light2};
-      transition: box-shadow ${theme.transitionTiming}s ease-in-out;
 
       .cover-footer {
         transform: translateY(0);
@@ -87,7 +82,6 @@ const TitleContainer = styled.div`
     span[role='img'] {
       display: flex;
       align-items: center;
-      color:${({ theme }) => theme.colors.primary.dark1};;
     }
   }
 

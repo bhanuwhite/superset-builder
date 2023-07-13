@@ -33,6 +33,7 @@ import { EventHandlers } from '../types';
 
 const defaultNumberFormatter = getNumberFormatter();
 const theme = supersetTheme;
+
 const PROPORTION = {
   // text size: proportion of the chart container sans trendline
   KICKER: 0.1,
@@ -60,8 +61,9 @@ class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
 
   getClassName() {
     const { className, showTrendLine, bigNumberFallback } = this.props;
-    const names = `superset-legacy-chart-big-number ${className} ${bigNumberFallback ? 'is-fallback-value' : ''
-      }`;
+    const names = `superset-legacy-chart-big-number ${className} ${
+      bigNumberFallback ? 'is-fallback-value' : ''
+    }`;
     if (showTrendLine) return names;
     return `${names} no-trendline`;
   }
@@ -148,7 +150,7 @@ class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
         }
       });
     } else {
-      numberColor = `${theme.colors.grayscale.label}`;
+      numberColor = `${theme.colors.grayscale.dark2}`;
     }
 
     const container = this.createTemporaryContainer();
@@ -363,6 +365,7 @@ export default styled(BigNumberVis)`
     .subheader-line {
       line-height: 1em;
       padding-bottom: 0;
+      color:${theme.colors.grayscale.dark2}
     }
 
     &.is-fallback-value {

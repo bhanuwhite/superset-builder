@@ -31,6 +31,7 @@ import {
   SupersetTheme,
   normalizeTimestamp,
   LegendState,
+  ValueFormatter,
 } from '@superset-ui/core';
 import { SortSeriesType } from '@superset-ui/chart-controls';
 import { format, LegendComponentOption, SeriesOption } from 'echarts';
@@ -286,16 +287,16 @@ export function extractSeries(
   const sortedRows =
     isDefined(xAxisSortSeries) && isDefined(xAxisSortSeriesAscending)
       ? sortRows(
-          rows,
-          totalStackedValues,
-          xAxis,
-          xAxisSortSeries!,
-          xAxisSortSeriesAscending!,
-        )
+        rows,
+        totalStackedValues,
+        xAxis,
+        xAxisSortSeries!,
+        xAxisSortSeriesAscending!,
+      )
       : rows.map((row, idx) => ({
-          row,
-          totalStackedValue: totalStackedValues[idx],
-        }));
+        row,
+        totalStackedValue: totalStackedValues[idx],
+      }));
 
   let minPositiveValue: number | undefined;
   const finalSeries = sortedSeries.map(name => ({
@@ -345,7 +346,7 @@ export function formatSeriesName(
     timeFormatter,
     coltype,
   }: {
-    numberFormatter?: NumberFormatter;
+    numberFormatter?: ValueFormatter;
     timeFormatter?: TimeFormatter;
     coltype?: GenericDataType;
   } = {},
@@ -429,8 +430,11 @@ export function getLegendProps(
     selectorLabel: {
       fontFamily: theme.typography.families.sansSerif,
       fontSize: theme.typography.sizes.s,
-      color: theme.colors.grayscale.label,
+      color: theme.colors.grayscale.dark1,
       borderColor: theme.colors.grayscale.base,
+    },
+    textStyle: {
+      color: theme.colors.grayscale.dark2, // Change to your desired legend color
     },
   };
   switch (orientation) {
@@ -517,7 +521,7 @@ export function getAxisType(dataType?: GenericDataType): AxisType {
 export function getOverMaxHiddenFormatter(
   config: {
     max?: number;
-    formatter?: NumberFormatter;
+    formatter?: ValueFormatter;
   } = {},
 ) {
   const { max, formatter } = config;
@@ -526,10 +530,9 @@ export function getOverMaxHiddenFormatter(
 
   return new NumberFormatter({
     formatFunc: value =>
-      `${
-        shouldHideIfOverMax && value > max
-          ? ''
-          : formatter?.format(value) || value
+      `${shouldHideIfOverMax && value > max
+        ? ''
+        : formatter?.format(value) || value
       }`,
     id: NumberFormats.OVER_MAX_HIDDEN,
   });

@@ -20,6 +20,7 @@ import React from 'react';
 import { styled } from '@superset-ui/core';
 import { Collapse as AntdCollapse } from 'antd';
 import { CollapseProps as AntdCollapseProps } from 'antd/lib/collapse';
+import { theme } from 'src/preamble';
 
 export interface CollapseProps extends AntdCollapseProps {
   light?: boolean;
@@ -35,14 +36,12 @@ const Collapse = Object.assign(
   ))`
     .ant-collapse-item {
       .ant-collapse-header {
-        color: ${({ theme }) => theme.colors.primary.dark1};
         font-weight: ${({ bold, theme }) =>
           bold
             ? theme.typography.weights.bold
             : theme.typography.weights.normal};
-        font-size: ${({ bigger, theme }) =>
-          bigger ? `${theme.gridUnit_3 * 7}px` : 'inherit'};
-
+        font-size: ${theme.typography.sizes.m}px;
+        color: ${theme.colors.grayscale.dark2};
         .ant-collapse-arrow svg {
           transition: ${({ animateArrows }) =>
             animateArrows ? 'transform 0.24s' : 'none'};
@@ -79,13 +78,6 @@ const Collapse = Object.assign(
             margin: ${({ theme }) => theme.gridUnit * 12}px auto;
             display: block;
           }
-         .ant-row.menu {
-          background-color:${({ theme }) => theme.colors.grayscale.light1};
-          position:relative;
-          .ant-menu-item a{
-            color:${({ theme }) => theme.colors.primary.dark1};
-          }
-         }
         }
       }
     }

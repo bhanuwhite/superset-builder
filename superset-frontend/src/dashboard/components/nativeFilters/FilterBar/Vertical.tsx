@@ -73,7 +73,7 @@ const Bar = styled.div<{ width: number }>`
     flex-direction: column;
     flex-grow: 1;
     width: ${width}px;
-    background: ${theme.colors.grayscale.dark2};
+    background: ${theme.colors.grayscale.light5};
     border-right: 1px solid ${theme.colors.grayscale.light2};
     border-bottom: 1px solid ${theme.colors.grayscale.light2};
     min-height: 100%;
@@ -108,13 +108,13 @@ const CollapsedBar = styled.div<{ offset: number }>`
 
 const StyledCollapseIcon = styled(Icons.Collapse)`
   ${({ theme }) => `
-    color: ${theme.colors.primary.base};
+    color: ${theme.colors.grayscale.dark2};
     margin-bottom: ${theme.gridUnit * 3}px;
   `}
 `;
 
 const StyledFilterIcon = styled(Icons.Filter)`
-  color: ${({ theme }) => theme.colors.primary.base};
+  color: ${({ theme }) => theme.colors.grayscale.base};
 `;
 
 const StyledTabs = styled(AntdTabs)`
@@ -287,6 +287,17 @@ const VerticalFilterBar: React.FC<VerticalBarProps> = ({
     [],
   );
 
+  const actionsElement = useMemo(
+    () =>
+      isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS) ? actions : null,
+    [actions],
+  );
+
+  // Filter sets depend on native filters
+  const filterSetEnabled =
+    isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET) &&
+    isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS);
+
   return (
     <FilterBarScrollContext.Provider value={isScrolling}>
       <BarWrapper
@@ -315,7 +326,7 @@ const VerticalFilterBar: React.FC<VerticalBarProps> = ({
             <div css={{ height }}>
               <Loading />
             </div>
-          ) : isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET) ? (
+          ) : filterSetEnabled ? (
             <>
               {crossFilters}
               {filterSetsTabs}
@@ -324,11 +335,12 @@ const VerticalFilterBar: React.FC<VerticalBarProps> = ({
             <div css={tabPaneStyle} onScroll={onScroll}>
               <>
                 {crossFilters}
-                {filterControls}
+                {isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS) &&
+                  filterControls}
               </>
             </div>
           )}
-          {actions}
+          {actionsElement}
         </Bar>
       </BarWrapper>
     </FilterBarScrollContext.Provider>

@@ -43,7 +43,7 @@ const StyledImage = styled.div`
 
   .default-db-icon {
     font-size: 36px;
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
     margin-right: 0;
     span:first-of-type {
       margin-right: 0;

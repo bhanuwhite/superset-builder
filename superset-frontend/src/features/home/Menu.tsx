@@ -43,20 +43,15 @@ interface MenuProps {
 
 const StyledHeader = styled.header`
   ${({ theme }) => `
-      background-color: ${theme.colors.grayscale.dark2};
-      margin-bottom: 0px;
+      background-color: ${theme.colors.grayscale.light5};
       z-index: 10;
-
+      border-bottom: 2px solid ${theme.colors.grayscale.dark2};
       &:nth-last-of-type(2) nav {
         margin-bottom: 2px;
       }
       .caret {
         display: none;
       }
-      .anticon svg{
-        color: ${theme.colors.primary.base} !important;
-      } 
-   
       .navbar-brand {
         display: flex;
         flex-direction: column;
@@ -106,32 +101,20 @@ const StyledHeader = styled.header`
         }
       }
       .ant-menu-horizontal{
-        background-color: ${theme.colors.grayscale.dark2};
+        background-color: ${theme.colors.grayscale.light5};
       }
       .ant-menu-horizontal .ant-menu-item {
         height: 100%;
         line-height: inherit;
       }
-      .ant-menu-horizontal> .ant-menu-item a{
-       color: ${theme.colors.primary.base};
-      }
       .ant-menu > .ant-menu-item > a {
         padding: ${theme.gridUnit * 4}px;
+        color: ${theme.colors.grayscale.dark2};
       }
-        .ant-menu-submenu-horizontal{
-          color: ${theme.colors.primary.base};
-          &:hover {
-            color: ${theme.colors.primary.base};
-            background-color: ${theme.colors.grayscale.dark1};
-            border-bottom: none;
-            margin: 0;
-            &:after {
-              opacity: 1;
-              width: 100%;
-              background-color: ${theme.colors.primary.light1};
-            }
-          }
-        }
+      .ant-menu-submenu-title{
+        color: ${theme.colors.grayscale.dark2};
+        font-weight:600;
+      }
       @media (max-width: 767px) {
         .ant-menu-item {
           padding: 0 ${theme.gridUnit * 6}px 0
@@ -152,14 +135,13 @@ const StyledHeader = styled.header`
       }
       .ant-menu-item a {
         &:hover {
-          color: ${theme.colors.primary.base};
-          background-color: ${theme.colors.grayscale.dark1};
+          color: ${theme.colors.grayscale.dark1};
+          background-color: ${theme.colors.primary.light5};
           border-bottom: none;
           margin: 0;
           &:after {
             opacity: 1;
             width: 100%;
-            background-color: ${theme.colors.primary.light1};
           }
         }
       }
@@ -172,42 +154,12 @@ const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
     border-radius: 0px;
   }
-  .ant-menu-vertical{
-    background-color: ${theme.colors.grayscale.dark2} !important;
-    .ant-menu-item {  
-      &:hover {
-      background-color: ${theme.colors.grayscale.dark1};
-      a{
-        color: ${theme.colors.primary.base};
-      }
-       }
-      a{
-        color: ${theme.colors.primary.base};
-      }
-    }
-    label{
-      color: ${theme.colors.primary.base} !important;
-    }
-  }
-  .ant-menu-submenu-vertical{
-    color: ${theme.colors.primary.base} !important;
-    i{
-      color: ${theme.colors.primary.base} !important;
-    }
-  }
-  .ant-menu-item-group-title{
-    color: ${theme.colors.primary.base} ;
-  }
-  .ant-menu-item-only-child{
-    color: ${theme.colors.primary.base} !important;
-  }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;
     i {
       padding-right: ${theme.gridUnit * 2}px;
       margin-left: ${theme.gridUnit * 1.75}px;
     }
-    
   }
 `;
 const { SubMenu } = DropdownMenu;
@@ -348,7 +300,7 @@ export function Menu({
         <Col md={8} xs={24}>
           <RightMenu
             align={screens.md ? 'flex-end' : 'flex-start'}
-            settings={settings}
+            // settings={settings}
             navbarRight={navbarRight}
             isFrontendRoute={isFrontendRoute}
             environmentTag={environmentTag}

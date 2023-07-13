@@ -36,10 +36,9 @@ interface TableCollectionProps {
 
 export const Table = styled.table`
   ${({ theme }) => `
-
+    background-color: ${theme.colors.grayscale.light5};
     border-collapse: separate;
-    background: ${theme.colors.grayscale.dark2};
-    border:1px solid  ${theme.colors.grayscale.light3} !important; 
+    border-radius: ${theme.borderRadius}px;
     thead > tr > th {
       border: 0;
     }
@@ -50,12 +49,11 @@ export const Table = styled.table`
       }
     }
     th {
-      background: ${theme.colors.grayscale.light1};
+      background: ${theme.colors.customBstStyles.tableHeaderbg};
       position: sticky;
-      border-bottom:1px solid  ${theme.colors.grayscale.light3} !important; 
       top: 0;
-      color: ${theme.colors.primary.dark1};
-
+      padding:7px !important;
+      color:${theme.colors.grayscale.dark1};
       &:first-of-type {
         padding-left: ${theme.gridUnit * 4}px;
       }
@@ -93,9 +91,9 @@ export const Table = styled.table`
     }
 
     td {
-      color: ${theme.colors.primary.dark1};
-      border-bottom:1px solid rgba(255,255,255,.37);
-      border-top:0px;
+      padding:9px !important;
+      color:${theme.colors.grayscale.dark1};
+      border-color:${theme.colors.customBstStyles.borderColor} !important;
       &.xs {
         width: 25px;
       }
@@ -115,10 +113,7 @@ export const Table = styled.table`
         width: 200px;
       }
       a{
-        color: ${theme.colors.primary.dark1};
-      }
-      svg{
-        color: ${theme.colors.primary.dark1};
+        color:${theme.colors.grayscale.dark1};
       }
     }
 
@@ -144,7 +139,6 @@ export const Table = styled.table`
     .actions {
       white-space: nowrap;
       min-width: 100px;
-      color: ${theme.colors.primary.dark1};
 
       svg,
       i {
@@ -152,7 +146,7 @@ export const Table = styled.table`
 
         &:hover {
           path {
-            fill: ${theme.colors.primary.light1};
+            fill: ${theme.colors.primary.base};
           }
         }
       }
@@ -166,7 +160,7 @@ export const Table = styled.table`
       }
 
       &:hover {
-        background-color: ${theme.colors.secondary.light5};
+        background-color: ${theme.colors.grayscale.light4};
 
         .actions {
           opacity: 1;
@@ -176,10 +170,10 @@ export const Table = styled.table`
     }
 
     .table-row-selected {
-      background-color: ${theme.colors.secondary.light4};
+      background-color: ${theme.colors.grayscale.light4};
 
       &:hover {
-        background-color: ${theme.colors.secondary.light4};
+        background-color: ${theme.colors.grayscale.light4};
       }
     }
 

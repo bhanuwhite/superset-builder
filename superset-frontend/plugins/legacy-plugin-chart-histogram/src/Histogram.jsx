@@ -85,50 +85,49 @@ class CustomHistogram extends React.PureComponent {
       ...defaultTheme,
       xTickStyles: {
         ...defaultTheme.xTickStyles,
-        stroke: theme.colors.grayscale.label,
+        stroke: theme.colors.grayscale.dark2,
         label: {
           ...defaultTheme.xTickStyles.label,
           bottom: {
             ...defaultTheme.xTickStyles.label.bottom,
-            fill: theme.colors.grayscale.label
+            fill: theme.colors.grayscale.dark2
           },
         }
       },
       xAxisStyles: {
         ...defaultTheme.xAxisStyles,
-        stroke: theme.colors.grayscale.label,
+        stroke: theme.colors.grayscale.dark2,
         label: {
           ...defaultTheme.xAxisStyles.label,
           bottom: {
             ...defaultTheme.xAxisStyles.label.bottom,
-            fill: theme.colors.grayscale.label
+            fill: theme.colors.grayscale.dark2
           },
         }
       },
       yTickStyles: {
         ...defaultTheme.yTickStyles,
-        stroke: theme.colors.grayscale.label,
+        stroke: theme.colors.grayscale.dark2,
         label: {
           ...defaultTheme.yTickStyles.label,
           left: {
             ...defaultTheme.yTickStyles.label.left,
-            fill: theme.colors.grayscale.label
+            fill: theme.colors.grayscale.dark2
           },
         }
       },
       yAxisStyles: {
         ...defaultTheme.yAxisStyles,
-        stroke: theme.colors.grayscale.label,
+        stroke: theme.colors.grayscale.dark2,
         label: {
           ...defaultTheme.yAxisStyles.label,
           left: {
             ...defaultTheme.yAxisStyles.label.left,
-            fill: theme.colors.grayscale.label
+            fill: theme.colors.grayscale.dark2
           },
         }
       }
     };
-
     return (
       <WithLegend
         className={`superset-legacy-chart-histogram ${className}`}

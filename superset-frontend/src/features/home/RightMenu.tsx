@@ -64,7 +64,7 @@ const versionInfoStyles = (theme: SupersetTheme) => css`
   white-space: nowrap;
 `;
 const StyledI = styled.div`
-  color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 const styledDisabled = (theme: SupersetTheme) => css`
@@ -386,7 +386,6 @@ const RightMenu = ({
 
   newData.menu = cleanedMenu;
   newData.settings = settings;
-
   return (
     <StyledDiv align={align}>
       {canDatabase && (
@@ -404,8 +403,8 @@ const RightMenu = ({
             /^#(?:[0-9a-f]{3}){1,2}$/i.test(environmentTag.color)
               ? environmentTag.color
               : environmentTag.color
-                .split('.')
-                .reduce((o, i) => o[i], theme.colors)
+                  .split('.')
+                  .reduce((o, i) => o[i], theme.colors)
           }
         >
           <span css={tagStyles}>{environmentTag.text}</span>
@@ -416,7 +415,7 @@ const RightMenu = ({
         mode="horizontal"
         onClick={handleMenuSelection}
         onOpenChange={onMenuOpen}
-        style={{ background: 'transparent' }}
+        style={{backgroundColor:'transparent'}} 
       >
         {RightMenuExtension && <RightMenuExtension />}
         {!navbarRight.user_is_anonymous && showActionDropdown && (
@@ -638,7 +637,7 @@ class RightMenuErrorWrapper extends React.PureComponent<RightMenuProps> {
     return { hasError: true };
   }
 
-  noop = () => { };
+  noop = () => {};
 
   render() {
     if (this.state.hasError) {

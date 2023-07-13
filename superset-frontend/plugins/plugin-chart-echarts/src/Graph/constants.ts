@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { supersetTheme } from '@superset-ui/core';
 import { GraphSeriesOption } from 'echarts';
 
 export const DEFAULT_GRAPH_SERIES_OPTION: GraphSeriesOption = {
@@ -38,6 +39,7 @@ export const DEFAULT_GRAPH_SERIES_OPTION: GraphSeriesOption = {
     padding: [0, 0, 0, 0],
     overflow: 'truncate',
     formatter: '{b}',
+    color: `${supersetTheme.colors.grayscale.dark2}`,
   },
   emphasis: {
     focus: 'adjacency',

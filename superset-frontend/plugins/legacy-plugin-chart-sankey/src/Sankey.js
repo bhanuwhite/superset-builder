@@ -43,6 +43,7 @@ const propTypes = {
 };
 
 const formatNumber = getNumberFormatter(NumberFormats.FLOAT);
+const theme = supersetTheme;
 
 function Sankey(element, props) {
   const { data, width, height, colorScheme, sliceId } = props;
@@ -162,7 +163,6 @@ function Sankey(element, props) {
     .attr('class', 'link')
     .attr('d', path)
     .style('stroke-width', d => Math.max(1, d.dy))
-    .style('stroke', supersetTheme.colors.grayscale.label)
     .sort((a, b) => b.dy - a.dy)
     .on('mouseover', onmouseover)
     .on('mouseout', onmouseout);
@@ -189,10 +189,10 @@ function Sankey(element, props) {
       if (text) {
         if (overlappingElements.includes(el)) {
           text.classList.add('opacity-0');
-          text.style.fill = supersetTheme.colors.grayscale.label
+          text.style.fill = theme.colors.grayscale.dark2
         } else {
           text.classList.remove('opacity-0');
-          text.style.fill = supersetTheme.colors.grayscale.label
+          text.style.fill = theme.colors.grayscale.dark2
         }
       }
     });

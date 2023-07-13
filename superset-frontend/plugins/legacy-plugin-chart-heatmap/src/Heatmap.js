@@ -52,7 +52,7 @@ const propTypes = {
   leftMargin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   metric: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   normalized: PropTypes.bool,
-  numberFormat: PropTypes.string,
+  valueFormatter: PropTypes.object,
   showLegend: PropTypes.bool,
   showPercentage: PropTypes.bool,
   showValues: PropTypes.bool,
@@ -91,7 +91,7 @@ function Heatmap(element, props) {
     leftMargin,
     metric,
     normalized,
-    numberFormat,
+    valueFormatter,
     showLegend,
     showPercentage,
     showValues,
@@ -115,8 +115,6 @@ function Heatmap(element, props) {
   let showX = true;
   const pixelsPerCharX = 4.5; // approx, depends on font size
   let pixelsPerCharY = 6; // approx, depends on font size
-
-  const valueFormatter = getNumberFormatter(numberFormat);
 
   // Dynamically adjusts  based on max x / y category lengths
   function adjustMargins() {
@@ -150,7 +148,7 @@ function Heatmap(element, props) {
         ? Math.ceil(Math.max(margin.bottom, pixelsPerCharX * longestX))
         : bottomMargin;
   }
-  // console.log(element, props, 'heatmap');
+
   // Check if x axis "x" position is outside of the container and rotate labels 90deg
   function checkLabelPosition(container) {
     const xAxisNode = container.select('.x.axis').node();
@@ -326,7 +324,7 @@ function Heatmap(element, props) {
       .append('g')
       .attr('transform', `translate(${width - 40}, ${margin.top})`)
       .call(colorLegend)
-      .style('fill', theme.colors.grayscale.label);
+      .style('fill', theme.colors.grayscale.dark2);
   }
 
   const tip = d3tip()
@@ -350,7 +348,7 @@ function Heatmap(element, props) {
           obj.v,
         )}<div>`;
         if (showPercentage) {
-          s += `<div><b>%: asdas</b>${fp(normalized ? obj.rank : obj.perc)}<div>`;
+          s += `<div><b>%: </b>${fp(normalized ? obj.rank : obj.perc)}<div>`;
         }
         tip.style('display', null);
       } else {
@@ -392,8 +390,8 @@ function Heatmap(element, props) {
       .attr('y', 10)
       .attr('dy', '0.3em')
       .style('text-anchor', 'end')
-      .style('fill', theme.colors.grayscale.label)
-      .attr('transform', 'rotate(-45)');
+      .attr('transform', 'rotate(-45)')
+      .style('fill', theme.colors.grayscale.dark2);
   }
 
   if (showY) {
@@ -409,7 +407,7 @@ function Heatmap(element, props) {
       .attr('class', 'y axis')
       .attr('transform', `translate(${margin.left},${margin.top})`)
       .call(yAxis)
-      .style('fill', theme.colors.grayscale.label)
+      .style('fill', theme.colors.grayscale.dark2);
   }
 
   checkLabelPosition(container);

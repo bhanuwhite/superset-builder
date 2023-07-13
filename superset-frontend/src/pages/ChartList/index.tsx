@@ -270,8 +270,8 @@ function ChartList(props: ChartListProps) {
       ? {
           filters: [
             {
-              col: 'dashboards',
-              opr: FilterOperator.relationManyMany,
+              col: 'dashboard_title',
+              opr: FilterOperator.startsWith,
               value: filterValue,
             },
           ],
@@ -287,9 +287,7 @@ function ChartList(props: ChartListProps) {
       ...filters,
     });
     const response: void | JsonResponse = await SupersetClient.get({
-      endpoint: !filterValue
-        ? `/api/v1/dashboard/?q=${queryParams}`
-        : `/api/v1/chart/?q=${queryParams}`,
+      endpoint: `/api/v1/dashboard/?q=${queryParams}`,
     }).catch(() =>
       addDangerToast(t('An error occurred while fetching dashboards')),
     );
@@ -811,7 +809,7 @@ function ChartList(props: ChartListProps) {
 
   return (
     <>
-      <SubMenu name={t('Charts')} buttons={subMenuButtons} rightMenuPresence/>
+      <SubMenu name={t('Charts')} buttons={subMenuButtons} />
       {sliceCurrentlyEditing && (
         <PropertiesModal
           onHide={closeChartEditModal}

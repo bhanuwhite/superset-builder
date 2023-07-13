@@ -17,7 +17,14 @@
  * under the License.
  */
 /* eslint-disable no-param-reassign */
-import { css, styled, t, useTheme } from '@superset-ui/core';
+import {
+  FeatureFlag,
+  css,
+  isFeatureEnabled,
+  styled,
+  t,
+  useTheme,
+} from '@superset-ui/core';
 import React, { FC, useMemo } from 'react';
 import Icons from 'src/components/Icons';
 import Button from 'src/components/Button';
@@ -38,13 +45,13 @@ const TitleArea = styled.div`
     padding: 0 ${theme.gridUnit * 2}px ${theme.gridUnit * 2}px;
 
     & > span {
-      font-size: ${theme.typography.sizes.l}px;
+      font-size: ${theme.gridUnit * 5 }px;
+      color: ${theme.colors.grayscale.dark2};
       flex-grow: 1;
       font-weight: ${theme.typography.weights.bold};
+      
     }
-    .filter-text{
-      color:${theme.colors.primary.base};
-    }
+
     & > div:first-of-type {
       line-height: 0;
     }
@@ -78,7 +85,7 @@ type HeaderProps = {
 const AddFiltersButtonContainer = styled.div`
   ${({ theme }) => css`
     margin-top: ${theme.gridUnit * 2}px;
-  
+
     & button > [role='img']:first-of-type {
       margin-right: ${theme.gridUnit}px;
       line-height: 0;
@@ -108,7 +115,7 @@ const Header: FC<HeaderProps> = ({ toggleFiltersBar }) => {
   return (
     <Wrapper>
       <TitleArea>
-        <span className='filter-text'>{t('Filters')}</span>
+        <span>{t('Filters')}</span>
         <FilterBarSettings />
         <HeaderButton
           {...getFilterBarTestId('collapse-button')}
@@ -116,10 +123,10 @@ const Header: FC<HeaderProps> = ({ toggleFiltersBar }) => {
           buttonSize="xsmall"
           onClick={() => toggleFiltersBar(false)}
         >
-          <Icons.Expand iconColor={theme.colors.primary.base} />
+          <Icons.Expand iconColor={theme.colors.grayscale.dark2} />
         </HeaderButton>
       </TitleArea>
-      {canEdit && (
+      {canEdit && isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS) && (
         <AddFiltersButtonContainer>
           <FilterConfigurationLink
             dashboardId={dashboardId}

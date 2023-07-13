@@ -65,8 +65,6 @@ const MenuItem = styled(AntdMenu.Item)`
   }
 `;
 
-
-
 const StyledNav = styled(AntdMenu)`
   line-height: 51px;
   border: none;
@@ -93,9 +91,6 @@ const StyledNav = styled(AntdMenu)`
 
   & > .ant-menu-item > a {
     padding: ${({ theme }) => theme.gridUnit * 4}px;
-  }
-  .ant-dropdown-menu-light{
-    background-color:red;
   }
 `;
 
@@ -138,6 +133,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
   & > .ant-menu-submenu-title {
     padding: 0 ${({ theme }) => theme.gridUnit * 6}px 0
       ${({ theme }) => theme.gridUnit * 3}px !important;
+      font-weight:500;
     span[role='img'] {
       position: absolute;
       right: ${({ theme }) => -theme.gridUnit + -2}px;

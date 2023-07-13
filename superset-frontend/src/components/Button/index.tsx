@@ -68,47 +68,47 @@ export default function Button(props: ButtonProps) {
 
   const theme = useTheme();
   const { colors, transitionTiming, borderRadius, typography } = theme;
-  const { primary, grayscale, success, warning, error } = colors;
+  const { primary, grayscale, success, warning, error , customBstStyles} = colors;
 
   let height = 36;
-  let padding = 18;
+  let padding = 16;
   if (buttonSize === 'xsmall') {
     height = 22;
     padding = 5;
   } else if (buttonSize === 'small') {
-    height = 30;
+    height = 36;
     padding = 10;
   }
 
-  let backgroundColor = primary.base;
-  let backgroundColorHover = primary.dark1;
-  let backgroundColorActive = mix(0.2, grayscale.dark2, primary.dark1);
-  let backgroundColorDisabled = grayscale.light2;
-  let color = grayscale.light5;
+  let backgroundColor = grayscale.light5;
+  let backgroundColorHover = grayscale.light5;
+  let backgroundColorActive = grayscale.light5;
+  let backgroundColorDisabled = customBstStyles.primaryButtonDsabledBg;
+  let color = primary.dark1;
   let colorHover = color;
-  let borderWidth = 0;
-  let borderStyle = 'none';
-  let borderColor = 'transparent';
-  let borderColorHover = 'transparent';
-  let borderColorDisabled = 'transparent';
+  let borderWidth = 1;
+  let borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';;
+  let borderColor =primary.dark1;
+  let borderColorHover = primary.dark1;
+  let borderColorDisabled = customBstStyles.primaryButtonDsabledBg;
 
   if (buttonStyle === 'primary') {
-    backgroundColor = primary.light1;
-    backgroundColorHover = primary.light1;
-    backgroundColorActive = primary.light1;;
-    color = primary.base;
+    backgroundColor = primary.dark1;
+    backgroundColorHover = primary.dark1;
+    backgroundColorActive = mix(0.2, grayscale.dark2, primary.dark1);
+    color = customBstStyles.primaryButtonColor;
     colorHover = color;
   } else if (buttonStyle === 'tertiary' || buttonStyle === 'dashed') {
-    backgroundColor = grayscale.dark2;
-    backgroundColorHover = grayscale.dark1;
-    backgroundColorActive = grayscale.dark1;
-    backgroundColorDisabled = grayscale.light2;
-    color = primary.light1;
-    colorHover = color;
+    backgroundColor = grayscale.light5;
+    backgroundColorHover = grayscale.light5;
+    backgroundColorActive = grayscale.light5;
+    backgroundColorDisabled = grayscale.light5;
     borderWidth = 1;
     borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';
-    borderColor = primary.light1;
-    borderColorHover = primary.light1;
+    borderColor = primary.dark1;
+    color = primary.dark1;
+    colorHover= color;
+    borderColorHover = primary.dark1;
     borderColorDisabled = grayscale.light2;
   } else if (buttonStyle === 'danger') {
     backgroundColor = error.base;
@@ -116,6 +116,8 @@ export default function Button(props: ButtonProps) {
     backgroundColorActive = mix(0.2, grayscale.dark2, error.base);
     color = grayscale.light5;
     colorHover = color;
+    borderColor= error.base;
+    borderColorHover= error.base;
   } else if (buttonStyle === 'warning') {
     backgroundColor = warning.base;
     backgroundColorHover = mix(0.1, grayscale.dark2, warning.base);
@@ -132,8 +134,9 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
-    color = primary.light1;
-    colorHover = primary.light1;
+    color = primary.dark1;
+    colorHover= color;
+    borderWidth= 0;
   }
 
   const element = children as ReactElement;
@@ -157,14 +160,14 @@ export default function Button(props: ButtonProps) {
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: 1.5715,
-        fontSize: typography.sizes.s,
+        fontSize: typography.sizes.m,
         fontWeight: typography.weights.bold,
-        height,
+        height:'36px',
         textTransform: 'uppercase',
         padding: `0px ${padding}px`,
         transition: `all ${transitionTiming}s`,
         minWidth: cta ? theme.gridUnit * 36 : undefined,
-        minHeight: cta ? theme.gridUnit * 8 : undefined,
+        minHeight: cta ? theme.gridUnit * 9 : undefined,
         boxShadow: 'none',
         borderWidth,
         borderStyle,
@@ -187,7 +190,7 @@ export default function Button(props: ButtonProps) {
           borderColor,
         },
         '&[disabled], &[disabled]:hover': {
-          color: primary.dark2,
+          color: customBstStyles.primaryButtonDsabledText,
           backgroundColor:
             buttonStyle === 'link' ? 'transparent' : backgroundColorDisabled,
           borderColor:

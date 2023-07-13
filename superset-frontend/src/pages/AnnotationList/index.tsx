@@ -254,6 +254,7 @@ function AnnotationList({
   return (
     <>
       <SubMenu
+        rightMenuPresence
         name={
           <StyledHeader>
             <span>{t('Annotation Layer %s', annotationLayerName)}</span>

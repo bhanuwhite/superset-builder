@@ -213,7 +213,7 @@ const FilterBarSettings = () => {
         icon={
           <Icons.Gear
             name="gear"
-            iconColor={theme.colors.primary.base}
+            iconColor={theme.colors.grayscale.dark2}
             data-test="filterbar-orientation-icon"
           />
         }

@@ -22,6 +22,7 @@ import PropTypes from 'prop-types';
 import {
   getNumberFormatter,
   CategoricalColorNamespace,
+  supersetTheme,
 } from '@superset-ui/core';
 
 const propTypes = {
@@ -37,6 +38,8 @@ const propTypes = {
 
 function Chord(element, props) {
   const { data, width, height, numberFormat, colorScheme, sliceId } = props;
+
+  const theme = supersetTheme
 
   element.innerHTML = '';
 
@@ -101,7 +104,8 @@ function Chord(element, props) {
   groupText
     .append('textPath')
     .attr('xlink:href', (d, i) => `#group${i}`)
-    .text((d, i) => nodes[i]);
+    .text((d, i) => nodes[i])
+    .style('fill', theme.colors.grayscale.dark2);
   // Remove the labels that don't fit. :(
   groupText
     .filter(function filter(d, i) {

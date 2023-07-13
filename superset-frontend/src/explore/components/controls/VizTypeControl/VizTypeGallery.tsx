@@ -165,8 +165,8 @@ const LeftPane = styled.div`
 
   .ant-collapse .ant-collapse-item {
     .ant-collapse-header {
-      font-size: ${({ theme }) => theme.gridUnit * 3}px;
-      color: ${({ theme }) => theme.colors.primary.base};
+      font-size: ${({ theme }) => theme.typography.sizes.s}px;
+      color: ${({ theme }) => theme.colors.grayscale.base};
       padding-left: ${({ theme }) => theme.gridUnit * 2}px;
       padding-bottom: ${({ theme }) => theme.gridUnit}px;
     }
@@ -181,7 +181,6 @@ const LeftPane = styled.div`
 const RightPane = styled.div`
   grid-area: main;
   overflow-y: auto;
-  color: ${({ theme }) => theme.colors.primary.base};
 `;
 
 const SearchWrapper = styled.div`
@@ -202,7 +201,7 @@ const InputIconAlignment = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.primary.base};
+  color: ${({ theme }) => theme.colors.grayscale.base};
 `;
 
 const SelectorLabel = styled.button`
@@ -219,7 +218,6 @@ const SelectorLabel = styled.button`
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
-    color:${theme.colors.primary.base};
 
     &:focus {
       outline: initial;
@@ -295,7 +293,6 @@ const Description = styled.p`
   overflow: auto;
   padding-right: ${({ theme }) => theme.gridUnit * 14}px;
   margin: 0;
-  color:${({ theme }) => theme.colors.primary.base};
 `;
 
 const Examples = styled.div`

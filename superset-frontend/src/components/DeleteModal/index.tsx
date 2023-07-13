@@ -24,9 +24,9 @@ import { FormLabel } from 'src/components/Form';
 
 const StyledDiv = styled.div`
   padding-top: 8px;
-  width:100%;
+  width: 50%;
   label {
-    color: ${({ theme }) => theme.colors.primary.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     text-transform: uppercase;
   }
 `;
@@ -34,7 +34,7 @@ const StyledDiv = styled.div`
 const DescriptionContainer = styled.div`
   line-height: ${({ theme }) => theme.gridUnit * 4}px;
   padding-top: 16px;
-  color: ${({ theme }) => theme.colors.primary.base};
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 interface DeleteModalProps {

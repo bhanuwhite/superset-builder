@@ -88,7 +88,7 @@ const VerticalDotsContainer = styled.div`
     border-radius: 50%;
     margin: ${({ theme }) => theme.gridUnit / 2}px 0;
 
-    background-color: ${({ theme }) => theme.colors.primary.dark1};
+    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 
   &:hover {

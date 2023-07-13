@@ -66,7 +66,7 @@ export default styled(SankeyComponent)`
       background: ${theme.colors.grayscale.light2};
       padding: ${theme.gridUnit * 3}px;
       font-size: ${theme.typography.sizes.s}px;
-      color: ${theme.colors.grayscale.dark2};
+      color: ${theme.colors.customBstStyles.heatMapToolTipText};
       border: 1px solid ${theme.colors.grayscale.light5};
       text-align: center;
       pointer-events: none;

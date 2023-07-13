@@ -92,12 +92,12 @@ const Styles = styled.div`
     height: 100%;
   }
 
-.chart-container{
-  background:${({ theme }) => theme.colors.grayscale.light2};
-}
-.panel-body{
-  background:${({ theme }) => theme.colors.grayscale.light2};
-}
+  .chart-container{
+    background:${({ theme }) => theme.colors.customBstStyles.chartBg};
+  }
+  .panel-body{
+    background:${({ theme }) => theme.colors.customBstStyles.chartBg};
+  }
 
   .gutter {
     border-top: 1px solid ${({ theme }) => theme.colors.grayscale.light2};

@@ -51,17 +51,18 @@ export default function Label(props: LabelProps) {
     primary,
     secondary,
     grayscale,
+    customBstStyles,
     success,
     warning,
     error,
     info,
   } = colors;
 
-  let backgroundColor = primary.light1;
-  let backgroundColorHover = onClick ? primary.light1 : grayscale.light1;
-  let borderColor = onClick ? grayscale.light1 : 'transparent';
-  let borderColorHover = onClick ? primary.light1 : 'transparent';
-  let color = primary.dark1;
+  let backgroundColor = primary.dark1;
+  let backgroundColorHover = onClick ? primary.dark1 : primary.dark1;
+  let borderColor = onClick ? primary.dark1 : 'transparent';
+  let borderColorHover = onClick ? primary.dark1 : 'transparent';
+  let color = customBstStyles.primaryButtonColor;
 
   if (type !== 'default') {
     color = grayscale.light4;

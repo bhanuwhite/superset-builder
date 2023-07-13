@@ -116,11 +116,11 @@ const defaultProps = {
 };
 
 const headerContainerStyle = theme => css`
-  border-bottom: 1px solid ${theme.colors.grayscale.base};
+  border-bottom: 1px solid ${theme.colors.grayscale.light2};
 `;
 
 const editButtonStyle = theme => css`
-  color: ${theme.colors.primary.base};
+  color: ${theme.colors.customBstStyles.primaryButtonColor};
 `;
 
 const actionButtonsStyle = theme => css`
@@ -145,9 +145,9 @@ const StyledUndoRedoButton = styled(AntdButton)`
 `;
 
 const undoRedoStyle = theme => css`
-  color: ${theme.colors.primary.base};
+  color: ${theme.colors.grayscale.light1};
   &:hover {
-    color: ${theme.colors.primary.base};
+    color: ${theme.colors.grayscale.base};
   }
 `;
 
@@ -161,12 +161,12 @@ const undoRedoDisabled = theme => css`
 
 const saveBtnStyle = theme => css`
   min-width: ${theme.gridUnit * 17}px;
-  height: ${theme.gridUnit * 8}px;
+  height: ${theme.gridUnit * 9}px;
 `;
 
 const discardBtnStyle = theme => css`
   min-width: ${theme.gridUnit * 22}px;
-  height: ${theme.gridUnit * 8}px;
+  height: ${theme.gridUnit * 9}px;
 `;
 
 class Header extends React.PureComponent {
@@ -589,9 +589,8 @@ class Header extends React.PureComponent {
                       </div>
                       <Button
                         css={discardBtnStyle}
-                        buttonSize="small"
                         onClick={this.constructor.discardChanges}
-                        buttonStyle="default"
+                        buttonStyle="tertiary"
                         data-test="discard-changes-button"
                         aria-label={t('Discard')}
                       >
@@ -599,7 +598,6 @@ class Header extends React.PureComponent {
                       </Button>
                       <Button
                         css={saveBtnStyle}
-                        buttonSize="small"
                         disabled={!hasUnsavedChanges}
                         buttonStyle="primary"
                         onClick={this.overwriteDashboard}

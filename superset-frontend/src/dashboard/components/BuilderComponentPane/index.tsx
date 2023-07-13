@@ -50,7 +50,7 @@ const BuilderComponentPane = ({ topOffset = 0 }) => (
         height: 100%;
         width: ${BUILDER_PANE_WIDTH}px;
         box-shadow: -4px 0 4px 0 ${rgba(theme.colors.grayscale.dark2, 0.1)};
-        background-color: ${theme.colors.grayscale.dark2};
+        background-color: ${theme.colors.grayscale.light5};
       `}
     >
       <Tabs
@@ -60,10 +60,12 @@ const BuilderComponentPane = ({ topOffset = 0 }) => (
           line-height: inherit;
           margin-top: ${theme.gridUnit * 2}px;
           height: 100%;
-
+          .ant-tabs-tab{
+            width:50%;
+          }
           & .ant-tabs-content-holder {
             height: 100%;
-           color: ${theme.colors.primary.base};
+            color: ${theme.colors.grayscale.dark2};
             & .ant-tabs-content {
               height: 100%;
             }

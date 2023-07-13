@@ -22,6 +22,7 @@ import {
   getMetricLabel,
   getNumberFormatter,
   getTimeFormatter,
+  supersetTheme,
 } from '@superset-ui/core';
 import { EChartsCoreOption, BoxplotSeriesOption } from 'echarts';
 import { CallbackDataParams } from 'echarts/types/src/util/types';
@@ -56,7 +57,7 @@ export default function transformProps(
     emitCrossFilters,
   } = chartProps;
   const { data = [] } = queriesData[0];
-  const { setDataMask = () => {}, onContextMenu } = hooks;
+  const { setDataMask = () => { }, onContextMenu } = hooks;
   const coltypeMapping = getColtypesMapping(queriesData[0]);
   const {
     colorScheme,
@@ -78,7 +79,7 @@ export default function transformProps(
   const numberFormatter = getNumberFormatter(numberFormat);
   const metricLabels = metrics.map(getMetricLabel);
   const groupbyLabels = groupby.map(getColumnLabel);
-
+  const theme = supersetTheme
   const transformedData = data
     .map((datum: any) => {
       const groupbyLabel = extractGroupbyLabel({
@@ -261,7 +262,9 @@ export default function transformProps(
     xAxis: {
       type: 'category',
       data: transformedData.map(row => row.name),
-      axisLabel,
+      axisLabel: {
+        color: theme.colors.grayscale.dark2, // Change to your desired xAxis label color
+      },
       name: xAxisTitle,
       nameGap: convertInteger(xAxisTitleMargin),
       nameLocation: 'middle',
@@ -269,7 +272,10 @@ export default function transformProps(
     yAxis: {
       ...defaultYAxis,
       type: 'value',
-      axisLabel: { formatter: numberFormatter },
+      axisLabel: {
+        formatter: numberFormatter,
+        color: theme.colors.grayscale.dark2, // Change to your desired yAxis label color
+      },
       name: yAxisTitle,
       nameGap: convertInteger(yAxisTitleMargin),
       nameLocation: yAxisTitlePosition === 'Left' ? 'middle' : 'end',

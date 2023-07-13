@@ -503,7 +503,7 @@ function SavedQueryList({
 
   return (
     <>
-      <SubMenu {...menuData} rightMenuPresence/>
+      <SubMenu {...menuData} />
       {queryCurrentlyDeleting && (
         <DeleteModal
           description={t(

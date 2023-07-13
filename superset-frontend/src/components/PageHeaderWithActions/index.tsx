@@ -38,8 +38,7 @@ export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
   height: ${theme.gridUnit * 8}px;
   padding: 0;
-  border: 1px solid ${theme.colors.primary.light1};
-  color: ${theme.colors.primary.light1};
+
 
   &.ant-btn > span.anticon {
     line-height: 0;
@@ -57,10 +56,18 @@ const headerStyles = (theme: SupersetTheme) => css`
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: ${theme.colors.grayscale.base};
+  background-color: ${theme.colors.customBstStyles.subHeader};
   height: ${theme.gridUnit * 16}px;
   padding: 0 ${theme.gridUnit * 4}px;
-
+  a{
+    color:${theme.colors.grayscale.dark2};
+    text-decoration:none;
+    h5{
+      font-size: ${theme.gridUnit * 5}px;
+      letter-spacing: 0.15px;
+      margin: 0px;
+    }
+  }
   .editable-title {
     overflow: hidden;
 
@@ -105,10 +112,6 @@ const buttonsStyles = (theme: SupersetTheme) => css`
   }
 `;
 
-const additionalActionsContainerStyles = (theme: SupersetTheme) => css`
-  margin-left: ${theme.gridUnit * 2}px;
-`;
-
 const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
     border-radius: 0px;
@@ -117,33 +120,33 @@ const globalStyles = (theme: SupersetTheme) => css`
     border-radius: 0px;
   }
   .ant-menu-vertical{
-    background-color: ${theme.colors.grayscale.dark2} !important;
+    background-color: ${theme.colors.grayscale.light5} !important;
     .ant-menu-item {  
       &:hover {
-      background-color: ${theme.colors.grayscale.dark1};
+      background-color: ${theme.colors.grayscale.light4};
       a{
-        color: ${theme.colors.primary.base};
+        color: ${theme.colors.grayscale.dark2};
       }
        }
       a{
-        color: ${theme.colors.primary.base};
+        color: ${theme.colors.grayscale.dark2};
       }
     }
     label{
-      color: ${theme.colors.primary.base} !important;
+      color: ${theme.colors.grayscale.dark2} !important;
     }
   }
   .ant-menu-submenu-vertical{
-    color: ${theme.colors.primary.base} !important;
+    color: ${theme.colors.grayscale.dark2} !important;
     i{
-      color: ${theme.colors.primary.base} !important;
+      color: ${theme.colors.grayscale.dark2} !important;
     }
   }
   .ant-menu-item-group-title{
-    color: ${theme.colors.primary.base} ;
+    color: ${theme.colors.grayscale.dark2} ;
   }
   .ant-menu-item-only-child{
-    color: ${theme.colors.primary.base} !important;
+    color: ${theme.colors.grayscale.dark2} !important;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
     height: 28px;
@@ -153,6 +156,10 @@ const globalStyles = (theme: SupersetTheme) => css`
     }
     
   }
+`;
+
+const additionalActionsContainerStyles = (theme: SupersetTheme) => css`
+  margin-left: ${theme.gridUnit * 2}px;
 `;
 
 export type PageHeaderWithActionsProps = {
@@ -189,11 +196,11 @@ export const PageHeaderWithActions = ({
   const screens = useBreakpoint();
   return (
     <div css={headerStyles} className="header-with-actions">
-      <GlobalStyles />
       <Global styles={globalStyles(theme)} />
+      <GlobalStyles />
       <a href={bootstrapData.common.menu_data.brand.path}>
         {/* <img src={brand.icon} alt={brand.alt} /> */}
-        <h5>HOME</h5>
+        <h5>Home</h5>
       </a>
       <div className="title-panel">
         <DynamicEditableTitle {...editableTitleProps} />
@@ -224,19 +231,19 @@ export const PageHeaderWithActions = ({
               data-test="actions-trigger"
             >
               <Icons.MoreHoriz
-                iconColor={theme.colors.primary.dark2}
+                iconColor={theme.colors.grayscale.dark2}
                 iconSize="l"
               />
             </Button>
           </AntdDropdown>
         </div>
+        <RightMenuWrapper
+          align={screens.md ? 'flex-end' : 'flex-start'}
+          navbarRight={bootstrapData.common.menu_data.navbar_right}
+          isFrontendRoute={isFrontendRoute}
+          environmentTag={bootstrapData.common.menu_data.environment_tag}
+        />
       </div>
-      <RightMenuWrapper
-        align={screens.md ? 'flex-end' : 'flex-start'}
-        navbarRight={bootstrapData.common.menu_data.navbar_right}
-        isFrontendRoute={isFrontendRoute}
-        environmentTag={bootstrapData.common.menu_data.environment_tag}
-      />
     </div>
   );
 };

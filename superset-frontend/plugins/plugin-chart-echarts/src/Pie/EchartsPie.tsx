@@ -20,27 +20,18 @@ import React from 'react';
 import { PieChartTransformedProps } from './types';
 import Echart from '../components/Echart';
 import { allEventHandlers } from '../utils/eventHandlers';
-import { supersetTheme } from '@superset-ui/core';
 
 export default function EchartsPie(props: PieChartTransformedProps) {
   const { height, width, echartOptions, selectedValues, refs } = props;
 
   const eventHandlers = allEventHandlers(props);
-  const customEchartOptions = {
-    ...echartOptions,
-    legend: {
-      ...echartOptions.textStyle,
-      textStyle: {
-        color: supersetTheme.colors.grayscale.label, // Change to your desired legend color
-      },
-    },
-  };
+
   return (
     <Echart
       refs={refs}
       height={height}
       width={width}
-      echartOptions={customEchartOptions}
+      echartOptions={echartOptions}
       eventHandlers={eventHandlers}
       selectedValues={selectedValues}
     />

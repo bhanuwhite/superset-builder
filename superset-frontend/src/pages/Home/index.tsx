@@ -56,8 +56,8 @@ import ActivityTable from 'src/features/home/ActivityTable';
 import ChartTable from 'src/features/home/ChartTable';
 import SavedQueries from 'src/features/home/SavedQueries';
 import DashboardTable from 'src/features/home/DashboardTable';
-import Button from 'src/components/Button';
 import { Link } from 'react-router-dom';
+import Button from 'src/components/Button';
 
 const extensionsRegistry = getExtensionsRegistry();
 
@@ -80,24 +80,18 @@ interface LoadingProps {
 const DEFAULT_TAB_ARR = ['2', '3'];
 
 const WelcomeContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayscale.dark2};
-  border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
-  margin:${({ theme }) => theme.gridUnit * 5}px;
+  background-color: ${({ theme }) => theme.colors.grayscale.light4};
+  padding: ${({ theme }) => theme.gridUnit * 5}px;
+  min-height:calc(100vh - 118px);
+  .ant-collapse{
+    padding: ${({ theme }) => theme.gridUnit * 5}px;
+    background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    border-radius:${({ theme }) => theme.typography.sizes.xs}px;
+  }
   .ant-row.menu {
-    margin-top: -15px;
+   position:relative;
     background-color: ${({ theme }) => theme.colors.grayscale.light4};
-    &:after {
-      content: '';
-      display: block;
-      border: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
-      margin: 0px ${({ theme }) => theme.gridUnit * 6}px;
-      position: relative;
-      width: 100%;
-      ${mq[1]} {
-        margin-top: 5px;
-        margin: 0px 2px;
-      }
-    }
+
     .ant-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
       padding-left: ${({ theme }) => theme.gridUnit * 8}px;
     }
@@ -108,7 +102,9 @@ const WelcomeContainer = styled.div`
   .ant-card-meta-description {
     margin-top: ${({ theme }) => theme.gridUnit}px;
   }
-
+  .ant-card.ant-card-bordered {
+    border: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+  }
   .ant-collapse-item .ant-collapse-content {
     margin-bottom: ${({ theme }) => theme.gridUnit * -6}px;
   }
@@ -118,9 +114,6 @@ const WelcomeContainer = styled.div`
   }
   div.ant-collapse-item:last-child .ant-collapse-header {
     padding-bottom: ${({ theme }) => theme.gridUnit * 9}px;
-  }
-  .ant-empty{
-    color:${({ theme }) => theme.colors.primary.dark1};
   }
   .loading-cards {
     margin-top: ${({ theme }) => theme.gridUnit * 8}px;

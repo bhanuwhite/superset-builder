@@ -32,6 +32,10 @@ const HoverStyleOverrides = styled.div`
     position: absolute;
     z-index: 10;
     font-size: ${({ theme }) => theme.typography.sizes.m};
+    .anticon{
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
+    }
+  
   }
 
   .hover-menu--left {
@@ -44,10 +48,6 @@ const HoverStyleOverrides = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .anticon{
-      color:${({ theme }) => theme.colors.primary.base};
-  
-     }
   }
 
   .hover-menu--left > :nth-child(n):not(:only-child):not(:last-child) {
@@ -64,10 +64,6 @@ const HoverStyleOverrides = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    .anticon{
-     color:${({ theme }) => theme.colors.primary.base};
-   
-    }
   }
 `;
 

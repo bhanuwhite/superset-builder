@@ -41,12 +41,11 @@ export const marginBottom = (theme: SupersetTheme) => css`
 `;
 
 export const StyledFormHeader = styled.header`
-background-color: ${({ theme }) => theme.colors.grayscale.dark2};
   line-height: ${({ theme }) => theme.gridUnit * 6}px;
 
   .helper-top {
     padding-bottom: 0;
-    color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     margin: 0;
   }
@@ -57,13 +56,13 @@ background-color: ${({ theme }) => theme.colors.grayscale.dark2};
 
   .helper-bottom {
     padding-top: 0;
-    color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.grayscale.base};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     margin: 0;
   }
 
   h4 {
-    color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     font-size: ${({ theme }) => theme.typography.sizes.l}px;
     margin: 0;
     padding: 0;
@@ -86,18 +85,13 @@ export const antdCollapseStyles = (theme: SupersetTheme) => css`
   .ant-collapse-header {
     padding-top: ${theme.gridUnit * 3.5}px;
     padding-bottom: ${theme.gridUnit * 2.5}px;
-    background-color: ${theme.colors.grayscale.dark2};
 
     .anticon.ant-collapse-arrow {
       top: calc(50% - ${anticonHeight / 2}px);
     }
     .helper {
-      color: ${theme.colors.primary.dark2};
+      color: ${theme.colors.grayscale.base};
     }
-  }
-  .ant-collapse-content-box{
-    background-color: ${theme.colors.grayscale.dark1};
-    color: ${theme.colors.primary.dark1};
   }
   h4 {
     font-size: 16px;
@@ -119,30 +113,11 @@ export const antDTabsStyles = css`
   }
   .ant-tabs-tab {
     margin-right: 0;
-    color: rgba(255, 255, 255, .6);
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    line-height: 1.14px !important;
-    letter-spacing: 1.25px !important;
-    text-transform: uppercase !important;
-    min-width: 100px;
-    height: 48px;
   }
-  ant-tabs-tab-active {
-    color: #1d98ff;
-}
-
-.ant-tabs-ink-bar {
-    background-color: #1d98ff !important;
-}
 `;
 
 export const antDModalNoPaddingStyles = css`
-  .ant-modal-body {
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-  }
+
 `;
 
 export const infoTooltip = (theme: SupersetTheme) => css`
@@ -165,23 +140,6 @@ export const antDModalStyles = (theme: SupersetTheme) => css`
     height: ${theme.gridUnit * 40}px;
   }
 
-  .ant-modal-header {
-    padding: ${theme.gridUnit * 4.5}px ${theme.gridUnit * 4}px
-      ${theme.gridUnit * 4}px;
-  }
-
-  .ant-modal-close-x .close {
-    color: ${theme.colors.grayscale.dark1};
-    opacity: 1;
-  }
-
-  .ant-modal-body {
-    height: ${theme.gridUnit * MODAL_BODY_HEIGHT}px;
-  }
-
-  .ant-modal-footer {
-    height: ${theme.gridUnit * 16.25}px;
-  }
 `;
 
 export const antDAlertStyles = (theme: SupersetTheme) => css`
@@ -272,7 +230,7 @@ export const formHelperStyles = (theme: SupersetTheme) => css`
   .helper {
     display: block;
     padding: ${theme.gridUnit}px 0;
-    color: ${theme.colors.primary.dark2};
+    color: ${theme.colors.grayscale.light1};
     font-size: ${theme.typography.sizes.s}px;
     text-align: left;
   }
@@ -301,11 +259,11 @@ export const formStyles = (theme: SupersetTheme) => css`
     }
   }
   .control-label {
-    color: ${theme.colors.primary.dark1};
+    color: ${theme.colors.grayscale.dark1};
     font-size: ${theme.typography.sizes.s}px;
   }
   .helper {
-    color: ${theme.colors.primary.dark2};
+    color: ${theme.colors.grayscale.light1};
     font-size: ${theme.typography.sizes.s}px;
     margin-top: ${theme.gridUnit * 1.5}px;
   }
@@ -317,7 +275,7 @@ export const formStyles = (theme: SupersetTheme) => css`
 
 export const validatedFormStyles = (theme: SupersetTheme) => css`
   label {
-    color: ${theme.colors.primary.dark1};
+    color: ${theme.colors.grayscale.dark1};
     font-size: ${theme.typography.sizes.s}px;
     margin-bottom: 0;
   }
@@ -326,7 +284,6 @@ export const validatedFormStyles = (theme: SupersetTheme) => css`
 export const StyledInputContainer = styled.div`
   ${({ theme }) => css`
     margin-bottom: ${theme.gridUnit * 6}px;
-    
     &.mb-0 {
       margin-bottom: 0;
     }
@@ -335,7 +292,7 @@ export const StyledInputContainer = styled.div`
     }
 
     .control-label {
-      color: ${theme.colors.primary.dark1};
+      color: ${theme.colors.grayscale.dark1};
       font-size: ${theme.typography.sizes.s}px;
       margin-bottom: ${theme.gridUnit * 2}px;
     }
@@ -379,16 +336,10 @@ export const StyledInputContainer = styled.div`
     textarea,
     input[type='text'],
     input[type='number'] {
+      padding: ${theme.gridUnit * 1.5}px ${theme.gridUnit * 2}px;
+      border-style: none;
+      border: 1px solid ${theme.colors.grayscale.light2};
       border-radius: ${theme.gridUnit}px;
-      background-color: ${theme.colors.grayscale.dark2};
-      padding:${theme.gridUnit_2 * 2}px;
-      height:${theme.gridUnit * 8}px;
-      -webkit-align-items: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      border-color: ${theme.colors.primary.light1};;
-      color: ${theme.colors.primary.dark1};;
 
       &[name='name'] {
         flex: 0 1 auto;
@@ -471,7 +422,7 @@ export const TabHeader = styled.div`
   padding: 0px;
 
   .helper {
-    color: ${({ theme }) => theme.colors.primary.dark2};
+    color: ${({ theme }) => theme.colors.grayscale.base};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     margin: 0px;
   }
@@ -489,13 +440,13 @@ export const CreateHeaderSubtitle = styled.div`
 `;
 
 export const EditHeaderTitle = styled.div`
-  color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.grayscale.light1};
   font-size: ${({ theme }) => theme.typography.sizes.s}px;
   text-transform: uppercase;
 `;
 
 export const EditHeaderSubtitle = styled.div`
-  color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
   font-size: ${({ theme }) => theme.typography.sizes.l}px;
   font-weight: ${({ theme }) => theme.typography.weights.bold};
 `;
@@ -558,32 +509,36 @@ export const SelectDatabaseStyles = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: ${({ theme }) => theme.gridUnit * 4}px;
   }
 
   .preferred-item {
     width: 32%;
     margin-bottom: ${({ theme }) => theme.gridUnit * 2.5}px;
-    color: ${({ theme }) => theme.colors.primary.dark1};
   }
 
   .available {
-    margin: ${({ theme }) => theme.gridUnit * 4}px;
     .available-label {
       font-size: ${({ theme }) => theme.typography.sizes.l}px;
       font-weight: ${({ theme }) => theme.typography.weights.bold};
       margin: ${({ theme }) => theme.gridUnit * 6}px 0;
-      color: ${({ theme }) => theme.colors.primary.dark1};
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
     }
     .available-select {
       width: 100%;
-      
-       .ant-select-selector {
-        height:${({ theme }) => theme.gridUnit * 8}px;
-        background-color:${({ theme }) => theme.colors.grayscale.dark2};
-        color:${({ theme }) => theme.colors.primary.dark1};
-        border-color: ${({ theme }) => theme.colors.primary.light3};
-       }
+      .ant-select-selector{
+        border-radius: ${({ theme }) => theme.gridUnit}px;
+      height: ${({ theme }) => theme.gridUnit * 10}px;
+      align-items:center;
+      background-color:${({ theme }) => theme.colors.customBstStyles.formInputColor};
+      border:0px;
+      color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+      ::placeholder{
+        color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+      }
+      }
+      .ant-select-arrow{
+        color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+      }
     }
   }
 
@@ -593,9 +548,10 @@ export const SelectDatabaseStyles = styled.div`
   }
 
   .control-label {
-    color: ${({ theme }) => theme.colors.primary.dark1};
-    font-size: ${({ theme }) => theme.typography.sizes.s}px;
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+    font-size: ${({ theme }) => theme.typography.sizes.m}px;
     margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
+    text-transform:inherit;
   }
 `;
 
@@ -607,6 +563,7 @@ export const StyledStickyHeader = styled.div`
   position: sticky;
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.max};
+  background: ${({ theme }) => theme.colors.grayscale.light5};
   height: auto;
 `;
 

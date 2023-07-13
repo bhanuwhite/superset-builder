@@ -141,7 +141,7 @@ const ExplorePanelContainer = styled.div`
       justify-content: space-between;
       .horizontal-text {
         font-size: ${theme.typography.sizes.m}px;
-        color: ${theme.colors.grayscale.label};
+        color: ${theme.colors.grayscale.dark2};
       }
     }
     .no-show {
@@ -264,9 +264,9 @@ function ExploreViewContainer(props) {
     async ({ isReplace = false, title } = {}) => {
       const formData = props.dashboardId
         ? {
-            ...props.form_data,
-            dashboardId: props.dashboardId,
-          }
+          ...props.form_data,
+          dashboardId: props.dashboardId,
+        }
         : props.form_data;
       const { id: datasourceId, type: datasourceType } = props.datasource;
 
@@ -403,9 +403,9 @@ function ExploreViewContainer(props) {
     controlsChanged => {
       const newQueryFormData = controlsChanged
         ? {
-            ...props.chart.latestQueryFormData,
-            ...getFormDataFromControls(pick(props.controls, controlsChanged)),
-          }
+          ...props.chart.latestQueryFormData,
+          ...getFormDataFromControls(pick(props.controls, controlsChanged)),
+        }
         : getFormDataFromControls(props.controls);
       props.actions.updateQueryFormData(newQueryFormData, props.chart.id);
       props.actions.renderTriggered(new Date().getTime(), props.chart.id);

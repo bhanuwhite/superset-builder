@@ -24,9 +24,8 @@ const StyledItem = styled(Form.Item)`
     .ant-form-item-label {
       padding-bottom: ${theme.gridUnit}px;
       & > label {
-        text-transform: uppercase;
-        font-size: ${theme.typography.sizes.s}px;
-        color: ${theme.colors.primary.base};
+        font-size: ${theme.typography.sizes.m}px;
+        color: ${theme.colors.grayscale.dark2};
 
         &.ant-form-item-required:not(.ant-form-item-required-mark-optional) {
           &::before {
@@ -40,7 +39,9 @@ const StyledItem = styled(Form.Item)`
           }
         }
       }
+  
     }
+
   `}
 `;
 

@@ -32,19 +32,23 @@ interface SearchHeaderProps extends BaseFilter {
 
 const Container = styled.div`
   width: ${SELECT_WIDTH}px;
+  
 `;
 
 const SearchIcon = styled(Icons.Search)`
-  color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
 `;
 
 const StyledInput = styled(AntdInput)`
   border-radius: ${({ theme }) => theme.gridUnit}px;
-  border-color:${({ theme }) => theme.colors.primary.light3};
-  background-color:${({ theme }) =>theme.colors.grayscale.light4};
-  border-color:${({ theme }) =>theme.colors.primary.light4};
-  color: ${({ theme }) =>theme.colors.primary.base};
-  height: ${({ theme }) =>theme.gridUnit * 10}px;
+  background-color:${({ theme }) => theme.colors.customBstStyles.formInputColor};
+  height:${({ theme }) => theme.gridUnit * 10}px;
+  border:0px;
+  color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+  .ant-input{
+    background-color:transparent;
+    color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+  }
 `;
 
 function SearchFilter(

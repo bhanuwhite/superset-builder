@@ -28,11 +28,10 @@ const Card = ({ padded, ...props }: CardProps) => (
   <AntdCard
     {...props}
     css={(theme: SupersetTheme) => ({
-      backgroundColor: theme.colors.grayscale.light1,
+      backgroundColor: theme.colors.grayscale.light4,
       borderRadius: theme.borderRadius,
       '.ant-card-body': {
         padding: padded ? theme.gridUnit * 4 : theme.gridUnit,
-    
       },
     })}
   />

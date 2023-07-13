@@ -1,10 +1,4 @@
-
-
-
-<div className="
-
-
-"></div>/**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -46,15 +40,19 @@ import { EmptyStateBig, EmptyStateProps } from '../EmptyState';
 
 const ListViewStyles = styled.div`
   text-align: center;
-    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
-    margin:${({ theme }) => theme.gridUnit * 5}px;
-    border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
+  background-color: ${({ theme }) => theme.colors.grayscale.light4};
+  padding: ${({ theme }) => theme.gridUnit * 5}px;
+  min-height:calc(100vh - 118px);
   .superset-list-view {
     text-align: left;
-    margin: 0px 16px;
+    border-radius: 4px 0;
+    margin: 0 ${({ theme }) => theme.gridUnit * 4}px;
+    padding: ${({ theme }) => theme.gridUnit * 5}px;
+    background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    border-radius:${({ theme }) => theme.typography.sizes.xs}px;
     .header {
       display: flex;
-      padding:16px 0px;
+      padding-bottom: ${({ theme }) => theme.gridUnit * 4}px;
 
       & .controls {
         display: flex;
@@ -88,7 +86,7 @@ const ListViewStyles = styled.div`
 
   .row-count-container {
     margin-top: ${({ theme }) => theme.gridUnit * 2}px;
-    color: ${({ theme }) => theme.colors.primary.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 
@@ -149,20 +147,19 @@ const ViewModeContainer = styled.div`
 
   .toggle-button {
     display: inline-block;
-    color:${({ theme }) => theme.colors.primary.dark1};
     border-radius: ${({ theme }) => theme.gridUnit / 2}px;
     padding: ${({ theme }) => theme.gridUnit}px;
     padding-bottom: ${({ theme }) => theme.gridUnit * 0.5}px;
-
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     &:first-of-type {
       margin-right: ${({ theme }) => theme.gridUnit * 2}px;
     }
   }
 
   .active {
-    background-color: ${({ theme }) => theme.colors.primary.light1};
+    background-color: ${({ theme }) => theme.colors.primary.dark1};
     svg {
-      color: ${({ theme }) => theme.colors.primary.dark1};
+      color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
     }
   }
 `;

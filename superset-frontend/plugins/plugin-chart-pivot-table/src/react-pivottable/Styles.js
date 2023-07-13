@@ -30,6 +30,7 @@ export const Styles = styled.div`
       border-collapse: separate;
       font-family: ${theme.typography.families.sansSerif};
       line-height: 1.4;
+      color:${theme.colors.grayscale.dark2};
     }
 
     table thead {
@@ -102,7 +103,7 @@ export const Styles = styled.div`
     }
 
     table.pvtTable tbody tr td {
-      color: ${theme.colors.primary.dark2};
+      // color: ${theme.colors.primary.dark2};
       padding: ${theme.gridUnit}px;
       background-color: ${theme.colors.grayscale.light5};
       border-top: 1px solid ${theme.colors.grayscale.light2};

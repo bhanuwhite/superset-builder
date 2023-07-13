@@ -38,9 +38,7 @@ const defaultProps = {
   position: 'top',
   legendJustifyContent: undefined,
 };
-
 const theme = supersetTheme;
-
 const LEGEND_STYLE_BASE = {
   display: 'flex',
   flexGrow: 0,
@@ -48,7 +46,7 @@ const LEGEND_STYLE_BASE = {
   order: -1,
   paddingTop: '5px',
   fontSize: '0.9em',
-  color: theme.colors.grayscale.label
+  color: theme.colors.grayscale.dark2
 };
 
 const CHART_STYLE_BASE = {

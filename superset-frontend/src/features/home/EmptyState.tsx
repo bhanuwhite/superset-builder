@@ -59,6 +59,9 @@ const EmptyContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  .ant-empty{
+    color:${({ theme }) => theme.colors.grayscale.dark1};
+  }
 `;
 const ButtonContainer = styled.div`
   Button {

@@ -42,8 +42,5 @@ export default styled(WorldMapComponent)`
     svg {
       background-color: ${({ theme }) => theme.colors.grayscale.light5};
     }
-    .hoverinfo {
-      color:${({ theme }) => theme.colors.grayscale.dark1} ;
-    }    
   }
 `;

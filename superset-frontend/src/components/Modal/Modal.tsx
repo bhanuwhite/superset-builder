@@ -97,68 +97,64 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
     responsive &&
     css`
       max-width: ${maxWidth ?? '900px'};
-      padding-left: ${theme.gridUnit * 3}px;
-      padding-right: ${theme.gridUnit * 3}px;
-      padding-bottom: 0;
+      padding:0px;
       top: 0;
     `}
 
   .ant-modal-content {
     display: flex;
     flex-direction: column;
-    border-radius:${({ theme }) => theme.gridUnit_2 * 2}px;
     max-height: ${({ theme }) => `calc(100vh - ${theme.gridUnit * 8}px)`};
-    margin-bottom: ${({ theme }) => theme.gridUnit * 4}px;
-    margin-top: ${({ theme }) => theme.gridUnit * 4}px;
-    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
-    padding:${({ theme }) => theme.gridUnit * 4}px ${({ theme }) => theme.gridUnit * 8}px;
+    background-color: ${({ theme }) => theme.colors.customBstStyles.modalBg};
+    padding: ${({ theme }) => theme.gridUnit * 4}px ${({ theme }) => theme.gridUnit * 8}px;
   }
 
   .ant-modal-header {
     flex: 0 0 auto;
-    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
+    background-color: ${({ theme }) => theme.colors.customBstStyles.modalBg};
+    border-radius: ${({ theme }) => theme.borderRadius}px
       ${({ theme }) => theme.borderRadius}px 0 0;
-    padding:0px 0px ${({ theme }) => theme.gridUnit * 4}px 0px !important;
-    color:${({ theme }) => theme.colors.primary.dark1};
-    border-radius:4px 4px 0px 0px;
-    border-color:rgba(255, 255, 255, 0.12);
-    .ant-modal-title  {
-      display: flex;
-      margin: 0;
-      font-size:20px;
-      align-items: center;
-      color:${({ theme }) => theme.colors.primary.dark1};
-      .databasetableheader{
-        margin:0px;
-      }
+    padding:0px 0px ${({ theme }) => theme.gridUnit * 4}px 0px;
+
+    .ant-modal-title {
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
+      font-size:${({ theme }) => theme.gridUnit * 5}px;
     }
   }
   .ant-modal-close{
-  top: 6px !important;
-  right: 32px !important;
-  .ant-modal-close-x {
-    height:auto !important;
-     .close {
-       margin-bottom: ${({ theme }) => theme.gridUnit}px;
-       color: ${({ theme }) => theme.colors.primary.dark1} !important;
-       font-size: 32px;
-       font-weight: ${({ theme }) => theme.typography.weights.light};
-     }
-   }
-}
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+    .ant-modal-close-x {
+      display: flex;
+      align-items: center;
+  
+      .close {
+        flex: 1 1 auto;
+        margin-bottom: ${({ theme }) => theme.gridUnit}px;
+        color: ${({ theme }) => theme.colors.grayscale.dark2};
+        font-size: 32px;
+        font-weight: ${({ theme }) => theme.typography.weights.light};
+        opacity:1;
+      }
+    }
+  }
 
 
   .ant-modal-body {
-    background-color: ${({ theme }) => theme.colors.grayscale.dark2};
     flex: 0 1 auto;
-    padding: 20px 0px 0px 0px !important;
+    border-top: ${({ theme }) => theme.gridUnit / 4}px solid
+    ${({ theme }) => theme.colors.customBstStyles.borderColor};
+    padding: ${({ theme }) => theme.gridUnit * 8}px 0px;
     overflow: auto;
+    overflow-x: hidden;
     ${({ resizable, height }) => !resizable && height && `height: ${height};`}
   }
   .ant-modal-footer {
     flex: 0 0 1;
-    padding:16px 0px 0px  0px;
-    border:0px;
+    border-top: ${({ theme }) => theme.gridUnit / 4}px solid
+      ${({ theme }) => theme.colors.grayscale.light2};
+      border-top:0px !important;
+    padding: 0px;
+
     .btn {
       font-size: 12px;
       text-transform: uppercase;
@@ -273,7 +269,7 @@ const CustomModal = ({
   }
   const modalFooter = isNil(FooterComponent)
     ? [
-        <Button key="back" onClick={onHide} cta data-test="modal-cancel-button" buttonStyle='tertiary' >
+        <Button key="back" onClick={onHide} cta data-test="modal-cancel-button" buttonStyle='tertiary'>
           {t('Cancel')}
         </Button>,
         <Button
