@@ -70,6 +70,8 @@ export default styled(Rose)`
 
     .nv-legend .nv-series {
         cursor: pointer;
+        fill: ${theme.colors.grayscale.dark2}; /* Change the fill color of the legend */
+        stroke: ${theme.colors.grayscale.dark2}; /* Change the stroke color of the legend */
     }
   `}
 `;
