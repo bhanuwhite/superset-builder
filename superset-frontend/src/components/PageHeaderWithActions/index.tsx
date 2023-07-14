@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, useState, useEffect } from 'react';
 import { css, SupersetTheme, t, useTheme } from '@superset-ui/core';
 import { AntdDropdown, AntdDropdownProps, Grid } from 'src/components';
 import { TooltipPlacement } from 'src/components/Tooltip';
@@ -33,12 +33,12 @@ import getBootstrapData from 'src/utils/getBootstrapData';
 import { isFrontendRoute } from 'src/views/routes';
 import { GlobalStyles } from 'src/GlobalStyles';
 import { Global } from '@emotion/react';
+import { Switch } from 'antd';
 
 export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
   height: ${theme.gridUnit * 8}px;
   padding: 0;
-
 
   &.ant-btn > span.anticon {
     line-height: 0;
@@ -59,10 +59,10 @@ const headerStyles = (theme: SupersetTheme) => css`
   background-color: ${theme.colors.customBstStyles.subHeader};
   height: ${theme.gridUnit * 16}px;
   padding: 0 ${theme.gridUnit * 4}px;
-  a{
-    color:${theme.colors.grayscale.dark2};
-    text-decoration:none;
-    h5{
+  a {
+    color: ${theme.colors.grayscale.dark2};
+    text-decoration: none;
+    h5 {
       font-size: ${theme.gridUnit * 5}px;
       letter-spacing: 0.15px;
       margin: 0px;
@@ -119,33 +119,33 @@ const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
     border-radius: 0px;
   }
-  .ant-menu-vertical{
+  .ant-menu-vertical {
     background-color: ${theme.colors.grayscale.light5} !important;
-    .ant-menu-item {  
+    .ant-menu-item {
       &:hover {
-      background-color: ${theme.colors.grayscale.light4};
-      a{
-        color: ${theme.colors.grayscale.dark2};
+        background-color: ${theme.colors.grayscale.light4};
+        a {
+          color: ${theme.colors.grayscale.dark2};
+        }
       }
-       }
-      a{
+      a {
         color: ${theme.colors.grayscale.dark2};
       }
     }
-    label{
+    label {
       color: ${theme.colors.grayscale.dark2} !important;
     }
   }
-  .ant-menu-submenu-vertical{
+  .ant-menu-submenu-vertical {
     color: ${theme.colors.grayscale.dark2} !important;
-    i{
+    i {
       color: ${theme.colors.grayscale.dark2} !important;
     }
   }
-  .ant-menu-item-group-title{
-    color: ${theme.colors.grayscale.dark2} ;
+  .ant-menu-item-group-title {
+    color: ${theme.colors.grayscale.dark2};
   }
-  .ant-menu-item-only-child{
+  .ant-menu-item-only-child {
     color: ${theme.colors.grayscale.dark2} !important;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
@@ -154,7 +154,6 @@ const globalStyles = (theme: SupersetTheme) => css`
       padding-right: ${theme.gridUnit * 2}px;
       margin-left: ${theme.gridUnit * 1.75}px;
     }
-    
   }
 `;
 
@@ -191,9 +190,38 @@ export const PageHeaderWithActions = ({
   tooltipProps,
 }: PageHeaderWithActionsProps) => {
   const theme = useTheme();
-  const bootstrapData = getBootstrapData()
+  const bootstrapData = getBootstrapData();
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
+
+  async function setThemeAsync(theme: string): Promise<void> {
+    return new Promise<void>(resolve => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      resolve();
+    });
+  }
+
+  const [appliedTheme, setAppliedTheme] = useState<string>(
+    localStorage.getItem('theme') || 'light',
+  );
+
+  useEffect(() => {
+    (async () => {
+      await setThemeAsync(appliedTheme);
+    })();
+  }, [appliedTheme]);
+
+  const toggleTheme = async (): Promise<void> => {
+    const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
+
+    console.log(newTheme, 'newtheme');
+    if (newTheme !== undefined) {
+      setAppliedTheme(newTheme);
+      await setThemeAsync(newTheme);
+    }
+    window.location.reload();
+  };
   return (
     <div css={headerStyles} className="header-with-actions">
       <Global styles={globalStyles(theme)} />
@@ -237,12 +265,29 @@ export const PageHeaderWithActions = ({
             </Button>
           </AntdDropdown>
         </div>
-        <RightMenuWrapper
-          align={screens.md ? 'flex-end' : 'flex-start'}
-          navbarRight={bootstrapData.common.menu_data.navbar_right}
-          isFrontendRoute={isFrontendRoute}
-          environmentTag={bootstrapData.common.menu_data.environment_tag}
-        />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            width: '100%',
+            alignItems: 'center',
+            marginInline: '20px',
+          }}
+        >
+          <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+            Theme&nbsp;&nbsp;
+          </p>
+          <Switch
+            defaultChecked={appliedTheme === 'dark'}
+            onChange={toggleTheme}
+          />
+          <RightMenuWrapper
+            align={screens.md ? 'flex-end' : 'flex-start'}
+            navbarRight={bootstrapData.common.menu_data.navbar_right}
+            isFrontendRoute={isFrontendRoute}
+            environmentTag={bootstrapData.common.menu_data.environment_tag}
+          />
+        </div>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ import {
   getTimeFormatter,
   getNumberFormatter,
   CategoricalColorNamespace,
+  supersetTheme,
 } from '@superset-ui/core';
 
 const propTypes = {
@@ -77,6 +78,8 @@ function Rose(element, props) {
     useAreaProportions,
     sliceId,
   } = props;
+
+  console.log(props);
 
   const div = d3.select(element);
   div.classed('superset-legacy-chart-rose', true);
@@ -354,12 +357,13 @@ function Rose(element, props) {
     .enter()
     .append('g')
     .attr('class', 'roseLabel')
+    .style('fill', `${supersetTheme.colors.grayscale.dark2}`)
     .attr('transform', d => `translate(${arc.centroid(d)})`);
 
   labels
     .append('text')
     .style('text-anchor', 'middle')
-    .style('fill', '#000')
+    .style('fill', `${supersetTheme.colors.grayscale.dark2}`)
     .text(d => timeFormat(d.time));
 
   const groupLabels = groupLabelsWrap
@@ -373,7 +377,7 @@ function Rose(element, props) {
     .attr('class', 'roseGroupLabels')
     .append('text')
     .style('text-anchor', 'middle')
-    .style('fill', '#000')
+    .style('fill', `${supersetTheme.colors.grayscale.dark2}`)
     .text(d => d.name);
 
   const arcs = ae
