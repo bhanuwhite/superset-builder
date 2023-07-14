@@ -18,11 +18,13 @@
  */
 import { TreeSeriesOption } from 'echarts';
 import { EchartsTreeFormData } from './types';
+import { supersetTheme } from '@superset-ui/core';
 
 export const DEFAULT_TREE_SERIES_OPTION: TreeSeriesOption = {
   label: {
     position: 'left',
     fontSize: 15,
+    color: supersetTheme.colors.grayscale.dark2 // Set the label color here
   },
   animation: true,
   animationDuration: 500,

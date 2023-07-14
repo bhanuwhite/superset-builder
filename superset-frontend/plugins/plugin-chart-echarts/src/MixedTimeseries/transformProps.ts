@@ -368,9 +368,9 @@ export default function transformProps(
         formatter:
           seriesType === EchartsTimeseriesSeriesType.Bar
             ? getOverMaxHiddenFormatter({
-                max,
-                formatter: seriesFormatter,
-              })
+              max,
+              formatter: seriesFormatter,
+            })
             : seriesFormatter,
         showValueIndexes: showValueIndexesA,
         totalStackedValues,
@@ -415,9 +415,9 @@ export default function transformProps(
         formatter:
           seriesTypeB === EchartsTimeseriesSeriesType.Bar
             ? getOverMaxHiddenFormatter({
-                max: maxSecondary,
-                formatter: seriesFormatter,
-              })
+              max: maxSecondary,
+              formatter: seriesFormatter,
+            })
             : seriesFormatter,
         showValueIndexes: showValueIndexesB,
         totalStackedValues: totalStackedValuesB,
@@ -459,7 +459,7 @@ export default function transformProps(
     convertInteger(xAxisTitleMargin),
   );
 
-  const { setDataMask = () => {}, onContextMenu } = hooks;
+  const { setDataMask = () => { }, onContextMenu } = hooks;
   const alignTicks = yAxisIndex !== yAxisIndexB;
 
   const echartOptions: EChartsCoreOption = {
@@ -476,6 +476,7 @@ export default function transformProps(
       axisLabel: {
         formatter: xAxisFormatter,
         rotate: xAxisLabelRotation,
+        color: theme.colors.grayscale.dark2,
       },
       minInterval:
         xAxisType === 'time' && timeGrainSqla
@@ -497,6 +498,7 @@ export default function transformProps(
             customFormatters,
             yAxisFormat,
           ),
+          color: theme.colors.grayscale.dark2,
         },
         scale: truncateYAxis,
         name: yAxisTitle,
@@ -519,6 +521,7 @@ export default function transformProps(
             customFormattersSecondary,
             yAxisFormatSecondary,
           ),
+          color: theme.colors.grayscale.dark2,
         },
         scale: truncateYAxis,
         name: yAxisTitleSecondary,
@@ -617,13 +620,13 @@ export default function transformProps(
     },
     dataZoom: zoomable
       ? [
-          {
-            type: 'slider',
-            start: TIMESERIES_CONSTANTS.dataZoomStart,
-            end: TIMESERIES_CONSTANTS.dataZoomEnd,
-            bottom: TIMESERIES_CONSTANTS.zoomBottom,
-          },
-        ]
+        {
+          type: 'slider',
+          start: TIMESERIES_CONSTANTS.dataZoomStart,
+          end: TIMESERIES_CONSTANTS.dataZoomEnd,
+          bottom: TIMESERIES_CONSTANTS.zoomBottom,
+        },
+      ]
       : [],
   };
 

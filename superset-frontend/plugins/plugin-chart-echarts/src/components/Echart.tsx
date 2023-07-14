@@ -61,6 +61,7 @@ function Echart(
   useImperativeHandle(ref, () => ({
     getEchartInstance: () => chartRef.current,
   }));
+  // console.log(echartOptions, 'eChart');
 
   useEffect(() => {
     if (!divRef.current) return;

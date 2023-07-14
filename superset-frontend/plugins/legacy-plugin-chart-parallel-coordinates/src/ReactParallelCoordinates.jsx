@@ -122,5 +122,9 @@ export default styled(ParallelCoordinates)`
     .parcoords .col-0 {
       width: 180px;
     }
+    .parcoords text {
+      fill: ${theme.colors.grayscale.dark2};
+    }
+    
   `}
 `;

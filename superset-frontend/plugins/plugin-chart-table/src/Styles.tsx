@@ -26,6 +26,7 @@ export default styled.div`
       min-width: auto;
       max-width: none;
       margin: 0;
+      color:${theme.colors.grayscale.dark2};
     }
 
     th,
