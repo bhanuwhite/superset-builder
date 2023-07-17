@@ -30,7 +30,7 @@ import { AuthType } from '.';
 const StyledDiv = styled.div`
   padding-top: ${({ theme }) => theme.gridUnit * 2}px;
   label {
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     text-transform: uppercase;
     margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
   }
@@ -46,6 +46,16 @@ const StyledFormItem = styled(AntdForm.Item)`
 
 const StyledInputPassword = styled(AntdInput.Password)`
   margin: ${({ theme }) => `${theme.gridUnit}px 0 ${theme.gridUnit * 2}px`};
+  height:40px;
+  background-color:${({ theme }) => theme.colors.customBstStyles.formInputColor};
+    border:0px;
+    color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+    ::placeholder{
+      color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+    }
+    .ant-input{
+      background: transparent;
+    }
 `;
 
 const SSHTunnelForm = ({

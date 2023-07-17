@@ -165,8 +165,8 @@ const LeftPane = styled.div`
 
   .ant-collapse .ant-collapse-item {
     .ant-collapse-header {
-      font-size: ${({ theme }) => theme.typography.sizes.s}px;
-      color: ${({ theme }) => theme.colors.grayscale.base};
+      font-size: ${({ theme }) => theme.typography.sizes.m}px;
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
       padding-left: ${({ theme }) => theme.gridUnit * 2}px;
       padding-bottom: ${({ theme }) => theme.gridUnit}px;
     }
@@ -192,6 +192,20 @@ const SearchWrapper = styled.div`
     margin-right: ${theme.gridUnit * 3}px;
     .ant-input-affix-wrapper {
       padding-left: ${theme.gridUnit * 2}px;
+      height:auto !important;
+      padding:10px 0px;
+    }
+    .ant-input{
+      border-radius: ${theme.gridUnit}px;
+      height: ${theme.gridUnit * 10}px;
+      align-items:center;
+      background-color:${theme.colors.customBstStyles.formInputColor};
+      border:0px;
+      padding-left:10px !important;
+      color:${theme.colors.customBstStyles.formInputText};
+      ::placeholder{
+        color:${theme.colors.customBstStyles.formInputText};
+      }
     }
   `}
 `;
@@ -201,7 +215,7 @@ const InputIconAlignment = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 const SelectorLabel = styled.button`
@@ -218,17 +232,18 @@ const SelectorLabel = styled.button`
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
+    color: ${theme.colors.grayscale.dark2};
 
     &:focus {
       outline: initial;
     }
 
     &.selected {
-      background-color: ${theme.colors.primary.base};
-      color: ${theme.colors.primary.light5};
+      background-color: ${theme.colors.primary.dark1};
+      color: ${theme.colors.customBstStyles.primaryButtonColor};
 
       svg {
-        color: ${theme.colors.primary.light5};
+        color: ${theme.colors.customBstStyles.primaryButtonColor};
       }
 
       &:hover {
@@ -293,6 +308,7 @@ const Description = styled.p`
   overflow: auto;
   padding-right: ${({ theme }) => theme.gridUnit * 14}px;
   margin: 0;
+  color:${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 const Examples = styled.div`
@@ -334,6 +350,7 @@ const thumbnailContainerCss = (theme: SupersetTheme) => css`
   .viztype-label {
     margin-top: ${theme.gridUnit * 2}px;
     text-align: center;
+    color: ${theme.colors.grayscale.dark2};
   }
 `;
 

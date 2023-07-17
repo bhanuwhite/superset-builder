@@ -84,16 +84,16 @@ const StyledContainer = styled.div`
     width: 100%;
     max-width: ${MAX_ADVISABLE_VIZ_GALLERY_WIDTH}px;
     max-height: calc(100vh - ${ESTIMATED_NAV_HEIGHT}px);
-    border-radius: ${theme.gridUnit}px;
+    border-radius: 10px;
     background-color: ${theme.colors.grayscale.light5};
     margin-left: auto;
     margin-right: auto;
-    padding-left: ${theme.gridUnit * 4}px;
-    padding-right: ${theme.gridUnit * 4}px;
-    padding-bottom: ${theme.gridUnit * 4}px;
+    padding: ${theme.gridUnit * 5}px;
+    overflow-y:auto;
 
     h3 {
       padding-bottom: ${theme.gridUnit * 3}px;
+      color: ${theme.colors.grayscale.dark2};
     }
 
     & .dataset {
@@ -107,17 +107,21 @@ const StyledContainer = styled.div`
       }
 
       & > span {
-        color: ${theme.colors.grayscale.light1};
+        color: ${theme.colors.grayscale.dark1};
         margin-left: ${theme.gridUnit * 4}px;
+        a{
+          color: ${theme.colors.primary.dark1};
+        }
       }
     }
 
     & .viz-gallery {
-      border: 1px solid ${theme.colors.grayscale.light2};
+      // border: 1px solid ${theme.colors.grayscale.light2};
       border-radius: ${theme.gridUnit}px;
       margin: ${theme.gridUnit}px 0px;
       max-height: calc(100vh - ${ELEMENTS_EXCEPT_VIZ_GALLERY}px);
       flex: 1;
+
     }
 
     & .footer {
@@ -128,7 +132,7 @@ const StyledContainer = styled.div`
       align-items: center;
 
       & > span {
-        color: ${theme.colors.grayscale.light1};
+        color: ${theme.colors.grayscale.dark2};
         margin-right: ${theme.gridUnit * 4}px;
       }
     }
@@ -144,10 +148,12 @@ const StyledContainer = styled.div`
       width: ${theme.gridUnit * 5}px;
       height: ${theme.gridUnit * 5}px;
       line-height: ${theme.gridUnit * 5}px;
+      background-color: ${theme.colors.primary.dark1};
     }
 
     &&&& .ant-steps-item-title {
       line-height: ${theme.gridUnit * 5}px;
+      color: ${theme.colors.grayscale.dark2};
     }
 
     &&&& .ant-steps-item-content {

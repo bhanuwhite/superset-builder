@@ -56,9 +56,12 @@ export const StyledFormHeader = styled.header`
 
   .helper-bottom {
     padding-top: 0;
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     margin: 0;
+    a{
+      color: ${({ theme }) => theme.colors.primary.dark1};
+    }
   }
 
   h4 {
@@ -82,16 +85,22 @@ export const StyledFormHeader = styled.header`
 `;
 
 export const antdCollapseStyles = (theme: SupersetTheme) => css`
+   border:0px;
   .ant-collapse-header {
     padding-top: ${theme.gridUnit * 3.5}px;
     padding-bottom: ${theme.gridUnit * 2.5}px;
+    background-color: ${theme.colors.grayscale.light5} !Important;
 
     .anticon.ant-collapse-arrow {
       top: calc(50% - ${anticonHeight / 2}px);
     }
     .helper {
-      color: ${theme.colors.grayscale.base};
+      color: ${theme.colors.customBstStyles.formInputText};
     }
+  }
+  .ant-collapse-content-box{
+    background-color: ${theme.colors.grayscale.light4} !Important;
+    color: ${theme.colors.grayscale.dark2};
   }
   h4 {
     font-size: 16px;
@@ -113,6 +122,7 @@ export const antDTabsStyles = css`
   }
   .ant-tabs-tab {
     margin-right: 0;
+    width:50%;
   }
 `;
 
@@ -132,7 +142,30 @@ export const toggleStyle = (theme: SupersetTheme) => css`
 `;
 
 export const formScrollableStyles = (theme: SupersetTheme) => css`
-  padding: ${theme.gridUnit * 4}px ${theme.gridUnit * 4}px 0;
+  padding: ${theme.gridUnit * 4}px 0px;
+  color:${theme.colors.grayscale.dark2};
+  .ant-input-affix-wrapper{
+    background-color:${theme.colors.customBstStyles.formInputColor};
+    border:0px;
+    color:${theme.colors.customBstStyles.formInputText};
+    ::placeholder{
+      color:${theme.colors.customBstStyles.formInputText};
+    }
+  }
+  .ant-input{
+    border-radius: ${theme.gridUnit}px;
+    height: ${theme.gridUnit * 10}px;
+    align-items:center;
+    background-color:${theme.colors.customBstStyles.formInputColor};
+    border:0px;
+    color:${theme.colors.customBstStyles.formInputText};
+    ::placeholder{
+      color:${theme.colors.customBstStyles.formInputText};
+    }
+  }
+  .ant-form-item-explain{
+    color:${theme.colors.grayscale.dark2};
+  }
 `;
 
 export const antDModalStyles = (theme: SupersetTheme) => css`
@@ -275,8 +308,8 @@ export const formStyles = (theme: SupersetTheme) => css`
 
 export const validatedFormStyles = (theme: SupersetTheme) => css`
   label {
-    color: ${theme.colors.grayscale.dark1};
-    font-size: ${theme.typography.sizes.s}px;
+    color: ${theme.colors.grayscale.dark2};
+    font-size: ${theme.typography.sizes.m}px;
     margin-bottom: 0;
   }
 `;
@@ -337,9 +370,15 @@ export const StyledInputContainer = styled.div`
     input[type='text'],
     input[type='number'] {
       padding: ${theme.gridUnit * 1.5}px ${theme.gridUnit * 2}px;
-      border-style: none;
-      border: 1px solid ${theme.colors.grayscale.light2};
-      border-radius: ${theme.gridUnit}px;
+       border-radius: ${theme.gridUnit}px;
+      height: ${theme.gridUnit * 10}px;
+      align-items:center;
+      background-color:${theme.colors.customBstStyles.formInputColor};
+      border:0px;
+      color:${theme.colors.customBstStyles.formInputText};
+      ::placeholder{
+        color:${theme.colors.customBstStyles.formInputText};
+      }
 
       &[name='name'] {
         flex: 0 1 auto;
@@ -391,7 +430,7 @@ export const StyledExpandableForm = styled.div`
 `;
 
 export const StyledAlignment = styled.div`
-  padding: 0 ${({ theme }) => theme.gridUnit * 4}px;
+  // padding: 0 ${({ theme }) => theme.gridUnit * 4}px;
   margin-top: ${({ theme }) => theme.gridUnit * 6}px;
 `;
 
@@ -563,7 +602,7 @@ export const StyledStickyHeader = styled.div`
   position: sticky;
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.max};
-  background: ${({ theme }) => theme.colors.grayscale.light5};
+  background: ${({ theme }) => theme.colors.customBstStyles.modalBg};
   height: auto;
 `;
 
