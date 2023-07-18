@@ -18,7 +18,7 @@
  */
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FeatureFlag, t, useTheme } from '@superset-ui/core';
+import { FeatureFlag, styled, t, useTheme } from '@superset-ui/core';
 import { isFeatureEnabled } from 'src/featureFlags';
 import { CardStyles } from 'src/views/CRUD/utils';
 import { AntdDropdown } from 'src/components';
@@ -63,48 +63,59 @@ function DashboardCard({
   const canExport = hasPerm('can_export');
 
   const theme = useTheme();
+
+  const StyledMenu = styled.div`
+  ${({ theme }) => `
+  .menu-dropdown{
+    background-color: ${theme.colors.grayscale.light5};
+  }
+  `}
+`;
+
   const menu = (
-    <Menu>
-      {canEdit && openDashboardEditModal && (
-        <Menu.Item>
-          <div
-            role="button"
-            tabIndex={0}
-            className="action-button"
-            onClick={() => openDashboardEditModal?.(dashboard)}
-            data-test="dashboard-card-option-edit-button"
-          >
-            <Icons.EditAlt iconSize="l" data-test="edit-alt" /> {t('Edit')}
-          </div>
-        </Menu.Item>
-      )}
-      {canExport && (
-        <Menu.Item>
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => handleBulkDashboardExport([dashboard])}
-            className="action-button"
-            data-test="dashboard-card-option-export-button"
-          >
-            <Icons.Share iconSize="l" /> {t('Export')}
-          </div>
-        </Menu.Item>
-      )}
-      {canDelete && (
-        <Menu.Item>
-          <div
-            role="button"
-            tabIndex={0}
-            className="action-button"
-            onClick={() => onDelete(dashboard)}
-            data-test="dashboard-card-option-delete-button"
-          >
-            <Icons.Trash iconSize="l" /> {t('Delete')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <StyledMenu>
+      <Menu className='menu-dropdown'>
+        {canEdit && openDashboardEditModal && (
+          <Menu.Item>
+            <div
+              role="button"
+              tabIndex={0}
+              className="action-button"
+              onClick={() => openDashboardEditModal?.(dashboard)}
+              data-test="dashboard-card-option-edit-button"
+            >
+              <Icons.EditAlt iconSize="l" data-test="edit-alt" /> {t('Edit')}
+            </div>
+          </Menu.Item>
+        )}
+        {canExport && (
+          <Menu.Item>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => handleBulkDashboardExport([dashboard])}
+              className="action-button"
+              data-test="dashboard-card-option-export-button"
+            >
+              <Icons.Share iconSize="l" /> {t('Export')}
+            </div>
+          </Menu.Item>
+        )}
+        {canDelete && (
+          <Menu.Item>
+            <div
+              role="button"
+              tabIndex={0}
+              className="action-button"
+              onClick={() => onDelete(dashboard)}
+              data-test="dashboard-card-option-delete-button"
+            >
+              <Icons.Trash iconSize="l" /> {t('Delete')}
+            </div>
+          </Menu.Item>
+        )}
+      </Menu>
+    </StyledMenu>
   );
   return (
     <CardStyles

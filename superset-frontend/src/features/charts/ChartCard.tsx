@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { FeatureFlag, t, useTheme } from '@superset-ui/core';
+import { FeatureFlag, styled, t, useTheme } from '@superset-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import { isFeatureEnabled } from 'src/featureFlags';
 import ConfirmStatusChange from 'src/components/ConfirmStatusChange';
@@ -72,67 +72,77 @@ export default function ChartCard({
     hasPerm('can_export') && isFeatureEnabled(FeatureFlag.VERSIONED_EXPORT);
   const theme = useTheme();
 
+  const StyledMenu = styled.div`
+  ${({ theme }) => `
+  .menu-dropdown{
+    background-color: ${theme.colors.grayscale.light5};
+  }
+  `}
+`;
+
   const menu = (
-    <Menu>
-      {canDelete && (
-        <Menu.Item>
-          <ConfirmStatusChange
-            title={t('Please confirm')}
-            description={
-              <>
-                {t('Are you sure you want to delete')} <b>{chart.slice_name}</b>
-                ?
-              </>
-            }
-            onConfirm={() =>
-              handleChartDelete(
-                chart,
-                addSuccessToast,
-                addDangerToast,
-                refreshData,
-                chartFilter,
-                userId,
-              )
-            }
-          >
-            {confirmDelete => (
-              <div
-                data-test="chart-list-delete-option"
-                role="button"
-                tabIndex={0}
-                className="action-button"
-                onClick={confirmDelete}
-              >
-                <Icons.Trash iconSize="l" /> {t('Delete')}
-              </div>
-            )}
-          </ConfirmStatusChange>
-        </Menu.Item>
-      )}
-      {canExport && (
-        <Menu.Item>
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => handleBulkChartExport([chart])}
-          >
-            <Icons.Share iconSize="l" /> {t('Export')}
-          </div>
-        </Menu.Item>
-      )}
-      {canEdit && (
-        <Menu.Item>
-          <div
-            data-test="chart-list-edit-option"
-            role="button"
-            tabIndex={0}
-            onClick={() => openChartEditModal(chart)}
-          >
-            <Icons.EditAlt iconSize="l" /> {t('Edit')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <StyledMenu>
+      <Menu className='menu-dropdown'>
+        {canDelete && (
+          <Menu.Item>
+            <ConfirmStatusChange
+              title={t('Please confirm')}
+              description={
+                <>
+                  {t('Are you sure you want to delete')} <b>{chart.slice_name}</b>
+                  ?
+                </>
+              }
+              onConfirm={() =>
+                handleChartDelete(
+                  chart,
+                  addSuccessToast,
+                  addDangerToast,
+                  refreshData,
+                  chartFilter,
+                  userId,
+                )
+              }
+            >
+              {confirmDelete => (
+                <div
+                  data-test="chart-list-delete-option"
+                  role="button"
+                  tabIndex={0}
+                  className="action-button"
+                  onClick={confirmDelete}
+                >
+                  <Icons.Trash iconSize="l" /> {t('Delete')}
+                </div>
+              )}
+            </ConfirmStatusChange>
+          </Menu.Item>
+        )}
+        {canExport && (
+          <Menu.Item>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => handleBulkChartExport([chart])}
+            >
+              <Icons.Share iconSize="l" /> {t('Export')}
+            </div>
+          </Menu.Item>
+        )}
+        {canEdit && (
+          <Menu.Item>
+            <div
+              data-test="chart-list-edit-option"
+              role="button"
+              tabIndex={0}
+              onClick={() => openChartEditModal(chart)}
+            >
+              <Icons.EditAlt iconSize="l" /> {t('Edit')}
+            </div>
+          </Menu.Item>
+        )}
+      </Menu>
+    </StyledMenu>
   );
   return (
     <CardStyles

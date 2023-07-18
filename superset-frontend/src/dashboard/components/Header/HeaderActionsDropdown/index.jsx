@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 
-import { FeatureFlag, SupersetClient, t } from '@superset-ui/core';
+import { FeatureFlag, SupersetClient, styled, t } from '@superset-ui/core';
 
 import { Menu } from 'src/components/Menu';
 import { URL_PARAMS } from 'src/constants';
@@ -243,49 +243,61 @@ class HeaderActionsDropdown extends React.PureComponent {
     const refreshIntervalOptions =
       dashboardInfo.common?.conf?.DASHBOARD_AUTO_REFRESH_INTERVALS;
 
+    const StyledMenu = styled(Menu)`
+      ${({ theme }) => `
+        background-color: ${theme.colors.grayscale.light5};
+      `}
+    `;
+
+    const StyleMenuItem = styled(Menu.Item)`
+    ${({ theme }) => `
+      color: ${theme.colors.grayscale.dark2};
+  `}
+    `;
+
     return (
-      <Menu selectable={false} data-test="header-actions-menu" {...rest}>
+      <StyledMenu selectable={false} data-test="header-actions-menu" {...rest}>
         {!editMode && (
-          <Menu.Item
+          <StyleMenuItem
             key={MENU_KEYS.REFRESH_DASHBOARD}
             data-test="refresh-dashboard-menu-item"
             disabled={isLoading}
             onClick={this.handleMenuClick}
           >
             {t('Refresh dashboard')}
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         {!editMode && (
-          <Menu.Item
+          <StyleMenuItem
             key={MENU_KEYS.TOGGLE_FULLSCREEN}
             onClick={this.handleMenuClick}
           >
             {getUrlParam(URL_PARAMS.standalone)
               ? t('Exit fullscreen')
               : t('Enter fullscreen')}
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         {editMode && (
-          <Menu.Item
+          <StyleMenuItem
             key={MENU_KEYS.EDIT_PROPERTIES}
             onClick={this.handleMenuClick}
           >
             {t('Edit properties')}
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         {editMode && (
-          <Menu.Item key={MENU_KEYS.EDIT_CSS}>
+          <StyleMenuItem key={MENU_KEYS.EDIT_CSS}>
             <CssEditor
               triggerNode={<span>{t('Edit CSS')}</span>}
               initialCss={this.state.css}
               templates={this.state.cssTemplates}
               onChange={this.changeCss}
             />
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         <Menu.Divider />
         {userCanSave && (
-          <Menu.Item key={MENU_KEYS.SAVE_MODAL}>
+          <StyleMenuItem key={MENU_KEYS.SAVE_MODAL}>
             <SaveModal
               addSuccessToast={this.props.addSuccessToast}
               addDangerToast={this.props.addDangerToast}
@@ -307,15 +319,15 @@ class HeaderActionsDropdown extends React.PureComponent {
               }
               canOverwrite={userCanEdit}
             />
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         {!editMode && (
-          <Menu.Item
+          <StyleMenuItem
             key={MENU_KEYS.DOWNLOAD_AS_IMAGE}
             onClick={this.handleMenuClick}
           >
             {t('Download as image')}
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         {userCanShare && (
           <Menu.SubMenu
@@ -337,12 +349,12 @@ class HeaderActionsDropdown extends React.PureComponent {
           </Menu.SubMenu>
         )}
         {!editMode && userCanCurate && (
-          <Menu.Item
+          <StyleMenuItem
             key={MENU_KEYS.MANAGE_EMBEDDED}
             onClick={this.handleMenuClick}
           >
             {t('Embed dashboard')}
-          </Menu.Item>
+          </StyleMenuItem>
         )}
         <Menu.Divider />
         {!editMode ? (
@@ -377,15 +389,15 @@ class HeaderActionsDropdown extends React.PureComponent {
             isFeatureEnabled(FeatureFlag.DASHBOARD_NATIVE_FILTERS) &&
             isEmpty(dashboardInfo?.metadata?.filter_scopes)
           ) && (
-            <Menu.Item key={MENU_KEYS.SET_FILTER_MAPPING}>
+            <StyleMenuItem key={MENU_KEYS.SET_FILTER_MAPPING}>
               <FilterScopeModal
                 className="m-r-5"
                 triggerNode={t('Set filter mapping')}
               />
-            </Menu.Item>
+            </StyleMenuItem>
           )}
 
-        <Menu.Item key={MENU_KEYS.AUTOREFRESH_MODAL}>
+        <StyleMenuItem key={MENU_KEYS.AUTOREFRESH_MODAL}>
           <RefreshIntervalModal
             addSuccessToast={this.props.addSuccessToast}
             refreshFrequency={refreshFrequency}
@@ -396,8 +408,8 @@ class HeaderActionsDropdown extends React.PureComponent {
             refreshIntervalOptions={refreshIntervalOptions}
             triggerNode={<span>{t('Set auto-refresh interval')}</span>}
           />
-        </Menu.Item>
-      </Menu>
+        </StyleMenuItem>
+      </StyledMenu>
     );
   }
 }

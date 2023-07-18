@@ -25,7 +25,7 @@ export default function EchartsPie(props: PieChartTransformedProps) {
   const { height, width, echartOptions, selectedValues, refs } = props;
 
   const eventHandlers = allEventHandlers(props);
-  console.log(echartOptions, 'pie');
+  // console.log(echartOptions, 'pie');
 
   return (
     <Echart
