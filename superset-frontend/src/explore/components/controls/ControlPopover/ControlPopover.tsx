@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { supersetTheme } from '@superset-ui/core';
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 
 import Popover, {
@@ -148,6 +149,7 @@ const ControlPopover: React.FC<PopoverProps> = ({
       onVisibleChange={handleOnVisibleChange}
       getPopupContainer={handleGetPopupContainer}
       destroyTooltipOnHide={destroyTooltipOnHide}
+      overlayInnerStyle={{ backgroundColor: `${supersetTheme.colors.grayscale.light5}` }}
     />
   );
 };

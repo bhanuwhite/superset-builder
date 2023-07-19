@@ -30,6 +30,7 @@ import { Tooltip } from 'src/components/Tooltip';
 const TitleLabel = styled.span`
   display: inline-block;
   padding: 2px 0;
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 const StyledInput = styled(Input)`
