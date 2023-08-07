@@ -159,7 +159,7 @@ class CollectionControl extends React.Component {
           <AddIconButton onClick={this.onAdd}>
             <Icons.PlusLarge
               iconSize="s"
-              iconColor={theme.colors.grayscale.light5}
+              iconColor={theme.colors.customBstStyles.primaryButtonColor}
             />
           </AddIconButton>
         </HeaderContainer>

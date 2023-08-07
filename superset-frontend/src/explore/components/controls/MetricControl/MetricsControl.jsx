@@ -319,7 +319,7 @@ const MetricsControl = ({
           >
             <Icons.PlusLarge
               iconSize="s"
-              iconColor={theme.colors.grayscale.light5}
+              iconColor={theme.colors.grayscale.dark2}
             />
           </AddIconButton>,
         )}
@@ -329,7 +329,7 @@ const MetricsControl = ({
           ? value.map((value, index) => valueRenderer(value, index))
           : addNewMetricPopoverTrigger(
               <AddControlLabel>
-                <Icons.PlusSmall iconColor={theme.colors.grayscale.light1} />
+                <Icons.PlusSmall iconColor={theme.colors.grayscale.dark2} />
                 {t('Add metric')}
               </AddControlLabel>,
             )}

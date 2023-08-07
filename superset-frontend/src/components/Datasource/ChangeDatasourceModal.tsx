@@ -50,7 +50,7 @@ const CONFIRM_WARNING_MESSAGE = t(
 
 const CHANGE_WARNING_MSG = t(
   'Changing the dataset may break the chart if the chart relies ' +
-    'on columns or metadata that does not exist in the target dataset',
+  'on columns or metadata that does not exist in the target dataset',
 );
 
 interface Datasource {
@@ -94,6 +94,12 @@ const StyledSpan = styled.span`
   &: hover {
     color: ${({ theme }) => theme.colors.primary.dark2};
   }
+`;
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
 `;
 
 const ChangeDatasourceModal: FunctionComponent<ChangeDatasourceModalProps> = ({
@@ -315,7 +321,7 @@ const ChangeDatasourceModal: FunctionComponent<ChangeDatasourceModalProps> = ({
             )}
           </>
         )}
-        {confirmChange && <>{CONFIRM_WARNING_MESSAGE}</>}
+        {confirmChange && <Styleddiv>{CONFIRM_WARNING_MESSAGE}</Styleddiv>}
       </>
     </Modal>
   );

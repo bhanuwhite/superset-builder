@@ -31,6 +31,7 @@ import {
   isDefined,
   styled,
   SupersetClient,
+  supersetTheme,
   t,
 } from '@superset-ui/core';
 import { Input } from 'src/components/Input';
@@ -76,6 +77,12 @@ export const StyledModal = styled(Modal)`
   .ant-modal-body {
     overflow: visible;
   }
+  // .ant-modal-content {
+  //   background-color: ${({ theme }) => theme.colors.customBstStyles.chartBg};
+  // }
+  // .ant-modal-header {
+  //   background-color: ${({ theme }) => theme.colors.customBstStyles.chartBg};
+  // }
   i {
     position: absolute;
     top: -${({ theme }) => theme.gridUnit * 5.25}px;
@@ -338,7 +345,11 @@ class SaveModal extends React.Component<SaveModalProps, SaveModalState> {
           onChange={() => this.changeAction('overwrite')}
           data-test="save-overwrite-radio"
         >
-          {t('Save (Overwrite)')}
+          {
+            <span style={{ color: supersetTheme.colors.grayscale.dark2 }}>
+              {t('Save (Overwrite)')}
+            </span>
+          }
         </Radio>
         <Radio
           id="saveas-radio"

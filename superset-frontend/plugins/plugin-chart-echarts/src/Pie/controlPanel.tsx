@@ -17,7 +17,12 @@
  * under the License.
  */
 import React from 'react';
-import { ensureIsInt, t, validateNonEmpty } from '@superset-ui/core';
+import {
+  ensureIsInt,
+  supersetTheme,
+  t,
+  validateNonEmpty,
+} from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
@@ -90,7 +95,15 @@ const config: ControlPanelConfig = {
         ],
         ...legendSection,
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Labels')}</div>],
+        [
+          <div className="section-header">
+            {
+              <span style={{ color: supersetTheme.colors.grayscale.dark2 }}>
+                {t('Labels')}
+              </span>
+            }
+          </div>,
+        ],
         [
           {
             name: 'label_type',
@@ -195,7 +208,15 @@ const config: ControlPanelConfig = {
           },
         ],
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Pie shape')}</div>],
+        [
+          <div className="section-header">
+            {
+              <span style={{ color: supersetTheme.colors.grayscale.dark2 }}>
+                {t('Pie shape')}
+              </span>
+            }
+          </div>,
+        ],
         [
           {
             name: 'outerRadius',

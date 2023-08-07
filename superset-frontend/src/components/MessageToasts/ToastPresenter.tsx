@@ -36,14 +36,10 @@ const StyledToastPresenter = styled.div<VisualProps>`
   word-break: break-word;
 
   .toast {
-    background: ${({ theme }) => theme.colors.grayscale.dark1};
+    background: ${({ theme }) => theme.colors.toast.base};
     border-radius: ${({ theme }) => theme.borderRadius};
-    box-shadow: 0 2px 4px 0
-      fade(
-        ${({ theme }) => theme.colors.grayscale.dark2},
-        ${({ theme }) => theme.opacity.mediumLight}
-      );
-    color: ${({ theme }) => theme.colors.grayscale.light5};
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2), 0 1px 10px 0 rgba(0,0,0,.12), 0 4px 5px 0 rgba(0,0,0,.14);
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     opacity: 0;
     position: relative;
     transform: translateY(-100%);
@@ -63,7 +59,7 @@ const StyledToastPresenter = styled.div<VisualProps>`
   }
 
   .toast > button {
-    color: ${({ theme }) => theme.colors.grayscale.light5};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     opacity: 1;
   }
 

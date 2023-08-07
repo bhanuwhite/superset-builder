@@ -72,7 +72,11 @@ export default function ControlHeader({
             <span>
               <InfoTooltipWithTrigger
                 label={t('bolt')}
-                tooltip={t('Changing this control takes effect instantly')}
+                tooltip={
+                  <span style={{ color: "#FFF" }}>
+                    {t('Changing this control takes effect instantly')}
+                  </span>
+                }
                 placement="top"
                 icon="bolt"
               />{' '}

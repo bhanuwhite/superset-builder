@@ -31,6 +31,7 @@ import {
   styled,
   getColumnLabel,
   withTheme,
+  supersetTheme,
 } from '@superset-ui/core';
 
 import SelectControl from 'src/explore/components/controls/SelectControl';
@@ -677,7 +678,11 @@ class AnnotationLayer extends React.PureComponent {
     return (
       <PopoverSection
         isSelected
-        title={t('Display configuration')}
+        title={
+          <span style={{ color: supersetTheme.colors.grayscale.dark1 }}>
+            {t('Display configuration')}
+          </span>
+        }
         info={t('Configure your how you overlay is displayed here.')}
       >
         <SelectControl
@@ -781,7 +786,11 @@ class AnnotationLayer extends React.PureComponent {
           <div style={{ marginRight: '2rem' }}>
             <PopoverSection
               isSelected
-              title={t('Layer configuration')}
+              title={
+                <span style={{ color: supersetTheme.colors.grayscale.dark1 }}>
+                  {t('Layer configuration')}
+                </span>
+              }
               info={t('Configure the basics of your Annotation Layer.')}
             >
               <TextControl

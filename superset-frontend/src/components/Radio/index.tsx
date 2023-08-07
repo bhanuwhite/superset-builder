@@ -20,6 +20,7 @@ import { styled } from '@superset-ui/core';
 import { Radio as AntdRadio } from 'antd';
 
 const StyledRadio = styled(AntdRadio)`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
   .ant-radio-inner {
     top: -1px;
     left: 2px;
@@ -49,6 +50,10 @@ const StyledRadio = styled(AntdRadio)`
     .ant-radio-inner {
       border-color: ${({ theme }) => theme.colors.primary.dark1};
     }
+  }
+  .ant-radio-disabled + span {
+    color: ${({ theme }) =>
+      theme.colors.customBstStyles.primaryButtonDsabledText};
   }
 `;
 const StyledGroup = styled(AntdRadio.Group)`

@@ -39,7 +39,7 @@ export default function RowCountLabel(props: RowCountLabelProps) {
       {loading ? (
         t('Loading...')
       ) : (
-        <span data-test="row-count-label">
+        <span data-test="row-count-label" style={{ color: '#FFF' }}>
           {tn('%s row', '%s rows', rowcount, formattedRowCount)}
         </span>
       )}

@@ -76,6 +76,7 @@ const propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   isCached: PropTypes.bool,
   supersetCanExplore: PropTypes.bool.isRequired,
+  supersetCanEditChart: PropTypes.bool.isRequired,
   supersetCanShare: PropTypes.bool.isRequired,
   supersetCanCSV: PropTypes.bool.isRequired,
   addSuccessToast: PropTypes.func.isRequired,
@@ -393,6 +394,7 @@ class Chart extends React.Component {
       toggleExpandSlice,
       timeout,
       supersetCanExplore,
+      supersetCanEditChart,
       supersetCanShare,
       supersetCanCSV,
       addSuccessToast,
@@ -460,6 +462,7 @@ class Chart extends React.Component {
           updateSliceName={updateSliceName}
           sliceName={sliceName}
           supersetCanExplore={supersetCanExplore}
+          supersetCanEditChart={supersetCanEditChart}
           supersetCanShare={supersetCanShare}
           supersetCanCSV={supersetCanCSV}
           componentId={componentId}

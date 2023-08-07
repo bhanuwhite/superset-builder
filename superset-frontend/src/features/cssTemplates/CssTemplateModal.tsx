@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { styled, t } from '@superset-ui/core';
+import { styled, supersetTheme, t } from '@superset-ui/core';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
 
 import Icons from 'src/components/Icons';
@@ -37,11 +37,13 @@ interface CssTemplateModalProps {
 }
 
 const StyledCssTemplateTitle = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
   margin: ${({ theme }) => theme.gridUnit * 2}px auto
-    ${({ theme }) => theme.gridUnit * 4}px auto;
-`;
+  ${({ theme }) => theme.gridUnit * 4}px auto;
+  `;
 
 const StyledCssEditor = styled(CssEditor)`
+  background-color: ${({ theme }) => theme.colors.customBstStyles.formInputColor};
   border-radius: ${({ theme }) => theme.borderRadius}px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.light2};
 `;
@@ -244,6 +246,10 @@ const CssTemplateModal: FunctionComponent<CssTemplateModalProps> = ({
           onChange={onTemplateNameChange}
           type="text"
           value={currentCssTemplate?.template_name}
+          style={{
+            color: supersetTheme.colors.customBstStyles.formInputText, // Set the desired text color (e.g., "blue")
+            backgroundColor: supersetTheme.colors.customBstStyles.formInputColor, // Set the desired background color (e.g., "lightgray")
+          }}
         />
       </TemplateContainer>
       <TemplateContainer>

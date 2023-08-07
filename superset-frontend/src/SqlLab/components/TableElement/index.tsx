@@ -82,6 +82,7 @@ const StyledCollapsePanel = styled(Collapse.Panel)`
       .ws-el-controls {
         margin-right: ${-theme.gridUnit}px;
         display: flex;
+        gap:15px;
       }
 
       .header-container {

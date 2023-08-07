@@ -22,7 +22,7 @@ export const StyledLayoutWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.grayscale.light5};
+  background-color: ${({ theme }) => theme.colors.grayscale.light4};
 `;
 
 const Column = styled.div`
@@ -69,8 +69,9 @@ export const StyledLayoutHeader = styled.div`
   ${({ theme }) => `
   flex: 0 0 auto;
   height: ${theme.gridUnit * 16}px;
-  border-bottom: 2px solid ${theme.colors.grayscale.light2};
-
+  border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+  color:${theme.colors.grayscale.dark2};
+  background-color:${theme.colors.grayscale.light5};
   .header-with-actions {
     height: ${theme.gridUnit * 15.5}px;
   }
@@ -89,13 +90,17 @@ export const StyledLayoutLeftPanel = styled.div`
   ${({ theme }) => `
   width: ${theme.gridUnit * 80}px;
   height: 100%;
-  border-right: 1px solid ${theme.colors.grayscale.light2};
+  border-right: 1px solid ${theme.colors.customBstStyles.borderColor};
   `}
 `;
 
 export const StyledLayoutDatasetPanel = styled.div`
   width: 100%;
   position: relative;
+  background-color:  ${({ theme }) => theme.colors.grayscale.light5};
+  margin:20px;
+  border-radius:10px;
+  padding:20px 40px;
 `;
 
 export const StyledLayoutRightPanel = styled.div`
@@ -109,8 +114,8 @@ export const StyledLayoutFooter = styled.div`
   ${({ theme }) => `
   height: ${theme.gridUnit * 16}px;
   width: 100%;
-  border-top: 1px solid ${theme.colors.grayscale.light2};
-  border-bottom: 1px solid ${theme.colors.grayscale.light2};
+  border-top: 1px solid ${theme.colors.customBstStyles.borderColor};
+  border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
   color: ${theme.colors.info.base};
   border-top: ${theme.gridUnit / 4}px solid
     ${theme.colors.grayscale.light2};

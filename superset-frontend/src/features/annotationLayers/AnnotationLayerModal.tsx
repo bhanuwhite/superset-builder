@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { styled, t } from '@superset-ui/core';
+import { styled, supersetTheme, t } from '@superset-ui/core';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
 
 import Icons from 'src/components/Icons';
@@ -37,6 +37,7 @@ interface AnnotationLayerModalProps {
 }
 
 const StyledAnnotationLayerTitle = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
   margin: ${({ theme }) => theme.gridUnit * 2}px auto
     ${({ theme }) => theme.gridUnit * 4}px auto;
 `;
@@ -256,6 +257,10 @@ const AnnotationLayerModal: FunctionComponent<AnnotationLayerModalProps> = ({
           onChange={onTextChange}
           type="text"
           value={currentLayer?.name}
+          style={{
+            color: supersetTheme.colors.customBstStyles.formInputText, // Set the desired text color (e.g., "blue")
+            backgroundColor: supersetTheme.colors.customBstStyles.formInputColor, // Set the desired background color (e.g., "lightgray")
+          }}
         />
       </LayerContainer>
       <LayerContainer>
@@ -265,6 +270,10 @@ const AnnotationLayerModal: FunctionComponent<AnnotationLayerModalProps> = ({
           value={currentLayer?.descr}
           placeholder={t('Description (this can be seen in the list)')}
           onChange={onTextChange}
+          style={{
+            color: supersetTheme.colors.customBstStyles.formInputText, // Set the desired text color (e.g., "blue")
+            backgroundColor: supersetTheme.colors.customBstStyles.formInputColor, // Set the desired background color (e.g., "lightgray")
+          }}
         />
       </LayerContainer>
     </Modal>

@@ -19,7 +19,7 @@
 /* eslint-disable react/jsx-key */
 
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelSectionConfig,
   CustomControlItem,
@@ -43,6 +43,12 @@ import {
   PieChartPlugin,
   TimePivotChartPlugin,
 */
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 export const yAxis2Format: CustomControlItem = {
   name: 'y_axis_2_format',
@@ -390,7 +396,7 @@ export const timeSeriesSection: ControlPanelSectionConfig[] = [
         'of query results',
     ),
     controlSetRows: [
-      [<div className="section-header">{t('Rolling Window')}</div>],
+      [<Styleddiv className="section-header">{t('Rolling Window')}</Styleddiv>],
       [
         {
           name: 'rolling_type',
@@ -443,7 +449,7 @@ export const timeSeriesSection: ControlPanelSectionConfig[] = [
           },
         },
       ],
-      [<div className="section-header">{t('Time Comparison')}</div>],
+      [<Styleddiv className="section-header">{t('Time Comparison')}</Styleddiv>],
       [
         {
           name: 'time_compare',
@@ -494,7 +500,7 @@ export const timeSeriesSection: ControlPanelSectionConfig[] = [
           },
         },
       ],
-      [<div className="section-header">{t('Resample')}</div>],
+      [<Styleddiv className="section-header">{t('Resample')}</Styleddiv>],
       [
         {
           name: 'resample_rule',

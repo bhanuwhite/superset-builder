@@ -26,36 +26,39 @@ export const FilterTitle = styled.div`
   ${({ theme }) => `
       display: flex;
       align-items: center;
-      padding: ${theme.gridUnit * 2}px;
+      padding: ${theme.gridUnit * 3}px;
       width: 100%;
       border-radius: ${theme.borderRadius}px;
       cursor: pointer;
+      color: ${theme.colors.grayscale.dark2};
       &.active {
-        color: ${theme.colors.grayscale.dark1};
+        color: ${theme.colors.customBstStyles.formInputText};
         border-radius: ${theme.borderRadius}px;
-        background-color: ${theme.colors.secondary.light4};
+        background-color: ${theme.colors.customBstStyles.formInputColor};
         span, .anticon {
-          color: ${theme.colors.grayscale.dark1};
+          color: ${theme.colors.customBstStyles.formInputText};
         }
       }
       &:hover {
-        color: ${theme.colors.primary.light1};
+        color: ${theme.colors.customBstStyles.formInputText};
+        border-radius: ${theme.borderRadius}px;
+        background-color: ${theme.colors.customBstStyles.formInputColor};
         span, .anticon {
-          color: ${theme.colors.primary.light1};
+          color: ${theme.colors.customBstStyles.formInputText};
         }
       }
       &.errored div, &.errored .warning {
-        color: ${theme.colors.error.base};
+        color: ${theme.colors.error.dark1};
       }
   `}
 `;
 
 const StyledTrashIcon = styled(Icons.Trash)`
-  color: ${({ theme }) => theme.colors.grayscale.light3};
+  color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
 `;
 
 const StyledWarning = styled(Icons.Warning)`
-  color: ${({ theme }) => theme.colors.error.base};
+  color: ${({ theme }) => theme.colors.error.dark1};
   &.anticon {
     margin-left: auto;
   }

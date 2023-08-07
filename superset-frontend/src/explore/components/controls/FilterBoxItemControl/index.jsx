@@ -27,6 +27,7 @@ import CheckboxControl from 'src/explore/components/controls/CheckboxControl';
 import TextControl from 'src/explore/components/controls/TextControl';
 import { FILTER_CONFIG_ATTRIBUTES } from 'src/explore/constants';
 import ControlPopover from '../ControlPopover/ControlPopover';
+import { theme } from 'src/preamble';
 
 const INTEGRAL_TYPES = new Set([
   'TINYINT',
@@ -273,7 +274,7 @@ export default class FilterBoxItemControl extends React.Component {
 
   render() {
     return (
-      <span data-test="FilterBoxItemControl">
+      <span data-test="FilterBoxItemControl" style={theme.colors.customBstStyles.primaryButtonColor}>
         {this.textSummary()}{' '}
         <ControlPopover
           trigger="click"

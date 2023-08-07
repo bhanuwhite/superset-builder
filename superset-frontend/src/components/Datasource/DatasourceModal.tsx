@@ -72,9 +72,9 @@ function buildExtraJsonObject(item: Record<string, unknown>) {
   const certification =
     item?.certified_by || item?.certification_details
       ? {
-          certified_by: item?.certified_by,
-          details: item?.certification_details,
-        }
+        certified_by: item?.certified_by,
+        details: item?.certification_details,
+      }
       : undefined;
   return JSON.stringify({
     certification,
@@ -104,6 +104,8 @@ const DatasourceModal: FunctionComponent<DatasourceModalProps> = ({
     },
     string[]
   >(state => state.common?.currencies);
+  console.log(currentDatasource, 'curDataSource');
+
   const [errors, setErrors] = useState<any[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -213,8 +215,14 @@ const DatasourceModal: FunctionComponent<DatasourceModalProps> = ({
   };
 
   const onDatasourceChange = (data: Record<string, any>, err: Array<any>) => {
+    console.log(data, 'data');
+
     setCurrentDatasource({
       ...data,
+      columns: data?.columns.map((column: Record<string, unknown>) => ({
+        ...column,
+        type: column?.type,
+      })),
       metrics: data?.metrics.map((metric: Record<string, unknown>) => ({
         ...metric,
         is_certified: metric?.certified_by || metric?.certification_details,
@@ -263,7 +271,7 @@ const DatasourceModal: FunctionComponent<DatasourceModalProps> = ({
       onHide={onHide}
       title={
         <span>
-          {t('Edit Dataset ')}
+          {t('Edit Dataset')}
           <strong>{currentDatasource.table_name}</strong>
         </span>
       }
@@ -305,8 +313,8 @@ const DatasourceModal: FunctionComponent<DatasourceModalProps> = ({
             tooltip={
               currentDatasource.is_managed_externally
                 ? t(
-                    "This dataset is managed externally, and can't be edited in Superset",
-                  )
+                  "This dataset is managed externally, and can't be edited in Superset",
+                )
                 : ''
             }
           >

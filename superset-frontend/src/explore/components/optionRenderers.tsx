@@ -38,6 +38,7 @@ const OptionContainer = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    
     & ~ i {
       margin-left: ${({ theme }) => theme.gridUnit}px;
     }

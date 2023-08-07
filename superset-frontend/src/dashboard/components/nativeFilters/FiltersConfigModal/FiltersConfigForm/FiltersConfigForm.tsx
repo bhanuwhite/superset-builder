@@ -191,9 +191,8 @@ export const StyledRowSubFormItem = styled(FormItem)`
 `;
 
 export const StyledLabel = styled.span`
-  color: ${({ theme }) => theme.colors.grayscale.base};
-  font-size: ${({ theme }) => theme.typography.sizes.s}px;
-  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+  font-size: ${({ theme }) => theme.typography.sizes.m}px;
 `;
 
 const CleanFormItem = styled(FormItem)`
@@ -208,27 +207,33 @@ const DefaultValueContainer = styled.div`
 
 const RefreshIcon = styled(Icons.Refresh)`
   margin-left: ${({ theme }) => theme.gridUnit * 2}px;
-  color: ${({ theme }) => theme.colors.primary.base};
+  color: ${({ theme }) => theme.colors.primary.dark1};
 `;
 
 const StyledCollapse = styled(Collapse)`
   border-left: 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+  border-top: 1px solid ${({ theme }) => theme.colors.customBstStyles.borderColor};
   border-radius: 0;
+  background-color:${({ theme }) => theme.colors.grayscale.light5};
 
   .ant-collapse-header {
-    border-bottom: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
-    border-top: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.customBstStyles.borderColor};
+    border-top: 1px solid ${({ theme }) => theme.colors.customBstStyles.borderColor};
     margin-top: -1px;
     border-radius: 0;
   }
 
   .ant-collapse-content {
     border: 0;
+    background-color:${({ theme }) => theme.colors.grayscale.light4};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 
   .ant-collapse-content-box {
     padding-top: ${({ theme }) => theme.gridUnit * 2}px;
+    .ant-checkbox-wrapper{
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
+    }
   }
 
   &.ant-collapse > .ant-collapse-item {
@@ -241,8 +246,8 @@ const StyledTabs = styled(Tabs)`
   .ant-tabs-nav {
     position: sticky;
     top: 0;
-    background: ${({ theme }) => theme.colors.grayscale.light5};
     z-index: 1;
+    background-color:${({ theme }) => theme.colors.grayscale.light4};
   }
 
   .ant-tabs-nav-list {
@@ -267,7 +272,7 @@ const FilterTypeInfo = styled.div`
   ${({ theme }) => `
     width: 49%;
     font-size: ${theme.typography.sizes.s}px;
-    color: ${theme.colors.grayscale.light1};
+    color: ${theme.colors.grayscale.dark2};
     margin:
       ${-theme.gridUnit * 2}px
       0px

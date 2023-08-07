@@ -22,7 +22,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import { Select } from 'src/components';
 import { Filter, SelectOption } from 'src/components/ListView/types';
 import { FormLabel } from 'src/components/Form';
@@ -36,6 +36,10 @@ interface SelectFilterProps extends BaseFilter {
   paginate?: boolean;
   selects: Filter['selects'];
 }
+
+const StyledSpan = styled.span`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
 
 function SelectFilter(
   {
@@ -96,6 +100,7 @@ function SelectFilter(
           onChange={onChange}
           onClear={onClear}
           options={fetchAndFormatSelects}
+          notFoundContent={<StyledSpan>No Data</StyledSpan>}
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
@@ -110,6 +115,7 @@ function SelectFilter(
           onChange={onChange}
           onClear={onClear}
           options={selects}
+          notFoundContent={<StyledSpan>No Data</StyledSpan>}
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}

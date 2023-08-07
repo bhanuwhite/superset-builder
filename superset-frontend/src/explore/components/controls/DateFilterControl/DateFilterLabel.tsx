@@ -60,6 +60,7 @@ const StyledRangeType = styled(Select)`
 
 const ContentStyleWrapper = styled.div`
   ${({ theme }) => css`
+  color: ${theme.colors.grayscale.dark2};
     .ant-row {
       margin-top: 8px;
     }
@@ -81,7 +82,7 @@ const ContentStyleWrapper = styled.div`
     .control-label {
       font-size: 11px;
       font-weight: ${theme.typography.weights.medium};
-      color: ${theme.colors.grayscale.light2};
+      color: ${theme.colors.grayscale.dark2};
       line-height: 16px;
       text-transform: uppercase;
       margin: 8px 0;
@@ -91,14 +92,16 @@ const ContentStyleWrapper = styled.div`
       display: block;
       height: 40px;
       line-height: 40px;
+      color: ${theme.colors.grayscale.dark2};
     }
 
     .section-title {
       font-style: normal;
       font-weight: ${theme.typography.weights.bold};
-      font-size: 15px;
+      font-size: 14px;
       line-height: 24px;
       margin-bottom: 8px;
+      color: ${theme.colors.grayscale.dark2};
     }
 
     .control-anchor-to {
@@ -122,6 +125,7 @@ const IconWrapper = styled.span`
   }
   .text {
     vertical-align: middle;
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
   .error {
     color: ${({ theme }) => theme.colors.error.base};
@@ -343,8 +347,8 @@ export default function DateFilterLabel(props: DateFilterControlProps) {
 
   const title = (
     <IconWrapper>
-      <Icons.EditAlt iconColor={theme.colors.grayscale.base} />
-      <span className="text">{t('Edit time range')}</span>
+      <Icons.EditAlt iconColor={theme.colors.grayscale.dark2} />
+      <span className="text">{t('Edit time ranges')}</span>
     </IconWrapper>
   );
 

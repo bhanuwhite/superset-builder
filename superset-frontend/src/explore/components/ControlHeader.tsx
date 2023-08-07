@@ -17,7 +17,12 @@
  * under the License.
  */
 import React, { FC, ReactNode, useMemo, useRef } from 'react';
-import { t, css, useTheme, SupersetTheme } from '@superset-ui/core';
+import {
+  t,
+  css,
+  useTheme,
+  SupersetTheme,
+} from '@superset-ui/core';
 import { InfoTooltipWithTrigger } from '@superset-ui/chart-controls';
 import { Tooltip } from 'src/components/Tooltip';
 import { FormLabel } from 'src/components/Form';
@@ -120,7 +125,11 @@ const ControlHeader: FC<ControlHeaderProps> = ({
           <span>
             <InfoTooltipWithTrigger
               label={t('bolt')}
-              tooltip={t('Changing this control takes effect instantly')}
+              tooltip={
+                <span style={{ color: '#FFF' }}>
+                  {t('Changing this control takes effect instantly')}
+                </span>
+              }
               placement="top"
               icon="bolt"
             />{' '}

@@ -35,6 +35,13 @@ const StyledCalculatorIcon = styled(CalculatorOutlined)`
   `}
 `;
 
+const CustomTitle = styled.div`
+  ${({ theme }) => css`
+  color: ${theme.colors.grayscale.dark2};
+    `} 
+  `;
+
+
 export const SQLPopover = (props: PopoverProps & { sqlExpression: string }) => {
   const theme = useTheme();
   return (
@@ -54,14 +61,16 @@ export const SQLPopover = (props: PopoverProps & { sqlExpression: string }) => {
           wrapEnabled
           style={{
             border: `1px solid ${theme.colors.grayscale.light2}`,
-            background: theme.colors.secondary.light5,
+            background: theme.colors.customBstStyles.aceEditorBG,
+            // color: theme.colors.grayscale.dark1,
             maxWidth: theme.gridUnit * 100,
           }}
         />
       }
       placement="bottomLeft"
       arrowPointAtCenter
-      title={t('SQL expression')}
+      title={<CustomTitle>{t('SQL expression')}</CustomTitle>}
+      overlayInnerStyle={{ backgroundColor: `${theme.colors.grayscale.light4}` }}
       {...props}
     >
       <StyledCalculatorIcon />

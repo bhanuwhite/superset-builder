@@ -80,7 +80,8 @@ const StyledDiv = styled.div<{ align: string }>`
   flex-direction: row;
   justify-content: ${({ align }) => align};
   align-items: center;
-  margin-right: ${({ theme }) => theme.gridUnit}px;
+  margin-inline: ${({ theme }) => theme.gridUnit * 4}px
+    ${({ theme }) => theme.gridUnit}px;
   .ant-menu-submenu-title > svg {
     top: ${({ theme }) => theme.gridUnit * 5.25}px;
   }
@@ -99,7 +100,8 @@ const StyledAnchor = styled.a`
 `;
 
 const tagStyles = (theme: SupersetTheme) => css`
-  color: ${theme.colors.grayscale.light5};
+  // color: ${theme.colors.grayscale.light5};
+  color: #FFFFFF;
 `;
 
 const styledChildMenu = (theme: SupersetTheme) => css`
@@ -339,8 +341,8 @@ const RightMenu = ({
   const handleDatabaseAdd = () => setQuery({ databaseAdded: true });
 
   const theme = useTheme();
-  const bootstrapData = getBootstrapData()
-  const data = bootstrapData.common.menu_data
+  const bootstrapData = getBootstrapData();
+  const data = bootstrapData.common.menu_data;
   const newData = {
     ...data,
   };
@@ -396,7 +398,7 @@ const RightMenu = ({
           onDatabaseAdd={handleDatabaseAdd}
         />
       )}
-      {/* {environmentTag?.text && (
+      {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}
           color={
@@ -409,13 +411,13 @@ const RightMenu = ({
         >
           <span css={tagStyles}>{environmentTag.text}</span>
         </Label>
-      )} */}
+      )}
       <Menu
         selectable={false}
         mode="horizontal"
         onClick={handleMenuSelection}
         onOpenChange={onMenuOpen}
-        style={{backgroundColor:'transparent'}} 
+        style={{ backgroundColor: 'transparent' }}
       >
         {RightMenuExtension && <RightMenuExtension />}
         {!navbarRight.user_is_anonymous && showActionDropdown && (

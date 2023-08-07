@@ -20,11 +20,16 @@ import React from 'react';
 import { css, styled } from '@superset-ui/core';
 import AntdTabs, { TabsProps as AntdTabsProps } from 'antd/lib/tabs';
 import Icons from 'src/components/Icons';
+import { PlusOutlined } from '@ant-design/icons';
 
 export interface TabsProps extends AntdTabsProps {
   fullWidth?: boolean;
   allowOverflow?: boolean;
 }
+
+const CustomPlusIcon = styled(PlusOutlined)`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+`;
 
 const StyledTabs = ({
   animated = false,
@@ -35,11 +40,17 @@ const StyledTabs = ({
   <AntdTabs
     animated={animated}
     {...props}
+    addIcon={<CustomPlusIcon />}
     css={theme => css`
       overflow: ${allowOverflow ? 'visible' : 'hidden'};
 
       .ant-tabs-content-holder {
         overflow: ${allowOverflow ? 'visible' : 'auto'};
+      }
+      .ant-tabs-nav{
+        &::before{
+          border-color: ${theme.colors.customBstStyles.borderColor} !important;
+        }
       }
       .ant-tabs-tab {
         flex: 1 1 auto;
@@ -113,6 +124,7 @@ const StyledEditableTabs = styled(StyledTabs)`
 
     & > .ant-tabs-nav {
       margin-bottom: 0;
+
     }
 
     .ant-tabs-tab-remove {
@@ -121,20 +133,19 @@ const StyledEditableTabs = styled(StyledTabs)`
       height: ${theme.gridUnit * 6}px;
     }
 
-    ${
-      fullWidth
-        ? css`
+    ${fullWidth
+      ? css`
             .ant-tabs-nav-list {
               width: 100%;
             }
           `
-        : ''
+      : ''
     }
   `}
 `;
 
 const StyledCancelXIcon = styled(Icons.CancelX)`
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 export const EditableTabs = Object.assign(StyledEditableTabs, {
   TabPane: StyledTabPane,

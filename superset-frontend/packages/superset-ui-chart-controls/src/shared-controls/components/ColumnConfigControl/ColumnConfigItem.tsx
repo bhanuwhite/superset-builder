@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { useTheme } from '@superset-ui/core';
+import { supersetTheme, useTheme } from '@superset-ui/core';
 import { Popover } from 'antd';
 import ColumnTypeLabel from '../../../components/ColumnTypeLabel/ColumnTypeLabel';
 import ColumnConfigPopover, {
@@ -51,6 +51,7 @@ export default React.memo(function ColumnConfigItem({
           display: 'flex',
           alignItems: 'center',
           cursor: 'pointer',
+          color: supersetTheme.colors.grayscale.dark2,
           padding: `${gridUnit}px ${2 * gridUnit}px`,
           borderBottom: `1px solid ${colors.grayscale.light2}`,
           position: 'relative',

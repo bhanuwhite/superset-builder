@@ -26,6 +26,7 @@ import Button from 'src/components/Button';
 import Icons from 'src/components/Icons';
 import Fieldset from './Fieldset';
 import { recurseReactClone } from './utils';
+import { theme } from 'src/preamble';
 
 interface CRUDCollectionProps {
   allowAddItem?: boolean;
@@ -95,6 +96,7 @@ function createKeyedCollection(arr: Array<object>) {
 }
 
 const CrudTableWrapper = styled.div<{ stickyHeader?: boolean }>`
+
   ${({ stickyHeader }) =>
     stickyHeader &&
     `
@@ -104,13 +106,18 @@ const CrudTableWrapper = styled.div<{ stickyHeader?: boolean }>`
 
       .table {
         min-width: 800px;
+        background-color: ${theme.colors.grayscale.light5};
+      border-collapse: separate;
+      border-radius: ${theme.borderRadius}px;
       }
       thead th {
-        background: #fff;
+        background: ${theme.colors.customBstStyles.tableHeaderbg};
         position: sticky;
         top: 0;
         z-index: 9;
-        min
+        padding:7px !important;
+        color:${theme.colors.grayscale.dark1};
+        border-bottom:1px solid ${theme.colors.customBstStyles.borderColor} !important;
       }
     `}
   ${({ theme }) => `
@@ -133,6 +140,15 @@ const CrudTableWrapper = styled.div<{ stickyHeader?: boolean }>`
     td.expanded {
       border-top: 0;
       padding: 0;
+    }
+    tbody td{
+      padding:9px !important;
+      color:${theme.colors.grayscale.dark1};
+      border-bottom:1px solid ${theme.colors.customBstStyles.borderColor} !important;
+      border-top:0px !important;
+    }
+    tbody tr:hover{
+      background-color: ${theme.colors.grayscale.light4};
     }
   `}
 `;

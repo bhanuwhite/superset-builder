@@ -76,29 +76,35 @@ const LeftPanelStyle = styled.div`
     }
     .refresh {
       position: absolute;
-      top: ${theme.gridUnit * 38.75}px;
+      top: ${theme.gridUnit * 35.55}px;
       left: ${theme.gridUnit * 16.75}px;
       span[role="button"]{
         font-size: ${theme.gridUnit * 4.25}px;
+        color: ${theme.colors.grayscale.dark2};
       }
     }
     .section-title {
-      margin-top: ${theme.gridUnit * 5.5}px;
-      margin-bottom: ${theme.gridUnit * 11}px;
+      margin-top: ${theme.gridUnit * 4}px;
+      margin-bottom: ${theme.gridUnit * 5}px;
       font-weight: ${theme.typography.weights.bold};
+      font-size: ${theme.gridUnit * 5}px;
+      color: ${theme.colors.grayscale.dark2};
     }
     .table-title {
-      margin-top: ${theme.gridUnit * 11}px;
-      margin-bottom: ${theme.gridUnit * 6}px;
+      margin-top: 25px;
+      margin-bottom: 10px;
       font-weight: ${theme.typography.weights.bold};
+      color: ${theme.colors.grayscale.dark2};
+      font-size: 14px;
     }
     .options-list {
       overflow: auto;
       position: absolute;
       bottom: 0;
-      top: ${theme.gridUnit * 92.25}px;
+      top: 340px;
       left: ${theme.gridUnit * 3.25}px;
       right: 0;
+      color: ${theme.colors.grayscale.dark2};
 
       .no-scrollbar {
         margin-right: ${theme.gridUnit * 4}px;
@@ -118,7 +124,7 @@ const LeftPanelStyle = styled.div`
         padding: ${theme.gridUnit * 1.75}px;
         border-radius: ${theme.borderRadius}px;
         background-color: ${theme.colors.primary.dark1};
-        color: ${theme.colors.grayscale.light5};
+        color: ${theme.colors.grayscale.dark2};
       }
 
       .options, .options-highlighted {
@@ -129,12 +135,16 @@ const LeftPanelStyle = styled.div`
     }
     form > span[aria-label="refresh"] {
       position: absolute;
-      top: ${theme.gridUnit * 69}px;
+      top: 252px;
       left: ${theme.gridUnit * 42.75}px;
       font-size: ${theme.gridUnit * 4.25}px;
+      color: ${theme.colors.grayscale.dark2};
     }
     .table-form {
       margin-bottom: ${theme.gridUnit * 8}px;
+      .ant-input{
+        background-color:transparent;
+      }
     }
     .loading-container {
       position: absolute;
@@ -147,7 +157,7 @@ const LeftPanelStyle = styled.div`
         margin-bottom: ${theme.gridUnit * 2.5}px;
       }
       p {
-        color: ${theme.colors.grayscale.light1};
+        color: ${theme.colors.grayscale.dark2};
       }
     }
 `}
@@ -359,7 +369,7 @@ export default function LeftPanel({
                     <Icons.Warning
                       iconColor={
                         selectedTable === i
-                          ? theme.colors.grayscale.light5
+                          ? theme.colors.grayscale.dark2
                           : theme.colors.info.base
                       }
                       iconSize="m"

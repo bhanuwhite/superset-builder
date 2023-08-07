@@ -32,6 +32,7 @@ export interface TimerProps {
 const TimerLabel = styled(Label)`
   text-align: left;
   font-family: ${({ theme }) => theme.typography.families.monospace};
+  color: #fff;
 `;
 
 export default function Timer({

@@ -159,6 +159,7 @@ const HEADER_HEIGHT = 68;
 
 const StyledTable = styled(AntTable)<{ height?: number }>(
   ({ theme, height }) => `
+
     .ant-table-body {
       overflow: auto;
       height: ${height ? `${height}px` : undefined};
@@ -171,14 +172,20 @@ const StyledTable = styled(AntTable)<{ height?: number }>(
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      background-color: ${theme.colors.customBstStyles.tableHeaderbg} !important;
     }
 
     .ant-table-tbody > tr > td {
+      background-color: ${theme.colors.grayscale.light5};
       user-select: none;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      border-bottom: 1px solid ${theme.colors.grayscale.light3};
+      color:${theme.colors.grayscale.dark1};
+      border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+    }
+    .ant-table-tbody > tr:hover td{
+      background-color: ${theme.colors.grayscale.light4}!important;
     }
 
     .ant-pagination-item-active {
@@ -256,6 +263,7 @@ export function Table<RecordType extends object>(
     onRow,
     allowHTML = false,
   } = props;
+console.log(props,'colProps');
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [derivedColumns, setDerivedColumns] = useState(columns);

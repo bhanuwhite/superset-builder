@@ -56,6 +56,7 @@ import Icons from 'src/components/Icons';
 import CollectionTable from './CollectionTable';
 import Fieldset from './Fieldset';
 import Field from './Field';
+import { theme } from 'src/preamble';
 
 const DatasourceContainer = styled.div`
   .change-warning {
@@ -98,6 +99,8 @@ const StyledBadge = styled(Badge)`
     line-height: ${({ theme }) => theme.gridUnit * 4}px;
     height: ${({ theme }) => theme.gridUnit * 4}px;
     margin-left: ${({ theme }) => theme.gridUnit}px;
+    color:${({ theme }) => theme.colors.grayscale.dark2};
+    border:0px;
   }
 `;
 
@@ -105,8 +108,12 @@ const EditLockContainer = styled.div`
   font-size: ${({ theme }) => theme.typography.sizes.s}px;
   display: flex;
   align-items: center;
+  color:${({ theme }) => theme.colors.grayscale.dark2};
   a {
     padding: 0 10px;
+  }
+  .anticon{
+    color:${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 
@@ -920,7 +927,9 @@ class DatasourceEditor extends React.PureComponent {
     const { datasource } = this.state;
     return (
       <Fieldset
-        title={t('Basic')}
+        title={ <span style={{ color: theme.colors.grayscale.dark2 }}>
+        {t('Basic')}
+      </span>}
         item={datasource}
         onChange={this.onDatasourceChange}
       >
@@ -1005,7 +1014,9 @@ class DatasourceEditor extends React.PureComponent {
     const { datasource } = this.state;
     return (
       <Fieldset
-        title={t('Advanced')}
+      title={ <span style={{ color: theme.colors.grayscale.dark2 }}>
+        {t('Advanced')}
+      </span>}
         item={datasource}
         onChange={this.onDatasourceChange}
       >
@@ -1078,9 +1089,9 @@ class DatasourceEditor extends React.PureComponent {
           <EditLockContainer>
             <span role="button" tabIndex={0} onClick={this.onChangeEditMode}>
               {this.state.isEditMode ? (
-                <Icons.LockUnlocked iconColor={theme.colors.grayscale.base} />
+                <Icons.LockUnlocked iconColor={theme.colors.grayscale.dark2} />
               ) : (
-                <Icons.LockLocked iconColor={theme.colors.grayscale.base} />
+                <Icons.LockLocked iconColor={theme.colors.grayscale.dark2} />
               )}
             </span>
             {!this.state.isEditMode && (

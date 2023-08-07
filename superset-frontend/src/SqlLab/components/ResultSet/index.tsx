@@ -111,6 +111,17 @@ const ResultSetControls = styled.div`
   display: flex;
   justify-content: space-between;
   padding: ${({ theme }) => 2 * theme.gridUnit}px 0;
+  .form-control{
+    border-radius: ${({ theme }) => theme.gridUnit}px;
+    height: ${({ theme }) => theme.gridUnit * 10}px;
+    align-items:center;
+    background-color:${({ theme }) => theme.colors.customBstStyles.formInputColor};
+    border:0px;
+    color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+    ::placeholder{
+      color:${({ theme }) => theme.colors.customBstStyles.formInputText};
+    }
+  }
 `;
 
 const ResultSetButtons = styled.div`

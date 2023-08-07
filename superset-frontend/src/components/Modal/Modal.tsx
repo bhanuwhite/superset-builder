@@ -115,6 +115,7 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
     border-radius: ${({ theme }) => theme.borderRadius}px
       ${({ theme }) => theme.borderRadius}px 0 0;
     padding:0px 0px ${({ theme }) => theme.gridUnit * 4}px 0px;
+    border-color: ${({ theme }) => theme.colors.customBstStyles.borderColor};
 
     .ant-modal-title {
       color: ${({ theme }) => theme.colors.grayscale.dark2};
@@ -141,8 +142,6 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
 
   .ant-modal-body {
     flex: 0 1 auto;
-    border-top: ${({ theme }) => theme.gridUnit / 4}px solid
-    ${({ theme }) => theme.colors.customBstStyles.borderColor};
     padding: ${({ theme }) => theme.gridUnit * 8}px 0px;
     overflow: auto;
     overflow-x: hidden;

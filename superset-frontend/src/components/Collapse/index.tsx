@@ -69,7 +69,7 @@ const Collapse = Object.assign(
           ghost &&
           bordered &&
           `
-            border-bottom: 1px solid ${theme.colors.grayscale.light3};
+            border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
           `}
       }
       .ant-collapse-content {

@@ -37,6 +37,9 @@ export const TableControlsWrapper = styled.div`
 
     span {
       flex-shrink: 0;
+      .ant-input{
+        background: transparent;
+      }    
     }
   `}
 `;

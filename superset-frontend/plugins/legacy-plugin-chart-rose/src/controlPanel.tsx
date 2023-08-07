@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   D3_FORMAT_DOCS,
@@ -26,6 +26,12 @@ import {
   sections,
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -123,7 +129,7 @@ const config: ControlPanelConfig = {
       ),
       controlSetRows: [
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Rolling Window')}</div>],
+        [<Styleddiv className="section-header">{t('Rolling Window')}</Styleddiv>],
         [
           {
             name: 'rolling_type',
@@ -175,7 +181,7 @@ const config: ControlPanelConfig = {
           },
         ],
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Time Comparison')}</div>],
+        [<Styleddiv className="section-header">{t('Time Comparison')}</Styleddiv>],
         [
           {
             name: 'time_compare',
@@ -224,7 +230,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Resample')}</div>],
+        [<Styleddiv className="section-header">{t('Resample')}</Styleddiv>],
         [
           {
             name: 'resample_rule',

@@ -25,7 +25,6 @@ const TooltipSectionWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
-    color: ${theme.colors.grayscale.light5};
     font-size: ${theme.typography.sizes.s}px;
     line-height: 1.2;
     &:not(:last-of-type) {
@@ -56,7 +55,7 @@ const TooltipSection = ({
 }) => (
   <TooltipSectionWrapper>
     <TooltipSectionLabel>{label}</TooltipSectionLabel>
-    <span>{text}</span>
+    <div>{text}</div>
   </TooltipSectionWrapper>
 );
 

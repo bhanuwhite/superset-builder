@@ -75,7 +75,7 @@ const Styles = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.customBstStyles.borderColor};
     padding: ${({ theme }) => 4 * theme.gridUnit}px;
     padding-right: ${({ theme }) => 2 * theme.gridUnit}px;
   }
@@ -105,8 +105,9 @@ const Styles = styled.div`
   .title-select {
     flex: 1 1 100%;
     display: inline-block;
-    background-color: ${({ theme }) => theme.colors.grayscale.light3};
+    background-color: ${({ theme }) => theme.colors.grayscale.light4};
     padding: ${({ theme }) => theme.gridUnit * 2}px;
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     border-radius: ${({ theme }) => theme.borderRadius}px;
     text-align: center;
     text-overflow: ellipsis;
@@ -118,10 +119,10 @@ const Styles = styled.div`
     flex: none;
   }
   span[aria-label='dataset-physical'] {
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
   span[aria-label='more-vert'] {
-    color: ${({ theme }) => theme.colors.primary.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 

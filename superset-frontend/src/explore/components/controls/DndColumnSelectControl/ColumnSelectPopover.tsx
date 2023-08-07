@@ -62,6 +62,9 @@ const StyledSelect = styled(Select)`
     }
   }
 `;
+const StyledSpan = styled.span`
+ color: ${({ theme }) => theme.colors.customBstStyles.formInputText}};
+`;
 
 interface ColumnSelectPopoverProps {
   columns: ColumnMeta[];
@@ -183,8 +186,8 @@ const ColumnSelectPopover = ({
   const defaultActiveTabKey = initialAdhocColumn
     ? 'sqlExpression'
     : initialSimpleColumn || calculatedColumns.length === 0
-    ? 'simple'
-    : 'saved';
+      ? 'simple'
+      : 'saved';
 
   useEffect(() => {
     getCurrentTab(defaultActiveTabKey);
@@ -248,7 +251,7 @@ const ColumnSelectPopover = ({
   const hasUnsavedChanges =
     initialLabel !== label ||
     selectedCalculatedColumn?.column_name !==
-      initialCalculatedColumn?.column_name ||
+    initialCalculatedColumn?.column_name ||
     selectedSimpleColumn?.column_name !== initialSimpleColumn?.column_name ||
     adhocColumn?.sqlExpression !== initialAdhocColumn?.sqlExpression;
 
@@ -280,9 +283,10 @@ const ColumnSelectPopover = ({
                 placeholder={t('%s column(s)', calculatedColumns.length)}
                 options={calculatedColumns.map(calculatedColumn => ({
                   value: calculatedColumn.column_name,
-                  label:
-                    calculatedColumn.verbose_name ||
-                    calculatedColumn.column_name,
+                  label: (<StyledSpan>
+                    {calculatedColumn.verbose_name ||
+                      calculatedColumn.column_name},
+                  </StyledSpan>),
                   customLabel: (
                     <StyledColumnOption column={calculatedColumn} showType />
                   ),
@@ -301,11 +305,11 @@ const ColumnSelectPopover = ({
               description={
                 isTemporal
                   ? t(
-                      'Add calculated temporal columns to dataset in "Edit datasource" modal',
-                    )
+                    'Add calculated temporal columns to dataset in "Edit datasource" modal',
+                  )
                   : t(
-                      'Add calculated columns to dataset in "Edit datasource" modal',
-                    )
+                    'Add calculated columns to dataset in "Edit datasource" modal',
+                  )
               }
             />
           ) : (

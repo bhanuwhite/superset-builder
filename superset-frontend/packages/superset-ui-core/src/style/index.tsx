@@ -32,7 +32,7 @@ export { default as createEmotionCache } from '@emotion/cache';
 
 declare module '@emotion/react' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Theme extends SupersetTheme { }
+  export interface Theme extends SupersetTheme {}
 }
 
 export function useTheme() {
@@ -63,11 +63,21 @@ const defaultTheme = {
       tableHeaderbg: 'rgba(0,0,0,0.2)',
       heatMapToolTipText: '#000000',
       modalBg: '#ffffff',
-      chartBg: '#ffffff'
+      chartBg: '#ffffff',
+      aceEditorBG: '#F5F5F8',
+      tableChartHover: '#ECEEF2',
+      tooltipBg: '#252525',
+      borderColor: 'rgba(0,0,0,0.12)',
     },
     text: {
       label: '#879399',
       help: '#737373',
+    },
+    toast: {
+      base: '#1d98ff',
+      success: '#00ca98',
+      warning: '#ff9b56',
+      error: 'fc5c66',
     },
     primary: {
       base: '#20A7C9',
@@ -101,39 +111,39 @@ const defaultTheme = {
       light5: '#FFFFFF',
     },
     error: {
-      base: '#E04355',
+      base: '#cb323c',
       dark1: '#A7323F',
-      dark2: '#6F212A',
+      dark2: '#FFFFFF',
       light1: '#EFA1AA',
-      light2: '#FAEDEE',
+      light2: 'rgba(203,50,60,.2)',
     },
     warning: {
-      base: '#FF7F44',
+      base: '#f26c0e',
       dark1: '#BF5E33',
-      dark2: '#7F3F21',
+      dark2: '#FFFFFF',
       light1: '#FEC0A1',
-      light2: '#FFF2EC',
+      light2: 'rgba(242,108,14,.2)',
     },
     alert: {
-      base: '#FCC700',
+      base: '#007ad9',
       dark1: '#BC9501',
       dark2: '#7D6300',
       light1: '#FDE380',
       light2: '#FEF9E6',
     },
     success: {
-      base: '#5AC189',
+      base: '#00796b',
       dark1: '#439066',
-      dark2: '#2B6144',
+      dark2: '#FFFFFF',
       light1: '#ACE1C4',
-      light2: '#EEF8F3',
+      light2: 'rgba(0,121,107,.2)',
     },
     info: {
-      base: '#66BCFE',
+      base: '#007ad9',
       dark1: '#4D8CBE',
-      dark2: '#315E7E',
+      dark2: '#FFFFFF',
       light1: '#B3DEFE',
-      light2: '#EFF8FE',
+      light2: 'rgba(0,122,217,.2)',
     },
   },
   opacity: {
@@ -188,11 +198,20 @@ const defaultThemeDark = {
       primaryButtonDsabledBg: 'rgba(255,255,255,0.12)',
       primaryButtonDsabledText: 'rgba(255,255,255,0.32)',
       modalBg: '#424242',
-      chartBg: '#2d2d2d'
+      chartBg: '#2d2d2d',
+      aceEditorBG: '#c0c0c0',
+      tableChartHover: '#000000',
+      tooltipBg: '#5f5f5f',
     },
     text: {
       label: '#879399',
       help: '#737373',
+    },
+    toast: {
+      base: '#1d98ff',
+      success: '#00ca98',
+      warning: '#ff9b56',
+      error: 'fc5c66',
     },
     primary: {
       base: '#20A7C9',
@@ -226,39 +245,39 @@ const defaultThemeDark = {
       light5: '#2d2d2d',
     },
     error: {
-      base: '#E04355',
+      base: '#cb323c',
       dark1: '#A7323F',
-      dark2: '#6F212A',
+      dark2: '#FFFFFF',
       light1: '#EFA1AA',
-      light2: '#FAEDEE',
+      light2: 'rgba(203,50,60,.2)',
     },
     warning: {
-      base: '#FF7F44',
+      base: '#f26c0e',
       dark1: '#BF5E33',
-      dark2: '#7F3F21',
+      dark2: '#FFFFFF',
       light1: '#FEC0A1',
-      light2: '#FFF2EC',
+      light2: 'rgba(242,108,14,.2)',
     },
     alert: {
-      base: '#FCC700',
+      base: '#007ad9',
       dark1: '#BC9501',
       dark2: '#7D6300',
       light1: '#FDE380',
       light2: '#FEF9E6',
     },
     success: {
-      base: '#5AC189',
+      base: '#00796b',
       dark1: '#439066',
-      dark2: '#2B6144',
+      dark2: '#FFFFFF',
       light1: '#ACE1C4',
-      light2: '#EEF8F3',
+      light2: 'rgba(0,121,107,.2)',
     },
     info: {
-      base: '#66BCFE',
+      base: '#007ad9',
       dark1: '#4D8CBE',
-      dark2: '#315E7E',
+      dark2: '#FFFFFF',
       light1: '#B3DEFE',
-      light2: '#EFF8FE',
+      light2: 'rgba(0,122,217,.2)',
     },
   },
   opacity: {

@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { supersetTheme, t } from '@superset-ui/core';
 import {
   ControlPanelsContainerProps,
   ControlSetItem,
@@ -96,7 +96,15 @@ const legendOrientationControl: ControlSetItem = {
 };
 
 export const legendSection: ControlSetRow[] = [
-  [<div className="section-header">{t('Legend')}</div>],
+  [
+    <div className="section-header">
+      {
+        <span style={{ color: supersetTheme.colors.grayscale.dark2 }}>
+          {t('Legend')}
+        </span>
+      }
+    </div>,
+  ],
   [showLegendControl],
   [legendTypeControl],
   [legendOrientationControl],

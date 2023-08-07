@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useState, useCallback, useRef, FocusEvent } from 'react';
-import { t, useTheme } from '@superset-ui/core';
+import { styled, t, useTheme } from '@superset-ui/core';
 
 import { AntdInput, RadioChangeEvent } from 'src/components';
 import { Input } from 'src/components/Input';
@@ -64,6 +64,10 @@ export const AlertReportCronScheduler: React.FC<AlertReportCronSchedulerProps> =
 
     const [error, onError] = useState<CronError>();
 
+    const StyledInputLabel = styled.span`
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+  `;
+
     return (
       <>
         <Radio.Group onChange={handleRadioButtonChange} value={scheduleFormat}>
@@ -80,7 +84,7 @@ export const AlertReportCronScheduler: React.FC<AlertReportCronSchedulerProps> =
           </div>
           <div className="inline-container add-margin">
             <Radio data-test="input" value="input" />
-            <span className="input-label">{t('CRON Schedule')}</span>
+            <StyledInputLabel className="input-label">{t('CRON Schedule')}</StyledInputLabel>
             <StyledInputContainer
               data-test="input-content"
               className="styled-input"

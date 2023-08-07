@@ -27,7 +27,8 @@ export type { TooltipProps } from 'antd/lib/tooltip';
 
 export const Tooltip = ({ overlayStyle, color, ...props }: TooltipProps) => {
   const theme = useTheme();
-  const defaultColor = `${theme.colors.grayscale.dark2}e6`;
+  const defaultColor = `${theme.colors.customBstStyles.tooltipBg}`;
+
   return (
     <>
       {/* Safari hack to hide browser default tooltips */}
@@ -48,11 +49,20 @@ export const Tooltip = ({ overlayStyle, color, ...props }: TooltipProps) => {
           lineHeight: '1.6',
           maxWidth: theme.gridUnit * 62,
           minWidth: theme.gridUnit * 30,
+          color: '#FFF !important',
           ...overlayStyle,
         }}
-        // make the tooltip display closer to the label
-        align={{ offset: [0, 1] }}
-        color={defaultColor || color}
+        overlayInnerStyle={{
+          display: '-webkit-box',
+          overflow: 'hidden',
+          WebkitLineClamp: 40,
+          WebkitBoxOrient: 'vertical',
+          textOverflow: 'ellipsis',
+          padding: '14px 12px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          borderRadius: 6,
+        }}
+        color={defaultColor}
         trigger="hover"
         placement="bottom"
         // don't allow hovering over the tooltip

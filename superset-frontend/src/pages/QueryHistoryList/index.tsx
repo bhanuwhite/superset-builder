@@ -419,7 +419,7 @@ function QueryList({ addDangerToast }: QueryListProps) {
 
   return (
     <>
-      <SubMenu {...menuData} />
+      <SubMenu {...menuData} rightMenuPresence/>
       {queryCurrentlyPreviewing && (
         <QueryPreviewModal
           onHide={() => setQueryCurrentlyPreviewing(undefined)}

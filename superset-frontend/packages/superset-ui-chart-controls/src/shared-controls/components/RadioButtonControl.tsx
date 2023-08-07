@@ -61,12 +61,14 @@ export default function RadioButtonControl({
           marginTop: '1px',
         },
         '.btn-group .btn-default': {
-          color: theme.colors.grayscale.dark1,
+          background: theme.colors.grayscale.light5,
+          color: theme.colors.grayscale.dark2,
         },
         '.btn-group .btn.active': {
-          background: theme.colors.grayscale.light4,
+          background: theme.colors.primary.dark2,
           fontWeight: theme.typography.weights.bold,
           boxShadow: 'none',
+          color: "#FFF",
         },
       }}
     >

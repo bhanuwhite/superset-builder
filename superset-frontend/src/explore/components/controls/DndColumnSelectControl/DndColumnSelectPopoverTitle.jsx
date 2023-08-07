@@ -17,9 +17,15 @@
  * under the License.
  */
 import React, { useCallback, useState } from 'react';
-import { t, styled } from '@superset-ui/core';
+import { t, styled, supersetTheme } from '@superset-ui/core';
 import { Input } from 'src/components/Input';
 import { Tooltip } from 'src/components/Tooltip';
+
+const TitleLabel = styled.span`
+  display: inline-block;
+  padding: 2px 0;
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+`;
 
 const StyledInput = styled(Input)`
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -65,7 +71,7 @@ export const DndColumnSelectPopoverTitle = ({
   const defaultLabel = t('My column');
 
   if (isEditDisabled) {
-    return <span>{title || defaultLabel}</span>;
+    return <TitleLabel>{title || defaultLabel}</TitleLabel>;
   }
 
   return isEditMode ? (
@@ -79,7 +85,7 @@ export const DndColumnSelectPopoverTitle = ({
     />
   ) : (
     <Tooltip placement="top" title={t('Click to edit label')}>
-      <span
+      <TitleLabel
         className="AdhocMetricEditPopoverTitle inline-editable"
         data-test="AdhocMetricEditTitle#trigger"
         onMouseOver={onMouseOver}
@@ -93,9 +99,9 @@ export const DndColumnSelectPopoverTitle = ({
         &nbsp;
         <i
           className="fa fa-pencil"
-          style={{ color: isHovered ? 'black' : 'grey' }}
+          style={{ color: isHovered ? supersetTheme.colors.grayscale.dark2 : 'grey' }}
         />
-      </span>
+      </TitleLabel>
     </Tooltip>
   );
 };

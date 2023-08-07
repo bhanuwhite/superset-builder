@@ -137,9 +137,15 @@ const StyledSidebar = styled.div`
   flex: 0 0 ${({ width }) => width}px;
   width: ${({ width }) => width}px;
   padding: ${({ theme, hide }) => (hide ? 0 : theme.gridUnit * 2.5)}px;
+  background: ${({ theme }) => theme.colors.grayscale.light5};
   border-right: 1px solid
     ${({ theme, hide }) =>
-      hide ? 'transparent' : theme.colors.grayscale.light2};
+      hide ? 'transparent' : theme.colors.customBstStyles.borderColor};
+    .refresh{
+      .anticon{
+        color:${({ theme }) => theme.colors.grayscale.dark2};
+      }
+    }  
 `;
 
 const StyledSqlEditor = styled.div`
@@ -154,9 +160,12 @@ const StyledSqlEditor = styled.div`
 
     .queryPane {
       flex: 1 1 auto;
-      padding: ${theme.gridUnit * 2}px;
+      margin: ${theme.gridUnit * 5}px;
       overflow-y: auto;
       overflow-x: scroll;
+      background: ${theme.colors.grayscale.light5};
+      padding:${theme.gridUnit * 5}px ${theme.gridUnit * 10}px;
+      border-radius:10px;
     }
 
     .schemaPane-enter-done,

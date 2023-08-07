@@ -30,9 +30,8 @@ const ErrorAlertDiv = styled.div<{ level: ErrorLevel }>`
   align-items: center;
   background-color: ${({ level, theme }) => theme.colors[level].light2};
   border-radius: ${({ theme }) => theme.borderRadius}px;
-  border: 1px solid ${({ level, theme }) => theme.colors[level].base};
   color: ${({ level, theme }) => theme.colors[level].dark2};
-  padding: ${({ theme }) => 2 * theme.gridUnit}px;
+  padding: ${({ theme }) => 5 * theme.gridUnit}px ${({ theme }) => 3 * theme.gridUnit}px;
   width: 100%;
 
   .top-row {

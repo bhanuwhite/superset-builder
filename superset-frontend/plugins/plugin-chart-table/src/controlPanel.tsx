@@ -30,6 +30,7 @@ import {
   QueryFormColumn,
   QueryMode,
   smartDateFormatter,
+  supersetTheme,
   t,
 } from '@superset-ui/core';
 import {
@@ -87,7 +88,13 @@ const validateAggControlValues = (
 
 const queryMode: ControlConfig<'RadioButtonControl'> = {
   type: 'RadioButtonControl',
-  label: t('Query mode'),
+  label: (
+    <span
+      style={{ color: supersetTheme.colors.grayscale.dark2, fontWeight: 600 }}
+    >
+      {t('Query mode')}
+    </span>
+  ),
   default: null,
   options: [
     [QueryMode.aggregate, QueryModeLabel[QueryMode.aggregate]],

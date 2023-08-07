@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t, validateNonEmpty } from '@superset-ui/core';
+import { styled, t, validateNonEmpty } from '@superset-ui/core';
 import {
   ColumnMeta,
   ControlPanelConfig,
@@ -28,6 +28,12 @@ import {
   sections,
 } from '@superset-ui/chart-controls';
 import OptionDescription from './OptionDescription';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -241,7 +247,11 @@ const config: ControlPanelConfig = {
       ),
       controlSetRows: [
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Rolling Window')}</div>],
+        [
+          <Styleddiv className="section-header">
+            {t('Rolling Window')}
+          </Styleddiv>,
+        ],
         [
           {
             name: 'rolling_type',
@@ -293,7 +303,11 @@ const config: ControlPanelConfig = {
           },
         ],
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Time Comparison')}</div>],
+        [
+          <Styleddiv className="section-header">
+            {t('Time Comparison')}
+          </Styleddiv>,
+        ],
         [
           {
             name: 'time_compare',
@@ -342,7 +356,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Resample')}</div>],
+        [<Styleddiv className="section-header">{t('Resample')}</Styleddiv>],
         [
           {
             name: 'resample_rule',

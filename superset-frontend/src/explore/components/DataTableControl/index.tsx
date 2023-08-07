@@ -80,7 +80,7 @@ export const CopyToClipboardButton = ({
       wrapped={false}
       copyNode={
         <Icons.CopyOutlined
-          iconColor={theme.colors.grayscale.base}
+          iconColor={theme.colors.grayscale.dark2}
           iconSize="l"
           aria-label={t('Copy')}
           role="button"
@@ -104,7 +104,7 @@ export const FilterInput = ({
   const debouncedChangeHandler = debounce(onChangeHandler, SLOW_DEBOUNCE);
   return (
     <Input
-      prefix={<Icons.Search iconColor={theme.colors.grayscale.base} />}
+      prefix={<Icons.Search iconColor={theme.colors.grayscale.dark2} />}
       placeholder={t('Search')}
       onChange={(event: any) => {
         const filterText = event.target.value;
@@ -113,6 +113,7 @@ export const FilterInput = ({
       css={css`
         width: 200px;
         margin-right: ${theme.gridUnit * 2}px;
+        background:transperent;
       `}
     />
   );

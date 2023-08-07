@@ -51,7 +51,7 @@ const Bar = styled.div<{ count: number }>`
     align-items: center;
     padding: ${VERTICAL_PADDING}px ${HORIZONTAL_PADDING}px;
     background-color: ${theme.colors.grayscale.light4};
-    color: ${theme.colors.grayscale.base};
+    color: ${theme.colors.grayscale.dark2};
     font-size: ${theme.typography.sizes.s}px;
     min-width: ${
       HORIZONTAL_PADDING * 2 +
@@ -90,8 +90,8 @@ const StyledItem = styled.div<{
     & .metadata-icon {
       color: ${
         onClick && collapsed
-          ? theme.colors.primary.base
-          : theme.colors.grayscale.base
+          ? theme.colors.grayscale.dark2
+          : theme.colors.grayscale.dark2
       };
       padding-right: ${collapsed ? 0 : ICON_PADDING}px;
       & .anticon {

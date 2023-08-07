@@ -228,6 +228,7 @@ export default function EditableTitle({
           text-decoration: none;
           :hover {
             text-decoration: underline;
+            color: ${theme.colors.grayscale.dark1};
           }
         `}
       >

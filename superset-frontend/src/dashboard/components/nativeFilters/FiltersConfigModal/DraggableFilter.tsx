@@ -39,7 +39,7 @@ const Container = styled.div<TitleContainerProps>`
     cursor: ${isDragging ? 'grabbing' : 'pointer'};
     width: 100%;
     display: flex;
-    padding:  ${theme.gridUnit}px;
+    padding:0px  ${theme.gridUnit * 4}px 0px 0px;
   `}
 `;
 

@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { styled, t } from '@superset-ui/core';
+import { styled, supersetTheme, t } from '@superset-ui/core';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
 import { RangePicker } from 'src/components/DatePicker';
 import moment from 'moment';
@@ -296,6 +296,10 @@ const AnnotationModal: FunctionComponent<AnnotationModalProps> = ({
           onChange={onAnnotationTextChange}
           type="text"
           value={currentAnnotation?.short_descr}
+          style={{
+            color: supersetTheme.colors.customBstStyles.formInputText, // Set the desired text color (e.g., "blue")
+            backgroundColor: supersetTheme.colors.customBstStyles.formInputColor, // Set the desired background color (e.g., "lightgray")
+          }}
         />
       </AnnotationContainer>
       <AnnotationContainer>

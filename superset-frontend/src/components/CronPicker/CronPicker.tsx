@@ -111,21 +111,28 @@ export const CronPicker = styled((props: CronProps) => (
   </ConfigProvider>
 ))`
   .react-js-cron-field {
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     margin-bottom: 0px;
   }
   .react-js-cron-select:not(.react-js-cron-custom-select) > div:first-of-type,
   .react-js-cron-custom-select {
     border-radius: ${({ theme }) => theme.gridUnit}px;
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     background-color: ${({ theme }) =>
-      theme.colors.grayscale.light4} !important;
+    theme.colors.grayscale.light4} !important;
   }
   .react-js-cron-custom-select > div:first-of-type {
     border-radius: ${({ theme }) => theme.gridUnit}px;
   }
+  .ant-select-arrow {
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+  }
   .react-js-cron-custom-select .ant-select-selection-placeholder {
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     flex: auto;
   }
   .react-js-cron-custom-select .ant-select-selection-overflow-item {
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     align-self: center;
   }
 `;

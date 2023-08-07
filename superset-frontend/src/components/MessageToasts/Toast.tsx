@@ -27,7 +27,6 @@ const ToastContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   span {
     padding: 0 11px;
   }
@@ -35,7 +34,7 @@ const ToastContainer = styled.div`
 
 const StyledIcon = (theme: SupersetTheme) => css`
   min-width: ${theme.gridUnit * 5}px;
-  color: ${theme.colors.grayscale.base};
+  color: ${theme.colors.grayscale.dark2};
 `;
 
 interface ToastPresenterProps {

@@ -30,6 +30,7 @@ const Card = ({ padded, ...props }: CardProps) => (
     css={(theme: SupersetTheme) => ({
       backgroundColor: theme.colors.grayscale.light4,
       borderRadius: theme.borderRadius,
+      border:'0px',
       '.ant-card-body': {
         padding: padded ? theme.gridUnit * 4 : theme.gridUnit,
       },

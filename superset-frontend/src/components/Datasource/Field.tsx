@@ -78,7 +78,7 @@ export default function Field<V>({
       {!compact && description && (
         <div
           css={(theme: SupersetTheme) => ({
-            color: theme.colors.grayscale.base,
+            color: theme.colors.customBstStyles.formInputText,
             [inline ? 'marginLeft' : 'marginTop']: theme.gridUnit,
           })}
         >

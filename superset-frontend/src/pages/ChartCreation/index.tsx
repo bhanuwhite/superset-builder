@@ -82,9 +82,9 @@ const StyledContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    max-width: ${MAX_ADVISABLE_VIZ_GALLERY_WIDTH}px;
-    max-height: calc(100vh - ${ESTIMATED_NAV_HEIGHT}px);
-    border-radius: 10px;
+    // max-width: ${MAX_ADVISABLE_VIZ_GALLERY_WIDTH}px;
+    // max-height: calc(100vh - ${ESTIMATED_NAV_HEIGHT}px);
+    // border-radius: 10px;
     background-color: ${theme.colors.grayscale.light5};
     margin-left: auto;
     margin-right: auto;
@@ -209,6 +209,8 @@ const StyledLabel = styled.span`
     right: ${theme.gridUnit * 3}px;
     overflow: hidden;
     text-overflow: ellipsis;
+    top:50%;
+    transform: translateY(-50%);
   `}
 `;
 
@@ -229,6 +231,8 @@ const StyledStepDescription = styled.div`
     margin-bottom: ${gridUnit * 3}px;
   `}
 `;
+
+
 
 export class ChartCreation extends React.PureComponent<
   ChartCreationProps,
@@ -436,6 +440,7 @@ export class ChartCreation extends React.PureComponent<
             {t('Create new chart')}
           </Button>
         </div>
+       
       </StyledContainer>
     );
   }

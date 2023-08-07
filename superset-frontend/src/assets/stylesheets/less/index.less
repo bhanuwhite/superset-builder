@@ -23,10 +23,23 @@
 @import './variables.less';
 @import './cosmo/bootswatch.less';
 
+:root[data-theme='light'] {
+  --base-color: #f7f7f7;
+  --scroll-color: #f7f7f7;
+  --scrollbg-color:#a9a9a9;
+}
+
+:root[data-theme='dark'] {
+  --base-color: #383838;
+  --scroll-color: #2d2d2d;
+  --scrollbg-color: #383838;
+}
+
 html,
 body {
   font-size: @font-size-base;
   line-height: @line-height-base;
+  background-color: var(--base-color) !important;
 }
 
 body {
@@ -40,8 +53,24 @@ header {
 }
 
 #app {
+  background-color: var(--base-color);
   flex: 1 1 auto;
   position: relative;
   display: flex;
   flex-direction: column;
+}
+::-webkit-scrollbar {
+  width: 4px !important;
+  cursor: pointer;
+}
+::-webkit-scrollbar:horizontal {
+  height: 4px !important;
+  cursor: pointer;
+}
+::-webkit-scrollbar-track {
+  background: var(--scroll-color) !important;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbg-color) !important;
+  border-radius: 10px !important;
 }

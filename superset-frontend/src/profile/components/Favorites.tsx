@@ -23,6 +23,7 @@ import { t } from '@superset-ui/core';
 import { DashboardResponse, BootstrapUser } from 'src/types/bootstrapTypes';
 import TableLoader from '../../components/TableLoader';
 import { Chart } from '../types';
+import { theme } from 'src/preamble';
 
 interface FavoritesProps {
   user: BootstrapUser;
@@ -96,10 +97,10 @@ export default class Favorites extends React.PureComponent<FavoritesProps> {
   render() {
     return (
       <div>
-        <h3>{t('Dashboards')}</h3>
+        <h3  style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>{t('Dashboards')}</h3>
         {this.renderDashboardTable()}
         <hr />
-        <h3>{t('Charts')}</h3>
+        <h3 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>{t('Charts')}</h3>
         {this.renderSliceTable()}
       </div>
     );

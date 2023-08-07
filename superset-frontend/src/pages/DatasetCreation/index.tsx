@@ -79,6 +79,8 @@ export default function AddDataset() {
   const [dataset, setDataset] = useReducer<
     Reducer<Partial<DatasetObject> | null, DSReducerActionType>
   >(datasetReducer, null);
+  console.log(dataset, 'dataset');
+
   const [hasColumns, setHasColumns] = useState(false);
   const [editPageIsVisible, setEditPageIsVisible] = useState(false);
 

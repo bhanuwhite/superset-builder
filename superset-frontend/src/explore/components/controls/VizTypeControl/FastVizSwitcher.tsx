@@ -146,12 +146,15 @@ const VizTile = ({
           align-items: center;
           text-transform: uppercase;
 
-          color: ${theme.colors.grayscale.base};
+          color: ${theme.colors.grayscale.dark2};
           font-weight: ${theme.typography.weights.bold};
           border-radius: 6px;
           white-space: nowrap;
           overflow: hidden;
           max-width: fit-content;
+          svg path {
+            fill: ${theme.colors.grayscale.dark2};
+          }
 
           ${!isActive &&
           css`
@@ -160,7 +163,7 @@ const VizTile = ({
             background-color: transparent;
             transition: none;
             &:hover svg path {
-              fill: ${theme.colors.primary.base};
+              fill: ${theme.colors.primary.dark1};
               transition: fill ${theme.transitionTiming}s ease-out;
             }
           `}
@@ -173,7 +176,7 @@ const VizTile = ({
               background-color ${TILE_TRANSITION_TIME}s ease-out;
             cursor: default;
             svg path {
-              fill: ${theme.colors.primary.base};
+              fill: ${theme.colors.primary.dark1};
             }
           `}
         `}

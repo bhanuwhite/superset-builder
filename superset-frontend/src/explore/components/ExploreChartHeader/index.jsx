@@ -56,7 +56,7 @@ const propTypes = {
 };
 
 const saveButtonStyles = theme => css`
-  color: ${theme.colors.primary.dark2};
+
   & > span[role='img'] {
     margin-right: 0;
   }

@@ -117,15 +117,26 @@ const DatasourceContainer = styled.div`
     .field-length {
       margin-bottom: ${theme.gridUnit * 2}px;
       font-size: ${theme.typography.sizes.s}px;
-      color: ${theme.colors.grayscale.light1};
+      color: ${theme.colors.grayscale.dark2};
     }
     .column{
       color: ${theme.colors.grayscale.dark2};
+      &:hover{
+        background-color: ${theme.colors.grayscale.light4};
+      }
     }
     .form-control.input-md {
       width: calc(100% - ${theme.gridUnit * 8}px);
-      height: ${theme.gridUnit * 8}px;
+      height: ${theme.gridUnit * 10}px;
       margin: ${theme.gridUnit * 2}px auto;
+      .ant-input{
+        background-color:transparent;
+        color: ${theme.colors.customBstStyles.formInputText};
+        height: ${theme.gridUnit * 10}px;
+      }
+      .ant-input-clear-icon{
+        color: ${theme.colors.customBstStyles.formInputText};
+      }
     }
     .type-label {
       font-size: ${theme.typography.sizes.s}px;
@@ -134,7 +145,11 @@ const DatasourceContainer = styled.div`
     .Control {
       padding-bottom: 0;
     }
+    .anticon{
+      color: ${theme.colors.grayscale.dark2};
+    }
   `};
+
 `;
 
 const LabelWrapper = styled.div`

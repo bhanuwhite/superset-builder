@@ -166,6 +166,7 @@ export interface SliceHeaderControlsProps {
   addSuccessToast: (message: string) => void;
 
   supersetCanExplore?: boolean;
+  supersetCanEditChart?: boolean;
   supersetCanShare?: boolean;
   supersetCanCSV?: boolean;
 
@@ -184,11 +185,13 @@ const dropdownItemStyles = css`
 
 const ViewResultsModalTrigger = ({
   exploreUrl,
+  canExplore,
   triggerNode,
   modalTitle,
   modalBody,
 }: {
   exploreUrl: string;
+  canExplore: any;
   triggerNode: ReactChild;
   modalTitle: ReactChild;
   modalBody: ReactChild;
@@ -223,13 +226,15 @@ const ViewResultsModalTrigger = ({
           title={modalTitle}
           footer={
             <>
-              <Button
-                buttonStyle="secondary"
-                buttonSize="small"
-                onClick={exploreChart}
-              >
-                {t('Edit chart')}
-              </Button>
+              {canExplore &&
+                <Button
+                  buttonStyle="secondary"
+                  buttonSize="small"
+                  onClick={exploreChart}
+                >
+                  {t('Edit chart')}
+                </Button>
+              }
               <Button
                 buttonStyle="primary"
                 buttonSize="small"
@@ -359,6 +364,8 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
     supersetCanShare = false,
     isCached = [],
   } = props;
+  // console.log(props, 'props');
+
   const isTable = slice.viz_type === 'table';
   const cachedWhen = (cachedDttm || []).map(itemCachedDttm =>
     moment.utc(itemCachedDttm).fromNow(),
@@ -419,7 +426,7 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
           </Menu.Item>
         )}
 
-        {props.supersetCanExplore && (
+        {props.supersetCanExplore && props.supersetCanEditChart && (
           <Menu.Item key={MENU_KEYS.EXPLORE_CHART}>
             <Link to={props.exploreUrl}>
               <Tooltip title={getSliceHeaderTooltip(props.slice.slice_name)}>
@@ -457,6 +464,7 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
           <Menu.Item key={MENU_KEYS.VIEW_RESULTS}>
             <ViewResultsModalTrigger
               exploreUrl={props.exploreUrl}
+              canExplore={props.supersetCanExplore && props.supersetCanEditChart}
               triggerNode={
                 <span data-test="view-query-menu-item">{t('View as table')}</span>
               }

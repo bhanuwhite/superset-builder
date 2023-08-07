@@ -112,6 +112,7 @@ function PropertiesModal({
           endpoint: `/api/v1/chart/${slice.slice_id}`,
         });
         const chart = response.json.result;
+        // console.log(chart,'chart');
         setSelectedOwners(
           chart?.owners?.map((owner: any) => ({
             value: owner.id,

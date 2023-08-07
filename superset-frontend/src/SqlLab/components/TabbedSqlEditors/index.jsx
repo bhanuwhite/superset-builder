@@ -299,35 +299,37 @@ class TabbedSqlEditors extends React.PureComponent {
     );
 
     return (
-      <StyledEditableTabs
-        destroyInactiveTabPane
-        activeKey={this.props.tabHistory[this.props.tabHistory.length - 1]}
-        id="a11y-query-editor-tabs"
-        className="SqlEditorTabs"
-        data-test="sql-editor-tabs"
-        onChange={this.handleSelect}
-        fullWidth={false}
-        hideAdd={this.props.offline}
-        onTabClick={() => noQueryEditors && this.newQueryEditor()}
-        onEdit={this.handleEdit}
-        type={noQueryEditors ? 'card' : 'editable-card'}
-        addIcon={
-          <Tooltip
-            id="add-tab"
-            placement="bottom"
-            title={
-              userOS === 'Windows'
-                ? t('New tab (Ctrl + q)')
-                : t('New tab (Ctrl + t)')
-            }
-          >
-            <i data-test="add-tab-icon" className="fa fa-plus-circle" />
-          </Tooltip>
-        }
-      >
-        {editors}
-        {noQueryEditors && emptyTabState}
-      </StyledEditableTabs>
+      <>
+        <StyledEditableTabs
+          destroyInactiveTabPane
+          activeKey={this.props.tabHistory[this.props.tabHistory.length - 1]}
+          id="a11y-query-editor-tabs"
+          className="SqlEditorTabs"
+          data-test="sql-editor-tabs"
+          onChange={this.handleSelect}
+          fullWidth={false}
+          hideAdd={this.props.offline}
+          onTabClick={() => noQueryEditors && this.newQueryEditor()}
+          onEdit={this.handleEdit}
+          type={noQueryEditors ? 'card' : 'editable-card'}
+          addIcon={
+            <Tooltip
+              id="add-tab"
+              placement="bottom"
+              title={
+                userOS === 'Windows'
+                  ? t('New tab (Ctrl + q)')
+                  : t('New tab (Ctrl + t)')
+              }
+            >
+              <i data-test="add-tab-icon" className="fa fa-plus-circle" />
+            </Tooltip>
+          }
+        >
+          {editors}
+          {noQueryEditors && emptyTabState}
+        </StyledEditableTabs>
+      </>
     );
   }
 }

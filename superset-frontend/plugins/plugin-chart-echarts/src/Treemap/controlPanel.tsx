@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   D3_FORMAT_DOCS,
@@ -28,6 +28,12 @@ import {
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const { labelType, numberFormat, showLabels, showUpperLabels, dateFormat } =
   DEFAULT_FORM_DATA;
@@ -62,7 +68,7 @@ const config: ControlPanelConfig = {
       expanded: true,
       controlSetRows: [
         ['color_scheme'],
-        [<div className="section-header">{t('Labels')}</div>],
+        [<Styleddiv className="section-header">{t('Labels')}</Styleddiv>],
         [
           {
             name: 'show_labels',

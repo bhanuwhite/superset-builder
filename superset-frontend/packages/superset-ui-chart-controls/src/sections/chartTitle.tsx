@@ -42,7 +42,11 @@ export const titleControls: ControlPanelSectionConfig = {
           label: t('X Axis Title'),
           renderTrigger: true,
           default: '',
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
         },
       },
     ],
@@ -57,7 +61,11 @@ export const titleControls: ControlPanelSectionConfig = {
           renderTrigger: true,
           default: TITLE_MARGIN_OPTIONS[0],
           choices: formatSelectOptions(TITLE_MARGIN_OPTIONS),
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
         },
       },
     ],
@@ -70,7 +78,11 @@ export const titleControls: ControlPanelSectionConfig = {
           label: t('Y Axis Title'),
           renderTrigger: true,
           default: '',
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
         },
       },
     ],
@@ -85,7 +97,11 @@ export const titleControls: ControlPanelSectionConfig = {
           renderTrigger: true,
           default: TITLE_MARGIN_OPTIONS[0],
           choices: formatSelectOptions(TITLE_MARGIN_OPTIONS),
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
         },
       },
     ],
@@ -100,7 +116,11 @@ export const titleControls: ControlPanelSectionConfig = {
           renderTrigger: true,
           default: TITLE_POSITION_OPTIONS[0][0],
           choices: TITLE_POSITION_OPTIONS,
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
         },
       },
     ],

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { hasGenericChartAxes, smartDateFormatter, t } from '@superset-ui/core';
+import { hasGenericChartAxes, smartDateFormatter, styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   D3_FORMAT_DOCS,
@@ -27,6 +27,12 @@ import {
 } from '@superset-ui/chart-controls';
 import React from 'react';
 import { headerFontSize, subheaderFontSize } from '../sharedControls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -170,7 +176,7 @@ const config: ControlPanelConfig = {
       expanded: false,
       controlSetRows: [
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Rolling Window')}</div>],
+        [<Styleddiv className="section-header">{t('Rolling Window')}</Styleddiv>],
         [
           {
             name: 'rolling_type',
@@ -223,7 +229,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Resample')}</div>],
+        [<Styleddiv className="section-header">{t('Resample')}</Styleddiv>],
         [
           {
             name: 'resample_rule',

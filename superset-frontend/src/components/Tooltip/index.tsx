@@ -51,10 +51,14 @@ export const Tooltip = (props: TooltipProps) => {
           WebkitLineClamp: 40,
           WebkitBoxOrient: 'vertical',
           textOverflow: 'ellipsis',
-          color:`${theme.colors.grayscale.light5}`
+          // color: `${theme.colors.grayscale.dark2}`,
+          color: `#FFF`,
+          padding: '14px 12px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          borderRadius: 6,
         }}
-        color={`${theme.colors.grayscale.dark2}e6`}
-        
+        color={`${theme.colors.customBstStyles.tooltipBg}`}
+        // color={`#5f5f5f`}
         {...props}
       />
     </>

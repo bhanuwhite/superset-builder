@@ -78,12 +78,35 @@ const StyledFilterableTable = styled.div`
     height: 100%;
     overflow: hidden;
     margin-top: ${theme.gridUnit * 2}px;
-
+    .ant-table-container{
+      border:0px !important;
+    }
+      .ant-table-thead{
+        .ant-table-cell{
+          background-color: ${theme.colors.customBstStyles.tableHeaderbg};
+          border-left:0px !important;
+          border-right:0px !important;
+          border-top:0px !important;
+          border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+          :hover{
+            background-color: ${theme.colors.customBstStyles.tableHeaderbg};
+          }
+        }
+      }
     .ant-table-cell {
       font-weight: ${theme.typography.weights.bold};
       background-color: ${theme.colors.grayscale.light5};
     }
-
+    .virtual-grid{
+      .virtual-table-cell {
+        background-color: ${theme.colors.grayscale.light5};
+        border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+        color: ${theme.colors.grayscale.dark2};
+        :hover{
+          background-color: ${theme.colors.grayscale.light4};
+        }
+      }
+    }
     .ant-table-cell,
     .virtual-table-cell {
       min-width: 0px;

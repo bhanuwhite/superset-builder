@@ -22,6 +22,7 @@ import { t } from '@superset-ui/core';
 
 import Label from 'src/components/Label';
 import { BootstrapUser } from 'src/types/bootstrapTypes';
+import { theme } from 'src/preamble';
 
 interface SecurityProps {
   user: BootstrapUser;
@@ -31,7 +32,7 @@ export default function Security({ user }: SecurityProps) {
   return (
     <div>
       <div className="roles">
-        <h4>
+        <h4 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>
           {t('Roles')}{' '}
           <Badge count={Object.keys(user?.roles || {}).length} showZero />
         </h4>
@@ -43,7 +44,7 @@ export default function Security({ user }: SecurityProps) {
       <div className="databases">
         {user?.permissions.database_access && (
           <div>
-            <h4>
+            <h4 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>
               {t('Databases')}{' '}
               <Badge count={user.permissions.database_access.length} showZero />
             </h4>
@@ -57,7 +58,7 @@ export default function Security({ user }: SecurityProps) {
       <div className="datasources">
         {user?.permissions.datasource_access && (
           <div>
-            <h4>
+            <h4 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>
               {t('Datasets')}{' '}
               <Badge
                 count={user.permissions.datasource_access.length}

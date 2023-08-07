@@ -17,20 +17,26 @@
  * under the License.
  */
 import React from 'react';
-import { t, RollingType, ComparisonType } from '@superset-ui/core';
+import { t, RollingType, ComparisonType, styled } from '@superset-ui/core';
 import { ControlPanelSectionConfig } from '../types';
 import { formatSelectOptions } from '../utils';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 export const advancedAnalyticsControls: ControlPanelSectionConfig = {
   label: t('Advanced analytics'),
   tabOverride: 'data',
   description: t(
     'This section contains options ' +
-      'that allow for advanced analytical post processing ' +
-      'of query results',
+    'that allow for advanced analytical post processing ' +
+    'of query results',
   ),
   controlSetRows: [
-    [<div className="section-header">{t('Rolling window')}</div>],
+    [<Styleddiv className="section-header">{t('Rolling window')}</Styleddiv>],
     [
       {
         name: 'rolling_type',
@@ -43,7 +49,7 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
           ),
           description: t(
             'Defines a rolling window function to apply, works along ' +
-              'with the [Periods] text box',
+            'with the [Periods] text box',
           ),
         },
       },
@@ -57,7 +63,7 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
           isInt: true,
           description: t(
             'Defines the size of the rolling window function, ' +
-              'relative to the time granularity selected',
+            'relative to the time granularity selected',
           ),
           visibility: ({ controls }, { name }) => {
             // `rolling_type_b` refer to rolling_type in mixed timeseries Query B
@@ -81,10 +87,10 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
           isInt: true,
           description: t(
             'The minimum number of rolling periods required to show ' +
-              'a value. For instance if you do a cumulative sum on 7 days ' +
-              'you may want your "Min Period" to be 7, so that all data points ' +
-              'shown are the total of 7 periods. This will hide the "ramp up" ' +
-              'taking place over the first 7 periods',
+            'a value. For instance if you do a cumulative sum on 7 days ' +
+            'you may want your "Min Period" to be 7, so that all data points ' +
+            'shown are the total of 7 periods. This will hide the "ramp up" ' +
+            'taking place over the first 7 periods',
           ),
           visibility: ({ controls }, { name }) => {
             // `rolling_type_b` refer to rolling_type in mixed timeseries Query B
@@ -99,7 +105,7 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
         },
       },
     ],
-    [<div className="section-header">{t('Time comparison')}</div>],
+    [<Styleddiv className="section-header">{t('Time comparison')}</Styleddiv>],
     [
       {
         name: 'time_compare',
@@ -122,9 +128,9 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
           ],
           description: t(
             'Overlay one or more timeseries from a ' +
-              'relative time period. Expects relative time deltas ' +
-              'in natural language (example:  24 hours, 7 days, ' +
-              '52 weeks, 365 days). Free text is supported.',
+            'relative time period. Expects relative time deltas ' +
+            'in natural language (example:  24 hours, 7 days, ' +
+            '52 weeks, 365 days). Free text is supported.',
           ),
         },
       },
@@ -144,13 +150,13 @@ export const advancedAnalyticsControls: ControlPanelSectionConfig = {
           ],
           description: t(
             'How to display time shifts: as individual lines; as the ' +
-              'difference between the main time series and each time shift; ' +
-              'as the percentage change; or as the ratio between series and time shifts.',
+            'difference between the main time series and each time shift; ' +
+            'as the percentage change; or as the ratio between series and time shifts.',
           ),
         },
       },
     ],
-    [<div className="section-header">{t('Resample')}</div>],
+    [<Styleddiv className="section-header">{t('Resample')}</Styleddiv>],
     [
       {
         name: 'resample_rule',

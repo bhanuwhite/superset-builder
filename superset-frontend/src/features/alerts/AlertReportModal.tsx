@@ -224,6 +224,7 @@ const StyledSectionContainer = styled.div`
 `;
 
 const StyledSectionTitle = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
   display: flex;
   align-items: center;
   margin: ${({ theme }) => theme.gridUnit * 2}px auto
@@ -246,10 +247,12 @@ const StyledSwitchContainer = styled.div`
 
   .switch-label {
     margin-left: 10px;
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 `;
 
 export const StyledInputContainer = styled.div`
+
   flex: 1;
   margin-top: 0;
 
@@ -264,7 +267,7 @@ export const StyledInputContainer = styled.div`
 
   .helper {
     display: block;
-    color: ${({ theme }) => theme.colors.grayscale.base};
+    color: ${({ theme }) => theme.colors.grayscale.dark1};
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
     padding: ${({ theme }) => theme.gridUnit}px 0;
     text-align: left;
@@ -296,6 +299,8 @@ export const StyledInputContainer = styled.div`
   input,
   textarea {
     flex: 1 1 auto;
+    background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
 
   input[disabled] {
@@ -327,6 +332,7 @@ export const StyledInputContainer = styled.div`
   }
 
   .input-label {
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
     margin-left: 10px;
   }
 `;
@@ -334,6 +340,7 @@ export const StyledInputContainer = styled.div`
 const StyledRadio = styled(Radio)`
   display: block;
   line-height: ${({ theme }) => theme.gridUnit * 7}px;
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
 `;
 
 const StyledRadioGroup = styled(Radio.Group)`
@@ -342,6 +349,7 @@ const StyledRadioGroup = styled(Radio.Group)`
 
 const StyledCheckbox = styled(AntdCheckbox)`
   margin-top: ${({ theme }) => theme.gridUnit * 2}px;
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
 `;
 
 // Notification Method components

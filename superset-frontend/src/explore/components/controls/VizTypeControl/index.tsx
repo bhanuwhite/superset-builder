@@ -116,7 +116,7 @@ const VizTypeControl = ({
           display: flex;
           justify-content: flex-end;
           margin-top: ${theme.gridUnit * 3}px;
-          color: ${theme.colors.grayscale.base};
+          color: ${theme.colors.grayscale.dark2};
           text-decoration: underline;
         `}
       >

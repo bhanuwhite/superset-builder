@@ -20,6 +20,7 @@ import { styled } from '@superset-ui/core';
 import Icons from 'src/components/Icons';
 import { Spin, Tag } from 'antd';
 import AntdSelect from 'antd/lib/select';
+import { theme } from 'src/preamble';
 
 export const StyledHeader = styled.span<{ headerPosition: string }>`
   ${({ theme, headerPosition }) => `
@@ -36,6 +37,15 @@ export const StyledContainer = styled.div<{ headerPosition: string }>`
     flex-direction: ${headerPosition === 'top' ? 'column' : 'row'};
     align-items: ${headerPosition === 'left' ? 'center' : undefined};
     width: 100%;
+    .ant-select-disabled{
+      .ant-select-selector {
+        background-color:${theme.colors.customBstStyles.formInputColor} !important;
+        border:0px;
+        color:${theme.colors.customBstStyles.formInputText} !important;
+        ::placeholder{
+          color:${theme.colors.customBstStyles.formInputText} !important;
+        }
+    }
   `}
 `;
 
@@ -46,7 +56,7 @@ export const StyledSelect = styled(AntdSelect, {
     flex: ${headerPosition === 'left' ? 1 : 0};
     && .ant-select-selector {
       border-radius: ${theme.gridUnit}px;
-      height: ${theme.gridUnit * 10}px;
+      min-height: ${theme.gridUnit * 10}px;
       align-items:center;
       background-color:${theme.colors.customBstStyles.formInputColor};
       border:0px;
@@ -58,7 +68,7 @@ export const StyledSelect = styled(AntdSelect, {
        height:100%;
       }
       .ant-select-selection-item{
-        height: ${theme.gridUnit * 10}px;
+        height: ${theme.gridUnit * 6}px;
         align-items:center;
         display:flex;
       }
@@ -93,6 +103,26 @@ export const StyledSelect = styled(AntdSelect, {
       `
     };
  `}
+  .ant-select-dropdown {
+    background: ${({ theme }) => theme.colors.grayscale.light4};
+    box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024,
+      0 1px 10px 0 #0000001f;
+    .ant-select-item-option {
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    .ant-select-item-option-selected{
+      background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    }
+    .ant-select-item-option:hover {
+      background: ${({ theme }) => theme.colors.customBstStyles.formInputColor};
+    }
+    .ant-select-item-option-active {
+      background: ${({ theme }) => theme.colors.customBstStyles.formInputColor};
+    }
+  }
 `;
 
 export const NoElement = styled.span`

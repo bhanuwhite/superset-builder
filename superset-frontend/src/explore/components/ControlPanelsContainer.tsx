@@ -114,10 +114,6 @@ const actionButtonsContainerStyles = (theme: SupersetTheme) => css`
   align-items: center;
   padding: ${theme.gridUnit * 4}px;
   z-index: 999;
-  background: linear-gradient(
-    ${rgba(theme.colors.grayscale.light5, 0)},
-    ${theme.colors.grayscale.light5} ${theme.opacity.mediumLight}
-  );
 
   & > button {
     min-width: 156px;
@@ -135,6 +131,9 @@ const Styles = styled.div`
   #controlSections {
     height: 100%;
     overflow: visible;
+    .ant-tabs-tab{
+      width:50%;
+    }
   }
   .nav-tabs {
     flex: 0 0 1;
@@ -174,7 +173,7 @@ const ControlPanelsTabs = styled(Tabs)`
 
     .ant-collapse-ghost > .ant-collapse-item {
       &:not(:last-child) {
-        border-bottom: 1px solid ${theme.colors.grayscale.light3};
+        border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
       }
 
       & > .ant-collapse-header {

@@ -49,6 +49,12 @@ const StyledSelect = styled(Select)`
   `}
 `;
 
+const StyledSpan = styled.span`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
+
 export default class AdhocFilterEditPopoverSqlTabContent extends React.Component {
   constructor(props) {
     super(props);
@@ -128,11 +134,11 @@ export default class AdhocFilterEditPopoverSqlTabContent extends React.Component
             {...this.selectProps}
             {...clauseSelectProps}
           />
-          <span className="filter-edit-clause-info">
+          <StyledSpan className="filter-edit-clause-info">
             <strong>WHERE</strong> {t('Filters by columns')}
             <br />
             <strong>HAVING</strong> {t('Filters by metrics')}
-          </span>
+          </StyledSpan>
         </div>
         <div css={theme => ({ marginTop: theme.gridUnit * 4 })}>
           <SQLEditor

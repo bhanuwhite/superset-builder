@@ -36,12 +36,10 @@ const AlertContainer = styled.div`
   ${({ theme }) => css`
     margin: ${theme.gridUnit * 4}px;
     padding: ${theme.gridUnit * 4}px;
-
-    border: 1px solid ${theme.colors.info.base};
     background-color: ${theme.colors.info.light2};
     border-radius: 2px;
 
-    color: ${theme.colors.info.dark2};
+    color: ${theme.colors.grayscale.dark2};
     font-size: ${theme.typography.sizes.m}px;
 
     p {
@@ -53,22 +51,12 @@ const AlertContainer = styled.div`
       color: inherit;
       text-decoration: underline;
       &:hover {
-        color: ${theme.colors.info.dark1};
+        color: ${theme.colors.info.dark2};
       }
     }
 
     &.alert-type-warning {
-      border-color: ${theme.colors.alert.base};
-      background-color: ${theme.colors.alert.light2};
-
-      p {
-        color: ${theme.colors.alert.dark2};
-      }
-
-      & a:hover,
-      & span[role='button']:hover {
-        color: ${theme.colors.alert.dark1};
-      }
+      background-color: ${theme.colors.warning.light2};
     }
   `}
 `;

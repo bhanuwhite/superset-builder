@@ -31,6 +31,7 @@ import { usePluginContext } from 'src/components/DynamicPlugins';
 import { Tooltip } from 'src/components/Tooltip';
 import { GenericLink } from 'src/components/GenericLink/GenericLink';
 import { Theme } from '@emotion/react';
+import { theme } from 'src/preamble';
 
 const FALLBACK_THUMBNAIL_URL = '/static/assets/images/chart-card-fallback.svg';
 
@@ -52,6 +53,12 @@ const TruncatedTextWithTooltip: React.FC = ({ children, ...props }) => {
         overflow: hidden;
         text-overflow: ellipsis;
         display: block;
+        a{
+          color:${theme.colors.primary.dark1};
+          :hover{
+            color:${theme.colors.primary.dark1};
+          }
+        }
       `}
     >
       {children}
@@ -79,7 +86,7 @@ const MetadataItem: React.FC<{
     <span
       css={(theme: Theme) => css`
         margin-right: ${theme.gridUnit * 4}px;
-        color: ${theme.colors.grayscale.base};
+        color: ${theme.colors.grayscale.dark2};
       `}
     >
       {label}

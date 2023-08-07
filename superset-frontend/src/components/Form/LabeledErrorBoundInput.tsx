@@ -28,8 +28,8 @@ import FormLabel from './FormLabel';
 export interface LabeledErrorBoundInputProps {
   label?: string;
   validationMethods:
-    | { onBlur: (value: any) => void }
-    | { onChange: (value: any) => void };
+  | { onBlur: (value: any) => void }
+  | { onChange: (value: any) => void };
   errorMessage?: string | null;
   helpText?: string;
   required?: boolean;
@@ -43,6 +43,8 @@ export interface LabeledErrorBoundInputProps {
 
 const StyledInput = styled(Input)`
   margin: ${({ theme }) => `${theme.gridUnit}px 0 ${theme.gridUnit * 2}px`};
+  background-color: ${({ theme }) => theme.colors.customBstStyles.formInputColor};
+  color: ${({ theme }) => theme.colors.customBstStyles.formInputText};
 `;
 
 const StyledInputPassword = styled(Input.Password)`

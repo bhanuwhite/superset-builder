@@ -67,7 +67,11 @@ function createAxisTitleControl(axis: 'x' | 'y'): ControlSetRow[] {
           label: t('Axis Title'),
           renderTrigger: true,
           default: '',
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
           visibility: ({ controls }: ControlPanelsContainerProps) =>
             isXAxis ? isVertical(controls) : isHorizontal(controls),
         },
@@ -84,7 +88,11 @@ function createAxisTitleControl(axis: 'x' | 'y'): ControlSetRow[] {
           renderTrigger: true,
           default: sections.TITLE_MARGIN_OPTIONS[0],
           choices: formatSelectOptions(sections.TITLE_MARGIN_OPTIONS),
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
           visibility: ({ controls }: ControlPanelsContainerProps) =>
             isXAxis ? isVertical(controls) : isHorizontal(controls),
         },
@@ -98,7 +106,11 @@ function createAxisTitleControl(axis: 'x' | 'y'): ControlSetRow[] {
           label: t('Axis Title'),
           renderTrigger: true,
           default: '',
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
           visibility: ({ controls }: ControlPanelsContainerProps) =>
             isXAxis ? isHorizontal(controls) : isVertical(controls),
         },
@@ -115,7 +127,11 @@ function createAxisTitleControl(axis: 'x' | 'y'): ControlSetRow[] {
           renderTrigger: true,
           default: sections.TITLE_MARGIN_OPTIONS[0],
           choices: formatSelectOptions(sections.TITLE_MARGIN_OPTIONS),
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
           visibility: ({ controls }: ControlPanelsContainerProps) =>
             isXAxis ? isHorizontal(controls) : isVertical(controls),
         },
@@ -132,7 +148,11 @@ function createAxisTitleControl(axis: 'x' | 'y'): ControlSetRow[] {
           renderTrigger: true,
           default: sections.TITLE_POSITION_OPTIONS[0][0],
           choices: sections.TITLE_POSITION_OPTIONS,
-          description: t('Changing this control takes effect instantly'),
+          description: (
+            <span style={{ color: '#FFF' }}>
+              {t('Changing this control takes effect instantly')}
+            </span>
+          ),
           visibility: ({ controls }: ControlPanelsContainerProps) =>
             isXAxis ? isHorizontal(controls) : isVertical(controls),
         },

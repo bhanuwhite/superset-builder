@@ -39,8 +39,8 @@ interface Props {
 const StyledAddBox = styled.div`
   ${({ theme }) => `
   cursor: pointer;
-  margin: ${theme.gridUnit * 4}px;
-  color: ${theme.colors.primary.base};
+  margin:0px 0px  ${theme.gridUnit * 4}px 0px;
+  color: ${theme.colors.primary.dark1};
   &:hover {
     color: ${theme.colors.primary.dark1};
   }
@@ -50,6 +50,9 @@ const TabsContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  .ant-tabs-tab{
+    margin-left:0px;
+  }
 `;
 
 const options = [
@@ -113,7 +116,6 @@ const FilterTitlePane: React.FC<Props> = ({
         css={{
           height: '100%',
           overflowY: 'auto',
-          marginLeft: theme.gridUnit * 3,
         }}
       >
         <FilterTitleContainer

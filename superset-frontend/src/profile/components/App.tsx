@@ -26,6 +26,7 @@ import UserInfo from './UserInfo';
 import Security from './Security';
 import RecentActivity from './RecentActivity';
 import CreatedContent from './CreatedContent';
+import { theme } from 'src/preamble';
 
 interface AppProps {
   user: BootstrapUser;
@@ -34,16 +35,20 @@ interface AppProps {
 const StyledTabPane = styled(Tabs.TabPane)`
   background-color: ${({ theme }) => theme.colors.grayscale.light5};
   padding: ${({ theme }) => theme.gridUnit * 4}px;
+  .ant-empty-description{
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+  }
 `;
 
 export default function App({ user }: AppProps) {
   return (
-    <div className="container app">
+    <div className="bst-profile-wrapper" style={{backgroundColor:`${theme.colors.grayscale.light4}`,height:`100vh`,padding:`10px`}}>
+      <div  className="container app" style={{backgroundColor:`${theme.colors.grayscale.light5}`,borderRadius:`10px`, padding:`0px 32px 16px 32px`}}>
       <Row gutter={16}>
         <Col xs={24} md={6}>
           <UserInfo user={user} />
         </Col>
-        <Col xs={24} md={18}>
+        <Col xs={24} md={18} className='user-right-wrapper'>
           <Tabs centered>
             <StyledTabPane
               key="1"
@@ -88,6 +93,8 @@ export default function App({ user }: AppProps) {
           </Tabs>
         </Col>
       </Row>
+      </div>
+
     </div>
   );
 }

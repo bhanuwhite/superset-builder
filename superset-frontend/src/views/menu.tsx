@@ -26,8 +26,9 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import { CacheProvider } from '@emotion/react';
 import { QueryParamProvider } from 'use-query-params';
 import createCache from '@emotion/cache';
-import { ThemeProvider } from '@superset-ui/core';
+import { ThemeProvider, t } from '@superset-ui/core';
 import Menu from 'src/features/home/Menu';
+import SubMenu from 'src/features/home/SubMenu';
 import { theme } from 'src/preamble';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { setupStore } from './store';
@@ -53,6 +54,7 @@ const app = (
             stringifyOptions={{ encode: false }}
           >
             {/* <Menu data={menu} /> */}
+            <SubMenu name={t(`Home`)} rightMenuPresence />
           </QueryParamProvider>
         </BrowserRouter>
       </Provider>

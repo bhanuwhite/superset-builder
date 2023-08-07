@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'src/components';
 import { connect } from 'react-redux';
-import { t, withTheme } from '@superset-ui/core';
+import { supersetTheme, t, withTheme } from '@superset-ui/core';
 import { InfoTooltipWithTrigger } from '@superset-ui/chart-controls';
 import AsyncEsmComponent from 'src/components/AsyncEsmComponent';
 import { getChartKey } from 'src/explore/exploreUtils';
@@ -211,7 +211,11 @@ class AnnotationLayerControl extends React.PureComponent {
           <ControlPopover
             trigger="click"
             content={this.renderPopover(addLayerPopoverKey, addedAnnotation)}
-            title={t('Add annotation layer')}
+            title={
+              <span style={{ color: supersetTheme.colors.grayscale.dark1 }}>
+                {t('Add annotation layer')}
+              </span>
+            }
             visible={this.state.popoverVisible[addLayerPopoverKey]}
             destroyTooltipOnHide
             onVisibleChange={visible =>
@@ -219,11 +223,18 @@ class AnnotationLayerControl extends React.PureComponent {
             }
           >
             <CustomListItem selectable>
-              <i
-                data-test="add-annotation-layer-button"
-                className="fa fa-plus"
-              />{' '}
-              &nbsp; {t('Add annotation layer')}
+              <span style={{ color: supersetTheme.colors.grayscale.dark1 }}>
+                <i
+                  data-test="add-annotation-layer-button"
+                  className="fa fa-plus"
+                />
+              </span>{' '}
+              &nbsp;{' '}
+              {
+                <span style={{ color: supersetTheme.colors.grayscale.dark1 }}>
+                  {t('Add annotation layer')}
+                </span>
+              }
             </CustomListItem>
           </ControlPopover>
         </List>

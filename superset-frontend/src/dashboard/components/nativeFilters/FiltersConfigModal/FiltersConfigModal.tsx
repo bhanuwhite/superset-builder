@@ -60,9 +60,6 @@ import DividerConfigForm from './DividerConfigForm';
 
 const StyledModalWrapper = styled(StyledModal)`
   min-width: 700px;
-  .ant-modal-body {
-    padding: 0px;
-  }
 `;
 
 export const StyledModalBody = styled.div`

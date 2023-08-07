@@ -26,6 +26,7 @@ import {
   ChartResponse,
   DashboardResponse,
 } from 'src/types/bootstrapTypes';
+import { theme } from 'src/preamble';
 
 interface CreatedContentProps {
   user: BootstrapUser;
@@ -98,10 +99,10 @@ class CreatedContent extends React.PureComponent<CreatedContentProps> {
   render() {
     return (
       <div>
-        <h3>{t('Dashboards')}</h3>
+        <h3 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>{t('Dashboards')}</h3>
         {this.renderDashboardTable()}
         <hr />
-        <h3>{t('Charts')}</h3>
+        <h3 style={{color:`${theme.colors.grayscale.dark2}`, fontSize:`${theme.gridUnit * 5}px`,marginTop:`0px`}}>{t('Charts')}</h3>
         {this.renderSliceTable()}
       </div>
     );

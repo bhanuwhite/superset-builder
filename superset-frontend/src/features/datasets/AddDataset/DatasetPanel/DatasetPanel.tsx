@@ -57,14 +57,11 @@ const MARGIN_MULTIPLIER = 3;
 const StyledHeader = styled.div<StyledHeaderProps>`
   ${({ theme, position }) => `
   position: ${position};
-  margin: ${theme.gridUnit * (MARGIN_MULTIPLIER + 1)}px
-    ${theme.gridUnit * MARGIN_MULTIPLIER}px
-    ${theme.gridUnit * MARGIN_MULTIPLIER}px
-    ${theme.gridUnit * (MARGIN_MULTIPLIER + 3)}px;
   font-size: ${theme.gridUnit * 6}px;
+  margin-top:12px;
   font-weight: ${theme.typography.weights.medium};
   padding-bottom: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
-
+  color: ${theme.colors.grayscale.dark2};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -80,7 +77,8 @@ const StyledHeader = styled.div<StyledHeaderProps>`
 
 const StyledTitle = styled.div`
   ${({ theme }) => `
-  margin-left: ${theme.gridUnit * (MARGIN_MULTIPLIER + 3)}px;
+  color: ${theme.colors.grayscale.dark2};
+  margin-left: 0px;
   margin-bottom: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
   font-weight: ${theme.typography.weights.bold};
   `}
@@ -127,8 +125,7 @@ const StyledLoader = styled.div`
 const TableContainerWithBanner = styled.div`
   ${({ theme }) => `
   position: relative;
-  margin: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
-  margin-left: ${theme.gridUnit * (MARGIN_MULTIPLIER + 3)}px;
+  margin-top: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
   height: calc(100% - ${theme.gridUnit * 60}px);
   overflow: auto;
   `}
@@ -137,8 +134,7 @@ const TableContainerWithBanner = styled.div`
 const TableContainerWithoutBanner = styled.div`
   ${({ theme }) => `
   position: relative;
-  margin: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
-  margin-left: ${theme.gridUnit * (MARGIN_MULTIPLIER + 3)}px;
+  margin-top: ${theme.gridUnit * MARGIN_MULTIPLIER}px;
   height: calc(100% - ${theme.gridUnit * 30}px);
   overflow: auto;
   `}
@@ -156,8 +152,7 @@ const StyledAlert = styled(Alert)`
   ${({ theme }) => `
   border: 1px solid ${theme.colors.info.base};
   padding: ${theme.gridUnit * 4}px;
-  margin: ${theme.gridUnit * 6}px ${theme.gridUnit * 6}px
-    ${theme.gridUnit * 8}px;
+  margin:bottom:12px;
   .view-dataset-button {
     position: absolute;
     top: ${theme.gridUnit * 4}px;
@@ -261,6 +256,8 @@ const DatasetPanel = ({
   hasError,
   datasets,
 }: IDatasetPanelProps) => {
+  console.log(columnList, 'colList');
+
   const theme = useTheme();
   const hasColumns = columnList?.length > 0 ?? false;
   const datasetNames = datasets?.map(dataset => dataset.table_name);

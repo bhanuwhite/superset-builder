@@ -145,6 +145,7 @@ const SliceHeader: FC<SliceHeaderProps> = ({
   isExpanded = false,
   sliceName = '',
   supersetCanExplore = false,
+  supersetCanEditChart = false,
   supersetCanShare = false,
   supersetCanCSV = false,
   exportFullCSV,
@@ -268,6 +269,7 @@ const SliceHeader: FC<SliceHeaderProps> = ({
                 exportXLSX={exportXLSX}
                 exportFullXLSX={exportFullXLSX}
                 supersetCanExplore={supersetCanExplore}
+                supersetCanEditChart={supersetCanEditChart}
                 supersetCanShare={supersetCanShare}
                 supersetCanCSV={supersetCanCSV}
                 componentId={componentId}

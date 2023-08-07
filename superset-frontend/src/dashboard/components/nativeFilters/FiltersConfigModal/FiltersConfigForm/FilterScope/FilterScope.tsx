@@ -43,9 +43,14 @@ type FilterScopeProps = {
 
 const Wrapper = styled.div`
   display: flex;
+  color: ${({ theme }) => theme.colors.grayscale.dark2} !important;
   flex-direction: column;
   & > * {
     margin-bottom: ${({ theme }) => theme.gridUnit}px;
+    color: ${({ theme }) => theme.colors.grayscale.dark2} !important;
+
+    background: transparent;
+}
   }
   padding: 0px ${({ theme }) => theme.gridUnit * 4}px;
 `;

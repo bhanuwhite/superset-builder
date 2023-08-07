@@ -23,7 +23,7 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import { t, styled } from '@superset-ui/core';
+import { t, styled, useTheme } from '@superset-ui/core';
 import { Input } from 'src/components/Input';
 import { Tooltip } from 'src/components/Tooltip';
 
@@ -55,6 +55,8 @@ const AdhocMetricEditPopoverTitle: React.FC<AdhocMetricEditPopoverTitleProps> =
 
     const defaultLabel = t('My metric');
 
+    const theme = useTheme();
+
     const handleMouseOver = useCallback(() => setIsHovered(true), []);
     const handleMouseOut = useCallback(() => setIsHovered(false), []);
     const handleClick = useCallback(() => setIsEditMode(true), []);
@@ -83,7 +85,7 @@ const AdhocMetricEditPopoverTitle: React.FC<AdhocMetricEditPopoverTitleProps> =
 
     if (isEditDisabled) {
       return (
-        <span data-test="AdhocMetricTitle">{title?.label || defaultLabel}</span>
+        <TitleLabel data-test="AdhocMetricTitle">{title?.label || defaultLabel}</TitleLabel>
       );
     }
 
@@ -118,7 +120,7 @@ const AdhocMetricEditPopoverTitle: React.FC<AdhocMetricEditPopoverTitleProps> =
           &nbsp;
           <i
             className="fa fa-pencil"
-            style={{ color: isHovered ? 'black' : 'grey' }}
+            style={{ color: isHovered ? `${theme.colors.grayscale.dark2}` : 'grey' }}
           />
         </span>
       </Tooltip>

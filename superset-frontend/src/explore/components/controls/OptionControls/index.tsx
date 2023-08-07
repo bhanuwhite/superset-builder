@@ -126,22 +126,31 @@ export const AddControlLabel = styled.div<{
   display: flex;
   align-items: center;
   width: 100%;
-  height: ${({ theme }) => theme.gridUnit * 6}px;
+  height: 30px;
   padding-left: ${({ theme }) => theme.gridUnit}px;
   font-size: ${({ theme }) => theme.typography.sizes.s}px;
-  color: ${({ theme }) => theme.colors.grayscale.light1};
-  border: dashed 1px ${({ theme }) => theme.colors.grayscale.light2};
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+  border: dashed 1px ${({ theme }) => theme.colors.customBstStyles.borderColor};
   border-radius: ${({ theme }) => theme.gridUnit}px;
   cursor: ${({ cancelHover }) => (cancelHover ? 'inherit' : 'pointer')};
-
+  background-color: ${({ theme }) => theme.colors.customBstStyles.formInputColor};
+ .anticon{
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+ }
   :hover {
-    background-color: ${({ cancelHover, theme }) =>
-      cancelHover ? 'inherit' : theme.colors.grayscale.light4};
+    background-color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
+    .anticon{
+      color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
+     }
   }
 
   :active {
-    background-color: ${({ cancelHover, theme }) =>
-      cancelHover ? 'inherit' : theme.colors.grayscale.light3};
+    background-color: ${({ theme }) => theme.colors.primary.dark1};
+    color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
+       .anticon{
+      color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
+     }
   }
 `;
 
@@ -153,12 +162,14 @@ export const AddIconButton = styled.button`
   width: ${({ theme }) => theme.gridUnit * 4}px;
   padding: 0;
   background-color: ${({ theme }) => theme.colors.primary.dark1};
+  color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonColor};
   border: none;
   border-radius: 2px;
 
   :disabled {
     cursor: not-allowed;
-    background-color: ${({ theme }) => theme.colors.grayscale.light1};
+    background-color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonDsabledBg};
+    color: ${({ theme }) => theme.colors.customBstStyles.primaryButtonDsabledText};
   }
 `;
 

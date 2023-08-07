@@ -45,7 +45,6 @@ const SqlLabStyles = styled.div`
       right: 0;
       bottom: 0;
       left: 0;
-      padding: 0 ${theme.gridUnit * 2}px;
 
       pre {
         padding: 0 !important;
@@ -67,7 +66,16 @@ const SqlLabStyles = styled.div`
       .ace_content {
         height: 100%;
       }
-
+      .ant-tabs-nav{
+        background-color: ${theme.colors.grayscale.light5};
+        .ant-tabs-tab {
+          background-color:transparent;
+          border:0px;
+          .anticon{
+            color: ${theme.colors.grayscale.dark2};
+          }
+        }
+      }
       .ant-tabs-content-holder {
         /* This is needed for Safari */
         height: 100%;
@@ -86,6 +94,7 @@ const SqlLabStyles = styled.div`
           right: 0;
           bottom: 0;
           left: 0;
+          background-color: ${theme.colors.grayscale.light4};
         }
       }
 

@@ -38,7 +38,7 @@ const LabelContainer = styled.div<{
 }>`
   ${({ theme, isActive, isPlaceholder }) => css`
     width: 100%;
-    height: ${theme.gridUnit * 8}px;
+    height: ${theme.gridUnit * 10}px;
 
     display: flex;
     align-items: center;
@@ -46,10 +46,9 @@ const LabelContainer = styled.div<{
 
     padding: 0 ${theme.gridUnit * 3}px;
 
-    background-color: ${theme.colors.grayscale.light5};
+    background-color: ${theme.colors.customBstStyles.formInputColor};
 
-    border: 1px solid
-      ${isActive ? ACTIVE_BORDER_COLOR : theme.colors.grayscale.light2};
+    border: 0px;
     border-radius: ${theme.borderRadius}px;
 
     cursor: pointer;
@@ -62,8 +61,8 @@ const LabelContainer = styled.div<{
 
     .date-label-content {
       color: ${isPlaceholder
-        ? theme.colors.grayscale.light1
-        : theme.colors.grayscale.dark1};
+        ? theme.colors.grayscale.dark2
+        : theme.colors.grayscale.dark2};
       overflow: hidden;
       text-overflow: ellipsis;
       min-width: 0;

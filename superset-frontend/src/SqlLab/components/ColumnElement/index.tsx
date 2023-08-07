@@ -20,6 +20,8 @@ import React from 'react';
 import { ClassNames } from '@emotion/react';
 import { styled, useTheme, t } from '@superset-ui/core';
 import { Tooltip } from 'src/components/Tooltip';
+import { theme } from 'src/preamble';
+import { color } from '@storybook/addon-knobs';
 
 const StyledTooltip = (props: any) => {
   const theme = useTheme();
@@ -104,7 +106,7 @@ const ColumnElement = ({ column }: ColumnElementProps) => {
     ));
   }
   return (
-    <div className="clearfix table-column">
+    <div className="clearfix table-column" style={{color:`${theme.colors.grayscale.dark2}`}}>
       <div className="pull-left m-l-10 col-name">
         {columnName}
         {icons}

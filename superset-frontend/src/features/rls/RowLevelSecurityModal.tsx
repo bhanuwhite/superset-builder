@@ -21,6 +21,7 @@ import {
   css,
   styled,
   SupersetClient,
+  supersetTheme,
   SupersetTheme,
   t,
 } from '@superset-ui/core';
@@ -469,6 +470,10 @@ function RowLevelSecurityModal(props: RowLevelSecurityModalProps) {
                 value={currentRule ? currentRule.description : ''}
                 onChange={event => onTextChange(event.target)}
                 data-test="description-test"
+                style={{
+                  color: supersetTheme.colors.customBstStyles.formInputText, // Set the desired text color (e.g., "blue")
+                  backgroundColor: supersetTheme.colors.customBstStyles.formInputColor, // Set the desired background color (e.g., "lightgray")
+                }}
               />
             </div>
           </StyledInputContainer>

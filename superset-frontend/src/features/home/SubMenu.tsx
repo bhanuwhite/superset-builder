@@ -344,7 +344,7 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
   const toggleTheme = async (): Promise<void> => {
     const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
 
-    console.log(newTheme, 'newtheme');
+    // console.log(newTheme, 'newtheme');
     if (newTheme !== undefined) {
       setAppliedTheme(newTheme);
       await setThemeAsync(newTheme);
@@ -439,7 +439,6 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             ))}
           </Menu>
           {props.rightMenuPresence &&
-
             <div
               style={{
                 display: 'flex',

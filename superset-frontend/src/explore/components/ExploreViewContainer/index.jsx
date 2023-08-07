@@ -99,7 +99,7 @@ const ExploreContainer = styled.div`
 
 const ExplorePanelContainer = styled.div`
   ${({ theme }) => css`
-    background: ${theme.colors.grayscale.light5};
+    background: ${theme.colors.grayscale.light4};
     text-align: left;
     position: relative;
     width: 100%;
@@ -118,19 +118,23 @@ const ExplorePanelContainer = styled.div`
     .data-source-selection {
       background-color: ${theme.colors.grayscale.light5};
       padding: ${theme.gridUnit * 2}px 0;
-      border-right: 1px solid ${theme.colors.grayscale.light2};
+      border-right: 1px solid ${theme.colors.customBstStyles.borderColor};
     }
     .main-explore-content {
       flex: 1;
       min-width: ${theme.gridUnit * 128}px;
-      border-left: 1px solid ${theme.colors.grayscale.light2};
-      padding: 0 ${theme.gridUnit * 4}px;
+      border-left: 1px solid ${theme.colors.customBstStyles.borderColor};
+      padding:  ${theme.gridUnit * 5}px;
       .panel {
         margin-bottom: 0;
+        padding:  ${theme.gridUnit * 5}px  ${theme.gridUnit * 10}px;
+        background-color: ${theme.colors.grayscale.light5};
+        border-radius:10px;
       }
     }
     .controls-column {
       align-self: flex-start;
+      background-color: ${theme.colors.grayscale.light4};
       padding: 0;
     }
     .title-container {
@@ -140,8 +144,9 @@ const ExplorePanelContainer = styled.div`
       padding: 0 ${theme.gridUnit * 2}px 0 ${theme.gridUnit * 4}px;
       justify-content: space-between;
       .horizontal-text {
-        font-size: ${theme.typography.sizes.m}px;
+        font-size: ${theme.gridUnit * 5}px;
         color: ${theme.colors.grayscale.dark2};
+        font-weight:600;
       }
     }
     .no-show {
@@ -153,12 +158,12 @@ const ExplorePanelContainer = styled.div`
     }
     .sidebar {
       height: 100%;
-      background-color: ${theme.colors.grayscale.light4};
+      background-color: ${theme.colors.grayscale.light5};
       padding: ${theme.gridUnit * 2}px;
       width: ${theme.gridUnit * 8}px;
     }
     .collapse-icon > svg {
-      color: ${theme.colors.primary.base};
+      color: ${theme.colors.primary.dark1};
     }
   `};
 `;

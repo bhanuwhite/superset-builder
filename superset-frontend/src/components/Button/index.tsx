@@ -114,7 +114,7 @@ export default function Button(props: ButtonProps) {
     backgroundColor = error.base;
     backgroundColorHover = mix(0.1, grayscale.light5, error.base);
     backgroundColorActive = mix(0.2, grayscale.dark2, error.base);
-    color = grayscale.light5;
+    color = primary.light5;
     colorHover = color;
     borderColor= error.base;
     borderColorHover= error.base;
@@ -122,13 +122,13 @@ export default function Button(props: ButtonProps) {
     backgroundColor = warning.base;
     backgroundColorHover = mix(0.1, grayscale.dark2, warning.base);
     backgroundColorActive = mix(0.2, grayscale.dark2, warning.base);
-    color = grayscale.light5;
+    color = primary.light5;
     colorHover = color;
   } else if (buttonStyle === 'success') {
     backgroundColor = success.base;
     backgroundColorHover = mix(0.1, grayscale.light5, success.base);
     backgroundColorActive = mix(0.2, grayscale.dark2, success.base);
-    color = grayscale.light5;
+    color = primary.light5;
     colorHover = color;
   } else if (buttonStyle === 'link') {
     backgroundColor = 'transparent';

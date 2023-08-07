@@ -64,7 +64,7 @@ export const StyledFormItem = styled(FormItem)`
   }
 `;
 
-const SelectWithLabel = styled(Select)<{ labelText: string }>`
+const SelectWithLabel = styled(Select) <{ labelText: string }>`
   .ant-select-selector::after {
     content: ${({ labelText }) => labelText || '\\A0'};
     display: inline-block;
@@ -72,6 +72,12 @@ const SelectWithLabel = styled(Select)<{ labelText: string }>`
     color: ${({ theme }) => theme.colors.grayscale.light1};
     width: max-content;
   }
+`;
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
 `;
 
 export interface SimpleExpressionType {
@@ -295,7 +301,7 @@ const AdhocFilterEditPopoverSimpleTabContent: React.FC<Props> = props => {
   const isOperatorRelevantWrapper = (operator: Operators, subject: string) =>
     subjectAdvancedDataType
       ? isOperatorRelevant(operator, subject) &&
-        advancedDataTypesState.advancedDataTypeOperatorList.includes(operator)
+      advancedDataTypesState.advancedDataTypeOperatorList.includes(operator)
       : isOperatorRelevant(operator, subject);
   const onInputComparatorChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -375,7 +381,7 @@ const AdhocFilterEditPopoverSimpleTabContent: React.FC<Props> = props => {
     loading: loadingComparatorSuggestions,
     value: comparator,
     onChange: onComparatorChange,
-    notFoundContent: t('Type a value here'),
+    notFoundContent: (<Styleddiv>Type a value here</Styleddiv>),
     disabled: DISABLE_INPUT_OPERATORS.includes(operatorId),
     placeholder: createSuggestionsPlaceholder(),
     autoFocus: shouldFocusComparator,

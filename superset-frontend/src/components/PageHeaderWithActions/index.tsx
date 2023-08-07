@@ -60,6 +60,7 @@ const headerStyles = (theme: SupersetTheme) => css`
   height: ${theme.gridUnit * 16}px;
   padding: 0 ${theme.gridUnit * 4}px;
   a {
+    margin-right: ${theme.gridUnit * 3}px;
     color: ${theme.colors.grayscale.dark2};
     text-decoration: none;
     h5 {

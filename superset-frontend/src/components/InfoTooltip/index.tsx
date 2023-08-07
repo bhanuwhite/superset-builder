@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { styled } from '@superset-ui/core';
+import { styled, supersetTheme } from '@superset-ui/core';
 import { Tooltip } from 'src/components/Tooltip';
 import Icons from 'src/components/Icons';
 
@@ -26,46 +26,48 @@ export interface InfoTooltipProps {
   className?: string;
   tooltip: string;
   placement?:
-    | 'bottom'
-    | 'left'
-    | 'right'
-    | 'top'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight'
-    | 'leftTop'
-    | 'leftBottom'
-    | 'rightTop'
-    | 'rightBottom'
-    | undefined;
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'rightTop'
+  | 'rightBottom'
+  | undefined;
   trigger?: string | Array<string>;
   overlayStyle?: any;
   bgColor?: string;
   viewBox?: string;
 }
 
+
 const StyledTooltip = styled(Tooltip)`
-  cursor: pointer;
-  path:first-of-type {
-    fill: ${({ theme }) => theme.colors.grayscale.base};
-  }
+cursor: pointer;
+path:first-of-type {
+  fill: ${({ theme }) => theme.colors.grayscale.base};
+}
 `;
 
 const StyledTooltipTitle = styled.span`
-  display: -webkit-box;
-  -webkit-line-clamp: 20;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 20;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
 `;
 
 const defaultOverlayStyle = {
   fontSize: '12px',
   lineHeight: '16px',
+  color:`${supersetTheme.colors.grayscale.light5}`,
 };
 
-const defaultColor = 'rgba(0,0,0,0.9)';
+const defaultColor = `${supersetTheme.colors.customBstStyles.tooltipBg}`;
 
 export default function InfoTooltip({
   tooltip,
