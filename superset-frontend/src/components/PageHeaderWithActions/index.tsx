@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { ReactNode, ReactElement, useState, useEffect } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { css, SupersetTheme, t, useTheme } from '@superset-ui/core';
-import { AntdDropdown, AntdDropdownProps, Grid } from 'src/components';
+import { AntdDropdown, AntdDropdownProps } from 'src/components';
 import { TooltipPlacement } from 'src/components/Tooltip';
 import {
   DynamicEditableTitle,
@@ -28,12 +28,12 @@ import CertifiedBadge, { CertifiedBadgeProps } from '../CertifiedBadge';
 import FaveStar, { FaveStarProps } from '../FaveStar';
 import Icons from '../Icons';
 import Button from '../Button';
-import RightMenuWrapper from 'src/features/home/RightMenu';
-import getBootstrapData from 'src/utils/getBootstrapData';
-import { isFrontendRoute } from 'src/views/routes';
+// import RightMenuWrapper from 'src/features/home/RightMenu';
+// import getBootstrapData from 'src/utils/getBootstrapData';
+// import { isFrontendRoute } from 'src/views/routes';
 import { GlobalStyles } from 'src/GlobalStyles';
 import { Global } from '@emotion/react';
-import { Switch } from 'antd';
+// import { Switch } from 'antd';
 
 export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
@@ -191,46 +191,46 @@ export const PageHeaderWithActions = ({
   tooltipProps,
 }: PageHeaderWithActionsProps) => {
   const theme = useTheme();
-  const bootstrapData = getBootstrapData();
-  const { useBreakpoint } = Grid;
-  const screens = useBreakpoint();
+  // const bootstrapData = getBootstrapData();
+  // const { useBreakpoint } = Grid;
+  // const screens = useBreakpoint();
 
-  async function setThemeAsync(theme: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      resolve();
-    });
-  }
+  // async function setThemeAsync(theme: string): Promise<void> {
+  //   return new Promise<void>(resolve => {
+  //     document.documentElement.setAttribute('data-theme', theme);
+  //     localStorage.setItem('theme', theme);
+  //     resolve();
+  //   });
+  // }
 
-  const [appliedTheme, setAppliedTheme] = useState<string>(
-    localStorage.getItem('theme') || 'light',
-  );
+  // const [appliedTheme, setAppliedTheme] = useState<string>(
+  //   localStorage.getItem('theme') || 'light',
+  // );
 
-  useEffect(() => {
-    (async () => {
-      await setThemeAsync(appliedTheme);
-    })();
-  }, [appliedTheme]);
+  // useEffect(() => {
+  //   (async () => {
+  //     await setThemeAsync(appliedTheme);
+  //   })();
+  // }, [appliedTheme]);
 
-  const toggleTheme = async (): Promise<void> => {
-    const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
+  // const toggleTheme = async (): Promise<void> => {
+  //   const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
 
-    console.log(newTheme, 'newtheme');
-    if (newTheme !== undefined) {
-      setAppliedTheme(newTheme);
-      await setThemeAsync(newTheme);
-    }
-    window.location.reload();
-  };
+  //   console.log(newTheme, 'newtheme');
+  //   if (newTheme !== undefined) {
+  //     setAppliedTheme(newTheme);
+  //     await setThemeAsync(newTheme);
+  //   }
+  //   window.location.reload();
+  // };
   return (
     <div css={headerStyles} className="header-with-actions">
       <Global styles={globalStyles(theme)} />
       <GlobalStyles />
-      <a href={bootstrapData.common.menu_data.brand.path}>
-        {/* <img src={brand.icon} alt={brand.alt} /> */}
+      {/* <a href={bootstrapData.common.menu_data.brand.path}>
+         <img src={brand.icon} alt={brand.alt} /> 
         <h5>Home</h5>
-      </a>
+      </a> */}
       <div className="title-panel">
         <DynamicEditableTitle {...editableTitleProps} />
         {showTitlePanelItems && (
@@ -266,7 +266,7 @@ export const PageHeaderWithActions = ({
             </Button>
           </AntdDropdown>
         </div>
-        <div
+        {/* <div
           style={{
             display: 'flex',
             justifyContent: 'space-evenly',
@@ -288,7 +288,7 @@ export const PageHeaderWithActions = ({
             isFrontendRoute={isFrontendRoute}
             environmentTag={bootstrapData.common.menu_data.environment_tag}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ import { QueryParamProvider } from 'use-query-params';
 import createCache from '@emotion/cache';
 import { ThemeProvider, t } from '@superset-ui/core';
 import Menu from 'src/features/home/Menu';
-import SubMenu from 'src/features/home/SubMenu';
+// import SubMenu from 'src/features/home/SubMenu';
 import { theme } from 'src/preamble';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { setupStore } from './store';
@@ -53,8 +53,8 @@ const app = (
             ReactRouterRoute={Route}
             stringifyOptions={{ encode: false }}
           >
-            {/* <Menu data={menu} /> */}
-            <SubMenu name={t(`Home`)} rightMenuPresence />
+            <Menu data={menu} />
+            {/* <SubMenu name={t(`Home`)} rightMenuPresence /> */}
           </QueryParamProvider>
         </BrowserRouter>
       </Provider>

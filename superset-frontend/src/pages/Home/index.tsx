@@ -43,7 +43,7 @@ import {
   getRecentActivityObjs,
   getUserOwnedObjects,
   loadingCardCount,
-  mq,
+  // mq,
 } from 'src/views/CRUD/utils';
 import { isFeatureEnabled } from 'src/featureFlags';
 import { AntdSwitch } from 'src/components';
@@ -82,14 +82,14 @@ const DEFAULT_TAB_ARR = ['2', '3'];
 const WelcomeContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.grayscale.light4};
   padding: ${({ theme }) => theme.gridUnit * 5}px;
-  min-height:calc(100vh - 118px);
-  .ant-collapse{
+  min-height: calc(100vh - 118px);
+  .ant-collapse {
     padding: ${({ theme }) => theme.gridUnit * 5}px;
     background-color: ${({ theme }) => theme.colors.grayscale.light5};
-    border-radius:${({ theme }) => theme.typography.sizes.xs}px;
+    border-radius: ${({ theme }) => theme.typography.sizes.xs}px;
   }
   .ant-row.menu {
-   position:relative;
+    position: relative;
     background-color: ${({ theme }) => theme.colors.grayscale.light4};
 
     .ant-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
@@ -281,17 +281,17 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
         }),
       canAccessSqlLab
         ? getUserOwnedObjects(id, 'saved_query', ownSavedQueryFilters)
-          .then(r => {
-            setQueryData(r);
-            return Promise.resolve();
-          })
-          .catch((err: unknown) => {
-            setQueryData([]);
-            addDangerToast(
-              t('There was an issue fetching your saved queries: %s', err),
-            );
-            return Promise.resolve();
-          })
+            .then(r => {
+              setQueryData(r);
+              return Promise.resolve();
+            })
+            .catch((err: unknown) => {
+              setQueryData([]);
+              addDangerToast(
+                t('There was an issue fetching your saved queries: %s', err),
+              );
+              return Promise.resolve();
+            })
         : Promise.resolve(),
     ]).then(() => {
       setIsFetchingActivityData(false);
@@ -350,7 +350,7 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
 
   return (
     <>
-      <SubMenu {...menuData} rightMenuPresence />
+      <SubMenu {...menuData} />
       <WelcomeContainer>
         {WelcomeMessageExtension && <WelcomeMessageExtension />}
         {WelcomeTopExtension && <WelcomeTopExtension />}
@@ -365,10 +365,10 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
             >
               <Collapse.Panel header={t('Recents')} key="1">
                 {activityData &&
-                  (activityData[TableTab.Viewed] ||
-                    activityData[TableTab.Other] ||
-                    activityData[TableTab.Created]) &&
-                  activeChild !== 'Loading' ? (
+                (activityData[TableTab.Viewed] ||
+                  activityData[TableTab.Other] ||
+                  activityData[TableTab.Created]) &&
+                activeChild !== 'Loading' ? (
                   <ActivityTable
                     user={{ userId: user.userId! }} // user is definitely not a guest user on this page
                     activeChild={activeChild}
@@ -423,7 +423,7 @@ function Welcome({ user, addDangerToast }: WelcomeProps) {
                 </Collapse.Panel>
               )}
               <Collapse.Panel header={t('Datasets')} key="5">
-                <Link to='/tablemodelview/list'>
+                <Link to="/tablemodelview/list">
                   <h4>
                     <Button>Open Datasets</Button>
                   </h4>

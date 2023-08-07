@@ -53,6 +53,7 @@ import {
   RightMenuProps,
 } from './types';
 import getBootstrapData from 'src/utils/getBootstrapData';
+import { Switch } from 'antd';
 
 const extensionsRegistry = getExtensionsRegistry();
 
@@ -388,6 +389,35 @@ const RightMenu = ({
 
   newData.menu = cleanedMenu;
   newData.settings = settings;
+
+  async function setThemeAsync(theme: string): Promise<void> {
+    return new Promise<void>(resolve => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      resolve();
+    });
+  }
+
+  const [appliedTheme, setAppliedTheme] = useState<string>(
+    localStorage.getItem('theme') || 'light',
+  );
+
+  useEffect(() => {
+    (async () => {
+      await setThemeAsync(appliedTheme);
+    })();
+  }, [appliedTheme]);
+
+  const toggleTheme = async (): Promise<void> => {
+    const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
+
+    console.log(newTheme, 'newtheme');
+    if (newTheme !== undefined) {
+      setAppliedTheme(newTheme);
+      await setThemeAsync(newTheme);
+    }
+    window.location.reload();
+  };
   return (
     <StyledDiv align={align}>
       {canDatabase && (
@@ -398,6 +428,23 @@ const RightMenu = ({
           onDatabaseAdd={handleDatabaseAdd}
         />
       )}
+         <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            marginInline: '20px',
+          }}
+        >
+          <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+            Theme&nbsp;&nbsp;
+          </p>
+          <Switch
+            defaultChecked={appliedTheme === 'dark'}
+            onChange={toggleTheme}
+          />
+          
+        </div>
       {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}

@@ -74,10 +74,10 @@ const App = () => (
     <LocationPathnameLogger />
     <RootContextProviders>
       <GlobalStyles />
-      {/* <Menu
+      <Menu
         data={bootstrapData.common.menu_data}
         isFrontendRoute={isFrontendRoute}
-      /> */}
+      />
       <Switch>
         {routes.map(({ path, Component, props = {}, Fallback = Loading }) => (
           <Route path={path} key={path}>
