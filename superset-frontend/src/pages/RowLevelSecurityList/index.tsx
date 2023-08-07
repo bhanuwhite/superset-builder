@@ -299,7 +299,7 @@ function RowLevelSecurityList(props: RLSProps) {
 
   return (
     <>
-      <SubMenu name={t('Row Level Security')} buttons={subMenuButtons} rightMenuPresence/>
+      <SubMenu name={t('Row Level Security')} buttons={subMenuButtons}/>
       <ConfirmStatusChange
         title={t('Please confirm')}
         description={t('Are you sure you want to delete the selected rules?')}

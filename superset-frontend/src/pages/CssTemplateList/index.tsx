@@ -302,7 +302,7 @@ function CssTemplatesList({
 
   return (
     <>
-      <SubMenu {...menuData} rightMenuPresence/>
+      <SubMenu {...menuData}/>
       <CssTemplateModal
         addDangerToast={addDangerToast}
         cssTemplate={currentCssTemplate}

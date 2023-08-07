@@ -526,7 +526,6 @@ function AlertList({
   return (
     <>
       <SubMenu
-        rightMenuPresence
         activeChild={pathName}
         name={header}
         tabs={[
