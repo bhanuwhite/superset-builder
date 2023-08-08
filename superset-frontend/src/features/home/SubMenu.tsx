@@ -27,12 +27,12 @@ import { Menu, MenuMode, MainNav as DropdownMenu } from 'src/components/Menu';
 import Button, { OnClickHandler } from 'src/components/Button';
 import Icons from 'src/components/Icons';
 import { MenuObjectProps } from 'src/types/bootstrapTypes';
-import RightMenuWrapper from './RightMenu';
+// import RightMenuWrapper from './RightMenu';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { Global } from '@emotion/react';
 import { GlobalStyles } from 'src/GlobalStyles';
-import { isFrontendRoute } from 'src/views/routes';
-import { Switch } from 'antd';
+// import { isFrontendRoute } from 'src/views/routes';
+// import { Switch } from 'antd';
 
 const StyledHeader = styled.div`
 
@@ -320,37 +320,37 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
   }, [props.buttons]);
 
   const bootstrapData = getBootstrapData()
-  const { useBreakpoint } = Grid;
-  const screens = useBreakpoint();
+  // const { useBreakpoint } = Grid;
+  // const screens = useBreakpoint();
   const theme = useTheme();
-  async function setThemeAsync(theme: string): Promise<void> {
-    return new Promise<void>(resolve => {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      resolve();
-    });
-  }
+  // async function setThemeAsync(theme: string): Promise<void> {
+  //   return new Promise<void>(resolve => {
+  //     document.documentElement.setAttribute('data-theme', theme);
+  //     localStorage.setItem('theme', theme);
+  //     resolve();
+  //   });
+  // }
 
-  const [appliedTheme, setAppliedTheme] = useState<string>(
-    localStorage.getItem('theme') || 'light',
-  );
+  // const [appliedTheme, setAppliedTheme] = useState<string>(
+  //   localStorage.getItem('theme') || 'light',
+  // );
 
-  useEffect(() => {
-    (async () => {
-      await setThemeAsync(appliedTheme);
-    })();
-  }, [appliedTheme]);
+  // useEffect(() => {
+  //   (async () => {
+  //     await setThemeAsync(appliedTheme);
+  //   })();
+  // }, [appliedTheme]);
 
-  const toggleTheme = async (): Promise<void> => {
-    const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
+  // const toggleTheme = async (): Promise<void> => {
+  //   const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
 
-    // console.log(newTheme, 'newtheme');
-    if (newTheme !== undefined) {
-      setAppliedTheme(newTheme);
-      await setThemeAsync(newTheme);
-    }
-    window.location.reload();
-  };
+  //   // console.log(newTheme, 'newtheme');
+  //   if (newTheme !== undefined) {
+  //     setAppliedTheme(newTheme);
+  //     await setThemeAsync(newTheme);
+  //   }
+  //   window.location.reload();
+  // };
   return (
     <StyledHeader>
       <Global styles={globalStyles(theme)} />
@@ -439,28 +439,31 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
             ))}
           </Menu>
           {props.rightMenuPresence &&
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-evenly',
-                width: '100%',
-                alignItems: 'center',
-                marginInline: '20px',
-              }}
-            >
-              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>Theme&nbsp;&nbsp;</p>
-              <Switch
-                defaultChecked={appliedTheme === 'dark'}
-                onChange={toggleTheme}
-              />
+            // <div
+            //   style={{
+            //     display: 'flex',
+            //     justifyContent: 'space-evenly',
+            //     width: '100%',
+            //     alignItems: 'center',
+            //     marginInline: '20px',
+            //   }}
+            // >
+            //   <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>Theme&nbsp;&nbsp;</p>
+            //   <Switch
+            //     defaultChecked={appliedTheme === 'dark'}
+            //     onChange={toggleTheme}
+            //   />
 
-              <RightMenuWrapper
-                align={screens.md ? 'flex-end' : 'flex-start'}
-                navbarRight={bootstrapData.common.menu_data.navbar_right}
-                isFrontendRoute={isFrontendRoute}
-                environmentTag={bootstrapData.common.menu_data.environment_tag}
-              />
-            </div>
+            //   <RightMenuWrapper
+            //     align={screens.md ? 'flex-end' : 'flex-start'}
+            //     navbarRight={bootstrapData.common.menu_data.navbar_right}
+            //     isFrontendRoute={isFrontendRoute}
+            //     environmentTag={bootstrapData.common.menu_data.environment_tag}
+            //   />
+            // </div>
+            <Button>
+              Theme
+            </Button>
           }
           {props.buttons?.map((btn, i) => (
             <Button

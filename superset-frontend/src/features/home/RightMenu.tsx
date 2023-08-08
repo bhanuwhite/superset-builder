@@ -54,6 +54,8 @@ import {
 } from './types';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { Switch } from 'antd';
+import Button from 'src/components/Button';
+import { Drawer } from 'antd';
 
 const extensionsRegistry = getExtensionsRegistry();
 
@@ -83,34 +85,43 @@ const StyledDiv = styled.div<{ align: string }>`
   align-items: center;
   margin-inline: ${({ theme }) => theme.gridUnit * 4}px
     ${({ theme }) => theme.gridUnit}px;
-  .ant-menu-submenu-title > svg {
-    top: ${({ theme }) => theme.gridUnit * 5.25}px;
-  }
-`;
+    .ant-menu-submenu-title > svg {
+      top: ${({ theme }) => theme.gridUnit * 5.25}px;
+    }
+    `;
 
 const StyledMenuItemWithIcon = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    `;
 
 const StyledAnchor = styled.a`
-  padding-right: ${({ theme }) => theme.gridUnit}px;
-  padding-left: ${({ theme }) => theme.gridUnit}px;
-`;
+    padding-right: ${({ theme }) => theme.gridUnit}px;
+    padding-left: ${({ theme }) => theme.gridUnit}px;
+    `;
 
 const tagStyles = (theme: SupersetTheme) => css`
-  // color: ${theme.colors.grayscale.light5};
-  color: #FFFFFF;
-`;
+    // color: ${theme.colors.grayscale.light5};
+    color: #FFFFFF;
+    `;
 
 const styledChildMenu = (theme: SupersetTheme) => css`
-  &:hover {
-    color: ${theme.colors.primary.base} !important;
-    cursor: pointer !important;
-  }
-`;
+    &:hover {
+      color: ${theme.colors.primary.base} !important;
+      cursor: pointer !important;
+    }
+    `;
+
+const StyledButton = styled(Button)`
+    margin-right: ${({ theme }) => theme.gridUnit * 8}px
+    `;
+const StyledDrawer = styled(Drawer)`
+    .ant-drawer-body{
+      background-color:${({ theme }) => theme.colors.grayscale.light5};
+    }
+    `;
 
 const { SubMenu } = Menu;
 
@@ -418,6 +429,16 @@ const RightMenu = ({
     }
     window.location.reload();
   };
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <StyledDiv align={align}>
       {canDatabase && (
@@ -428,23 +449,33 @@ const RightMenu = ({
           onDatabaseAdd={handleDatabaseAdd}
         />
       )}
-         <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            marginInline: '20px',
-          }}
-        >
-          <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
-            Theme&nbsp;&nbsp;
-          </p>
-          <Switch
-            defaultChecked={appliedTheme === 'dark'}
-            onChange={toggleTheme}
-          />
-          
-        </div>
+
+      <>
+        <StyledButton type="primary" onClick={showDrawer}>
+          THEME
+        </StyledButton>
+        <StyledDrawer placement="right" onClose={onClose} visible={open}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              marginInline: '20px',
+            }}
+          >
+            <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+              Light&nbsp;&nbsp;
+            </p>
+            <Switch
+              defaultChecked={appliedTheme === 'dark'}
+              onChange={toggleTheme}
+            />
+            <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+              &nbsp;&nbsp;Dark
+            </p>
+          </div>
+        </StyledDrawer>
+      </>
       {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}
@@ -452,8 +483,8 @@ const RightMenu = ({
             /^#(?:[0-9a-f]{3}){1,2}$/i.test(environmentTag.color)
               ? environmentTag.color
               : environmentTag.color
-                  .split('.')
-                  .reduce((o, i) => o[i], theme.colors)
+                .split('.')
+                .reduce((o, i) => o[i], theme.colors)
           }
         >
           <span css={tagStyles}>{environmentTag.text}</span>
@@ -686,7 +717,7 @@ class RightMenuErrorWrapper extends React.PureComponent<RightMenuProps> {
     return { hasError: true };
   }
 
-  noop = () => {};
+  noop = () => { };
 
   render() {
     if (this.state.hasError) {

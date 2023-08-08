@@ -461,8 +461,8 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
                     allowEdit
                       ? t('Edit')
                       : t(
-                          'You must be a dataset owner in order to edit. Please reach out to a dataset owner to request modifications or edit access.',
-                        )
+                        'You must be a dataset owner in order to edit. Please reach out to a dataset owner to request modifications or edit access.',
+                      )
                   }
                   placement="bottomRight"
                 >
@@ -714,7 +714,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
 
   return (
     <>
-      <SubMenu {...menuData} rightMenuPresence/>
+      <SubMenu {...menuData} />
       {datasetCurrentlyDeleting && (
         <DeleteModal
           description={

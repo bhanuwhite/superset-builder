@@ -64,7 +64,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  onChange: () => {},
+  onChange: () => { },
   onDatasourceSave: null,
   value: null,
   isEditable: true,
@@ -124,6 +124,12 @@ const Styles = styled.div`
   span[aria-label='more-vert'] {
     color: ${({ theme }) => theme.colors.grayscale.dark2};
   }
+`;
+
+const StyledParagraph = styled.p`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
 `;
 
 const CHANGE_DATASET = 'change_dataset';
@@ -354,7 +360,7 @@ class DatasourceControl extends React.PureComponent {
       if (isString(datasource.extra)) {
         try {
           extra = JSON.parse(datasource.extra);
-        } catch {} // eslint-disable-line no-empty
+        } catch { } // eslint-disable-line no-empty
       } else {
         extra = datasource.extra; // eslint-disable-line prefer-destructuring
       }
@@ -399,15 +405,19 @@ class DatasourceControl extends React.PureComponent {
           <div className="error-alert">
             <ErrorAlert
               level="warning"
-              title={t('Missing URL parameters')}
+              title={
+                <StyledParagraph>
+                  {t('Missing URL parameters')}
+                </StyledParagraph>
+              }
               source="explore"
               subtitle={
                 <>
-                  <p>
+                  <StyledParagraph>
                     {t(
                       'The URL is missing the dataset_id or slice_id parameters.',
                     )}
-                  </p>
+                  </StyledParagraph>
                 </>
               }
             />
@@ -417,15 +427,19 @@ class DatasourceControl extends React.PureComponent {
           <div className="error-alert">
             <ErrorAlert
               level="warning"
-              title={t('Missing dataset')}
+              title={
+                <StyledParagraph>
+                  {t('Missing dataset')}
+                </StyledParagraph>
+              }
               source="explore"
               subtitle={
                 <>
-                  <p>
+                  <StyledParagraph>
                     {t(
                       'The dataset linked to this chart may have been deleted.',
                     )}
-                  </p>
+                  </StyledParagraph>
                   <p>
                     <Button
                       buttonStyle="primary"

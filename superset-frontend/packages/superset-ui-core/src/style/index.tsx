@@ -32,7 +32,7 @@ export { default as createEmotionCache } from '@emotion/cache';
 
 declare module '@emotion/react' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Theme extends SupersetTheme {}
+  export interface Theme extends SupersetTheme { }
 }
 
 export function useTheme() {
@@ -68,6 +68,7 @@ const defaultTheme = {
       tableChartHover: '#ECEEF2',
       tooltipBg: '#252525',
       borderColor: 'rgba(0,0,0,0.12)',
+      errorIcon: '#000000'
     },
     text: {
       label: '#879399',
@@ -202,6 +203,7 @@ const defaultThemeDark = {
       aceEditorBG: '#c0c0c0',
       tableChartHover: '#000000',
       tooltipBg: '#5f5f5f',
+      errorIcon: '#000000'
     },
     text: {
       label: '#879399',
