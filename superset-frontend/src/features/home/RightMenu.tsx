@@ -121,6 +121,36 @@ const StyledDrawer = styled(Drawer)`
     .ant-drawer-body{
       background-color:${({ theme }) => theme.colors.grayscale.light5};
     }
+    .anticon svg {
+      color: ${({ theme }) => theme.colors.grayscale.dark2};
+    }
+    .box {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; /* Makes the box round */
+      margin: 10px;
+      cursor: pointer;
+    }
+    .red {
+      &:hover {
+        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+      }
+      background-color: #ff6347;
+    }
+    
+    .green {
+      &:hover {
+        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+      }
+      background-color: #00b894;
+    }
+    
+    .blue {
+      &:hover {
+        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+      }
+      background-color: #1d98ff;
+    }
     `;
 
 const { SubMenu } = Menu;
@@ -401,10 +431,12 @@ const RightMenu = ({
   newData.menu = cleanedMenu;
   newData.settings = settings;
 
-  async function setThemeAsync(theme: string): Promise<void> {
+  async function setThemeAsync(theme: string, color: string, subHeaderColor: string): Promise<void> {
     return new Promise<void>(resolve => {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
+      localStorage.setItem('backgroundColor', color);
+      localStorage.setItem('subHeaderColor', subHeaderColor);
       resolve();
     });
   }
@@ -412,21 +444,30 @@ const RightMenu = ({
   const [appliedTheme, setAppliedTheme] = useState<string>(
     localStorage.getItem('theme') || 'light',
   );
+  const [backgroundColor, setBackgroundColor] = useState<string>(localStorage.getItem('backgroundColor') || 'none');
+  const [subHeaderColor, setSubHeaderColor] = useState<string>(localStorage.getItem('subHeaderColor') || 'none');
 
   useEffect(() => {
     (async () => {
-      await setThemeAsync(appliedTheme);
+      await setThemeAsync(appliedTheme, backgroundColor, subHeaderColor);
     })();
-  }, [appliedTheme]);
+  }, [appliedTheme, backgroundColor]);
 
   const toggleTheme = async (): Promise<void> => {
     const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
-
-    console.log(newTheme, 'newtheme');
+    // console.log(newTheme, 'newtheme');
     if (newTheme !== undefined) {
       setAppliedTheme(newTheme);
-      await setThemeAsync(newTheme);
+      await setThemeAsync(newTheme, backgroundColor, subHeaderColor);
     }
+    window.location.reload();
+  };
+
+  const handleColorChange = (color: string, subHeaderColor: string) => {
+    setBackgroundColor(color);
+    setSubHeaderColor(subHeaderColor);
+    localStorage.setItem('backgroundColor', color);
+    localStorage.setItem('subHeaderColor', subHeaderColor);
     window.location.reload();
   };
 
@@ -474,6 +515,20 @@ const RightMenu = ({
               &nbsp;&nbsp;Dark
             </p>
           </div>
+          <hr />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              marginInline: '20px',
+            }}
+          >
+            <div className="box red" onClick={() => handleColorChange('#ff6347', '#b36350')}></div>
+            <div className="box green" onClick={() => handleColorChange('#00B894', '#008874')}></div>
+            <div className="box blue" onClick={() => handleColorChange('#3498DB', '#013e70')}></div>
+          </div>
+          <hr />
         </StyledDrawer>
       </>
       {environmentTag?.text && (
@@ -684,12 +739,12 @@ const RightMenu = ({
           <span>&nbsp;</span>
         </>
       )}
-      {navbarRight.user_is_anonymous && (
+      {/* {navbarRight.user_is_anonymous && (
         <StyledAnchor href={navbarRight.user_login_url}>
           <i className="fa fa-fw fa-sign-in" />
           {t('Login')}
         </StyledAnchor>
-      )}
+      )} */}
     </StyledDiv>
   );
 };

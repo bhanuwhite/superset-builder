@@ -52,6 +52,10 @@ export const emotionCache = createCache({
 
 export const styled = emotionStyled;
 const appliedTheme = localStorage.getItem('theme');
+const backgroundColor = localStorage.getItem('backgroundColor');
+const subHeaderColor = localStorage.getItem('subHeaderColor');
+// console.log(backgroundColor, subHeaderColor, appliedTheme, 'bgc');
+
 const defaultTheme = {
   borderRadius: 4,
   colors: {
@@ -68,7 +72,7 @@ const defaultTheme = {
       tableChartHover: '#ECEEF2',
       tooltipBg: '#252525',
       borderColor: 'rgba(0,0,0,0.12)',
-      errorIcon: '#000000'
+      errorIcon: '#000000',
     },
     text: {
       label: '#879399',
@@ -82,7 +86,7 @@ const defaultTheme = {
     },
     primary: {
       base: '#20A7C9',
-      dark1: '#1d98ff',
+      dark1: backgroundColor,
       dark2: '#156378',
       light1: '#79CADE',
       light2: '#A5DAE9',
@@ -185,11 +189,12 @@ const defaultTheme = {
   gridUnit_6: 6,
   brandIconMaxWidth: 37,
 };
+
 const defaultThemeDark = {
   borderRadius: 4,
   colors: {
     customBstStyles: {
-      subHeader: '#00796b',
+      subHeader: subHeaderColor,
       primaryButtonColor: '#fbfbfb',
       formInputColor: 'rgba(255, 255, 255, 0.08)',
       formInputText: 'rgba(255, 255, 255, 0.67)',
@@ -203,7 +208,7 @@ const defaultThemeDark = {
       aceEditorBG: '#c0c0c0',
       tableChartHover: '#000000',
       tooltipBg: '#5f5f5f',
-      errorIcon: '#000000'
+      errorIcon: '#000000',
     },
     text: {
       label: '#879399',
@@ -217,7 +222,7 @@ const defaultThemeDark = {
     },
     primary: {
       base: '#20A7C9',
-      dark1: '#1d98ff',
+      dark1: backgroundColor,
       dark2: '#156378',
       light1: '#79CADE',
       light2: '#A5DAE9',
@@ -320,6 +325,8 @@ const defaultThemeDark = {
   gridUnit_6: 6,
   brandIconMaxWidth: 37,
 };
+
+// console.log(defaultTheme.colors.customBstStyles, 'bgc');
 export type SupersetTheme = typeof defaultThemeDark;
 
 export interface SupersetThemeProps {
