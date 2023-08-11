@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   sharedControls,
   ControlPanelConfig,
@@ -26,6 +26,12 @@ import {
   getStandardizedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -73,7 +79,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
-        [<div className="section-header">{t('General')}</div>],
+        [<Styleddiv className="section-header">{t('General')}</Styleddiv>],
         [
           {
             name: 'min_val',
@@ -193,7 +199,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Axis')}</Styleddiv>],
         [
           {
             name: 'show_axis_tick',
@@ -232,7 +238,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Progress')}</div>],
+        [<Styleddiv className="section-header">{t('Progress')}</Styleddiv>],
         [
           {
             name: 'show_progress',
@@ -273,7 +279,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Intervals')}</div>],
+        [<Styleddiv className="section-header">{t('Intervals')}</Styleddiv>],
         [
           {
             name: 'intervals',

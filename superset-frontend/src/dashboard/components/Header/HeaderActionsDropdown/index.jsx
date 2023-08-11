@@ -233,9 +233,18 @@ class HeaderActionsDropdown extends React.PureComponent {
       addDangerToast,
       setIsDropdownVisible,
       isDropdownVisible,
-      ...rest
+      dataMask,
+      onChange,
+      forceRefreshAllCharts,
+      startPeriodicRender,
+      setRefreshFrequency,
+      updateCss,
+      showPropertiesModal,
+      manageEmbedded,
+      logEvent
+      // ...rest
     } = this.props;
-
+    // console.log(this.props, 'props');
     const emailTitle = t('Superset dashboard');
     const emailSubject = `${emailTitle} ${dashboardTitle}`;
     const emailBody = t('Check out this dashboard: ');
@@ -258,8 +267,7 @@ class HeaderActionsDropdown extends React.PureComponent {
     const StyleMenuItem = styled(Menu.Item)`
       ${({ theme }) => `
       color: ${theme.colors.grayscale.dark2};
-      &:hover {
-       
+      &:hover {      
         background-color: ${theme.colors.grayscale.light4}; 
       }
   `}
@@ -267,14 +275,13 @@ class HeaderActionsDropdown extends React.PureComponent {
     const StyledSubMenu = styled(Menu.SubMenu)`
       ${({ theme }) => `
     color: ${theme.colors.grayscale.dark2};
-    &:hover {
-     
+    &:hover {    
       background-color: ${theme.colors.grayscale.light4}; 
     }
 `}
     `;
     return (
-      <StyledMenu selectable={false} data-test="header-actions-menu" {...rest}>
+      <StyledMenu selectable={false} data-test="header-actions-menu" >
         {!editMode && (
           <StyleMenuItem
             key={MENU_KEYS.REFRESH_DASHBOARD}
@@ -353,13 +360,7 @@ class HeaderActionsDropdown extends React.PureComponent {
             data-test="share-dashboard-menu-item"
             disabled={isLoading}
             title={
-              <span
-                style={{
-                  color: supersetTheme.colors.grayscale.dark2,
-                }}
-              >
-                {t('Share')}
-              </span>
+              t('Share')
             }
           >
             <ShareMenuItems
@@ -387,19 +388,8 @@ class HeaderActionsDropdown extends React.PureComponent {
           this.state.showReportSubMenu ? (
             <>
               <StyledSubMenu
-                // style={{
-                //   '&:hover': {
-                //     background: supersetTheme.colors.grayscale.light4,
-                //   },
-                // }}
                 title={
-                  <span
-                    style={{
-                      color: supersetTheme.colors.grayscale.dark2,
-                    }}
-                  >
-                    {t('Manage email report')}
-                  </span>
+                  t('Manage email report')
                 }
               >
                 <HeaderReportDropdown

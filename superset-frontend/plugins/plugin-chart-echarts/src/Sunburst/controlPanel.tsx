@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
@@ -29,6 +29,12 @@ import {
   sections,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const { labelType, numberFormat, showLabels } = DEFAULT_FORM_DATA;
 
@@ -64,7 +70,7 @@ const config: ControlPanelConfig = {
       controlSetRows: [
         ['color_scheme'],
         ['linear_color_scheme'],
-        [<div className="section-header">{t('Labels')}</div>],
+        [<Styleddiv className="section-header">{t('Labels')}</Styleddiv>],
         [
           {
             name: 'show_labels',

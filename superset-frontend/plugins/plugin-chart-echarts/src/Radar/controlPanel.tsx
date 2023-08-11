@@ -21,6 +21,7 @@ import {
   ChartDataResponseResult,
   GenericDataType,
   QueryFormMetric,
+  styled,
   t,
   validateNumber,
 } from '@superset-ui/core';
@@ -38,6 +39,12 @@ import {
 import { DEFAULT_FORM_DATA } from './types';
 import { LABEL_POSITION } from '../constants';
 import { legendSection } from '../controls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const { labelType, labelPosition, numberFormat, showLabels, isCircle } =
   DEFAULT_FORM_DATA;
@@ -85,7 +92,7 @@ const config: ControlPanelConfig = {
       controlSetRows: [
         ['color_scheme'],
         ...legendSection,
-        [<div className="section-header">{t('Labels')}</div>],
+        [<Styleddiv className="section-header">{t('Labels')}</Styleddiv>],
         [
           {
             name: 'show_labels',
@@ -156,7 +163,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<div className="section-header">{t('Radar')}</div>],
+        [<Styleddiv className="section-header">{t('Radar')}</Styleddiv>],
         [
           {
             name: 'column_config',

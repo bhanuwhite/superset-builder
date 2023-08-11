@@ -43,7 +43,10 @@ const MenuItem = styled(AntdMenu.Item)`
         opacity: 0;
         transform: translateX(-50%);
         transition: all ${({ theme }) => theme.transitionTiming}s;
-        background-color: ${({ theme }) => theme.colors.primary.base};
+        background-color: ${({ theme }) => theme.colors.primary.dark1};
+      }
+      &:hover {
+        background-color: transparent;
       }
       &:focus {
         border-bottom: none;

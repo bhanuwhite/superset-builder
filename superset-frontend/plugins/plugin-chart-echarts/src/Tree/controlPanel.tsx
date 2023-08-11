@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { FeatureFlag, isFeatureEnabled, t } from '@superset-ui/core';
+import { FeatureFlag, isFeatureEnabled, styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   getStandardizedControls,
@@ -26,6 +26,12 @@ import {
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './constants';
 
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 const requiredEntity = {
   ...sharedControls.entity,
   clearable: false,
@@ -108,7 +114,7 @@ const controlPanel: ControlPanelConfig = {
       label: t('Chart options'),
       expanded: true,
       controlSetRows: [
-        [<div className="section-header">{t('Layout')}</div>],
+        [<Styleddiv className="section-header">{t('Layout')}</Styleddiv>],
         [
           {
             name: 'layout',
