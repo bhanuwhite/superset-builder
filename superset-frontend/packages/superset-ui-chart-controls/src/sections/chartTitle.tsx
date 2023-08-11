@@ -17,9 +17,13 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import { ControlPanelSectionConfig } from '../types';
 import { formatSelectOptions } from '../utils';
+
+const StyledDiv = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
 
 export const TITLE_MARGIN_OPTIONS: number[] = [
   15, 30, 50, 75, 100, 125, 150, 200,
@@ -33,7 +37,7 @@ export const titleControls: ControlPanelSectionConfig = {
   tabOverride: 'customize',
   expanded: true,
   controlSetRows: [
-    [<div className="section-header">{t('X Axis')}</div>],
+    [<StyledDiv className="section-header">{t('X Axis')}</StyledDiv>],
     [
       {
         name: 'x_axis_title',
@@ -69,7 +73,7 @@ export const titleControls: ControlPanelSectionConfig = {
         },
       },
     ],
-    [<div className="section-header">{t('Y Axis')}</div>],
+    [<StyledDiv className="section-header">{t('Y Axis')}</StyledDiv>],
     [
       {
         name: 'y_axis_title',

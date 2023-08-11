@@ -23,11 +23,16 @@ import React from 'react';
 import {
   FeatureFlag,
   isFeatureEnabled,
+  styled,
   t,
   validateNonEmpty,
 } from '@superset-ui/core';
 import { D3_FORMAT_OPTIONS, sharedControls } from '@superset-ui/chart-controls';
 import { columnChoices, PRIMARY_COLOR } from './controls';
+
+const StyledSpan = styled.span`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
 
 const DEFAULT_VIEWPORT = {
   longitude: 6.85236157047845,
@@ -41,13 +46,13 @@ const sandboxUrl =
   'https://github.com/apache/superset/' +
   'blob/master/superset-frontend/plugins/legacy-preset-chart-deckgl/src/utils/sandbox.js';
 const jsFunctionInfo = (
-  <div>
+  <StyledSpan>
     {t(
       'For more information about objects are in context in the scope of this function, refer to the',
     )}
     <a href={sandboxUrl}>{t(" source code of Superset's sandboxed parser")}.</a>
     .
-  </div>
+  </StyledSpan>
 );
 
 function jsFunctionControl(
@@ -56,6 +61,7 @@ function jsFunctionControl(
   extraDescr = null,
   height = 100,
   defaultText = '',
+  style = {},
 ) {
   return {
     type: 'TextAreaControl',
@@ -64,6 +70,7 @@ function jsFunctionControl(
     description,
     height,
     default: defaultText,
+    style: style,
     aboveEditorSection: (
       <div>
         <p>{description}</p>
@@ -73,8 +80,8 @@ function jsFunctionControl(
     ),
     warning: !isFeatureEnabled(FeatureFlag.ENABLE_JAVASCRIPT_CONTROLS)
       ? t(
-          'This functionality is disabled in your environment for security reasons.',
-        )
+        'This functionality is disabled in your environment for security reasons.',
+      )
       : null,
     readOnly: !isFeatureEnabled(FeatureFlag.ENABLE_JAVASCRIPT_CONTROLS),
   };
@@ -130,11 +137,14 @@ export const jsDataMutator = {
   name: 'js_data_mutator',
   config: jsFunctionControl(
     t('JavaScript data interceptor'),
-    t(
-      'Define a javascript function that receives the data array used in the visualization ' +
-        'and is expected to return a modified version of that array. This can be used ' +
-        'to alter properties of the data, filter, or enrich the array.',
-    ),
+    <StyledSpan>
+      {
+        t(
+          'Define a javascript function that receives the data array used in the visualization ' +
+          'and is expected to return a modified version of that array. This can be used ' +
+          'to alter properties of the data, filter, or enrich the array.',
+        )},
+    </StyledSpan>
   ),
 };
 
@@ -142,9 +152,12 @@ export const jsTooltip = {
   name: 'js_tooltip',
   config: jsFunctionControl(
     t('JavaScript tooltip generator'),
-    t(
-      'Define a function that receives the input and outputs the content for a tooltip',
-    ),
+    <StyledSpan>
+      {
+        t(
+          'Define a function that receives the input and outputs the content for a tooltip',
+        )},
+    </StyledSpan>
   ),
 };
 
@@ -152,7 +165,11 @@ export const jsOnclickHref = {
   name: 'js_onclick_href',
   config: jsFunctionControl(
     t('JavaScript onClick href'),
-    t('Define a function that returns a URL to navigate to when user clicks'),
+    <StyledSpan>
+      {
+        t('Define a function that returns a URL to navigate to when user clicks')
+      },
+    </StyledSpan>
   ),
 };
 

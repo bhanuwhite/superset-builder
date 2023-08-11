@@ -115,42 +115,70 @@ const styledChildMenu = (theme: SupersetTheme) => css`
     `;
 
 const StyledButton = styled(Button)`
-    margin-right: ${({ theme }) => theme.gridUnit * 8}px
+    position:fixed; 
+    right:0px;
+    top:50%;
+    z-index:100;
+    color:#ffffff;
+    background-color:${({ theme }) => theme.colors.primary.dark1} !important;
+    border-color::${({ theme }) => theme.colors.primary.dark1} !important;
+    font-size: 28px;
+    height: 54px;
+    border-radius:4px 0px 0px 4px !important;
+    &:hover{
+      color:#000000;
+    }
     `;
 const StyledDrawer = styled(Drawer)`
-    .ant-drawer-body{
-      background-color:${({ theme }) => theme.colors.grayscale.light5};
-    }
-    .anticon svg {
-      color: ${({ theme }) => theme.colors.grayscale.dark2};
-    }
-    .box {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%; /* Makes the box round */
-      margin: 10px;
-      cursor: pointer;
-    }
-    .red {
-      &:hover {
-        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
-      }
-      background-color: #ff6347;
-    }
-    
-    .green {
-      &:hover {
-        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
-      }
-      background-color: #00b894;
-    }
-    
-    .blue {
-      &:hover {
-        border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
-      }
-      background-color: #1d98ff;
-    }
+.ant-drawer-body{
+  background-color:${({ theme }) => theme.colors.grayscale.light5};
+}
+.anticon svg {
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+}
+.drawer-heading{
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+  font-weight:600;
+}
+.box {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; / Makes the box round /
+  margin: 10px;
+  cursor: pointer;
+}
+.red {
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+  }
+  background-color: #ff6347;
+}
+
+.green {
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+  }
+  background-color: #00b894;
+}
+
+.blue {
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+  }
+  background-color: #1d98ff;
+}
+.maroon {
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+  }
+  background-color: #ec4dbc;
+}
+.navy {
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.grayscale.dark2};
+  }
+  background-color: #873efe;
+}
     `;
 
 const { SubMenu } = Menu;
@@ -444,8 +472,8 @@ const RightMenu = ({
   const [appliedTheme, setAppliedTheme] = useState<string>(
     localStorage.getItem('theme') || 'light',
   );
-  const [backgroundColor, setBackgroundColor] = useState<string>(localStorage.getItem('backgroundColor') || 'none');
-  const [subHeaderColor, setSubHeaderColor] = useState<string>(localStorage.getItem('subHeaderColor') || 'none');
+  const [backgroundColor, setBackgroundColor] = useState<string>(localStorage.getItem('backgroundColor') || '');
+  const [subHeaderColor, setSubHeaderColor] = useState<string>(localStorage.getItem('subHeaderColor') || '');
 
   useEffect(() => {
     (async () => {
@@ -453,9 +481,9 @@ const RightMenu = ({
     })();
   }, [appliedTheme, backgroundColor]);
 
+  // console.log(appliedTheme, backgroundColor, subHeaderColor, 'newtheme');
   const toggleTheme = async (): Promise<void> => {
     const newTheme = appliedTheme === 'light' ? 'dark' : 'light';
-    // console.log(newTheme, 'newtheme');
     if (newTheme !== undefined) {
       setAppliedTheme(newTheme);
       await setThemeAsync(newTheme, backgroundColor, subHeaderColor);
@@ -492,41 +520,55 @@ const RightMenu = ({
       )}
 
       <>
-        <StyledButton type="primary" onClick={showDrawer}>
-          THEME
+        <StyledButton onClick={showDrawer}>
+          <i className="fa fa-cogs"></i>
         </StyledButton>
         <StyledDrawer placement="right" onClose={onClose} visible={open}>
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-evenly',
-              alignItems: 'center',
-              marginInline: '20px',
+              flexDirection: 'column',
+              marginTop: '20px',
             }}
           >
-            <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
-              Light&nbsp;&nbsp;
-            </p>
-            <Switch
-              defaultChecked={appliedTheme === 'dark'}
-              onChange={toggleTheme}
-            />
-            <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
-              &nbsp;&nbsp;Dark
-            </p>
+            <h4 className='drawer-heading'>Theme</h4>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}>
+              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+                Light&nbsp;&nbsp;
+              </p>
+              <Switch
+                defaultChecked={appliedTheme === 'dark'}
+                onChange={toggleTheme}
+              />
+              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+                &nbsp;&nbsp;Dark
+              </p>
+            </div>
           </div>
           <hr />
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-evenly',
-              alignItems: 'center',
-              marginInline: '20px',
+              flexDirection: 'column'
             }}
           >
-            <div className="box red" onClick={() => handleColorChange('#ff6347', '#b36350')}></div>
-            <div className="box green" onClick={() => handleColorChange('#00B894', '#008874')}></div>
-            <div className="box blue" onClick={() => handleColorChange('#3498DB', '#013e70')}></div>
+            <h4 className='drawer-heading'>Color Scheme</h4>
+            <br/>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}>
+              <div className="box red" onClick={() => handleColorChange('#ff6347', '#b36350')}></div>
+              <div className="box green" onClick={() => handleColorChange('#00B894', '#008874')}></div>
+              <div className="box blue" onClick={() => handleColorChange('#3498DB', '#013e70')}></div>
+              <div className="box maroon" onClick={() => handleColorChange('#ec4dbc', 'rgba(236,77,188, 0.3)')}></div>
+              <div className="box navy" onClick={() => handleColorChange('#873efe', 'rgba(135,62,254,0.3)')}></div>
+            </div>
           </div>
           <hr />
         </StyledDrawer>

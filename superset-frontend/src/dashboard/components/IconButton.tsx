@@ -28,7 +28,7 @@ interface IconButtonProps {
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
   &:hover {
     color: ${({ theme }) => theme.colors.primary.base};
   }
@@ -36,6 +36,7 @@ const StyledDiv = styled.div`
 
 const StyledSpan = styled.span`
   margin-left: ${({ theme }) => theme.gridUnit * 2}px;
+  color:${({ theme }) => theme.colors.grayscale.dark1};
 `;
 
 const IconButton = ({ icon, label, onClick }: IconButtonProps) => (

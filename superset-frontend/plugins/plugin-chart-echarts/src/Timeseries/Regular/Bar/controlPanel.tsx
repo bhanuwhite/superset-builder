@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
@@ -41,6 +41,12 @@ import {
   DEFAULT_FORM_DATA,
   TIME_SERIES_DESCRIPTION_TEXT,
 } from '../../constants';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const {
   logAxis,
@@ -312,9 +318,9 @@ const config: ControlPanelConfig = {
       tabOverride: 'customize',
       expanded: true,
       controlSetRows: [
-        [<div className="section-header">{t('X Axis')}</div>],
+        [<Styleddiv className="section-header">{t('X Axis')}</Styleddiv>],
         ...createAxisTitleControl('x'),
-        [<div className="section-header">{t('Y Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Y Axis')}</Styleddiv>],
         ...createAxisTitleControl('y'),
       ],
     },
@@ -338,10 +344,10 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
-        [<div className="section-header">{t('X Axis')}</div>],
+        [<Styleddiv className="section-header">{t('X Axis')}</Styleddiv>],
         ...createAxisControl('x'),
         ...richTooltipSection,
-        [<div className="section-header">{t('Y Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Y Axis')}</Styleddiv>],
         ...createAxisControl('y'),
       ],
     },

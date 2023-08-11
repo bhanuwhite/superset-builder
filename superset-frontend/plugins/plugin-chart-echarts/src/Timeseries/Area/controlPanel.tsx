@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
@@ -38,6 +38,12 @@ import {
   percentageThresholdControl,
 } from '../../controls';
 import { AreaChartStackControlOptions } from '../../constants';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const {
   logAxis,
@@ -128,8 +134,8 @@ const config: ControlPanelConfig = {
               default: false,
               description: t(
                 'Whether to show extra controls or not. Extra controls ' +
-                  'include things like making mulitBar charts stacked ' +
-                  'or side by side.',
+                'include things like making mulitBar charts stacked ' +
+                'or side by side.',
               ),
             },
           },
@@ -179,7 +185,7 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
-        [<div className="section-header">{t('X Axis')}</div>],
+        [<Styleddiv className="section-header">{t('X Axis')}</Styleddiv>],
         [
           {
             name: 'x_axis_time_format',
@@ -212,7 +218,7 @@ const config: ControlPanelConfig = {
         ],
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Y Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Y Axis')}</Styleddiv>],
         ['y_axis_format'],
         [
           {
@@ -262,9 +268,9 @@ const config: ControlPanelConfig = {
               default: yAxisBounds,
               description: t(
                 'Bounds for the Y-axis. When left empty, the bounds are ' +
-                  'dynamically defined based on the min/max of the data. Note that ' +
-                  "this feature will only expand the axis range. It won't " +
-                  "narrow the data's extent.",
+                'dynamically defined based on the min/max of the data. Note that ' +
+                "this feature will only expand the axis range. It won't " +
+                "narrow the data's extent.",
               ),
               visibility: ({ controls }: ControlPanelsContainerProps) =>
                 Boolean(controls?.truncateYAxis?.value),

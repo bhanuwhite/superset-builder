@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
@@ -37,6 +37,12 @@ import {
   seriesOrderSection,
   showValueSection,
 } from '../../../controls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const {
   logAxis,
@@ -109,7 +115,7 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
-        [<div className="section-header">{t('X Axis')}</div>],
+        [<Styleddiv className="section-header">{t('X Axis')}</Styleddiv>],
 
         [
           {
@@ -144,7 +150,7 @@ const config: ControlPanelConfig = {
         // eslint-disable-next-line react/jsx-key
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Y Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Y Axis')}</Styleddiv>],
         ['y_axis_format'],
         [
           {

@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   D3_FORMAT_OPTIONS,
@@ -30,6 +30,12 @@ import {
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA, EchartsFunnelLabelTypeType } from './types';
 import { legendSection } from '../controls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const { labelType, numberFormat, showLabels } = DEFAULT_FORM_DATA;
 
@@ -77,7 +83,7 @@ const config: ControlPanelConfig = {
         ['color_scheme'],
         ...funnelLegendSection,
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Labels')}</div>],
+        [<Styleddiv className="section-header">{t('Labels')}</Styleddiv>],
         [
           {
             name: 'label_type',

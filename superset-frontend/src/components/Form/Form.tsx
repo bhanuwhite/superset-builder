@@ -21,7 +21,8 @@ import AntdForm, { FormProps } from 'antd/lib/form';
 import { styled } from '@superset-ui/core';
 
 const StyledForm = styled(AntdForm)`
-  // background-color: ${({ theme }) => theme.colors.grayscale.light5};
+  background-color: ${({ theme }) => theme.colors.grayscale.light5};
+  padding: ${({ theme }) => theme.gridUnit * 2}px;
   &.ant-form label {
     font-size: ${({ theme }) => theme.typography.sizes.s}px;
   }

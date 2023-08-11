@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { supersetTheme, t } from '@superset-ui/core';
+import { styled, supersetTheme, t } from '@superset-ui/core';
 import {
   ControlPanelsContainerProps,
   ControlSetItem,
@@ -28,6 +28,10 @@ import {
 } from '@superset-ui/chart-controls';
 import { DEFAULT_LEGEND_FORM_DATA, StackControlOptions } from './constants';
 import { DEFAULT_FORM_DATA } from './Timeseries/constants';
+
+const Styleddiv = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
 
 const { legendMargin, legendOrientation, legendType, showLegend } =
   DEFAULT_LEGEND_FORM_DATA;
@@ -218,7 +222,7 @@ const tooltipSortByMetricControl: ControlSetItem = {
 };
 
 export const richTooltipSection: ControlSetRow[] = [
-  [<div className="section-header">{t('Tooltip')}</div>],
+  [<Styleddiv className="section-header">{t('Tooltip')}</Styleddiv>],
   [richTooltipControl],
   [tooltipSortByMetricControl],
   [tooltipTimeFormatControl],
@@ -251,7 +255,7 @@ const sortSeriesAscending: ControlSetItem = {
 };
 
 export const seriesOrderSection: ControlSetRow[] = [
-  [<div className="section-header">{t('Series Order')}</div>],
+  [<Styleddiv className="section-header">{t('Series Order')}</Styleddiv>],
   [sortSeriesType],
   [sortSeriesAscending],
 ];

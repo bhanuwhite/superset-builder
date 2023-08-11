@@ -22,7 +22,7 @@ import { Radio } from 'src/components/Radio';
 import { RadioChangeEvent } from 'src/components';
 import { Input } from 'src/components/Input';
 import Button from 'src/components/Button';
-import { t, JsonResponse } from '@superset-ui/core';
+import { t, JsonResponse, styled } from '@superset-ui/core';
 
 import ModalTrigger, { ModalTriggerRef } from 'src/components/ModalTrigger';
 import Checkbox from 'src/components/Checkbox';
@@ -30,6 +30,12 @@ import {
   SAVE_TYPE_OVERWRITE,
   SAVE_TYPE_NEWDASHBOARD,
 } from 'src/dashboard/util/constants';
+
+const StyledSpan = styled.span`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 type SaveType = typeof SAVE_TYPE_OVERWRITE | typeof SAVE_TYPE_NEWDASHBOARD;
 
@@ -197,7 +203,7 @@ class SaveModal extends React.PureComponent<SaveModalProps, SaveModalState> {
                 checked={this.state.duplicateSlices}
                 onChange={() => this.toggleDuplicateSlices()}
               />
-              <span className="m-l-5">{t('also copy (duplicate) charts')}</span>
+              <StyledSpan className="m-l-5">{t('also copy (duplicate) charts')}</StyledSpan>
             </div>
           </div>
         }

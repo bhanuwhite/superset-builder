@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   getStandardizedControls,
@@ -26,6 +26,12 @@ import {
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './types';
 import { legendSection } from '../controls';
+
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
 
 const requiredEntity = {
   ...sharedControls.entity,
@@ -74,7 +80,7 @@ const controlPanel: ControlPanelConfig = {
               label: t('Source category'),
               description: t(
                 'The category of source nodes used to assign colors. ' +
-                  'If a node is associated with more than one category, only the first will be used.',
+                'If a node is associated with more than one category, only the first will be used.',
               ),
             },
           },
@@ -99,7 +105,7 @@ const controlPanel: ControlPanelConfig = {
       controlSetRows: [
         ['color_scheme'],
         ...legendSection,
-        [<div className="section-header">{t('Layout')}</div>],
+        [<Styleddiv className="section-header">{t('Layout')}</Styleddiv>],
         [
           {
             name: 'layout',

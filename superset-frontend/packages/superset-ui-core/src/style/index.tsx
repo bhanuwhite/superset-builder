@@ -86,7 +86,7 @@ const defaultTheme = {
     },
     primary: {
       base: '#20A7C9',
-      dark1: backgroundColor,
+      dark1: backgroundColor ? backgroundColor : '#1d98ff',
       dark2: '#156378',
       light1: '#79CADE',
       light2: '#A5DAE9',
@@ -194,7 +194,7 @@ const defaultThemeDark = {
   borderRadius: 4,
   colors: {
     customBstStyles: {
-      subHeader: subHeaderColor,
+      subHeader: subHeaderColor ? subHeaderColor : '#008874',
       primaryButtonColor: '#fbfbfb',
       formInputColor: 'rgba(255, 255, 255, 0.08)',
       formInputText: 'rgba(255, 255, 255, 0.67)',
@@ -222,7 +222,7 @@ const defaultThemeDark = {
     },
     primary: {
       base: '#20A7C9',
-      dark1: backgroundColor,
+      dark1: backgroundColor ? backgroundColor : '#1d98ff',
       dark2: '#156378',
       light1: '#79CADE',
       light2: '#A5DAE9',

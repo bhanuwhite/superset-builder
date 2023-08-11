@@ -17,7 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import { ensureIsArray, hasGenericChartAxes, t } from '@superset-ui/core';
+import { ensureIsArray, hasGenericChartAxes, styled, t } from '@superset-ui/core';
 import { cloneDeep } from 'lodash';
 import {
   ControlPanelConfig,
@@ -32,6 +32,10 @@ import {
 import { DEFAULT_FORM_DATA } from './types';
 import { EchartsTimeseriesSeriesType } from '../Timeseries/types';
 import { legendSection, richTooltipSection } from '../controls';
+
+const Styleddiv = styled.div`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
 
 const {
   area,
@@ -128,7 +132,7 @@ function createCustomizeSection(
   controlSuffix: string,
 ): ControlSetRow[] {
   return [
-    [<div className="section-header">{label}</div>],
+    [<Styleddiv className="section-header">{label}</Styleddiv>],
     [
       {
         name: `seriesType${controlSuffix}`,
@@ -280,10 +284,10 @@ const config: ControlPanelConfig = {
     sections.genericTime,
     hasGenericChartAxes
       ? {
-          label: t('Shared query fields'),
-          expanded: true,
-          controlSetRows: [['x_axis'], ['time_grain_sqla']],
-        }
+        label: t('Shared query fields'),
+        expanded: true,
+        controlSetRows: [['x_axis'], ['time_grain_sqla']],
+      }
       : null,
     createQuerySection(t('Query A'), ''),
     createAdvancedAnalyticsSection(t('Advanced analytics Query A'), ''),
@@ -311,7 +315,7 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
-        [<div className="section-header">{t('X Axis')}</div>],
+        [<Styleddiv className="section-header">{t('X Axis')}</Styleddiv>],
         ['x_axis_time_format'],
         [
           {
@@ -335,7 +339,7 @@ const config: ControlPanelConfig = {
         ],
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key
-        [<div className="section-header">{t('Y Axis')}</div>],
+        [<Styleddiv className="section-header">{t('Y Axis')}</Styleddiv>],
         [
           {
             name: 'minorSplitLine',
@@ -372,9 +376,9 @@ const config: ControlPanelConfig = {
               default: yAxisBounds,
               description: t(
                 'Bounds for the primary Y-axis. When left empty, the bounds are ' +
-                  'dynamically defined based on the min/max of the data. Note that ' +
-                  "this feature will only expand the axis range. It won't " +
-                  "narrow the data's extent.",
+                'dynamically defined based on the min/max of the data. Note that ' +
+                "this feature will only expand the axis range. It won't " +
+                "narrow the data's extent.",
               ),
             },
           },
