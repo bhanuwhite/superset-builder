@@ -1,0 +1,20 @@
+/* popover-styles.css */
+:root[data-theme='light'] {
+    --base-color: #f7f7f7;
+}
+
+:root[data-theme='dark'] {
+    --base-color: #383838;
+}
+
+/* Customize the background color of the inner content */
+.ant-popover-inner-content {
+    background-color: var(--base-color);
+    /* Example color */
+}
+
+/* Customize the background color of the title */
+.ant-popover-title {
+    background-color: var(--base-color);
+    /* Example color */
+}

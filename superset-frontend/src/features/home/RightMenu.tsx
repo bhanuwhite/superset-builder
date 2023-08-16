@@ -566,8 +566,8 @@ const RightMenu = ({
               <div className="box red" onClick={() => handleColorChange('#ff6347', '#b36350')}></div>
               <div className="box green" onClick={() => handleColorChange('#00B894', '#008874')}></div>
               <div className="box blue" onClick={() => handleColorChange('#3498DB', '#013e70')}></div>
-              <div className="box maroon" onClick={() => handleColorChange('#ec4dbc', 'rgba(236,77,188, 0.3)')}></div>
-              <div className="box navy" onClick={() => handleColorChange('#873efe', 'rgba(135,62,254,0.3)')}></div>
+              <div className="box maroon" onClick={() => handleColorChange('#ec4dbc', '#EC4DBC')}></div>
+              <div className="box navy" onClick={() => handleColorChange('#873efe', '#873EFE')}></div>
             </div>
           </div>
           <hr />
