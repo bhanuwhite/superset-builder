@@ -32,6 +32,7 @@ import {
   SupersetClient,
   ensureIsArray,
   withTheme,
+  supersetTheme,
 } from '@superset-ui/core';
 import { Global } from '@emotion/react';
 
@@ -87,9 +88,9 @@ const propTypes = {
 };
 const defaultProps = {
   origSelectedValues: {},
-  onChange: () => {},
-  onFilterMenuOpen: () => {},
-  onFilterMenuClose: () => {},
+  onChange: () => { },
+  onFilterMenuOpen: () => { },
+  onFilterMenuClose: () => { },
   showDateFilter: false,
   showSqlaTimeGrain: false,
   showSqlaTimeColumn: false,
@@ -255,14 +256,14 @@ class FilterBox extends React.PureComponent {
       ...this.props.rawFormData,
       adhoc_filters: inputValue
         ? [
-            {
-              clause: 'WHERE',
-              expressionType: 'SIMPLE',
-              subject: key,
-              operator: 'ILIKE',
-              comparator: `%${input}%`,
-            },
-          ]
+          {
+            clause: 'WHERE',
+            expressionType: 'SIMPLE',
+            subject: key,
+            operator: 'ILIKE',
+            comparator: `%${input}%`,
+          },
+        ]
         : null,
     };
 
@@ -416,6 +417,33 @@ class FilterBox extends React.PureComponent {
         }
         noResultsText={t('No results found')}
         forceOverflow
+        styles={{
+          control: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused
+              ? `${supersetTheme.colors.grayscale.light5}` // Set focused background color
+              : `${supersetTheme.colors.grayscale.light4}`, // Set normal background color
+            borderColor: `${supersetTheme.colors.grayscale.dark1}`, // Set border color
+            // Add other control styles as needed
+          }),
+          input: (provided) => ({
+            ...provided,
+            color: `${supersetTheme.colors.grayscale.dark1}`, // Set input text color
+          }),
+          placeholder: (provided) => ({
+            ...provided,
+            color: `${supersetTheme.colors.grayscale.dark1}`, // Set placeholder color
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            color: `${supersetTheme.colors.grayscale.dark1}`,
+            backgroundColor: state.isFocused ? `${supersetTheme.colors.grayscale.light5}` : `${supersetTheme.colors.grayscale.light4}`,
+            '&:hover': {
+              backgroundColor: `${supersetTheme.colors.grayscale.light5}`, // Add hovering background color here
+              color: `${supersetTheme.colors.grayscale.dark1}`,
+            },
+          }),
+        }}
       />
     );
   }
