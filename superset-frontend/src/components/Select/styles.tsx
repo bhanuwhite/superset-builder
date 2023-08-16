@@ -39,7 +39,9 @@ export const StyledContainer = styled.div<{ headerPosition: string }>`
     width: 100%;
     .ant-select-disabled{
       .ant-select-selector {
-        background-color:${theme.colors.customBstStyles.formInputColor} !important;
+        background-color:${
+          theme.colors.customBstStyles.formInputColor
+        } !important;
         border:0px;
         color:${theme.colors.customBstStyles.formInputText} !important;
         ::placeholder{
@@ -63,6 +65,9 @@ export const StyledSelect = styled(AntdSelect, {
       color:${theme.colors.customBstStyles.formInputText};
       ::placeholder{
         color:${theme.colors.customBstStyles.formInputText};
+      }
+      .ant-empty-small {
+        color:blue
       }
       .ant-select-selection-search-input{
        height:100%;
@@ -113,7 +118,7 @@ export const StyledSelect = styled(AntdSelect, {
       display: flex;
       align-items: center;
     }
-    .ant-select-item-option-selected{
+    .ant-select-item-option-selected {
       background-color: ${({ theme }) => theme.colors.grayscale.light5};
     }
     .ant-select-item-option:hover {

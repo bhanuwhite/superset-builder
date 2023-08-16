@@ -58,6 +58,7 @@ const subHeaderColor = localStorage.getItem('subHeaderColor');
 
 const defaultTheme = {
   borderRadius: 4,
+  logo:'/static/assets/images/Main-logo-ahex-dark.png',
   colors: {
     customBstStyles: {
       subHeader: '#FFFFFF',
@@ -192,6 +193,7 @@ const defaultTheme = {
 
 const defaultThemeDark = {
   borderRadius: 4,
+  logo:'/static/assets/images/Main-Logo-ahex.png',
   colors: {
     customBstStyles: {
       subHeader: subHeaderColor ? subHeaderColor : '#008874',

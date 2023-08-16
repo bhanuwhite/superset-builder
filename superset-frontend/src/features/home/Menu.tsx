@@ -45,7 +45,7 @@ const StyledHeader = styled.header`
   ${({ theme }) => `
       background-color: ${theme.colors.grayscale.light5};
       z-index: 10;
-      border-bottom: 2px solid ${theme.colors.grayscale.dark2};
+      border-bottom: 0px solid ${theme.colors.grayscale.dark2};
       &:nth-last-of-type(2) nav {
         margin-bottom: 2px;
       }
@@ -181,6 +181,8 @@ export function Menu({
   const uiConfig = useUiConfig();
   const theme = useTheme();
 
+  console.log(brand, 'brand');
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 767) {
@@ -258,11 +260,12 @@ export function Menu({
           >
             {isFrontendRoute(window.location.pathname) ? (
               <GenericLink className="navbar-brand" to={brand.path}>
-                <img src={brand.icon} alt={brand.alt} />
+                {/* <img src={brand.icon} alt={brand.alt} /> */}
+                <img src={theme.logo} alt={brand.alt} />
               </GenericLink>
             ) : (
               <a className="navbar-brand" href={brand.path}>
-                <img src={brand.icon} alt={brand.alt} />
+                <img src={theme.logo} alt={brand.alt} />
               </a>
             )}
           </Tooltip>
