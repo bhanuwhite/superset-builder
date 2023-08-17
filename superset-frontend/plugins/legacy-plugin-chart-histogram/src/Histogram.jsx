@@ -23,7 +23,12 @@ import { Histogram, BarSeries, XAxis, YAxis } from '@data-ui/histogram';
 import { chartTheme as defaultTheme } from '@data-ui/theme';
 import { LegendOrdinal } from '@vx/legend';
 import { scaleOrdinal } from '@vx/scale';
-import { CategoricalColorNamespace, styled, supersetTheme, t } from '@superset-ui/core';
+import {
+  CategoricalColorNamespace,
+  styled,
+  supersetTheme,
+  t,
+} from '@superset-ui/core';
 import WithLegend from './WithLegend';
 
 const propTypes = {
@@ -75,6 +80,7 @@ class CustomHistogram extends React.PureComponent {
     } = this.props;
 
     const colorFn = CategoricalColorNamespace.getScale(colorScheme);
+    console.log(colorFn);
     const keys = data.map(d => d.key);
     const colorScale = scaleOrdinal({
       domain: keys,
@@ -90,9 +96,9 @@ class CustomHistogram extends React.PureComponent {
           ...defaultTheme.xTickStyles.label,
           bottom: {
             ...defaultTheme.xTickStyles.label.bottom,
-            fill: theme.colors.grayscale.dark2
+            fill: theme.colors.grayscale.dark2,
           },
-        }
+        },
       },
       xAxisStyles: {
         ...defaultTheme.xAxisStyles,
@@ -101,9 +107,9 @@ class CustomHistogram extends React.PureComponent {
           ...defaultTheme.xAxisStyles.label,
           bottom: {
             ...defaultTheme.xAxisStyles.label.bottom,
-            fill: theme.colors.grayscale.dark2
+            fill: theme.colors.grayscale.dark2,
           },
-        }
+        },
       },
       yTickStyles: {
         ...defaultTheme.yTickStyles,
@@ -112,9 +118,9 @@ class CustomHistogram extends React.PureComponent {
           ...defaultTheme.yTickStyles.label,
           left: {
             ...defaultTheme.yTickStyles.label.left,
-            fill: theme.colors.grayscale.dark2
+            fill: theme.colors.grayscale.dark2,
           },
-        }
+        },
       },
       yAxisStyles: {
         ...defaultTheme.yAxisStyles,
@@ -123,10 +129,10 @@ class CustomHistogram extends React.PureComponent {
           ...defaultTheme.yAxisStyles.label,
           left: {
             ...defaultTheme.yAxisStyles.label.left,
-            fill: theme.colors.grayscale.dark2
+            fill: theme.colors.grayscale.dark2,
           },
-        }
-      }
+        },
+      },
     };
     return (
       <WithLegend

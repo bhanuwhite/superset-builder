@@ -17,10 +17,10 @@
  * under the License.
  */
 import React, { useEffect, createRef, useMemo } from 'react';
-import { styled } from '@superset-ui/core';
+import { supersetTheme } from '@superset-ui/core';
 import {
   SupersetUiCustomPluginLiquidChartProps,
-  SupersetUiCustomPluginLiquidChartStylesProps,
+  // SupersetUiCustomPluginLiquidChartStylesProps,
 } from './types';
 import { Liquid as AntvLiquid } from '@ant-design/plots';
 
@@ -31,10 +31,10 @@ import { Liquid as AntvLiquid } from '@ant-design/plots';
 // imported from @superset-ui/core. For variables available, please visit
 // https://github.com/apache-superset/superset-ui/blob/master/packages/superset-ui-core/src/style/index.ts
 
-const Styles = styled.div<SupersetUiCustomPluginLiquidChartStylesProps>`
-  height: ${({ height }) => height}px;
-  width: ${({ width }) => width}px;
-`;
+// const Styles = styled.div<SupersetUiCustomPluginLiquidChartStylesProps>`
+//   height: ${({ height }) => height}px;
+//   width: ${({ width }) => width}px;
+// `;
 
 /**
  * ******************* WHAT YOU CAN BUILD HERE *******************
@@ -53,6 +53,8 @@ export default function SupersetUiCustomPluginLiquidChart(
 
   const rootElem = createRef<HTMLDivElement>();
 
+  console.log(percentage, "percent in liquid")
+
   const config = useMemo(
     () => ({
       percent: percentage,
@@ -61,7 +63,7 @@ export default function SupersetUiCustomPluginLiquidChart(
         distance: 4,
       },
       shape: shape,
-      color: '#1d98ff',
+      color: supersetTheme.colors.primary.dark1,
       wave: {
         length: 128,
       },

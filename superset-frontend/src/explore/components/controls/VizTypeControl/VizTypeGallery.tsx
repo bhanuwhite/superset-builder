@@ -132,10 +132,9 @@ export const VIZ_TYPE_CONTROL_TEST_ID = 'viz-type-control';
 const VizPickerLayout = styled.div<{ isSelectedVizMetadata: boolean }>`
   ${({ isSelectedVizMetadata }) => `
     display: grid;
-    grid-template-rows: ${
-      isSelectedVizMetadata
-        ? `auto minmax(100px, 1fr) minmax(200px, 35%)`
-        : 'auto minmax(100px, 1fr)'
+    grid-template-rows: ${isSelectedVizMetadata
+      ? `auto minmax(100px, 1fr) minmax(200px, 35%)`
+      : 'auto minmax(100px, 1fr)'
     };
     // em is used here because the sidebar should be sized to fit the longest standard tag
     grid-template-columns: minmax(14em, auto) 5fr;
@@ -151,6 +150,7 @@ const VizPickerLayout = styled.div<{ isSelectedVizMetadata: boolean }>`
 const SectionTitle = styled.h3`
   margin-top: 0;
   margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
   font-size: ${({ theme }) => theme.typography.sizes.l}px;
   font-weight: ${({ theme }) => theme.typography.weights.bold};
   line-height: ${({ theme }) => theme.gridUnit * 6}px;

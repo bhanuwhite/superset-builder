@@ -19,7 +19,9 @@
 import React, { useCallback, useState } from 'react';
 import Popover from 'src/components/Popover';
 import { FormattingPopoverContent } from './FormattingPopoverContent';
+import './style.css';
 import { ConditionalFormattingConfig, FormattingPopoverProps } from './types';
+import { supersetTheme } from '@superset-ui/core';
 
 export const FormattingPopover = ({
   title,
@@ -41,7 +43,7 @@ export const FormattingPopover = ({
 
   return (
     <Popover
-      title={title}
+      title={<div style={{ color: supersetTheme.colors.grayscale.dark1 }}>{title}</div>}
       content={
         <FormattingPopoverContent
           onChange={handleSave}

@@ -73,7 +73,13 @@ export default function transformProps(chartProps: ChartProps) {
     numericPercentage = 1;
   }
 
-  console.log('formData via TransformProps.ts', formData, metricName, data);
+  console.log(
+    'formData via TransformProps.ts',
+    formData,
+    metricName,
+    data,
+    percentageValue,
+  );
 
   return {
     width,
