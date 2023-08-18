@@ -44,7 +44,7 @@ export interface TableViewProps {
   loading?: boolean;
   withPagination?: boolean;
   emptyWrapperType?: EmptyWrapperType;
-  noDataText?: string;
+  noDataText?: any;
   className?: string;
   isPaginationSticky?: boolean;
   showRowCount?: boolean;

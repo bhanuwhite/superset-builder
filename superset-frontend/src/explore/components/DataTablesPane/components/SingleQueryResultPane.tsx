@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useState } from 'react';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import TableView, { EmptyWrapperType } from 'src/components/TableView';
 import {
   useFilteredTableData,
@@ -25,6 +25,13 @@ import {
 } from 'src/explore/components/DataTableControl';
 import { TableControls } from './DataTableControls';
 import { SingleQueryResultPaneProp } from '../types';
+
+const StyledSpan = styled.span`
+  ${({ theme }) => `
+    color: ${theme.colors.grayscale.dark1};
+    }
+  `}
+`;
 
 export const SingleQueryResultPane = ({
   data,
@@ -63,7 +70,7 @@ export const SingleQueryResultPane = ({
         columns={columns}
         data={filteredData}
         pageSize={dataSize}
-        noDataText={t('No results')}
+        noDataText={<StyledSpan>{t('No results')}</StyledSpan>}
         emptyWrapperType={EmptyWrapperType.Small}
         className="table-condensed"
         isPaginationSticky

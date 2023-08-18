@@ -33,6 +33,13 @@ const Error = styled.pre`
   margin-top: ${({ theme }) => `${theme.gridUnit * 4}px`};
 `;
 
+const StyledSpan = styled.span`
+  ${({ theme }) => `
+    color: ${theme.colors.grayscale.dark1};
+    }
+  `}
+`;
+
 const cache = new WeakSet();
 
 export const SamplesPane = ({
@@ -136,7 +143,7 @@ export const SamplesPane = ({
         columns={columns}
         data={filteredData}
         pageSize={dataSize}
-        noDataText={t('No results')}
+        noDataText={<StyledSpan>{t('No results')}</StyledSpan>}
         emptyWrapperType={EmptyWrapperType.Small}
         className="table-condensed"
         isPaginationSticky

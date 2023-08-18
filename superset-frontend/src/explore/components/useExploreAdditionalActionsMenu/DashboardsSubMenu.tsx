@@ -122,6 +122,7 @@ const DashboardsSubMenu = ({
             css={css`
               margin-left: ${theme.gridUnit * 3}px;
               margin-bottom: ${theme.gridUnit}px;
+              color: ${theme.colors.grayscale.dark1};
             `}
           >
             {t('No results found')}
