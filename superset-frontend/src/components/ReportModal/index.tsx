@@ -23,7 +23,7 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import { t, SupersetTheme } from '@superset-ui/core';
+import { t, SupersetTheme, styled } from '@superset-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClientErrorObject } from 'src/utils/getClientErrorObject';
 import { addReport, editReport } from 'src/reports/actions/reports';
@@ -79,6 +79,10 @@ interface ReportProps {
   creationMethod: ReportCreationMethod;
   props: any;
 }
+
+const StyledPara = styled.p`
+  color: ${({ theme }) => theme.colors.grayscale.dark2};
+`;
 
 const TEXT_BASED_VISUALIZATION_TYPES = [
   'pivot_table_v2',
@@ -240,7 +244,7 @@ function ReportModal({
   const renderMessageContentSection = (
     <>
       <StyledMessageContentTitle>
-        <h4>{t('Message content')}</h4>
+        <h4><StyledPara>{t('Message content')}</StyledPara></h4>
       </StyledMessageContentTitle>
       <div className="inline-container">
         <StyledRadioGroup
@@ -329,11 +333,11 @@ function ReportModal({
       <StyledBottomSection>
         <StyledScheduleTitle>
           <h4 css={(theme: SupersetTheme) => SectionHeaderStyle(theme)}>
-            {t('Schedule')}
+            <StyledPara>{t('Schedule')}</StyledPara>
           </h4>
-          <p>
+          <StyledPara>
             {t('A screenshot of the dashboard will be sent to your email at')}
-          </p>
+          </StyledPara>
         </StyledScheduleTitle>
 
         <StyledCronPicker

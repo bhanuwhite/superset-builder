@@ -29,6 +29,9 @@ const CopyButtonEmbedCode = styled(CopyButton)`
     margin: 0 0 ${({ theme }) => theme.gridUnit}px;
   }
 `;
+const StyledLabel = styled.label`
+    color: ${({ theme }) => theme.colors.grayscale.dark2};
+`;
 
 const EmbedCodeContent = ({ formData, addDangerToast }) => {
   const [height, setHeight] = useState('400');
@@ -109,7 +112,8 @@ const EmbedCodeContent = ({ formData, addDangerToast }) => {
             padding: ${theme.gridUnit * 2}px;
             font-size: ${theme.typography.sizes.s}px;
             border-radius: 4px;
-            background-color: ${theme.colors.secondary.light5};
+            background-color: ${theme.colors.grayscale.light4};
+            border:0.5px solid #cdcdcd;
           `}
         />
       </div>
@@ -127,7 +131,7 @@ const EmbedCodeContent = ({ formData, addDangerToast }) => {
         `}
       >
         <div>
-          <label htmlFor="embed-height">{t('Chart height')}</label>
+          <StyledLabel htmlFor="embed-height">{t('Chart height')}</StyledLabel>
           <Input
             type="text"
             defaultValue={height}
@@ -136,7 +140,7 @@ const EmbedCodeContent = ({ formData, addDangerToast }) => {
           />
         </div>
         <div>
-          <label htmlFor="embed-width">{t('Chart width')}</label>
+          <StyledLabel htmlFor="embed-width">{t('Chart width')}</StyledLabel>
           <Input
             type="text"
             defaultValue={width}
