@@ -42,6 +42,8 @@ const menu = { ...bootstrapData.common.menu_data };
 const emotionCache = createCache({
   key: 'menu',
 });
+console.log(menu, 'menu');
+console.log(bootstrapData, 'bootstrapData');
 
 const app = (
   // @ts-ignore: emotion types defs are incompatible between core and cache
@@ -53,7 +55,9 @@ const app = (
             ReactRouterRoute={Route}
             stringifyOptions={{ encode: false }}
           >
-            <Menu data={menu} />
+            {menu?.navbar_right?.user_is_anonymous === false &&
+              <Menu data={menu} />
+            }
             {/* <SubMenu name={t(`Home`)} rightMenuPresence /> */}
           </QueryParamProvider>
         </BrowserRouter>

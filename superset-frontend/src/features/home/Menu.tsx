@@ -181,7 +181,7 @@ export function Menu({
   const uiConfig = useUiConfig();
   const theme = useTheme();
 
-  console.log(brand, 'brand');
+  // console.log(brand, 'brand');
 
   useEffect(() => {
     function handleResize() {
