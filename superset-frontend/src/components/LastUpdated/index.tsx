@@ -39,7 +39,7 @@ moment.updateLocale('en', {
 });
 
 const TextStyles = styled.span`
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
 `;
 
 const Refresh = styled(Icons.Refresh)`
