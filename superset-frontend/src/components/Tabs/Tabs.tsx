@@ -28,7 +28,7 @@ export interface TabsProps extends AntdTabsProps {
 }
 
 const CustomPlusIcon = styled(PlusOutlined)`
-  color: ${({ theme }) => theme.colors.grayscale.dark2};
+  color: ${({ theme }) => theme.colors.primary.dark1};
 `;
 
 const StyledTabs = ({

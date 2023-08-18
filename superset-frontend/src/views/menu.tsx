@@ -42,8 +42,8 @@ const menu = { ...bootstrapData.common.menu_data };
 const emotionCache = createCache({
   key: 'menu',
 });
-console.log(menu, 'menu');
-console.log(bootstrapData, 'bootstrapData');
+// console.log(menu, 'menu');
+// console.log(bootstrapData, 'bootstrapData');
 
 const app = (
   // @ts-ignore: emotion types defs are incompatible between core and cache
