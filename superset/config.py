@@ -40,7 +40,7 @@ import pkg_resources
 from cachelib.base import BaseCache
 from celery.schedules import crontab
 from flask import Blueprint
-from flask_appbuilder.security.manager import AUTH_OAUTH
+from flask_appbuilder.security.manager import AUTH_OAUTH,AUTH_DB
 from pandas import Series
 from pandas._libs.parsers import STR_NA_VALUES  # pylint: disable=no-name-in-module
 from sqlalchemy.orm.query import Query
@@ -173,7 +173,7 @@ SUPERSET_DASHBOARD_PERIODICAL_REFRESH_WARNING_MESSAGE = None
 
 SUPERSET_DASHBOARD_POSITION_DATA_LIMIT = 65535
 CUSTOM_SECURITY_MANAGER = None
-SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_TRACK_MODIFICATIONS = True
 # ---------------------------------------------------------
 
 # Your App secret key. Make sure you override it on superset_config.py
@@ -296,65 +296,90 @@ FAB_API_SWAGGER_UI = True
 # AUTH_DB : Is for database (username/password)
 # AUTH_LDAP : Is for LDAP
 # AUTH_REMOTE_USER : Is for using REMOTE_USER from web server
-AUTH_TYPE = AUTH_OAUTH
+# AUTH_TYPE = AUTH_OAUTH
 
-OAUTH_PROVIDERS = [
-    {
-    "name": "azure",
-    "icon": "fa-windows",
-    "token_key": "access_token",
-    "remote_app": {
-        "client_id": "ac86ce12-33bf-4708-8f1c-248184c935e2",
-        "client_secret": "ebS8Q~gg3EGsYsBzY6GyTR.h5AsaymtDDr6Via15",
-        "api_base_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2",
-        "client_kwargs": {
-            "scope": "User.read name ",#"User.ReadBasic.All name preferred_username email profile groups",
-            "resource": "ac86ce12-33bf-4708-8f1c-248184c935e2",
-        },
-        "request_token_url": None,
-        "access_token_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2/token",
-        "authorize_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2/authorize",
-    },
-},
-    {
-        "name": "google",
-        "icon": "fa-google",
-        "token_key": "access_token",
-        "remote_app": {
-            "client_id": "135171778442-0rq7cas2a4ci0fkcgitgdrjjhdqt5lcs.apps.googleusercontent.com",
-            "client_secret": "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",
-            "api_base_url": "https://www.googleapis.com/oauth2/v2/",
-            "client_kwargs": {"scope": "email profile"},
-            "request_token_url": None,
-            "access_token_url": "https://accounts.google.com/o/oauth2/token",
-            "authorize_url": "https://accounts.google.com/o/oauth2/auth",
-            "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
-        },
-    },
-]
+# OAUTH_PROVIDERS = [
+#     {
+#     "name": "azure",
+#     "icon": "fa-windows",
+#     "token_key": "access_token",
+#     "remote_app": {
+#         "client_id": "ac86ce12-33bf-4708-8f1c-248184c935e2",
+#         "client_secret": "ebS8Q~gg3EGsYsBzY6GyTR.h5AsaymtDDr6Via15",
+#         "api_base_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2",
+#         "client_kwargs": {
+#             "scope": "User.read name ",#"User.ReadBasic.All name preferred_username email profile groups",
+#             "resource": "ac86ce12-33bf-4708-8f1c-248184c935e2",
+#         },
+#         "request_token_url": None,
+#         "access_token_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2/token",
+#         "authorize_url": "https://login.microsoftonline.com/693ed5a4-aca9-44c1-a9be-ae17e6b50e7e/oauth2/authorize",
+#     },
+# },
+#     {
+#         "name": "google",
+#         "icon": "fa-google",
+#         "token_key": "access_token",
+#         "remote_app": {
+#             "client_id": "135171778442-0rq7cas2a4ci0fkcgitgdrjjhdqt5lcs.apps.googleusercontent.com",
+#             "client_secret": "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",
+#             "api_base_url": "https://www.googleapis.com/oauth2/v2/",
+#             "client_kwargs": {"scope": "email profile"},
+#             "request_token_url": None,
+#             "access_token_url": "https://accounts.google.com/o/oauth2/token",
+#             "authorize_url": "https://accounts.google.com/o/oauth2/auth",
+#             "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
+#         },
+#     },
+# ]
 
 
-# # Use OAuth for authentication
+AUTH_TYPE = AUTH_DB
+AUTH_USER_REGISTRATION = {
+    # Other configuration options...
 
-# # Create admin user
-# ADMIN_USERNAME = 'narender'
-# ADMIN_FIRST_NAME = 'narender'
-# ADMIN_LAST_NAME = 'p'
-# ADMIN_EMAIL = 'parikapallynarender@gmail.com'
-# ADMIN_PASSWORD = 'Naren7007@'
+    # Custom HTML for the Sign In page
+    'custom_html': '''
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 50%; padding: 20px;">
+                <img src="/path/to/signin_image.jpg" alt="Sign In Image" style="max-width: 100%;">
+            </div>
+            <div style="width: 50%; padding: 20px;">
+                <h2>Login Options</h2>
+                <p>Enter your credentials to sign in.</p>
+                <form>
+                    <!-- Your login form fields here -->
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="password" placeholder="Password">
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+    '''
+}
 
-AUTH_USER_REGISTRATION = True
 AUTH_USER_REGISTRATION_ROLE = "Admin"
-
-
 AUTH_ROLE_ADMIN = 'Admin'
-AUTH_ROLE_PUBLIC = 'Public'
-
+# AUTH_ROLE_PUBLIC = 'Public'
 # Uncomment to setup Full admin role name
-AUTH_ROLE_ADMIN = 'Admin'
+RECAPTCHA_PUBLIC_KEY = '6LdlBpMnAAAAAHAK7Sl97ReVSdIHdYIvAIzdluAz'
+RECAPTCHA_PRIVATE_KEY = '6LdlBpMnAAAAADYNaaYNGK1TOKxfOtdxwz6ooW_J'
+# Flask-Mail configuration
+MAIL_SERVER = 'smtp.gmail.com'  # Your email server's SMTP server
+MAIL_PORT = 587  # The port to use for the SMTP server (587 for TLS)
+MAIL_USE_TLS = True  # Use TLS for secure email transmission
+MAIL_USE_SSL = False  # Use SSL for secure email transmission (set to False if using TLS)
+MAIL_USERNAME = 'mudavathramesh458@gmail.com'  # Your email address
+MAIL_PASSWORD = 'nxokbjtadptqzkcl'  # Your email password or app-specific password
+MAIL_DEFAULT_SENDER = 'mudavathramesh458@gmail.com'  # Default sender email address
+
+# Additional Flask-Mail settings
+MAIL_DEBUG = False  # Set to True for debugging
+MAIL_SUPPRESS_SEND = False
+ENABLE_SCHEDULED_EMAIL_REPORTS: True
 
 # Uncomment to setup Public role name, no authentication needed
-AUTH_ROLE_PUBLIC = 'Public'
+# AUTH_ROLE_PUBLIC = 'Public'
 
 # Will allow user self registration
 # AUTH_USER_REGISTRATION = True
@@ -454,7 +479,7 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     # make GET request to explore_json. explore_json accepts both GET and POST request.
     # See `PR 7935 <https://github.com/apache/superset/pull/7935>`_ for more details.
     "ENABLE_EXPLORE_JSON_CSRF_PROTECTION": False,  # deprecated
-    "ENABLE_TEMPLATE_PROCESSING": False,
+    "ENABLE_TEMPLATE_PROCESSING": True,
     "ENABLE_TEMPLATE_REMOVE_FILTERS": True,  # deprecated
     # Allow for javascript controls components
     # this enables programmers to customize certain charts (like the
@@ -486,8 +511,8 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     "VERSIONED_EXPORT": True,  # deprecated
     "EMBEDDED_SUPERSET": False,
     # Enables Alerts and reports new implementation
-    "ALERT_REPORTS": False,
-    "DASHBOARD_RBAC": False,
+    "ALERT_REPORTS": True,
+    "DASHBOARD_RBAC": True,
     "ENABLE_EXPLORE_DRAG_AND_DROP": True,  # deprecated
     "ENABLE_ADVANCED_DATA_TYPES": False,
     # Enabling ALERTS_ATTACH_REPORTS, the system sends email and slack message
@@ -1150,17 +1175,17 @@ CONFIG_PATH_ENV_VAR = "SUPERSET_CONFIG_PATH"
 FLASK_APP_MUTATOR = None
 
 # smtp server configuration
-EMAIL_NOTIFICATIONS = False  # all the emails are sent using dryrun
-SMTP_HOST = "localhost"
-SMTP_STARTTLS = True
-SMTP_SSL = False
-SMTP_USER = "superset"
-SMTP_PORT = 25
-SMTP_PASSWORD = "superset"
-SMTP_MAIL_FROM = "superset@superset.com"
-# If True creates a default SSL context with ssl.Purpose.CLIENT_AUTH using the
-# default system root CA certificates.
-SMTP_SSL_SERVER_AUTH = False
+EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun
+# SMTP_HOST = "localhost"
+# SMTP_STARTTLS = True
+# SMTP_SSL = False
+# SMTP_USER = "superset"
+# SMTP_PORT = 25
+# SMTP_PASSWORD = "superset"
+# SMTP_MAIL_FROM = "superset@superset.com"
+# # If True creates a default SSL context with ssl.Purpose.CLIENT_AUTH using the
+# # default system root CA certificates.
+# SMTP_SSL_SERVER_AUTH = False
 ENABLE_CHUNK_ENCODING = False
 
 # Whether to bump the logging level to ERROR on the flask_appbuilder package
@@ -1434,43 +1459,43 @@ TEST_DATABASE_CONNECTION_TIMEOUT = timedelta(seconds=30)
 CONTENT_SECURITY_POLICY_WARNING = True
 
 # Do you want Talisman enabled?
-TALISMAN_ENABLED = True
-# If you want Talisman, how do you want it configured??
-TALISMAN_CONFIG = {
-    "content_security_policy": {
-        "default-src": ["'self'"],
-        "img-src": ["'self'", "data:"],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "script-src": ["'self'", "'strict-dynamic'"],
-    },
-    "content_security_policy_nonce_in": ["script-src"],
-    "force_https": False,
-}
-# React requires `eval` to work correctly in dev mode
-TALISMAN_DEV_CONFIG = {
-    "content_security_policy": {
-        "default-src": ["'self'"],
-        "img-src": ["'self'", "data:"],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    },
-    "content_security_policy_nonce_in": ["script-src"],
-    "force_https": False,
-}
+# TALISMAN_ENABLED = True
+# # If you want Talisman, how do you want it configured??
+# TALISMAN_CONFIG = {
+#     "content_security_policy": {
+#         "default-src": ["'self'"],
+#         "img-src": ["'self'", "data:"],
+#         "worker-src": ["'self'", "blob:"],
+#         "connect-src": [
+#             "'self'",
+#             "https://api.mapbox.com",
+#             "https://events.mapbox.com",
+#         ],
+#         "object-src": "'none'",
+#         "style-src": ["'self'", "'unsafe-inline'"],
+#         "script-src": ["'self'", "'strict-dynamic'"],
+#     },
+#     "content_security_policy_nonce_in": ["script-src"],
+#     "force_https": False,
+# }
+# # React requires `eval` to work correctly in dev mode
+# TALISMAN_DEV_CONFIG = {
+#     "content_security_policy": {
+#         "default-src": ["'self'"],
+#         "img-src": ["'self'", "data:"],
+#         "worker-src": ["'self'", "blob:"],
+#         "connect-src": [
+#             "'self'",
+#             "https://api.mapbox.com",
+#             "https://events.mapbox.com",
+#         ],
+#         "object-src": "'none'",
+#         "style-src": ["'self'", "'unsafe-inline'"],
+#         "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+#     },
+#     "content_security_policy_nonce_in": ["script-src"],
+#     "force_https": False,
+# }
 
 #
 # Flask session cookie options

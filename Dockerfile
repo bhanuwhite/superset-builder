@@ -137,3 +137,6 @@ FROM lean AS ci
 COPY --chown=superset --chmod=755 ./docker/*.sh /app/docker/
 
 CMD ["/app/docker/docker-ci.sh"]
+
+COPY C:/Users/admin/Downloads/superset-signin/superset-signin/images Superset_App/usr/local/lib/python3.9/site-packages/flask-appbuilder/static/appbuilder/img
+
