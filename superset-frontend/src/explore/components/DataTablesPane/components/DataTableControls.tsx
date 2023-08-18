@@ -39,6 +39,7 @@ export const TableControlsWrapper = styled.div`
       flex-shrink: 0;
       .ant-input{
         background: transparent;
+        color:${theme.colors.customBstStyles.formInputText};
       }    
     }
   `}

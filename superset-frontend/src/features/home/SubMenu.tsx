@@ -50,16 +50,16 @@ const StyledHeader = styled.div`
       text-decoration:none;
     }
   }
-  .home {
-    display:flex;
-    align-items:center;
-    h5{
-      font-size: ${({ theme }) => theme.gridUnit * 5}px;
-    }
-    .breadcrumd-arrow{
-      margin:0px ${({ theme }) => theme.gridUnit * 2}px;
-    }
-  }
+  // .home {
+  //   display:flex;
+  //   align-items:center;
+  //   h5{
+  //     font-size: ${({ theme }) => theme.gridUnit * 5}px;
+  //   }
+  //   .breadcrumd-arrow{
+  //     margin:0px ${({ theme }) => theme.gridUnit * 2}px;
+  //   }
+  // }
   .nav-right {
     display: flex;
     align-items: center;
@@ -362,11 +362,19 @@ const SubMenuComponent: React.FunctionComponent<SubMenuProps> = props => {
               <a href={bootstrapData.common.menu_data.brand.path}>
                 {props.name}
               </a>
-              : <div className='home'><a href={bootstrapData.common.menu_data.brand.path}>
+              :
+              <div >
                 {/* <img src={brand.icon} alt={brand.alt} /> */}
-                <h5>Home</h5>
-              </a>
-                <span className='breadcrumd-text'><span className='breadcrumd-arrow'> &gt; </span>{props.name}</span></div>}
+                {/* <a href={bootstrapData.common.menu_data.brand.path}>
+                  <h5>Home</h5>
+                </a> */}
+                <span >
+                  {/* <span className='breadcrumd-arrow'>
+                    &gt;
+                  </span> */}
+                  {props.name}
+                </span>
+              </div>}
           </div>}
 
         <Menu mode={showMenu} style={{ backgroundColor: 'transparent' }}>

@@ -18,10 +18,17 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { t } from '@superset-ui/core';
+import { styled, t } from '@superset-ui/core';
 import { Tooltip } from 'src/components/Tooltip';
 import withToasts from 'src/components/MessageToasts/withToasts';
 import copyTextToClipboard from 'src/utils/copy';
+
+const StyledSpan = styled.span`
+  ${({ theme }) => `
+    color: ${theme.colors.grayscale.dark1};
+    }
+  `}
+`;
 
 const propTypes = {
   copyNode: PropTypes.node,
@@ -38,7 +45,7 @@ const propTypes = {
 
 const defaultProps = {
   copyNode: <span>{t('Copy')}</span>,
-  onCopyEnd: () => {},
+  onCopyEnd: () => { },
   shouldShowText: true,
   wrapped: true,
   tooltipText: t('Copy to clipboard'),
@@ -115,14 +122,14 @@ class CopyToClipboard extends React.Component {
 
   renderLink() {
     return (
-      <span css={{ display: 'inline-flex', alignItems: 'center' }}>
+      <StyledSpan css={{ display: 'inline-flex', alignItems: 'center' }}>
         {this.props.shouldShowText && this.props.text && (
           <span className="m-r-5" data-test="short-url">
             {this.props.text}
           </span>
         )}
         {this.renderTooltip()}
-      </span>
+      </StyledSpan>
     );
   }
 

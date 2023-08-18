@@ -113,7 +113,6 @@ export const FilterInput = ({
       css={css`
         width: 200px;
         margin-right: ${theme.gridUnit * 2}px;
-        background:transperent;
       `}
     />
   );
