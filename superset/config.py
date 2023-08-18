@@ -335,30 +335,30 @@ FAB_API_SWAGGER_UI = True
 
 
 AUTH_TYPE = AUTH_DB
-AUTH_USER_REGISTRATION = {
-    # Other configuration options...
+# AUTH_USER_REGISTRATION = {
+#     # Other configuration options...
 
-    # Custom HTML for the Sign In page
-    'custom_html': '''
-        <div style="display: flex; flex-direction: row;">
-            <div style="width: 50%; padding: 20px;">
-                <img src="/path/to/signin_image.jpg" alt="Sign In Image" style="max-width: 100%;">
-            </div>
-            <div style="width: 50%; padding: 20px;">
-                <h2>Login Options</h2>
-                <p>Enter your credentials to sign in.</p>
-                <form>
-                    <!-- Your login form fields here -->
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <button type="submit">Sign In</button>
-                </form>
-            </div>
-        </div>
-    '''
-}
+#     # Custom HTML for the Sign In page
+#     'custom_html': '''
+#         <div style="display: flex; flex-direction: row;">
+#             <div style="width: 50%; padding: 20px;">
+#                 <img src="/path/to/signin_image.jpg" alt="Sign In Image" style="max-width: 100%;">
+#             </div>
+#             <div style="width: 50%; padding: 20px;">
+#                 <h2>Login Options</h2>
+#                 <p>Enter your credentials to sign in.</p>
+#                 <form>
+#                     <!-- Your login form fields here -->
+#                     <input type="text" name="username" placeholder="Username">
+#                     <input type="password" name="password" placeholder="Password">
+#                     <button type="submit">Sign In</button>
+#                 </form>
+#             </div>
+#         </div>
+#     '''
+# }
 
-AUTH_USER_REGISTRATION_ROLE = "Admin"
+# AUTH_USER_REGISTRATION_ROLE = "Admin"
 AUTH_ROLE_ADMIN = 'Admin'
 # AUTH_ROLE_PUBLIC = 'Public'
 # Uncomment to setup Full admin role name
