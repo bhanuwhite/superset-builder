@@ -18,13 +18,21 @@
  */
 
 import React, { FC, useMemo, useState, memo } from 'react';
-import { NativeFilterScope } from '@superset-ui/core';
+import { NativeFilterScope, styled } from '@superset-ui/core';
 import { Tree } from 'src/components';
 import { DASHBOARD_ROOT_ID } from 'src/dashboard/util/constants';
 import { Tooltip } from 'src/components/Tooltip';
 import Icons from 'src/components/Icons';
 import { useFilterScopeTree } from './state';
 import { findFilterScope, getTreeCheckedItems } from './utils';
+
+
+const StyledTree = styled(Tree)`
+  ${({ theme }) => `
+    background-color: ${theme.colors.customBstStyles.modalBg};
+    color: ${theme.colors.grayscale.dark2};
+  `}
+`;
 
 type ScopingTreeProps = {
   forceUpdate: Function;
@@ -53,7 +61,7 @@ const buildTreeLeafTitle = (
     );
   }
   return title;
-};
+}
 
 const ScopingTree: FC<ScopingTreeProps> = ({
   formScope,
@@ -98,7 +106,7 @@ const ScopingTree: FC<ScopingTreeProps> = ({
   );
 
   return (
-    <Tree
+    <StyledTree
       checkable
       selectable={false}
       onExpand={handleExpand}

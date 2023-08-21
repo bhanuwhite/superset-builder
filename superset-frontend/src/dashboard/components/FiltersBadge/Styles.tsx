@@ -60,20 +60,22 @@ export const Pill = styled.div`
 export const SectionName = styled.span`
   ${({ theme }) => css`
     font-weight: ${theme.typography.weights.bold};
-  `}
-`;
-export const FilterName = styled.span`
-  ${({ theme }) => css`
+    color: ${theme.colors.grayscale.dark1};
+    `}
+    `;
+    export const FilterName = styled.span`
+    ${({ theme }) => css`
     padding-right: ${theme.gridUnit}px;
     font-style: italic;
     & > * {
       margin-right: ${theme.gridUnit}px;
     }
-  `}
-`;
-
-export const FilterItem = styled.button`
-  ${({ theme }) => css`
+    `}
+    `;
+    
+    export const FilterItem = styled.button`
+    ${({ theme }) => css`
+    color: ${theme.colors.grayscale.dark1};
     cursor: pointer;
     display: flex;
     text-align: left;
@@ -113,8 +115,6 @@ export const FiltersDetailsContainer = styled.div`
     min-width: 200px;
     max-width: 300px;
     overflow-x: hidden;
-
-    color: ${theme.colors.grayscale.light5};
   `}
 `;
 

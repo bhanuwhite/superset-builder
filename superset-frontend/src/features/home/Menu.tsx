@@ -208,9 +208,9 @@ export function Menu({
     if (url && isFrontendRoute) {
       return (
         <DropdownMenu.Item key={label} role="presentation">
-          <Link role="button" to={url}>
+          <a role="button" href={url}>
             {label}
-          </Link>
+          </a>
         </DropdownMenu.Item>
       );
     }
@@ -235,7 +235,7 @@ export function Menu({
             return (
               <DropdownMenu.Item key={`${child.label}`}>
                 {child.isFrontendRoute ? (
-                  <Link to={child.url || ''}>{child.label}</Link>
+                  <a href={child.url || ''}>{child.label}</a>
                 ) : (
                   <a href={child.url}>{child.label}</a>
                 )}
