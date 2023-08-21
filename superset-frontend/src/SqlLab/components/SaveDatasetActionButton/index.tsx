@@ -42,8 +42,8 @@ const SaveDatasetActionButton = ({
         width: ${theme.gridUnit * 16}px;
       }
       font-weight: ${theme.gridUnit * 150};
-      background-color: ${theme.colors.primary.light4};
-      color: ${theme.colors.primary.dark1};
+      background-color: ${theme.colors.primary.dark1};
+      color: #FFF;
       &:nth-child(2) {
         &:before,
         &:hover:before {
@@ -53,7 +53,7 @@ const SaveDatasetActionButton = ({
     }
     span[name='caret-down'] {
       margin-left: ${theme.gridUnit * 1}px;
-      color: ${theme.colors.primary.dark2};
+      color: #FFF;
     }
   `;
 
@@ -71,7 +71,7 @@ const SaveDatasetActionButton = ({
       overlay={overlayMenu}
       icon={
         <Icons.CaretDown
-          iconColor={theme.colors.grayscale.light5}
+          iconColor={theme.colors.grayscale.dark2}
           name="caret-down"
         />
       }
