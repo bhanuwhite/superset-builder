@@ -29,6 +29,7 @@ import {
   ensureIsArray,
   formatNumber,
   NumberFormats,
+  styled,
   t,
 } from '@superset-ui/core';
 import AntdSelect, { LabeledValue as AntdLabeledValue } from 'antd/lib/select';
@@ -79,6 +80,11 @@ import { customTagRender } from './CustomTag';
  * Each of the categories come with different abilities. For a comprehensive guide please refer to
  * the storybook in src/components/Select/Select.stories.tsx.
  */
+
+const StyledSpan = styled.span`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
+
 const Select = forwardRef(
   (
     {
@@ -132,8 +138,8 @@ const Select = forwardRef(
     const mappedMode = isSingleMode
       ? undefined
       : allowNewOptions
-      ? 'tags'
-      : 'multiple';
+        ? 'tags'
+        : 'multiple';
 
     const { Option } = AntdSelect;
 
@@ -300,10 +306,10 @@ const Select = forwardRef(
       if (allowNewOptions && isSingleMode) {
         const newOption = searchValue &&
           !hasOption(searchValue, fullSelectOptions, true) && {
-            label: searchValue,
-            value: searchValue,
-            isNewOption: true,
-          };
+          label: searchValue,
+          value: searchValue,
+          isNewOption: true,
+        };
         const cleanSelectOptions = ensureIsArray(fullSelectOptions).filter(
           opt => !opt.isNewOption || hasOption(opt.value, selectValue),
         );
@@ -376,9 +382,9 @@ const Select = forwardRef(
           labelInValue
             ? ([...ensureIsArray(value), selectAllOption] as AntdLabeledValue[])
             : ([
-                ...ensureIsArray(value),
-                SELECT_ALL_VALUE,
-              ] as AntdLabeledValue[]),
+              ...ensureIsArray(value),
+              SELECT_ALL_VALUE,
+            ] as AntdLabeledValue[]),
         );
       }
     }, [labelInValue, selectAllEligible.length, selectAllEnabled, value]);
@@ -474,7 +480,7 @@ const Select = forwardRef(
           maxTagCount={maxTagCount}
           maxTagPlaceholder={customMaxTagPlaceholder}
           mode={mappedMode}
-          notFoundContent={isLoading ? t('Loading...') : notFoundContent}
+          notFoundContent={isLoading ? <StyledSpan>{t('Loading...')}</StyledSpan> : <StyledSpan>---No Data---</StyledSpan>}
           onDeselect={handleOnDeselect}
           onDropdownVisibleChange={handleOnDropdownVisibleChange}
           onPopupScroll={undefined}
