@@ -28,7 +28,7 @@ import React, {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import { ensureIsArray, t } from '@superset-ui/core';
+import { ensureIsArray, styled, t } from '@superset-ui/core';
 import { LabeledValue as AntdLabeledValue } from 'antd/lib/select';
 import debounce from 'lodash/debounce';
 import { isEqual } from 'lodash';
@@ -96,6 +96,10 @@ const getQueryCacheKey = (value: string, page: number, pageSize: number) =>
  * Each of the categories come with different abilities. For a comprehensive guide please refer to
  * the storybook in src/components/Select/Select.stories.tsx.
  */
+const StyledSpan = styled.span`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
+
 const AsyncSelect = forwardRef(
   (
     {
@@ -147,8 +151,8 @@ const AsyncSelect = forwardRef(
     const mappedMode = isSingleMode
       ? undefined
       : allowNewOptions
-      ? 'tags'
-      : 'multiple';
+        ? 'tags'
+        : 'multiple';
     const allowFetch = !fetchOnlyOnSearch || inputValue;
 
     const [maxTagCount, setMaxTagCount] = useState(
@@ -336,10 +340,10 @@ const AsyncSelect = forwardRef(
       if (allowNewOptions && isSingleMode) {
         const newOption = searchValue &&
           !hasOption(searchValue, fullSelectOptions, true) && {
-            label: searchValue,
-            value: searchValue,
-            isNewOption: true,
-          };
+          label: searchValue,
+          value: searchValue,
+          isNewOption: true,
+        };
         const cleanSelectOptions = fullSelectOptions.filter(
           opt => !opt.isNewOption || hasOption(opt.value, selectValue),
         );
@@ -493,7 +497,7 @@ const AsyncSelect = forwardRef(
           labelInValue
           maxTagCount={maxTagCount}
           mode={mappedMode}
-          notFoundContent={isLoading ? t('Loading...') : notFoundContent}
+          notFoundContent={isLoading ? <StyledSpan>{t('Loading...')}</StyledSpan> : <StyledSpan>---No Data---</StyledSpan>}
           onDeselect={handleOnDeselect}
           onDropdownVisibleChange={handleOnDropdownVisibleChange}
           onPopupScroll={handlePagination}

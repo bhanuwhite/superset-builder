@@ -100,7 +100,7 @@ function SelectFilter(
           onChange={onChange}
           onClear={onClear}
           options={fetchAndFormatSelects}
-          notFoundContent={<StyledSpan>No Data</StyledSpan>}
+          notFoundContent={<StyledSpan>---No Data---</StyledSpan>}
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
@@ -115,7 +115,7 @@ function SelectFilter(
           onChange={onChange}
           onClear={onClear}
           options={selects}
-          notFoundContent={<StyledSpan>No Data</StyledSpan>}
+          notFoundContent={<StyledSpan>---No Data---</StyledSpan>}
           placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}

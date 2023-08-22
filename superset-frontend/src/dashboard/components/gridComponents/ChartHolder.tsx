@@ -304,7 +304,7 @@ const ChartHolder: React.FC<ChartHolderProps> = ({
               componentId={component.id}
               id={component.meta.chartId}
               dashboardId={dashboardId}
-              width={chartWidth - chartWidth * 0.05}
+              width={chartWidth - chartWidth * 0.08}
               height={chartHeight}
               sliceName={
                 component.meta.sliceNameOverride ||
