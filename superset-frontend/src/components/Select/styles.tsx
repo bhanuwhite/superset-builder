@@ -72,11 +72,16 @@ export const StyledSelect = styled(AntdSelect, {
       .ant-select-selection-search-input{
        height:100%;
       }
+      
       .ant-select-selection-item{
         height: ${theme.gridUnit * 6}px;
         align-items:center;
         display:flex;
       }
+    }
+    .ant-select-selection-placeholder{
+      align-items:center;
+      display:flex;
     }
     .ant-select-arrow{
       color:${theme.colors.customBstStyles.formInputText};
