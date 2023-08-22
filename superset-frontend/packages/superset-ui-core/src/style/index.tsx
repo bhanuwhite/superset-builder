@@ -65,7 +65,7 @@ const defaultTheme = {
       primaryButtonColor: '#fbfbfb',
       formInputColor: 'rgba(0, 0, 0, 0.08)',
       formInputText: 'rgba(0, 0, 0, 0.67)',
-      tableHeaderbg: 'rgba(0,0,0,0.2)',
+      tableHeaderbg: '#dcdcdc',
       heatMapToolTipText: '#000000',
       modalBg: '#ffffff',
       chartBg: '#ffffff',

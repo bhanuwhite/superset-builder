@@ -78,7 +78,7 @@ import { PivotTableChartPlugin as PivotTableChartPluginV2 } from '@superset-ui/p
 import { HandlebarsChartPlugin } from '@superset-ui/plugin-chart-handlebars';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
 import TimeTableChartPlugin from '../TimeTable';
-import {SupersetUiCustomPluginLiquidChart} from '@superset-ui/custom-plugin-liquid-chart'
+// import {SupersetUiCustomPluginLiquidChart} from '@superset-ui/custom-plugin-liquid-chart'
 
 export default class MainPreset extends Preset {
   constructor() {
@@ -161,7 +161,7 @@ export default class MainPreset extends Preset {
         new EchartsTreeChartPlugin().configure({ key: 'tree_chart' }),
         new EchartsSunburstChartPlugin().configure({ key: 'sunburst_v2' }),
         new HandlebarsChartPlugin().configure({ key: 'handlebars' }),
-        new SupersetUiCustomPluginLiquidChart().configure({ key: 'liquid_chart' }),
+        // new SupersetUiCustomPluginLiquidChart().configure({ key: 'liquid_chart' }),
         ...experimentalplugins,
       ],
     });
