@@ -198,8 +198,8 @@ const ChartHolder: React.FC<ChartHolderProps> = ({
     } else {
       chartWidth = Math.floor(
         widthMultiple * columnWidth +
-          (widthMultiple - 1) * GRID_GUTTER_SIZE -
-          CHART_MARGIN,
+        (widthMultiple - 1) * GRID_GUTTER_SIZE -
+        CHART_MARGIN,
       );
       chartHeight = Math.floor(
         component.meta.height * GRID_BASE_UNIT - CHART_MARGIN,
@@ -241,6 +241,9 @@ const ChartHolder: React.FC<ChartHolderProps> = ({
       [name]: value,
     }));
   }, []);
+
+  console.log(chartWidth, 'cw');
+
 
   return (
     <DragDroppable
@@ -301,7 +304,7 @@ const ChartHolder: React.FC<ChartHolderProps> = ({
               componentId={component.id}
               id={component.meta.chartId}
               dashboardId={dashboardId}
-              width={chartWidth}
+              width={chartWidth - chartWidth * 0.05}
               height={chartHeight}
               sliceName={
                 component.meta.sliceNameOverride ||

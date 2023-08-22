@@ -119,14 +119,14 @@ const defaultTheme = {
     error: {
       base: '#cb323c',
       dark1: '#A7323F',
-      dark2: '#FFFFFF',
+      dark2: '#000000',
       light1: '#EFA1AA',
       light2: 'rgba(203,50,60,.2)',
     },
     warning: {
       base: '#f26c0e',
       dark1: '#BF5E33',
-      dark2: '#FFFFFF',
+      dark2: '#000000',
       light1: '#FEC0A1',
       light2: 'rgba(242,108,14,.2)',
     },
@@ -140,14 +140,14 @@ const defaultTheme = {
     success: {
       base: '#00796b',
       dark1: '#439066',
-      dark2: '#FFFFFF',
+      dark2: '#000000',
       light1: '#ACE1C4',
       light2: 'rgba(0,121,107,.2)',
     },
     info: {
       base: '#007ad9',
       dark1: '#4D8CBE',
-      dark2: '#FFFFFF',
+      dark2: '#000000',
       light1: '#B3DEFE',
       light2: 'rgba(0,122,217,.2)',
     },
