@@ -55,9 +55,11 @@ const app = (
             ReactRouterRoute={Route}
             stringifyOptions={{ encode: false }}
           >
-            {menu?.navbar_right?.user_is_anonymous === false &&
+            {/* {menu?.navbar_right?.user_is_anonymous === false && */}
+            <div css={{ display: !menu?.navbar_right?.user_is_anonymous === false ? 'none' : 'block' }}>
               <Menu data={menu} />
-            }
+            </div>
+            {/* } */}
             {/* <SubMenu name={t(`Home`)} rightMenuPresence /> */}
           </QueryParamProvider>
         </BrowserRouter>
