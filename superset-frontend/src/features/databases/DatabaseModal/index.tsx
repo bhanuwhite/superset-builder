@@ -1023,16 +1023,17 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
           ) : (
             <>
               {t(
-                'Any databases that allow connections via SQL Alchemy URIs can be added. Learn about how to connect a database driver ',
+                'Any databases that allow connections via SQL Alchemy URIs can be added.'
+                //  Learn about how to connect a database driver ',
               )}
-              <a
+              {/* <a
                 href={DOCUMENTATION_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {t('here')}
-              </a>
-              .
+              </a> */}
+              {/* . */}
             </>
           )
         }

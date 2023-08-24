@@ -96,7 +96,7 @@ const ModalHeader = ({
         })}
       </p>
       <h4>{t('Enter Primary Credentials')}</h4>
-      <p className="helper-bottom">
+      {/* <p className="helper-bottom">
         {t('Need help? Learn how to connect your database')}{' '}
         <a
           href={supersetTextDocs?.default || DOCUMENTATION_LINK}
@@ -106,7 +106,7 @@ const ModalHeader = ({
           {t('here')}
         </a>
         .
-      </p>
+      </p> */}
     </StyledFormHeader>
   );
 
