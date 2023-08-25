@@ -25,6 +25,7 @@ import {
   styled,
   ensureIsArray,
   DatasourceType,
+  css,
 } from '@superset-ui/core';
 import Tabs from 'src/components/Tabs';
 import Button from 'src/components/Button';
@@ -81,6 +82,37 @@ const StyledSelect = styled(Select)`
       text-overflow: ellipsis;
     }
   }
+`;
+
+const StyledSQLEditor = styled(SQLEditor)`
+  ${({ theme }) => css`
+    && {
+      // double class is better than !important
+      border: 1px solid ${theme.colors.grayscale.light2};
+      font-feature-settings: 'liga' off, 'calt' off;
+
+      &.ace_autocomplete {
+        // Use !important because Ace Editor applies extra CSS at the last second
+        // when opening the autocomplete.
+        width: ${theme.gridUnit * 130}px !important;
+      }
+
+      .ace_scroller {
+        background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark1};
+      }
+      .ace_marker-layer .ace_active-line {
+        background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+      }
+      .ace_cursor {
+        border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+      }
+      .ace_gutter {
+        background-color: ${theme.colors.primary.dark1}; // Customize the background color
+        color: ${theme.colors.grayscale.dark1}; // Customize the text color
+      }
+    }
+  `}
 `;
 
 export const SAVED_TAB_KEY = 'SAVED';
@@ -481,7 +513,7 @@ export default class AdhocMetricEditPopover extends React.PureComponent {
             data-test="adhoc-metric-edit-tab#custom"
             disabled={extra.disallow_adhoc_metrics}
           >
-            <SQLEditor
+            <StyledSQLEditor
               data-test="sql-editor"
               showLoadingForImport
               ref={this.handleAceEditorRef}

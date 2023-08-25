@@ -19,9 +19,10 @@
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light';
 import sql from 'react-syntax-highlighter/dist/cjs/languages/hljs/sql';
-import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
+// import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
 import { IconTooltip } from 'src/components/IconTooltip';
 import ModalTrigger from 'src/components/ModalTrigger';
+import { supersetTheme } from '@superset-ui/core';
 
 SyntaxHighlighter.registerLanguage('sql', sql);
 
@@ -47,7 +48,7 @@ export default function ShowSQL({
       }
       modalBody={
         <div>
-          <SyntaxHighlighter language="sql" style={github}>
+          <SyntaxHighlighter language="sql" style={supersetTheme?.colors?.customBstStyles?.sqlEditor}>
             {sqlString}
           </SyntaxHighlighter>
         </div>

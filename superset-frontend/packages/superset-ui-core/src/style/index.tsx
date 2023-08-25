@@ -19,6 +19,7 @@
 import emotionStyled from '@emotion/styled';
 import { useTheme as useThemeBasic } from '@emotion/react';
 import createCache from '@emotion/cache';
+import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
 
 export {
   css,
@@ -56,9 +57,29 @@ const backgroundColor = localStorage.getItem('backgroundColor');
 const subHeaderColor = localStorage.getItem('subHeaderColor');
 // console.log(backgroundColor, subHeaderColor, appliedTheme, 'bgc');
 
+const sqlEditorDark = {
+  ...github, // Start with the github style as a base
+
+  // Customize the background color and text color for dark mode
+  'hljs': {
+    background: '#2E2E2E', // Dark background color
+    color: '#FFFFFF',     // Light text color
+  },
+
+  // Add more customizations for different syntax elements if needed
+  // For example:
+  'hljs-keyword': {
+    color: '#569CD6', // Keyword color
+  },
+  'hljs-string': {
+    color: '#CE9178', // String color
+  },
+  // ...
+};
+
 const defaultTheme = {
   borderRadius: 4,
-  logo:'/static/assets/images/Main-logo-ahex-dark.png',
+  logo: '/static/assets/images/Main-logo-ahex-dark.png',
   colors: {
     customBstStyles: {
       subHeader: '#FFFFFF',
@@ -74,6 +95,7 @@ const defaultTheme = {
       tooltipBg: '#252525',
       borderColor: 'rgba(0,0,0,0.12)',
       errorIcon: '#000000',
+      sqlEditor: github
     },
     text: {
       label: '#879399',
@@ -193,7 +215,7 @@ const defaultTheme = {
 
 const defaultThemeDark = {
   borderRadius: 4,
-  logo:'/static/assets/images/Main-Logo-ahex.png',
+  logo: '/static/assets/images/Main-Logo-ahex.png',
   colors: {
     customBstStyles: {
       subHeader: subHeaderColor ? subHeaderColor : '#008874',
@@ -211,6 +233,7 @@ const defaultThemeDark = {
       tableChartHover: '#000000',
       tooltipBg: '#5f5f5f',
       errorIcon: '#000000',
+      sqlEditor: sqlEditorDark
     },
     text: {
       label: '#879399',

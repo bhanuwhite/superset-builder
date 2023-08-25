@@ -1838,9 +1838,10 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                 description={
                   <>
                     {t(
-                      'Select databases require additional fields to be completed in the Advanced tab to successfully connect the database. Learn what requirements your databases has ',
+                      'Select databases require additional fields to be completed in the Advanced tab to successfully connect the database.'
+                      //  Learn what requirements your databases has ',
                     )}
-                    <a
+                    {/* <a
                       href={DOCUMENTATION_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1848,7 +1849,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                     >
                       {t('here')}
                     </a>
-                    .
+                    . */}
                   </>
                 }
                 type="info"

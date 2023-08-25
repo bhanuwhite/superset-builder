@@ -19,8 +19,8 @@
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light';
 import sql from 'react-syntax-highlighter/dist/cjs/languages/hljs/sql';
-import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
-import { t } from '@superset-ui/core';
+// import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
+import { supersetTheme, t } from '@superset-ui/core';
 import ModalTrigger from 'src/components/ModalTrigger';
 
 SyntaxHighlighter.registerLanguage('sql', sql);
@@ -64,7 +64,7 @@ const shrinkSql = (sql: string, maxLines: number, maxWidth: number) => {
 
 function TriggerNode({ shrink, sql, maxLines, maxWidth }: TriggerNodeProps) {
   return (
-    <SyntaxHighlighter language="sql" style={github}>
+    <SyntaxHighlighter language="sql" style={supersetTheme?.colors?.customBstStyles?.sqlEditor}>
       {shrink ? shrinkSql(sql, maxLines, maxWidth) : sql}
     </SyntaxHighlighter>
   );
@@ -74,13 +74,13 @@ function HighlightSqlModal({ rawSql, sql }: HighlightedSqlModalTypes) {
   return (
     <div>
       <h4>{t('Source SQL')}</h4>
-      <SyntaxHighlighter language="sql" style={github}>
+      <SyntaxHighlighter language="sql" style={supersetTheme?.colors?.customBstStyles?.sqlEditor}>
         {sql}
       </SyntaxHighlighter>
       {rawSql && rawSql !== sql && (
         <div>
           <h4>{t('Executed SQL')}</h4>
-          <SyntaxHighlighter language="sql" style={github}>
+          <SyntaxHighlighter language="sql" style={supersetTheme?.colors?.customBstStyles?.sqlEditor}>
             {rawSql}
           </SyntaxHighlighter>
         </div>

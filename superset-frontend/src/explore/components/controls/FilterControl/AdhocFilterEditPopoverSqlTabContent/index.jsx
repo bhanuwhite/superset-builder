@@ -19,7 +19,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Select } from 'src/components';
-import { styled, t } from '@superset-ui/core';
+import { css, styled, t } from '@superset-ui/core';
 import { SQLEditor } from 'src/components/AsyncAceEditor';
 import sqlKeywords from 'src/SqlLab/utils/sqlKeywords';
 
@@ -55,6 +55,36 @@ const StyledSpan = styled.span`
   `}
 `;
 
+const StyledSQLEditor = styled(SQLEditor)`
+  ${({ theme }) => css`
+    && {
+      // double class is better than !important
+      border: 1px solid ${theme.colors.grayscale.light2};
+      font-feature-settings: 'liga' off, 'calt' off;
+
+      &.ace_autocomplete {
+        // Use !important because Ace Editor applies extra CSS at the last second
+        // when opening the autocomplete.
+        width: ${theme.gridUnit * 130}px !important;
+      }
+
+      .ace_scroller {
+        background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark1};
+      }
+      .ace_marker-layer .ace_active-line {
+        background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+      }
+      .ace_cursor {
+        border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+      }
+      .ace_gutter {
+        background-color: ${theme.colors.primary.dark1}; // Customize the background color
+        color: ${theme.colors.grayscale.dark1}; // Customize the text color
+      }
+    }
+  `}
+`;
 export default class AdhocFilterEditPopoverSqlTabContent extends React.Component {
   constructor(props) {
     super(props);
@@ -141,7 +171,7 @@ export default class AdhocFilterEditPopoverSqlTabContent extends React.Component
           </StyledSpan>
         </div>
         <div css={theme => ({ marginTop: theme.gridUnit * 4 })}>
-          <SQLEditor
+          <StyledSQLEditor
             ref={this.handleAceEditorRef}
             keywords={keywords}
             height={`${height - 130}px`}

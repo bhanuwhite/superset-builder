@@ -142,7 +142,7 @@ const ModalHeader = ({
             dbModelName: dbModel.name,
           })}
         </h4>
-        <p className="helper-bottom">
+        {/* <p className="helper-bottom">
           {t('Need help? Learn more about')}{' '}
           <a
             href={documentationLink(db?.engine)}
@@ -152,7 +152,7 @@ const ModalHeader = ({
             {t('connecting to %(dbModelName)s.', { dbModelName: dbModel.name })}
             .
           </a>
-        </p>
+        </p> */}
       </StyledFormHeader>
     </StyledStickyHeader>
   );
