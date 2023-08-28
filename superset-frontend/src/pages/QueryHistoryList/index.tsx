@@ -54,7 +54,7 @@ import QueryPreviewModal from 'src/features/queries/QueryPreviewModal';
 const PAGE_SIZE = 25;
 const SQL_PREVIEW_MAX_LINES = 4;
 
-const TopAlignedListView = styled(ListView)<ListViewProps<QueryObject>>`
+const TopAlignedListView = styled(ListView) <ListViewProps<QueryObject>>`
   table .table-cell {
     vertical-align: top;
   }
@@ -317,7 +317,7 @@ function QueryList({ addDangerToast }: QueryListProps) {
             data-test={`open-sql-preview-${id}`}
             onClick={() => setQueryCurrentlyPreviewing(original)}
           >
-            <StyledSyntaxHighlighter language="sql" style={github}>
+            <StyledSyntaxHighlighter language="sql" style={theme?.colors?.customBstStyles?.sqlEditor}>
               {shortenSQL(original.sql, SQL_PREVIEW_MAX_LINES)}
             </StyledSyntaxHighlighter>
           </div>
@@ -419,7 +419,7 @@ function QueryList({ addDangerToast }: QueryListProps) {
 
   return (
     <>
-      <SubMenu {...menuData}/>
+      <SubMenu {...menuData} />
       {queryCurrentlyPreviewing && (
         <QueryPreviewModal
           onHide={() => setQueryCurrentlyPreviewing(undefined)}

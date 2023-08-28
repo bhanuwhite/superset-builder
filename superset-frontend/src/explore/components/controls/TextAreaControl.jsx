@@ -19,13 +19,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextArea } from 'src/components/Input';
-import { t, withTheme } from '@superset-ui/core';
+import { css, styled, t, withTheme } from '@superset-ui/core';
 
 import Button from 'src/components/Button';
 import { TextAreaEditor } from 'src/components/AsyncAceEditor';
 import ModalTrigger from 'src/components/ModalTrigger';
 
 import ControlHeader from 'src/explore/components/ControlHeader';
+
+const StyledTextAreaEditor = styled(TextAreaEditor)`
+  ${({ theme }) => css`
+    && {
+      // double class is better than !important
+      border: 1px solid ${theme.colors.grayscale.light2};
+      font-feature-settings: 'liga' off, 'calt' off;
+
+      &.ace_autocomplete {
+        // Use !important because Ace Editor applies extra CSS at the last second
+        // when opening the autocomplete.
+        width: ${theme.gridUnit * 130}px !important;
+      }
+
+      .ace_scroller {
+        background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark1};
+      }
+      .ace_marker-layer .ace_active-line {
+        background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+      }
+      .ace_cursor {
+        border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+      }
+      .ace_gutter {
+        background-color: ${theme.colors.primary.dark1}; // Customize the background color
+        color: ${theme.colors.grayscale.dark1}; // Customize the text color
+      }
+    }
+  `}
+`;
 
 const propTypes = {
   name: PropTypes.string,
@@ -58,7 +89,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  onChange: () => {},
+  onChange: () => { },
   initialValue: '',
   height: 250,
   minLines: 3,
@@ -96,7 +127,7 @@ class TextAreaControl extends React.Component {
       }
 
       return (
-        <TextAreaEditor
+        <StyledTextAreaEditor
           mode={this.props.language}
           style={style}
           minLines={minLines}

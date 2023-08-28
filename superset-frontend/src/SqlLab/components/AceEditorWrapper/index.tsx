@@ -75,6 +75,17 @@ const StyledAceEditor = styled(AceEditor)`
 
       .ace_scroller {
         background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark1};
+      }
+      .ace_marker-layer .ace_active-line {
+        background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+      }
+      .ace_cursor {
+        border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+      }
+      .ace_gutter {
+        background-color: ${theme.colors.primary.dark1}; // Customize the background color
+        color: ${theme.colors.grayscale.dark1}; // Customize the text color
       }
     }
   `}
@@ -82,8 +93,8 @@ const StyledAceEditor = styled(AceEditor)`
 
 const AceEditorWrapper = ({
   autocomplete,
-  onBlur = () => {},
-  onChange = () => {},
+  onBlur = () => { },
+  onChange = () => { },
   queryEditorId,
   extendedTables = [],
   height,

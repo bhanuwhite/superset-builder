@@ -20,11 +20,13 @@ import React, { ReactNode } from 'react';
 import rison from 'rison';
 import querystring from 'query-string';
 import {
+  css,
   FeatureFlag,
   isDefined,
   JsonResponse,
   styled,
   SupersetClient,
+  SupersetTheme,
   t,
 } from '@superset-ui/core';
 import { getUrlParam } from 'src/utils/urlUtils';
@@ -42,6 +44,8 @@ import VizTypeGallery, {
 import { findPermission } from 'src/utils/findPermission';
 import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
 import getBootstrapData from 'src/utils/getBootstrapData';
+import { GlobalStyles } from 'src/GlobalStyles';
+import { Global } from '@emotion/react';
 
 type Dataset = {
   id: number;
@@ -74,6 +78,52 @@ if (
 ) {
   denyList.push('filter_box');
 }
+
+const globalStyles = (theme: SupersetTheme) => css`
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
+    border-radius: 0px;
+  }
+  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
+    border-radius: 0px;
+  }
+  .ant-menu-vertical{
+    background-color: ${theme.colors.grayscale.light5} !important;
+    .ant-menu-item {  
+      &:hover {
+      background-color: ${theme.colors.grayscale.light4};
+      a{
+        color: ${theme.colors.grayscale.dark2};
+      }
+       }
+      a{
+        color: ${theme.colors.grayscale.dark2};
+      }
+    }
+    label{
+      color: ${theme.colors.grayscale.dark2} !important;
+    }
+  }
+  .ant-menu-submenu-vertical{
+    color: ${theme.colors.grayscale.dark2} !important;
+    i{
+      color: ${theme.colors.grayscale.dark2} !important;
+    }
+  }
+  .ant-menu-item-group-title{
+    color: ${theme.colors.grayscale.dark2} ;
+  }
+  .ant-menu-item-only-child{
+    color: ${theme.colors.grayscale.dark2} !important;
+  }
+  .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
+    height: 28px;
+    i {
+      padding-right: ${theme.gridUnit * 2}px;
+      margin-left: ${theme.gridUnit * 1.75}px;
+    }
+    
+  }
+`;
 
 const StyledContainer = styled.div`
   ${({ theme }) => `
@@ -181,14 +231,12 @@ const StyledContainer = styled.div`
 const TooltipContent = styled.div<{ hasDescription: boolean }>`
   ${({ theme, hasDescription }) => `
     .tooltip-header {
-      font-size: ${
-        hasDescription ? theme.typography.sizes.l : theme.typography.sizes.s
-      }px;
-      font-weight: ${
-        hasDescription
-          ? theme.typography.weights.bold
-          : theme.typography.weights.normal
-      };
+      font-size: ${hasDescription ? theme.typography.sizes.l : theme.typography.sizes.s
+    }px;
+      font-weight: ${hasDescription
+      ? theme.typography.weights.bold
+      : theme.typography.weights.normal
+    };
     }
 
     .tooltip-description {
@@ -216,10 +264,10 @@ const StyledLabel = styled.span`
 
 const StyledStepTitle = styled.span`
   ${({
-    theme: {
-      typography: { sizes, weights },
-    },
-  }) => `
+  theme: {
+    typography: { sizes, weights },
+  },
+}) => `
       font-size: ${sizes.m}px;
       font-weight: ${weights.bold};
     `}
@@ -354,13 +402,13 @@ export class ChartCreation extends React.PureComponent<
 
   render() {
     const isButtonDisabled = this.isBtnDisabled();
-    const VIEW_INSTRUCTIONS_TEXT = t('view instructions');
-    const datasetHelpText = this.state.canCreateDataset ? (
+    // const VIEW_INSTRUCTIONS_TEXT = t('view instructions');
+    const datasetHelpText = this.state.canCreateDataset &&
       <span data-test="dataset-write">
         <Link to="/dataset/add/" data-test="add-chart-new-dataset">
-          {t('Add a dataset')}{' '}
+          {t('(Add a dataset)')}{' '}
         </Link>
-        {t('or')}{' '}
+        {/* {t('or')}{' '}
         <a
           href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
           rel="noopener noreferrer"
@@ -369,25 +417,27 @@ export class ChartCreation extends React.PureComponent<
         >
           {`${VIEW_INSTRUCTIONS_TEXT} `}
           <i className="fa fa-external-link" />
-        </a>
-        .
+        </a> */}
+        {/* . */}
       </span>
-    ) : (
-      <span data-test="no-dataset-write">
-        <a
-          href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {`${VIEW_INSTRUCTIONS_TEXT} `}
-          <i className="fa fa-external-link" />
-        </a>
-        .
-      </span>
-    );
+    // ) : (
+    // <span data-test="no-dataset-write">
+    //   <a
+    //     href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
+    //     rel="noopener noreferrer"
+    //     target="_blank"
+    //   >
+    //     {`${VIEW_INSTRUCTIONS_TEXT} `}
+    //     <i className="fa fa-external-link" />
+    //   </a>
+    //   .
+    // </span>
+    // );
 
     return (
       <StyledContainer>
+        <Global styles={globalStyles} />
+        <GlobalStyles />
         <h3>{t('Create a new chart')}</h3>
         <Steps direction="vertical" size="small">
           <Steps.Step
@@ -440,7 +490,7 @@ export class ChartCreation extends React.PureComponent<
             {t('Create new chart')}
           </Button>
         </div>
-       
+
       </StyledContainer>
     );
   }

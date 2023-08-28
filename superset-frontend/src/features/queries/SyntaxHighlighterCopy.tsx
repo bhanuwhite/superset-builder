@@ -17,13 +17,13 @@
  * under the License.
  */
 import React from 'react';
-import { styled, t } from '@superset-ui/core';
+import { styled, supersetTheme, t } from '@superset-ui/core';
 import { SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import sqlSyntax from 'react-syntax-highlighter/dist/cjs/languages/hljs/sql';
 import htmlSyntax from 'react-syntax-highlighter/dist/cjs/languages/hljs/htmlbars';
 import markdownSyntax from 'react-syntax-highlighter/dist/cjs/languages/hljs/markdown';
 import jsonSyntax from 'react-syntax-highlighter/dist/cjs/languages/hljs/json';
-import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
+// import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light';
 import Icons from 'src/components/Icons';
 import { ToastProps } from 'src/components/MessageToasts/withToasts';
@@ -88,7 +88,7 @@ export default function SyntaxHighlighterCopy({
           copyToClipboard(children);
         }}
       />
-      <SyntaxHighlighter style={github} {...syntaxHighlighterProps}>
+      <SyntaxHighlighter style={supersetTheme?.colors?.customBstStyles?.sqlEditor} {...syntaxHighlighterProps}>
         {children}
       </SyntaxHighlighter>
     </SyntaxHighlighterWrapper>

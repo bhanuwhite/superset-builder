@@ -30,6 +30,10 @@ import {
   StyledLayoutRightPanel,
   StyledLayoutFooter,
 } from '../styles';
+import { useTheme } from '@superset-ui/core';
+import { Global } from '@emotion/react';
+import { GlobalStyles } from 'src/GlobalStyles';
+import { globalStyles } from 'src/features/home/SubMenu';
 
 interface DatasetLayoutProps {
   header?: ReactElement<any, string | JSXElementConstructor<any>> | null;
@@ -46,8 +50,11 @@ export default function DatasetLayout({
   rightPanel,
   footer,
 }: DatasetLayoutProps) {
+  const theme = useTheme();
   return (
     <StyledLayoutWrapper data-test="dataset-layout-wrapper">
+      <Global styles={globalStyles(theme)} />
+      <GlobalStyles />
       {header && <StyledLayoutHeader>{header}</StyledLayoutHeader>}
       <OuterRow>
         {leftPanel && (

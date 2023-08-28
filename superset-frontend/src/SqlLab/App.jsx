@@ -41,6 +41,8 @@ import setupApp from '../setup/setupApp';
 import '../assets/stylesheets/reactable-pagination.less';
 import { theme } from '../preamble';
 import { SqlLabGlobalStyles } from './SqlLabGlobalStyles';
+import { Global } from '@emotion/react';
+import { globalStyles } from 'src/features/home/SubMenu';
 
 setupApp();
 setupExtensions();
@@ -159,6 +161,7 @@ if (sqlLabMenu) {
 const Application = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
+      <Global styles={globalStyles(theme)} />
       <GlobalStyles />
       <SqlLabGlobalStyles />
       <App />

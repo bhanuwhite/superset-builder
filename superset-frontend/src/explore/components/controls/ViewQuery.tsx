@@ -17,9 +17,9 @@
  * under the License.
  */
 import React from 'react';
-import { styled } from '@superset-ui/core';
+import { styled, supersetTheme } from '@superset-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light';
-import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
+// import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
 import CopyToClipboard from 'src/components/CopyToClipboard';
 import { CopyButton } from 'src/explore/components/DataTableControl';
 import markdownSyntax from 'react-syntax-highlighter/dist/cjs/languages/hljs/markdown';
@@ -66,7 +66,7 @@ const ViewQuery: React.FC<ViewQueryProps> = props => {
           </CopyButtonViewQuery>
         }
       />
-      <StyledSyntaxHighlighter language={language} style={github}>
+      <StyledSyntaxHighlighter language={language} style={supersetTheme?.colors?.customBstStyles?.sqlEditor}>
         {sql}
       </StyledSyntaxHighlighter>
     </StyledSyntaxContainer>
