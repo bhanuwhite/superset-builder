@@ -187,7 +187,6 @@ const StyledTable = styled(AntTable)<{ height?: number }>(
     .ant-table-tbody > tr:hover td{
       background-color: ${theme.colors.grayscale.light4}!important;
     }
-
     .ant-pagination-item-active {
       border-color: ${theme.colors.primary.base};
     }

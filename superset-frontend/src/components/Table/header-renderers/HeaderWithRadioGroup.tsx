@@ -52,6 +52,7 @@ function HeaderWithRadioGroup(props: HeaderWithRadioGroupProps) {
               css={css`
                 font-weight: ${theme.typography.weights.bold};
                 margin-bottom: ${theme.gridUnit}px;
+                color: ${theme.colors.grayscale.dark2};
               `}
             >
               {groupTitle}
