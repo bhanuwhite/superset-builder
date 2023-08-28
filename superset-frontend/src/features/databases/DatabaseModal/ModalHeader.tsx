@@ -35,25 +35,25 @@ export const DOCUMENTATION_LINK = supersetTextDocs
   ? supersetTextDocs.support
   : 'https://superset.apache.org/docs/databases/installing-database-drivers';
 
-const irregularDocumentationLinks = {
-  postgresql: 'https://superset.apache.org/docs/databases/postgres',
-  mssql: 'https://superset.apache.org/docs/databases/sql-server',
-  gsheets: 'https://superset.apache.org/docs/databases/google-sheets',
-};
+// const irregularDocumentationLinks = {
+//   postgresql: 'https://superset.apache.org/docs/databases/postgres',
+//   mssql: 'https://superset.apache.org/docs/databases/sql-server',
+//   gsheets: 'https://superset.apache.org/docs/databases/google-sheets',
+// };
 
-const documentationLink = (engine: string | undefined) => {
-  if (!engine) return null;
+// const documentationLink = (engine: string | undefined) => {
+//   if (!engine) return null;
 
-  if (supersetTextDocs) {
-    // override doc link for superset_txt yml
-    return supersetTextDocs[engine] || supersetTextDocs.default;
-  }
+//   if (supersetTextDocs) {
+//     // override doc link for superset_txt yml
+//     return supersetTextDocs[engine] || supersetTextDocs.default;
+//   }
 
-  if (!irregularDocumentationLinks[engine]) {
-    return `https://superset.apache.org/docs/databases/${engine}`;
-  }
-  return irregularDocumentationLinks[engine];
-};
+//   if (!irregularDocumentationLinks[engine]) {
+//     return `https://superset.apache.org/docs/databases/${engine}`;
+//   }
+//   return irregularDocumentationLinks[engine];
+// };
 
 const ModalHeader = ({
   isLoading,

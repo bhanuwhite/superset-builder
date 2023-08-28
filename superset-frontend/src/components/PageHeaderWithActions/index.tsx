@@ -33,6 +33,7 @@ import Button from '../Button';
 // import { isFrontendRoute } from 'src/views/routes';
 import { GlobalStyles } from 'src/GlobalStyles';
 import { Global } from '@emotion/react';
+import { globalStyles } from 'src/features/home/SubMenu';
 // import { Switch } from 'antd';
 
 export const menuTriggerStyles = (theme: SupersetTheme) => css`
@@ -109,51 +110,6 @@ const buttonsStyles = (theme: SupersetTheme) => css`
 
     &:first-of-type {
       padding-left: 0;
-    }
-  }
-`;
-
-const globalStyles = (theme: SupersetTheme) => css`
-  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
-    border-radius: 0px;
-  }
-  .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light {
-    border-radius: 0px;
-  }
-  .ant-menu-vertical {
-    background-color: ${theme.colors.grayscale.light5} !important;
-    .ant-menu-item {
-      &:hover {
-        background-color: ${theme.colors.grayscale.light4};
-        a {
-          color: ${theme.colors.grayscale.dark2};
-        }
-      }
-      a {
-        color: ${theme.colors.grayscale.dark2};
-      }
-    }
-    label {
-      color: ${theme.colors.grayscale.dark2} !important;
-    }
-  }
-  .ant-menu-submenu-vertical {
-    color: ${theme.colors.grayscale.dark2} !important;
-    i {
-      color: ${theme.colors.grayscale.dark2} !important;
-    }
-  }
-  .ant-menu-item-group-title {
-    color: ${theme.colors.grayscale.dark2};
-  }
-  .ant-menu-item-only-child {
-    color: ${theme.colors.grayscale.dark2} !important;
-  }
-  .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
-    height: 28px;
-    i {
-      padding-right: ${theme.gridUnit * 2}px;
-      margin-left: ${theme.gridUnit * 1.75}px;
     }
   }
 `;

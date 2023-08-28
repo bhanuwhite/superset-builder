@@ -22,7 +22,7 @@ import { styled, SupersetTheme, css, t, useTheme } from '@superset-ui/core';
 import cx from 'classnames';
 import { Tooltip } from 'src/components/Tooltip';
 import { debounce } from 'lodash';
-import { Grid, Row } from 'src/components';
+import { Row } from 'src/components';
 import { Menu, MenuMode, MainNav as DropdownMenu } from 'src/components/Menu';
 import Button, { OnClickHandler } from 'src/components/Button';
 import Icons from 'src/components/Icons';
@@ -196,7 +196,7 @@ const styledDisabled = (theme: SupersetTheme) => css`
     cursor: default;
   }
 `;
-const globalStyles = (theme: SupersetTheme) => css`
+export const globalStyles = (theme: SupersetTheme) => css`
   .ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-light.ant-menu-submenu-placement-bottomLeft {
     border-radius: 0px;
   }

@@ -89,7 +89,7 @@ import {
   formScrollableStyles,
   StyledUploadWrapper,
 } from './styles';
-import ModalHeader, { DOCUMENTATION_LINK } from './ModalHeader';
+import ModalHeader from './ModalHeader';
 import SSHTunnelForm from './SSHTunnelForm';
 import SSHTunnelSwitch from './SSHTunnelSwitch';
 
@@ -179,57 +179,57 @@ interface DBReducerPayloadType {
 
 export type DBReducerActionType =
   | {
-      type:
-        | ActionType.extraEditorChange
-        | ActionType.extraInputChange
-        | ActionType.textChange
-        | ActionType.queryChange
-        | ActionType.inputChange
-        | ActionType.editorChange
-        | ActionType.parametersChange
-        | ActionType.parametersSSHTunnelChange;
-      payload: DBReducerPayloadType;
-    }
+    type:
+    | ActionType.extraEditorChange
+    | ActionType.extraInputChange
+    | ActionType.textChange
+    | ActionType.queryChange
+    | ActionType.inputChange
+    | ActionType.editorChange
+    | ActionType.parametersChange
+    | ActionType.parametersSSHTunnelChange;
+    payload: DBReducerPayloadType;
+  }
   | {
-      type: ActionType.fetched;
-      payload: Partial<DatabaseObject>;
-    }
+    type: ActionType.fetched;
+    payload: Partial<DatabaseObject>;
+  }
   | {
-      type: ActionType.dbSelected;
-      payload: {
-        database_name?: string;
-        engine?: string;
-        configuration_method: CONFIGURATION_METHOD;
-        engine_information?: {};
-        driver?: string;
-      };
-    }
-  | {
-      type:
-        | ActionType.reset
-        | ActionType.addTableCatalogSheet
-        | ActionType.removeSSHTunnelConfig;
-    }
-  | {
-      type: ActionType.removeTableCatalogSheet;
-      payload: {
-        indexToDelete: number;
-      };
-    }
-  | {
-      type: ActionType.configMethodChange;
-      payload: {
-        database_name?: string;
-        engine?: string;
-        configuration_method: CONFIGURATION_METHOD;
-      };
-    }
-  | {
-      type: ActionType.setSSHTunnelLoginMethod;
-      payload: {
-        login_method: AuthType;
-      };
+    type: ActionType.dbSelected;
+    payload: {
+      database_name?: string;
+      engine?: string;
+      configuration_method: CONFIGURATION_METHOD;
+      engine_information?: {};
+      driver?: string;
     };
+  }
+  | {
+    type:
+    | ActionType.reset
+    | ActionType.addTableCatalogSheet
+    | ActionType.removeSSHTunnelConfig;
+  }
+  | {
+    type: ActionType.removeTableCatalogSheet;
+    payload: {
+      indexToDelete: number;
+    };
+  }
+  | {
+    type: ActionType.configMethodChange;
+    payload: {
+      database_name?: string;
+      engine?: string;
+      configuration_method: CONFIGURATION_METHOD;
+    };
+  }
+  | {
+    type: ActionType.setSSHTunnelLoginMethod;
+    payload: {
+      login_method: AuthType;
+    };
+  };
 
 const StyledBtns = styled.div`
   margin-bottom: ${({ theme }) => theme.gridUnit * 3}px;
@@ -463,7 +463,7 @@ export function dbReducer(
       if (
         action.payload.masked_encrypted_extra &&
         action.payload.configuration_method ===
-          CONFIGURATION_METHOD.DYNAMIC_FORM
+        CONFIGURATION_METHOD.DYNAMIC_FORM
       ) {
         // "extra" payload from the api is a string
         const extraJsonPayload: ExtraJson = {
@@ -1176,8 +1176,8 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         tooltip={
           db?.is_managed_externally
             ? t(
-                "This database is managed externally, and can't be edited in Superset",
-              )
+              "This database is managed externally, and can't be edited in Superset",
+            )
             : ''
         }
       >
@@ -1354,7 +1354,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setPasswords({ ...passwords, [database]: event.target.value })
             }
-            validationMethods={{ onBlur: () => {} }}
+            validationMethods={{ onBlur: () => { } }}
             errorMessage={validationErrors?.password_needed}
             label={t('%s PASSWORD', database.slice(10))}
             css={formScrollableStyles}
@@ -1372,7 +1372,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                 [database]: event.target.value,
               })
             }
-            validationMethods={{ onBlur: () => {} }}
+            validationMethods={{ onBlur: () => { } }}
             errorMessage={validationErrors?.ssh_tunnel_password_needed}
             label={t('%s SSH TUNNEL PASSWORD', database.slice(10))}
             css={formScrollableStyles}
@@ -1390,7 +1390,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                 [database]: event.target.value,
               })
             }
-            validationMethods={{ onBlur: () => {} }}
+            validationMethods={{ onBlur: () => { } }}
             errorMessage={validationErrors?.ssh_tunnel_private_key_needed}
             label={t('%s SSH TUNNEL PRIVATE KEY', database.slice(10))}
             css={formScrollableStyles}
@@ -1408,7 +1408,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                 [database]: event.target.value,
               })
             }
-            validationMethods={{ onBlur: () => {} }}
+            validationMethods={{ onBlur: () => { } }}
             errorMessage={
               validationErrors?.ssh_tunnel_private_key_password_needed
             }
@@ -1459,7 +1459,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
           id="confirm_overwrite"
           name="confirm_overwrite"
           required
-          validationMethods={{ onBlur: () => {} }}
+          validationMethods={{ onBlur: () => { } }}
           errorMessage={validationErrors?.confirm_overwrite}
           label={t('Type "%s" to confirm', t('OVERWRITE'))}
           onChange={confirmOverwrite}
@@ -1509,8 +1509,8 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         typeof dbErrors === 'object'
           ? Object.values(dbErrors)
           : typeof dbErrors === 'string'
-          ? [dbErrors]
-          : [];
+            ? [dbErrors]
+            : [];
     } else if (
       !isEmpty(validationErrors) &&
       validationErrors?.error_type === 'GENERIC_DB_ENGINE_ERROR'
@@ -1950,7 +1950,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                     id="databaseFile"
                     data-test="database-file-input"
                     accept=".yaml,.json,.yml,.zip"
-                    customRequest={() => {}}
+                    customRequest={() => { }}
                     onChange={onDbImport}
                     onRemove={removeFile}
                   >
