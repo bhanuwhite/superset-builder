@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { styled, supersetTheme, t } from '@superset-ui/core';
+import { css, styled, supersetTheme, t } from '@superset-ui/core';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
 import { RangePicker } from 'src/components/DatePicker';
 import moment from 'moment';
@@ -47,6 +47,34 @@ const StyledAnnotationTitle = styled.div`
 const StyledJsonEditor = styled(JsonEditor)`
   border-radius: ${({ theme }) => theme.borderRadius}px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.light2};
+  ${({ theme }) => css`
+  && {
+    // double class is better than !important
+    border: 1px solid ${theme.colors.grayscale.light2};
+    font-feature-settings: 'liga' off, 'calt' off;
+
+    &.ace_autocomplete {
+      // Use !important because Ace Editor applies extra CSS at the last second
+      // when opening the autocomplete.
+      width: ${theme.gridUnit * 130}px !important;
+    }
+
+    .ace_scroller {
+      background-color: ${theme.colors.grayscale.light4};
+      color: ${theme.colors.grayscale.dark1};
+    }
+    .ace_marker-layer .ace_active-line {
+      background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+    }
+    .ace_cursor {
+      border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+    }
+    .ace_gutter {
+      background-color: ${theme.colors.primary.dark1}; // Customize the background color
+      color: ${theme.colors.grayscale.dark1}; // Customize the text color
+    }
+  }
+`}
 `;
 
 const AnnotationContainer = styled.div`
@@ -315,11 +343,11 @@ const AnnotationModal: FunctionComponent<AnnotationModalProps> = ({
           use12Hours
           value={
             currentAnnotation?.start_dttm?.length ||
-            currentAnnotation?.end_dttm?.length
+              currentAnnotation?.end_dttm?.length
               ? [
-                  moment(currentAnnotation.start_dttm),
-                  moment(currentAnnotation.end_dttm),
-                ]
+                moment(currentAnnotation.start_dttm),
+                moment(currentAnnotation.end_dttm),
+              ]
               : null
           }
         />

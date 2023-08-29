@@ -26,6 +26,7 @@ import { AntdForm, AsyncSelect, Col, Row } from 'src/components';
 import rison from 'rison';
 import {
   CategoricalColorNamespace,
+  css,
   ensureIsArray,
   FeatureFlag,
   getCategoricalSchemeRegistry,
@@ -61,6 +62,34 @@ const StyledFormItem = styled(FormItem)`
 const StyledJsonEditor = styled(JsonEditor)`
   border-radius: ${({ theme }) => theme.borderRadius}px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.light2};
+  ${({ theme }) => css`
+  && {
+    // double class is better than !important
+    border: 1px solid ${theme.colors.grayscale.light2};
+    font-feature-settings: 'liga' off, 'calt' off;
+
+    &.ace_autocomplete {
+      // Use !important because Ace Editor applies extra CSS at the last second
+      // when opening the autocomplete.
+      width: ${theme.gridUnit * 130}px !important;
+    }
+
+    .ace_scroller {
+      background-color: ${theme.colors.grayscale.light4};
+      color: ${theme.colors.grayscale.dark1};
+    }
+    .ace_marker-layer .ace_active-line {
+      background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+    }
+    .ace_cursor {
+      border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+    }
+    .ace_gutter {
+      background-color: ${theme.colors.primary.dark1}; // Customize the background color
+      color: ${theme.colors.grayscale.dark1}; // Customize the text color
+    }
+  }
+`}
 `;
 
 type PropertiesModalProps = {
@@ -99,9 +128,9 @@ const PropertiesModal = ({
   dashboardId,
   dashboardInfo: currentDashboardInfo,
   dashboardTitle,
-  onHide = () => {},
+  onHide = () => { },
   onlyApply = false,
-  onSubmit = () => {},
+  onSubmit = () => { },
   show = false,
 }: PropertiesModalProps) => {
   const [form] = AntdForm.useForm();
@@ -324,8 +353,8 @@ const PropertiesModal = ({
             includeTypes: false,
           },
           tag.name,
-          () => {},
-          () => {},
+          () => { },
+          () => { },
         );
       }
     });
@@ -339,8 +368,8 @@ const PropertiesModal = ({
             objectId: dashboardId,
           },
           tag,
-          () => {},
-          () => {},
+          () => { },
+          () => { },
         );
       }
     });
@@ -475,7 +504,7 @@ const PropertiesModal = ({
     return (
       <Row gutter={16}>
         <Col xs={24} md={12}>
-          <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Access')}</h3>
+          <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Access')}</h3>
           <StyledFormItem label={t('Owners')}>
             <AsyncSelect
               allowClear
@@ -489,14 +518,14 @@ const PropertiesModal = ({
               value={handleOwnersSelectValue()}
             />
           </StyledFormItem>
-          <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+          <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
             {t(
               'Owners is a list of users who can alter the dashboard. Searchable by name or username.',
             )}
           </p>
         </Col>
         <Col xs={24} md={12}>
-          <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Colors')}</h3>
+          <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Colors')}</h3>
           <ColorSchemeControlWrapper
             hasCustomLabelColors={hasCustomLabelColors}
             onChange={onColorSchemeChange}
@@ -518,7 +547,7 @@ const PropertiesModal = ({
       <>
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Access')}</h3>
+            <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Access')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -537,7 +566,7 @@ const PropertiesModal = ({
                 value={handleOwnersSelectValue()}
               />
             </StyledFormItem>
-            <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+            <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
               {t(
                 'Owners is a list of users who can alter the dashboard. Searchable by name or username.',
               )}
@@ -557,7 +586,7 @@ const PropertiesModal = ({
                 value={handleRolesSelectValue()}
               />
             </StyledFormItem>
-            <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}> 
+            <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
               {t(
                 'Roles is a list which defines access to the dashboard. Granting a role access to a dashboard will bypass dataset level checks. If no roles are defined, regular access permissions apply.',
               )}
@@ -658,8 +687,8 @@ const PropertiesModal = ({
             tooltip={
               dashboardInfo?.isManagedExternally
                 ? t(
-                    "This dashboard is managed externally, and can't be edited in Superset",
-                  )
+                  "This dashboard is managed externally, and can't be edited in Superset",
+                )
                 : ''
             }
           >
@@ -678,7 +707,7 @@ const PropertiesModal = ({
       >
         <Row>
           <Col xs={24} md={24}>
-          <h3 style={{marginTop:'0px', color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Basic information')}</h3>
+            <h3 style={{ marginTop: '0px', color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Basic information')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -695,7 +724,7 @@ const PropertiesModal = ({
             <StyledFormItem label={t('URL slug')} name="slug">
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+            <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
               {t('A readable URL for your dashboard')}
             </p>
           </Col>
@@ -705,7 +734,7 @@ const PropertiesModal = ({
           : getRowsWithoutRoles()}
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Certification')}</h3>
+            <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Certification')}</h3>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -713,7 +742,7 @@ const PropertiesModal = ({
             <StyledFormItem label={t('Certified by')} name="certifiedBy">
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+            <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
               {t('Person or group that has certified this dashboard.')}
             </p>
           </Col>
@@ -724,7 +753,7 @@ const PropertiesModal = ({
             >
               <Input type="text" disabled={isLoading} />
             </StyledFormItem>
-            <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+            <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
               {t('Any additional detail to show in the certification tooltip.')}
             </p>
           </Col>
@@ -732,7 +761,7 @@ const PropertiesModal = ({
         {isFeatureEnabled(FeatureFlag.TAGGING_SYSTEM) ? (
           <Row gutter={16}>
             <Col xs={24} md={12}>
-              <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>{t('Tags')}</h3>
+              <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>{t('Tags')}</h3>
             </Col>
           </Row>
         ) : null}
@@ -750,7 +779,7 @@ const PropertiesModal = ({
                   allowClear
                 />
               </StyledFormItem>
-              <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+              <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
                 {t('A list of tags that have been applied to this chart.')}
               </p>
             </Col>
@@ -758,7 +787,7 @@ const PropertiesModal = ({
         ) : null}
         <Row>
           <Col xs={24} md={24}>
-            <h3 style={{marginTop:theme.typography.sizes.s, color:theme.colors.grayscale.dark2, fontSize:theme.gridUnit_6 * 3}}>
+            <h3 style={{ marginTop: theme.typography.sizes.s, color: theme.colors.grayscale.dark2, fontSize: theme.gridUnit_6 * 3 }}>
               <Button
                 buttonStyle="link"
                 onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
@@ -784,7 +813,7 @@ const PropertiesModal = ({
                     wrapEnabled
                   />
                 </StyledFormItem>
-                <p className="help-block" css={{color:theme.colors.customBstStyles.formInputText}}>
+                <p className="help-block" css={{ color: theme.colors.customBstStyles.formInputText }}>
                   {t(
                     'This JSON object is generated dynamically when clicking the save or overwrite button in the dashboard view. It is exposed here for reference and for power users who may want to alter specific parameters.',
                   )}

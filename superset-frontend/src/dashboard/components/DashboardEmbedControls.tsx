@@ -52,6 +52,17 @@ const ButtonRow = styled.div`
   justify-content: flex-end;
 `;
 
+const Styleddiv = styled.div`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
+const StyledLabel = styled.label`
+  ${({ theme }) => `
+    color:${theme.colors.grayscale.dark1};
+  `}
+`;
+
 export const DashboardEmbedControls = ({ dashboardId, onHide }: Props) => {
   const { addInfoToast, addDangerToast } = useToasts();
   const [ready, setReady] = useState(true); // whether we have initialized yet
@@ -159,7 +170,7 @@ export const DashboardEmbedControls = ({ dashboardId, onHide }: Props) => {
     'https://www.npmjs.com/package/@superset-ui/embedded-sdk';
 
   return (
-    <>
+    <Styleddiv>
       {embedded ? (
         DocsConfigDetails ? (
           <DocsConfigDetails embeddedId={embedded.uuid} />
@@ -189,14 +200,14 @@ export const DashboardEmbedControls = ({ dashboardId, onHide }: Props) => {
       </p>
       <h3>{t('Settings')}</h3>
       <FormItem>
-        <label htmlFor="allowed-domains">
+        <StyledLabel htmlFor="allowed-domains">
           {t('Allowed Domains (comma separated)')}{' '}
           <InfoTooltipWithTrigger
             tooltip={t(
               'A list of domain names that can embed this dashboard. Leaving this field empty will allow embedding from any domain.',
             )}
           />
-        </label>
+        </StyledLabel>
         <Input
           name="allowed-domains"
           value={allowedDomains}
@@ -233,7 +244,7 @@ export const DashboardEmbedControls = ({ dashboardId, onHide }: Props) => {
           </Button>
         )}
       </ButtonRow>
-    </>
+    </Styleddiv>
   );
 };
 
