@@ -97,7 +97,7 @@ const ScopeHeader = styled.div`
     border-bottom: 1px solid ${theme.colors.grayscale.light2};
     padding-left: ${theme.gridUnit * 6}px;
     margin-left: ${theme.gridUnit * -6}px;
-
+    color: ${theme.colors.grayscale.dark2};
     h4 {
       margin-top: 0;
     }
@@ -302,6 +302,8 @@ const ScopeSelector = styled.div`
         padding: ${theme.gridUnit}px ${theme.gridUnit * 2}px;
         font-size: ${theme.typography.sizes.m}px;
         outline: none;
+        background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark2};
 
         &:focus {
           border: 1px solid ${theme.colors.primary.base};
