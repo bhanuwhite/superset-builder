@@ -242,7 +242,7 @@ const ChartHolder: React.FC<ChartHolderProps> = ({
     }));
   }, []);
 
-  console.log(chartWidth, 'cw');
+  // console.log(chartWidth, 'cw');
 
 
   return (

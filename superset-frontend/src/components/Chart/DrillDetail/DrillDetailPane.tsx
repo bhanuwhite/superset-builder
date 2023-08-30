@@ -32,6 +32,7 @@ import {
   GenericDataType,
   JsonObject,
   QueryFormData,
+  styled,
   t,
   useTheme,
 } from '@superset-ui/core';
@@ -59,12 +60,104 @@ interface DataType {
 // Must be outside of the main component due to problems in
 // react-resize-detector with conditional rendering
 // https://github.com/maslianok/react-resize-detector/issues/178
+const StyledResizableTable = styled.div`
+  ${({ theme }) => `
+    height: 100%;
+    overflow: hidden;
+    margin-top: ${theme.gridUnit * 2}px;
+    .ant-table-container{
+      border:0px !important;
+    }
+      .ant-table-thead{
+        .ant-table-cell{
+          background-color: ${theme.colors.customBstStyles.tableHeaderbg};
+          border-left:0px !important;
+          border-right:0px !important;
+          border-top:0px !important;
+          border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+          :hover{
+            background-color: ${theme.colors.customBstStyles.tableHeaderbg};
+          }
+        }
+      }
+    .ant-table-cell {
+      font-weight: ${theme.typography.weights.bold};
+      background-color: ${theme.colors.grayscale.light5};
+    }
+    .virtual-grid{
+      .virtual-table-cell {
+        background-color: ${theme.colors.grayscale.light5};
+        border-bottom: 1px solid ${theme.colors.customBstStyles.borderColor};
+        color: ${theme.colors.grayscale.dark2};
+        :hover{
+          background-color: ${theme.colors.grayscale.light4};
+        }
+      }
+    }
+    .ant-table-cell,
+    .virtual-table-cell {
+      min-width: 0px;
+      align-self: center;
+      font-size: ${theme.typography.sizes.s}px;
+    }
+
+    .even-row {
+      background: ${theme.colors.grayscale.light4};
+    }
+
+    .odd-row {
+      background: ${theme.colors.grayscale.light5};
+    }
+
+    .cell-text-for-measuring {
+      font-family: ${theme.typography.families.sansSerif};
+      font-size: ${theme.typography.sizes.s}px;
+    }
+
+    .ant-pagination-item {
+      background-color:${theme.colors.customBstStyles.tableHeaderbg};
+      border: 1px solid ${theme.colors.customBstStyles.tableHeaderbg};
+      color: ${theme.colors.grayscale.dark1};
+      margin: 0 ${theme.gridUnit / 2}px;
+      &:hover {
+        border-color: ${theme.colors.primary.dark1};
+      }
+    }
+
+    a {
+      color: ${theme.colors.grayscale.dark1};
+      &:hover {
+        color: ${theme.colors.primary.dark1};
+      }
+    }
+
+    .ant-pagination-options-size-changer .ant-select-selector {
+      background-color: ${theme.colors.grayscale.light4};
+      color: ${theme.colors.grayscale.dark1};
+    }
+
+    .ant-pagination-options-size-changer .ant-select-item {
+      background-color: ${theme.colors.grayscale.light4};
+      color: ${theme.colors.grayscale.dark1};
+    }
+  
+    .ant-pagination-options-size-changer .ant-select-arrow {
+      color: ${theme.colors.grayscale.dark1};
+    }
+
+    .ant-pagination-prev .ant-pagination-item-link-icon,
+    .ant-pagination-next .ant-pagination-item-link-icon {
+      color: ${theme.colors.grayscale.dark1};
+    }
+`}
+`;
 function Resizable({ children }: { children: ReactElement }) {
   const { ref, height } = useResizeDetector();
+
   return (
-    <div ref={ref} css={{ flex: 1 }}>
+    <StyledResizableTable ref={ref} css={{ flex: 1 }}>
       {React.cloneElement(children, { height })}
-    </div>
+    </StyledResizableTable>
   );
 }
 
