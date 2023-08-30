@@ -262,7 +262,7 @@ export function Table<RecordType extends object>(
     onRow,
     allowHTML = false,
   } = props;
-console.log(props,'colProps');
+// console.log(props,'colProps');
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [derivedColumns, setDerivedColumns] = useState(columns);
