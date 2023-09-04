@@ -32,6 +32,9 @@ import Menu from 'src/features/home/Menu';
 import { theme } from 'src/preamble';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { setupStore } from './store';
+import { GlobalStyles } from 'src/GlobalStyles';
+import { Global } from '@emotion/react';
+import { globalStyles } from 'src/features/home/SubMenu';
 
 // Disable connecting to redux debugger so that the React app injected
 // Below the menu like SqlLab or Explore can connect its redux store to the debugger
@@ -51,6 +54,8 @@ const app = (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
+          <Global styles={globalStyles(theme)} />
+          <GlobalStyles />
           <QueryParamProvider
             ReactRouterRoute={Route}
             stringifyOptions={{ encode: false }}

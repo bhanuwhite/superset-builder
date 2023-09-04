@@ -51,19 +51,22 @@ const TabButton = styled.div`
   padding: ${({ theme }) => theme.gridUnit * 2}px
     ${({ theme }) => theme.gridUnit * 4}px;
   margin-right: ${({ theme }) => theme.gridUnit * 4}px;
-  color: ${({ theme }) => theme.colors.secondary.dark1};
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
 
+  &.active{ 
+    color: ${({ theme }) => theme.colors.secondary.light4};
+  }
   &.active,
   &:focus,
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary.light4};
+    background: ${({ theme }) => theme.colors.primary.dark1};
     border-bottom: none;
     border-radius: ${({ theme }) => theme.borderRadius}px;
     margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
   }
 
   &:hover:not(.active) {
-    background: ${({ theme }) => theme.colors.secondary.light5};
+    background: ${({ theme }) => theme.colors.grayscale.light4};
   }
 `;
 const StyledModal = styled(Modal)`

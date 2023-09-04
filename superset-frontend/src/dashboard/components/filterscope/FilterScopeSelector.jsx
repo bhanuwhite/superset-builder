@@ -80,6 +80,7 @@ const ScopeContainer = styled.div`
 const ScopeBody = styled.div`
   ${({ theme }) => css`
     &.filter-scope-body {
+      color: ${theme.colors.grayscale.dark2};
       flex: 1;
       max-height: calc(100% - ${theme.gridUnit * 32}px);
 
