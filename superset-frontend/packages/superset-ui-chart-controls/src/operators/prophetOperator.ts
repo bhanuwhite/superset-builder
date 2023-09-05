@@ -36,6 +36,7 @@ export const prophetOperator: PostProcessingFactory<PostProcessingProphet> = (
         weekly_seasonality: formData.forecastSeasonalityWeekly,
         daily_seasonality: formData.forecastSeasonalityDaily,
         index: xAxisLabel,
+        holidays: formData.forecastHoliday,
       },
     };
   }

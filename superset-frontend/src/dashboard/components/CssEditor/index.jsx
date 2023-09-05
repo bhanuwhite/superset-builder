@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 import { AntdDropdown } from 'src/components';
 import { Menu } from 'src/components/Menu';
 import Button from 'src/components/Button';
-import { t, styled } from '@superset-ui/core';
+import { t, styled, css } from '@superset-ui/core';
 import ModalTrigger from 'src/components/ModalTrigger';
 import { CssEditor as AceCssEditor } from 'src/components/AsyncAceEditor';
 
@@ -32,13 +32,46 @@ const StyledWrapper = styled.div`
       flex-direction: row;
       justify-content: space-between;
       margin-bottom: ${theme.gridUnit * 2}px;
-
-      h5 {
-        margin-top: ${theme.gridUnit}px;
-      }
+      color: ${theme.colors.grayscale.dark2};
+      margin-top: ${theme.gridUnit}px;
+      font-size: ${theme.gridUnit * 4}px;
+      font-weight:bold;
+      // h5 {
+      // }
     }
     .css-editor {
       border: 1px solid ${theme.colors.grayscale.light1};
+    }
+  `}
+`;
+
+const StyledAceCssEditor = styled(AceCssEditor)`
+  ${({ theme }) => css`
+    && {
+      // double class is better than !important
+      border: 1px solid ${theme.colors.grayscale.light2};
+      font-feature-settings: 'liga' off, 'calt' off;
+
+      &.ace_autocomplete {
+        // Use !important because Ace Editor applies extra CSS at the last second
+        // when opening the autocomplete.
+        width: ${theme.gridUnit * 130}px !important;
+      }
+
+      .ace_scroller {
+        background-color: ${theme.colors.grayscale.light4};
+        color: ${theme.colors.grayscale.dark1};
+      }
+      .ace_marker-layer .ace_active-line {
+        background-color: ${theme.colors.customBstStyles.borderColor}; // Customize the background color
+      }
+      .ace_cursor {
+        border-left: 2px solid ${theme.colors.grayscale.dark1}; // Customize the cursor color
+      }
+      .ace_gutter {
+        background-color: ${theme.colors.primary.dark1}; // Customize the background color
+        color: ${theme.colors.grayscale.dark1}; // Customize the text color
+      }
     }
   `}
 `;
@@ -52,7 +85,7 @@ const propTypes = {
 
 const defaultProps = {
   initialCss: '',
-  onChange: () => {},
+  onChange: () => { },
 };
 
 class CssEditor extends React.PureComponent {
@@ -106,10 +139,10 @@ class CssEditor extends React.PureComponent {
         modalBody={
           <StyledWrapper>
             <div className="css-editor-header">
-              <h5>{t('Live CSS editor')}</h5>
+              {t('Live CSS editor')}<br />
               {this.renderTemplateSelector()}
             </div>
-            <AceCssEditor
+            <StyledAceCssEditor
               className="css-editor"
               minLines={12}
               maxLines={30}

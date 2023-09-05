@@ -128,6 +128,7 @@ interface _PostProcessingProphet {
     yearly_seasonality?: boolean | number;
     weekly_seasonality?: boolean | number;
     daily_seasonality?: boolean | number;
+    holidays?: string;
   };
 }
 export type PostProcessingProphet =

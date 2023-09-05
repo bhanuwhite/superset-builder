@@ -83,6 +83,7 @@ def prophet(  # pylint: disable=too-many-arguments
     weekly_seasonality: Optional[Union[bool, int]] = None,
     daily_seasonality: Optional[Union[bool, int]] = None,
     index: Optional[str] = None,
+    holidays: Optional[str] = None,
 ) -> DataFrame:
     """
     Add forecasts to each series in a timeseries dataframe, along with confidence

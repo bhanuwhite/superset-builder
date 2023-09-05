@@ -30,6 +30,7 @@ export const FORECAST_DEFAULT_DATA = {
   forecastSeasonalityDaily: null,
   forecastSeasonalityWeekly: null,
   forecastSeasonalityYearly: null,
+  forecastHoliday: '',
 };
 
 export const forecastIntervalControls: ControlPanelSectionConfig = {
@@ -129,6 +130,20 @@ export const forecastIntervalControls: ControlPanelSectionConfig = {
           default: FORECAST_DEFAULT_DATA.forecastSeasonalityDaily,
           description: t(
             'Should daily seasonality be applied. An integer value will specify Fourier order of seasonality.',
+          ),
+        },
+      },
+    ],
+    [
+      {
+        name: 'forecastHoliday',
+        config: {
+          type: 'TextAreaControl',
+          freeForm: true,
+          label: t('Holidays in Forecast Period'),
+          default: FORECAST_DEFAULT_DATA.forecastHoliday,
+          description: t(
+            'Please Enter Holiday dates in DD-MM-YYYY format.',
           ),
         },
       },
