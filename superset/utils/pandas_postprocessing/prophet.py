@@ -26,6 +26,12 @@ from superset.utils.core import DTTM_ALIAS
 from superset.utils.pandas_postprocessing.utils import PROPHET_TIME_GRAIN_MAP
 
 
+
+logger = logging.getLogger(__name__)
+
+
+
+
 def _prophet_parse_seasonality(
     input_value: Optional[Union[bool, int]]
 ) -> Union[bool, str, int]:
@@ -39,6 +45,54 @@ def _prophet_parse_seasonality(
         return input_value
 
 
+import pandas as pd
+
+def calculate_first_non_zero_holiday_effect(forecast_model, holiday):
+    """
+    Filters the non-zero holiday effects from the forecast model for a given holiday.
+    
+    Args:
+        forecast_model (pd.DataFrame): The DataFrame containing the forecast results.
+        holiday (str): The name of the holiday.
+    
+    Returns:
+        pd.Series: A pandas Series with the non-zero holiday effects.
+    """
+    non_zero_effects = forecast_model[forecast_model[holiday] != 0][holiday]
+    
+    # Now take the first non zero holidate effect by grabbing the one at 0th index
+    return non_zero_effects.values[0]
+    
+from prophet.make_holidays import make_holidays_df
+
+def create_holidays_df(df, country='IN'):
+    """
+    Create a dataframe of holidays for a given country and state, based on a given dataframe containing datetime values.
+
+    Parameters:
+    - country (str): The name of the country for which the holidays are to be generated. Default is 'US'.
+    - state (str): The name of the state for which the holidays are to be generated. Default is 'IL'.
+
+    Returns:
+    - holidays_df (pandas DataFrame): A dataframe containing the dates of holidays for the specified country and state. It has two columns:
+    - 'ds' (datetime): The date of the holiday.
+    - 'holiday' (str): The name of the holiday.
+
+    Usage:
+    - df = pd.DataFrame({'ds': pd.date_range(start='2021-01-01', end='2022-12-31', freq='D')})
+    - holidays_df = create_holidays_df(df, country='US', state='IL')
+    """
+    # print("year_list",year_list)
+    holidays_df = make_holidays_df(year_list=year_list,
+                                   country=country)
+    return holidays_df
+
+
+# Usage
+# Assuming `model` is an already trained FB Prophet model
+
+
+
 def _prophet_fit_and_predict(  # pylint: disable=too-many-arguments
     df: DataFrame,
     confidence_interval: float,
@@ -47,6 +101,7 @@ def _prophet_fit_and_predict(  # pylint: disable=too-many-arguments
     daily_seasonality: Union[bool, str, int],
     periods: int,
     freq: str,
+    holidays:str,
 ) -> DataFrame:
     """
     Fit a prophet model and return a DataFrame with predicted results.
@@ -54,37 +109,77 @@ def _prophet_fit_and_predict(  # pylint: disable=too-many-arguments
     try:
         # pylint: disable=import-outside-toplevel
         from prophet import Prophet
-
+        from prophet.make_holidays import make_holidays_df
+        import pandas as pd
+        import numpy as np
         prophet_logger = logging.getLogger("prophet.plot")
         prophet_logger.setLevel(logging.CRITICAL)
         prophet_logger.setLevel(logging.NOTSET)
     except ModuleNotFoundError as ex:
         raise InvalidPostProcessingError(_("`prophet` package not installed")) from ex
-    model = Prophet(
-        interval_width=confidence_interval,
-        yearly_seasonality=yearly_seasonality,
-        weekly_seasonality=weekly_seasonality,
-        daily_seasonality=daily_seasonality,
-    )
-    if df["ds"].dt.tz:
-        df["ds"] = df["ds"].dt.tz_convert(None)
-    model.fit(df)
-    future = model.make_future_dataframe(periods=periods, freq=freq)
-    forecast = model.predict(future)[["ds", "yhat", "yhat_lower", "yhat_upper"]]
+    logger.debug("holidays_splittttttttttt %s",holidays) 
+    logger.debug("holidays_splittttttttttt %s",type(holidays)) 
+    if holidays is not None and holidays != "":
+        if holidays != "default":
+            holidays_split = holidays.split(",") #getting holydays from ui and split with comma
+            logger.debug("holidays_splittttttttttt %s",holidays_split) 
+            
+            year_list = df['ds'].dt.year.unique().tolist()
+            print(type(year_list[0])) #find years in csv file
+            year_list.append(year_list[-1] + 1) #increase one year for prediction
+            logger.debug("year_listyear_list %s",year_list) 
+
+            
+            holidays = make_holidays_df(year_list=year_list, country='IN') #all holydays getting with country code
+            multiday_Holiday = pd.DataFrame({'holiday': 'Gandhi Death',
+                                            'ds': pd.to_datetime(holidays_split),
+                                            'lower_window': 0,
+                                            'upper_window': 1})
+            holidays_seasonal = pd.concat([holidays, multiday_Holiday]).sort_values('ds').reset_index(drop=True)
+            logger.debug("holidays_seasonal %s",holidays_seasonal)
+
+            model = Prophet(seasonality_mode='multiplicative',
+                    yearly_seasonality=4,
+                    holidays=holidays_seasonal)
+            model.fit(df)
+            
+            future = model.make_future_dataframe(periods=30)
+            forecast = model.predict(future)
+            
+            forecast = model.predict(future)#[["ds", "yhat", "yhat_lower", "yhat_upper"]]
+            logger.debug("forecast forecast %s",forecast)
+            if df["ds"].dt.tz:
+                df["ds"] = df["ds"].dt.tz_convert(None)
+        else:
+            model = Prophet()
+            model.add_country_holidays(country_name='IN')#model.add_country_holidays(country_name='IN')
+
+            model.fit(df)
+            future = model.make_future_dataframe(periods=30, freq=freq)#future = model.make_future_dataframe(periods=periods, freq=freq)
+            forecast = model.predict(future)[["ds", "yhat", "yhat_lower", "yhat_upper"]]
+        # logger.debug("logging debug code formdata_for_prophet %s ",QueryContext.formdata_for_prophet())
+    # (
+    #     interval_width=confidence_interval,
+    #     yearly_seasonality=yearly_seasonality,
+    #     weekly_seasonality=weekly_seasonality,
+    #     daily_seasonality=daily_seasonality,
+    # )
+
     return forecast.join(df.set_index("ds"), on="ds").set_index(["ds"])
 
 
 def prophet(  # pylint: disable=too-many-arguments
     df: DataFrame,
     time_grain: str,
+    holidays:str,
     periods: int,
     confidence_interval: float,
     yearly_seasonality: Optional[Union[bool, int]] = None,
     weekly_seasonality: Optional[Union[bool, int]] = None,
     daily_seasonality: Optional[Union[bool, int]] = None,
     index: Optional[str] = None,
-    holidays: Optional[str] = None,
 ) -> DataFrame:
+    logger.debug("time_grainnnnnnnnnnnnnnnnnnnnnnnnn ")
     """
     Add forecasts to each series in a timeseries dataframe, along with confidence
     intervals for the prediction. For each series, the operation creates three
@@ -121,6 +216,7 @@ def prophet(  # pylint: disable=too-many-arguments
                 time_grain=time_grain,
             )
         )
+
     freq = PROPHET_TIME_GRAIN_MAP[time_grain]
     # check type at runtime due to marshmallow schema not being able to handle
     # union types
@@ -136,7 +232,7 @@ def prophet(  # pylint: disable=too-many-arguments
         raise InvalidPostProcessingError(_("DataFrame include at least one series"))
 
     target_df = DataFrame()
-
+    logger.debug("holidaysholidaysholidays %s",holidays)
     for column in [
         column
         for column in df.columns
@@ -151,6 +247,7 @@ def prophet(  # pylint: disable=too-many-arguments
             daily_seasonality=_prophet_parse_seasonality(daily_seasonality),
             periods=periods,
             freq=freq,
+            holidays=holidays,
         )
         new_columns = [
             f"{column}__yhat",
@@ -158,7 +255,7 @@ def prophet(  # pylint: disable=too-many-arguments
             f"{column}__yhat_upper",
             f"{column}",
         ]
-        fit_df.columns = new_columns
+        # fit_df.columns = new_columns
         if target_df.empty:
             target_df = fit_df
         else:
