@@ -33,6 +33,9 @@ export const FORECAST_DEFAULT_DATA = {
   forecastHoliday: '',
 };
 
+const currentDate = new Date();
+console.log(currentDate, 'curentdate');
+
 export const forecastIntervalControls: ControlPanelSectionConfig = {
   label: t('Predictive Analytics'),
   expanded: false,
@@ -138,12 +141,13 @@ export const forecastIntervalControls: ControlPanelSectionConfig = {
       {
         name: 'forecastHoliday',
         config: {
-          type: 'TextAreaControl',
+          type: 'TextControl',
           freeForm: true,
           label: t('Holidays in Forecast Period'),
+          initialValue: '05-09-2023',
           default: FORECAST_DEFAULT_DATA.forecastHoliday,
           description: t(
-            'Please Enter Holiday dates in DD-MM-YYYY format.',
+            'Please Enter Holiday dates in DD-MM-YYYY format separated with comma (No spaces or any other characters are allowed) (Ex.01-01-2001,01-02-2002,02-01-2003)',
           ),
         },
       },
