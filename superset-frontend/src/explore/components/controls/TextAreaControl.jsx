@@ -60,6 +60,7 @@ const StyledTextAreaEditor = styled(TextAreaEditor)`
 
 const propTypes = {
   name: PropTypes.string,
+  placeholder:PropTypes.string,
   onChange: PropTypes.func,
   initialValue: PropTypes.string,
   height: PropTypes.number,
@@ -143,7 +144,7 @@ class TextAreaControl extends React.Component {
     }
     return (
       <TextArea
-        placeholder={t('textarea')}
+        placeholder={this.props.placeholder ? this.props.placeholder : t('textarea')}
         onChange={this.onControlChange.bind(this)}
         defaultValue={this.props.initialValue}
         disabled={this.props.readOnly}
