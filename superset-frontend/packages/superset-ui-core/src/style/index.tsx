@@ -359,4 +359,4 @@ export interface SupersetThemeProps {
 }
 
 export const supersetTheme =
-  appliedTheme === 'light' ? defaultTheme : defaultThemeDark;
+  appliedTheme === 'dark' ? defaultThemeDark : defaultTheme;
