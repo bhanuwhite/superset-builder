@@ -85,34 +85,34 @@ const StyledDiv = styled.div<{ align: string }>`
   align-items: center;
   margin-inline: ${({ theme }) => theme.gridUnit * 4}px
     ${({ theme }) => theme.gridUnit}px;
-    .ant-menu-submenu-title > svg {
-      top: ${({ theme }) => theme.gridUnit * 5.25}px;
-    }
-    `;
+  .ant-menu-submenu-title > svg {
+    top: ${({ theme }) => theme.gridUnit * 5.25}px;
+  }
+`;
 
 const StyledMenuItemWithIcon = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    `;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const StyledAnchor = styled.a`
-    padding-right: ${({ theme }) => theme.gridUnit}px;
-    padding-left: ${({ theme }) => theme.gridUnit}px;
-    `;
+  padding-right: ${({ theme }) => theme.gridUnit}px;
+  padding-left: ${({ theme }) => theme.gridUnit}px;
+`;
 
 const tagStyles = (theme: SupersetTheme) => css`
-    // color: ${theme.colors.grayscale.light5};
-    color: #FFFFFF;
-    `;
+  // color: ${theme.colors.grayscale.light5};
+  color: #ffffff;
+`;
 
 const styledChildMenu = (theme: SupersetTheme) => css`
-    &:hover {
-      color: ${theme.colors.primary.base} !important;
-      cursor: pointer !important;
-    }
-    `;
+  &:hover {
+    color: ${theme.colors.primary.base} !important;
+    cursor: pointer !important;
+  }
+`;
 
 const StyledButton = styled(Button)`
     position:fixed; 
@@ -459,7 +459,11 @@ const RightMenu = ({
   newData.menu = cleanedMenu;
   newData.settings = settings;
 
-  async function setThemeAsync(theme: string, color: string, subHeaderColor: string): Promise<void> {
+  async function setThemeAsync(
+    theme: string,
+    color: string,
+    subHeaderColor: string,
+  ): Promise<void> {
     return new Promise<void>(resolve => {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
@@ -472,8 +476,12 @@ const RightMenu = ({
   const [appliedTheme, setAppliedTheme] = useState<string>(
     localStorage.getItem('theme') || 'light',
   );
-  const [backgroundColor, setBackgroundColor] = useState<string>(localStorage.getItem('backgroundColor') || '');
-  const [subHeaderColor, setSubHeaderColor] = useState<string>(localStorage.getItem('subHeaderColor') || '');
+  const [backgroundColor, setBackgroundColor] = useState<string>(
+    localStorage.getItem('backgroundColor') || '',
+  );
+  const [subHeaderColor, setSubHeaderColor] = useState<string>(
+    localStorage.getItem('subHeaderColor') || '',
+  );
 
   useEffect(() => {
     (async () => {
@@ -508,6 +516,9 @@ const RightMenu = ({
   const onClose = () => {
     setOpen(false);
   };
+
+  console.log(navbarRight.user_logout_url, "logouturl");
+  
   return (
     <StyledDiv align={align}>
       {canDatabase && (
@@ -532,19 +543,31 @@ const RightMenu = ({
               marginTop: '20px',
             }}
           >
-            <h4 className='drawer-heading'>Theme</h4>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}>
-              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+            <h4 className="drawer-heading">Theme</h4>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <p
+                style={{
+                  color: theme.colors.grayscale.dark2,
+                  marginTop: '8px',
+                }}
+              >
                 Light&nbsp;&nbsp;
               </p>
               <Switch
                 defaultChecked={appliedTheme === 'dark'}
                 onChange={toggleTheme}
               />
-              <p style={{ color: theme.colors.grayscale.dark2, marginTop: '8px' }}>
+              <p
+                style={{
+                  color: theme.colors.grayscale.dark2,
+                  marginTop: '8px',
+                }}
+              >
                 &nbsp;&nbsp;Dark
               </p>
             </div>
@@ -554,20 +577,41 @@ const RightMenu = ({
             style={{
               display: 'flex',
               justifyContent: 'space-evenly',
-              flexDirection: 'column'
+              flexDirection: 'column',
             }}
           >
-            <h4 className='drawer-heading'>Color Scheme</h4>
+            <h4 className="drawer-heading">Color Scheme</h4>
             <br />
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}>
-              <div className="box red" onClick={() => handleColorChange('#ff6347', '#b36350')}></div>
-              <div className="box green" onClick={() => handleColorChange('#00B894', '#008874')}></div>
-              <div className="box blue" onClick={() => handleColorChange('#3498DB', '#013e70')}></div>
-              <div className="box maroon" onClick={() => handleColorChange('#ec4dbc', 'rgba(236,77,188, 0.3)')}></div>
-              <div className="box navy" onClick={() => handleColorChange('#873efe', 'rgba(135,62,254, 0.3)')}></div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div
+                className="box red"
+                onClick={() => handleColorChange('#ff6347', '#b36350')}
+              ></div>
+              <div
+                className="box green"
+                onClick={() => handleColorChange('#00B894', '#008874')}
+              ></div>
+              <div
+                className="box blue"
+                onClick={() => handleColorChange('#3498DB', '#013e70')}
+              ></div>
+              <div
+                className="box maroon"
+                onClick={() =>
+                  handleColorChange('#ec4dbc', 'rgba(236,77,188, 0.3)')
+                }
+              ></div>
+              <div
+                className="box navy"
+                onClick={() =>
+                  handleColorChange('#873efe', 'rgba(135,62,254, 0.3)')
+                }
+              ></div>
             </div>
           </div>
           <hr />
@@ -580,8 +624,8 @@ const RightMenu = ({
             /^#(?:[0-9a-f]{3}){1,2}$/i.test(environmentTag.color)
               ? environmentTag.color
               : environmentTag.color
-                .split('.')
-                .reduce((o, i) => o[i], theme.colors)
+                  .split('.')
+                  .reduce((o, i) => o[i], theme.colors)
           }
         >
           <span css={tagStyles}>{environmentTag.text}</span>
@@ -708,7 +752,14 @@ const RightMenu = ({
                 </Menu.Item>
               )}
               <Menu.Item key="logout">
-                <a href={navbarRight.user_logout_url}>{t('Logout')}</a>
+                <a
+                  href={navbarRight.user_logout_url}
+                  // onClick={() =>
+                  //   window.location.replace('http://localhost:3000/home')
+                  // }
+                >
+                  {t('Logout')}
+                </a>
               </Menu.Item>
             </Menu.ItemGroup>,
           ]}
@@ -814,7 +865,7 @@ class RightMenuErrorWrapper extends React.PureComponent<RightMenuProps> {
     return { hasError: true };
   }
 
-  noop = () => { };
+  noop = () => {};
 
   render() {
     if (this.state.hasError) {
