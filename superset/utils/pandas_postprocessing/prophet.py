@@ -120,43 +120,43 @@ def _prophet_fit_and_predict(  # pylint: disable=too-many-arguments
     logger.debug("holidays_splittttttttttt %s",holidays) 
     logger.debug("holidays_splittttttttttt %s",type(holidays)) 
     if holidays is not None and holidays != "":
-        if holidays != "default":
-            holidays_split = holidays.split(",") #getting holydays from ui and split with comma
-            logger.debug("holidays_splittttttttttt %s",holidays_split) 
-            
-            year_list = df['ds'].dt.year.unique().tolist()
-            print(type(year_list[0])) #find years in csv file
-            year_list.append(year_list[-1] + 1) #increase one year for prediction
-            logger.debug("year_listyear_list %s",year_list) 
+        # if holidays != "" :
+        holidays_split = holidays.split(",") #getting holydays from ui and split with comma
+        logger.debug("holidays_splittttttttttt %s",holidays_split) 
+        
+        year_list = df['ds'].dt.year.unique().tolist()
+        print(type(year_list[0])) #find years in csv file
+        year_list.append(year_list[-1] + 1) #increase one year for prediction
+        logger.debug("year_listyear_list %s",year_list) 
 
-            
-            holidays = make_holidays_df(year_list=year_list, country='IN') #all holydays getting with country code
-            multiday_Holiday = pd.DataFrame({'holiday': 'Gandhi Death',
-                                            'ds': pd.to_datetime(holidays_split),
-                                            'lower_window': 0,
-                                            'upper_window': 1})
-            holidays_seasonal = pd.concat([holidays, multiday_Holiday]).sort_values('ds').reset_index(drop=True)
-            logger.debug("holidays_seasonal %s",holidays_seasonal)
+        
+        holidays = make_holidays_df(year_list=year_list, country='IN') #all holydays getting with country code
+        multiday_Holiday = pd.DataFrame({'holiday': 'Gandhi Death',
+                                        'ds': pd.to_datetime(holidays_split),
+                                        'lower_window': 0,
+                                        'upper_window': 1})
+        holidays_seasonal = pd.concat([holidays, multiday_Holiday]).sort_values('ds').reset_index(drop=True)
+        logger.debug("holidays_seasonal %s",holidays_seasonal)
 
-            model = Prophet(seasonality_mode='multiplicative',
-                    yearly_seasonality=4,
-                    holidays=holidays_seasonal)
-            model.fit(df)
-            
-            future = model.make_future_dataframe(periods=30)
-            forecast = model.predict(future)
-            
-            forecast = model.predict(future)#[["ds", "yhat", "yhat_lower", "yhat_upper"]]
-            logger.debug("forecast forecast %s",forecast)
-            if df["ds"].dt.tz:
-                df["ds"] = df["ds"].dt.tz_convert(None)
-        else:
-            model = Prophet()
-            model.add_country_holidays(country_name='IN')#model.add_country_holidays(country_name='IN')
+        model = Prophet(seasonality_mode='multiplicative',
+                yearly_seasonality=4,
+                holidays=holidays_seasonal)
+        model.fit(df)
+        
+        future = model.make_future_dataframe(periods=30)
+        forecast = model.predict(future)
+        
+        forecast = model.predict(future)#[["ds", "yhat", "yhat_lower", "yhat_upper"]]
+        logger.debug("forecast forecast %s",forecast)
+        if df["ds"].dt.tz:
+            df["ds"] = df["ds"].dt.tz_convert(None)
+    else:
+        model = Prophet()
+        model.add_country_holidays(country_name='IN')#model.add_country_holidays(country_name='IN')
 
-            model.fit(df)
-            future = model.make_future_dataframe(periods=30, freq=freq)#future = model.make_future_dataframe(periods=periods, freq=freq)
-            forecast = model.predict(future)[["ds", "yhat", "yhat_lower", "yhat_upper"]]
+        model.fit(df)
+        future = model.make_future_dataframe(periods=30, freq=freq)#future = model.make_future_dataframe(periods=periods, freq=freq)
+        forecast = model.predict(future)[["ds", "yhat", "yhat_lower", "yhat_upper"]]
         # logger.debug("logging debug code formdata_for_prophet %s ",QueryContext.formdata_for_prophet())
     # (
     #     interval_width=confidence_interval,

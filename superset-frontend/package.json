@@ -90,6 +90,7 @@
     "@superset-ui/chart-controls": "file:./packages/superset-ui-chart-controls",
     "@superset-ui/core": "file:./packages/superset-ui-core",
     "@superset-ui/custom-plugin-liquid-chart": "file:plugins/custom-plugins/custom-plugin-chart-liquid",
+    "@superset-ui/embedded-sdk": "^0.1.0-alpha.10",
     "@superset-ui/legacy-plugin-chart-calendar": "file:./plugins/legacy-plugin-chart-calendar",
     "@superset-ui/legacy-plugin-chart-chord": "file:./plugins/legacy-plugin-chart-chord",
     "@superset-ui/legacy-plugin-chart-country-map": "file:./plugins/legacy-plugin-chart-country-map",
