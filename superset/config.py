@@ -235,7 +235,7 @@ SQLALCHEMY_ENCRYPTED_FIELD_TYPE_ADAPTER = (  # pylint: disable=invalid-name
 QUERY_SEARCH_LIMIT = 1000
 
 # Flask-WTF flag for CSRF
-WTF_CSRF_ENABLED = True
+WTF_CSRF_ENABLED = False
 
 # Add endpoints that need to be exempt from CSRF protection
 WTF_CSRF_EXEMPT_LIST = [
@@ -1572,7 +1572,8 @@ GLOBAL_ASYNC_QUERIES_POLLING_DELAY = int(
 GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://127.0.0.1:8080/"
 
 # Embedded config options
-GUEST_ROLE_NAME = "Public"
+GUEST_ROLE_NAME = "Gamma"
+# GUEST_ROLE_NAME = "Public"
 GUEST_TOKEN_JWT_SECRET = "test-guest-secret-change-me"
 GUEST_TOKEN_JWT_ALGO = "HS256"
 GUEST_TOKEN_HEADER_NAME = "X-GuestToken"
