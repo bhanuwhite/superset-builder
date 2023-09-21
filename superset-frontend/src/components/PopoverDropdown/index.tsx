@@ -18,7 +18,7 @@
  */
 import React from 'react';
 import cx from 'classnames';
-import { styled, supersetTheme, useTheme } from '@superset-ui/core';
+import { styled, useTheme } from '@superset-ui/core';
 import { AntdDropdown } from 'src/components';
 import { Menu } from 'src/components/Menu';
 import Icons from 'src/components/Icons';
@@ -108,7 +108,7 @@ const PopoverDropdown = (props: PopoverDropdownProps) => {
         </Menu>
       }
     >
-      <div role="button" css={{ display: 'flex', alignItems: 'center', color: supersetTheme.colors.grayscale.dark1 }}>
+      <div role="button" css={{ display: 'flex', alignItems: 'center', color: theme.colors.grayscale.dark1 }}>
         {selected && renderButton(selected)}
         <Icons.CaretDown
           iconColor={theme.colors.grayscale.base}
