@@ -108,7 +108,7 @@ const PopoverDropdown = (props: PopoverDropdownProps) => {
         </Menu>
       }
     >
-      <div role="button" css={{ display: 'flex', alignItems: 'center' }}>
+      <div role="button" css={{ display: 'flex', alignItems: 'center', color: theme.colors.grayscale.dark1 }}>
         {selected && renderButton(selected)}
         <Icons.CaretDown
           iconColor={theme.colors.grayscale.base}
