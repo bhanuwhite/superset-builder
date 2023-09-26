@@ -155,7 +155,7 @@ DEFAULT_TIME_FILTER = NO_TIME_RANGE
 
 SUPERSET_WEBSERVER_PROTOCOL = "http"
 SUPERSET_WEBSERVER_ADDRESS = "0.0.0.0"
-SUPERSET_WEBSERVER_PORT = 8088
+SUPERSET_WEBSERVER_PORT = 80
 
 # This is an important setting, and should be lower than your
 # [load balancer / proxy / envoy / kong / ...] timeout settings.

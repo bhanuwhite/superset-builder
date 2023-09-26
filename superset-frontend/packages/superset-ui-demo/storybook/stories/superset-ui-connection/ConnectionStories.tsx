@@ -42,7 +42,7 @@ export default {
 };
 
 export const configureCORS = () => {
-  const host = text('Superset App host for CORS request', 'localhost:8088');
+  const host = text('Superset App host for CORS request', 'localhost:80');
   const selectEndpoint = select('Endpoint', ENDPOINTS, '');
   const customEndpoint = text('Custom Endpoint (override above)', '');
   const endpoint = customEndpoint || selectEndpoint;

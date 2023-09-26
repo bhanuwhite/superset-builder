@@ -73,7 +73,7 @@ export default {
 };
 
 export const dataProvider = () => {
-  const host = text('Set Superset App host for CORS request', 'localhost:8088');
+  const host = text('Set Superset App host for CORS request', 'localhost:80');
   const visType = select('Chart Plugin Type', VIS_TYPES, VIS_TYPES[0]);
   const width = text('Vis width', '500');
   const height = text('Vis height', '300');
