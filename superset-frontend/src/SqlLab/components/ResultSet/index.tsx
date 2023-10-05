@@ -135,6 +135,10 @@ const LimitMessage = styled.span`
   margin-left: ${({ theme }) => theme.gridUnit * 2}px;
 `;
 
+const StyledSpan = styled.span`
+  color: ${({ theme }) => theme.colors.grayscale.dark1};
+`;
+
 const ResultSet = ({
   cache = false,
   csv = true,
@@ -311,14 +315,14 @@ const ResultSet = ({
     const displayMaxRowsReachedMessage = {
       withAdmin: t(
         'The number of results displayed is limited to %(rows)d by the configuration DISPLAY_MAX_ROW. ' +
-          'Please add additional limits/filters or download to csv to see more rows up to ' +
-          'the %(limit)d limit.',
+        'Please add additional limits/filters or download to csv to see more rows up to ' +
+        'the %(limit)d limit.',
         { rows: rowsCount, limit },
       ),
       withoutAdmin: t(
         'The number of results displayed is limited to %(rows)d. ' +
-          'Please add additional limits/filters, download to csv, or contact an admin ' +
-          'to see more rows up to the %(limit)d limit.',
+        'Please add additional limits/filters, download to csv, or contact an admin ' +
+        'to see more rows up to the %(limit)d limit.',
         { rows: rowsCount, limit },
       ),
     };
@@ -355,10 +359,10 @@ const ResultSet = ({
     return (
       <ReturnedRows>
         {!limitReached && !shouldUseDefaultDropdownAlert && (
-          <span title={tooltipText}>
+          <StyledSpan title={tooltipText}>
             {rowsReturnedMessage}
             <LimitMessage>{limitMessage}</LimitMessage>
-          </span>
+          </StyledSpan>
         )}
         {!limitReached && shouldUseDefaultDropdownAlert && (
           <div ref={calculateAlertRefHeight}>
