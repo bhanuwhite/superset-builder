@@ -52,6 +52,7 @@ export const NameRow = ({
         <Icons.FilterSmall
           css={(theme: SupersetTheme) => css`
             margin-right: ${theme.gridUnit}px;
+            color: ${theme.colors.grayscale.dark2};
           `}
         />
         <TooltipWithTruncation title={elementsTruncated ? filter.name : null}>

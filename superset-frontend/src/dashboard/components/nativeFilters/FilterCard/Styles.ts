@@ -41,7 +41,7 @@ export const Row = styled.div`
 
 export const RowLabel = styled.span`
   ${({ theme }) => css`
-    color: ${theme.colors.grayscale.base};
+    color: ${theme.colors.grayscale.dark1};
     padding-right: ${theme.gridUnit * 4}px;
     margin-right: auto;
     text-transform: uppercase;
@@ -60,9 +60,12 @@ export const RowValue = styled.div`
 `;
 
 export const FilterName = styled.span`
+${({ theme }) => css`
+  color: ${theme.colors.grayscale.dark2};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`};
 `;
 
 export const DependencyItem = styled.span`

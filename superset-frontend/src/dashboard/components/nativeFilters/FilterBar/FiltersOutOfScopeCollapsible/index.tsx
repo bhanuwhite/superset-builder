@@ -49,6 +49,7 @@ export const FiltersOutOfScopeCollapsible = ({
                 padding: 0;
 
                 & > .ant-collapse-arrow {
+                  color: ${theme.colors.grayscale.dark2};
                   right: 0;
                   padding: 0;
                 }
@@ -62,13 +63,13 @@ export const FiltersOutOfScopeCollapsible = ({
           `
         : css`
             &.ant-collapse {
-              margin-top: ${hasTopMargin ? theme.gridUnit * 6 : 0}px;
               & > .ant-collapse-item {
                 & > .ant-collapse-header {
                   padding-left: 0;
                   padding-bottom: ${theme.gridUnit * 2}px;
-
+                  
                   & > .ant-collapse-arrow {
+                    color: ${theme.colors.grayscale.dark2};
                     right: ${theme.gridUnit}px;
                   }
                 }
@@ -87,6 +88,7 @@ export const FiltersOutOfScopeCollapsible = ({
         <span
           css={(theme: SupersetTheme) => css`
             font-size: ${theme.typography.sizes.s}px;
+            color: ${theme.colors.grayscale.dark2};
           `}
         >
           {t('Filters out of scope (%d)', filtersOutOfScope.length)}
